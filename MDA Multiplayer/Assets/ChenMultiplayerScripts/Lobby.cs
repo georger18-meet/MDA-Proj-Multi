@@ -22,6 +22,15 @@ public class Lobby : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("username"))
+        {
+            usernameInput.text = PlayerPrefs.GetString("username");
+            PhotonNetwork.NickName = PlayerPrefs.GetString("username");
+        }
+
+    }
 
     public void Connect()
     {
@@ -29,6 +38,7 @@ public class Lobby : MonoBehaviourPunCallbacks
         if (usernameInput.text.Length>=1)
         {
             PhotonNetwork.NickName = usernameInput.text;
+            PlayerPrefs.SetString("username",usernameInput.text);
             buttonText.text = "Connecting...";
             isConnecting =  PhotonNetwork.ConnectUsingSettings();
         }
