@@ -9,16 +9,16 @@ public class HeartMassages : MonoBehaviour
     [SerializeField] private ActionTemplates _actionTemplates;
     [SerializeField] private GameObject _player;
 
-    public void DoHeartMassage()
-    {
-        if (!_AOM.CheckIfPlayerJoined())
-            return;
-        else
-            _player.transform.position = _AOM.PlayerTreatingTr.position;
+    //public void DoHeartMassage()
+    //{
+    //    if (!_AOM.CheckIfPlayerJoined())
+    //        return;
+    //    else
+    //        _player.transform.position = _AOM.PlayerTreatingTr.position;
 
-        _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
-        Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
-    }
+    //    _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
+    //    Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+    //}
 
     //public void DoHeartMassage(ActionData actionData)
     //{

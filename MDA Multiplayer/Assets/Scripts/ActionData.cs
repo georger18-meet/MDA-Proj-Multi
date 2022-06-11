@@ -8,17 +8,22 @@ public enum Measurements
    BloodSuger, BloodPressure, OxygenSaturation, ETCO2
 }
 
-public struct ActionData
+public enum Roles
 {
-    public ActionsManager AOM;
+    CFR, Medic, SeniorMedic, Paramedic, Doctor
+}
+
+public struct ActionsData
+{
+    public ActionsManager ActionsManagerAD;
     public Patient Patient;
     public GameObject Player;
     public GameObject Monitor;
     public Roles RolesAD;
 
-    public ActionData(ActionsManager aom, Patient patient, GameObject player, GameObject monitor, Roles roles)
+    public ActionsData(ActionsManager aom, Patient patient, GameObject player, GameObject monitor, Roles roles)
     {
-        AOM = aom;
+        ActionsManagerAD = aom;
         Patient = patient;
         Player = player;
         Monitor = monitor;

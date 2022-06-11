@@ -21,7 +21,8 @@ public class PatientData : ScriptableObject
 
     // Appearance
     [Header("Appearance")]
-    public Texture PatientTextures;
+    public Material PatientShirtMaterial;
+    public Material PatientPantsMaterial;
 
     // Catch Measurement Name
     private List<int> measurementName;
@@ -31,5 +32,49 @@ public class PatientData : ScriptableObject
         measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 
         return measurementName[index];
+    }
+
+    public void SetMeasurementName(int index, int value)
+    {
+        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        measurementName[index] = value;
+
+        Measurements measurements = (Measurements)index;
+
+        // to be replaced
+        switch (measurements)
+        {
+            case Measurements.BPM:
+                BPM = measurementName[index];
+                break;
+
+            case Measurements.PainLevel:
+                PainLevel = measurementName[index];
+                break;
+
+            case Measurements.RespiratoryRate:
+                RespiratoryRate = measurementName[index];
+                break;
+
+            case Measurements.CincinnatiLevel:
+                CincinnatiLevel = measurementName[index];
+                break;
+
+            case Measurements.BloodSuger:
+                BloodSuger = measurementName[index];
+                break;
+
+            case Measurements.BloodPressure:
+                BloodPressure = measurementName[index];
+                break;
+
+            case Measurements.OxygenSaturation:
+                OxygenSaturation = measurementName[index];
+                break;
+
+            case Measurements.ETCO2:
+                ETCO2 = measurementName[index];
+                break;
+        }
     }
 }

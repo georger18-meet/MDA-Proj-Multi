@@ -2,164 +2,145 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine;
-using TMPro;
-//using System.Linq;
 
-public class Patient : MonoBehaviourPunCallbacks
+public class Patient : MonoBehaviour
 {
     #region Script References
     [Header("Data & Scripts")]
     public PatientData PatientData;
+    public List<ActionSequence> ActionSequences;
+    #endregion
+
+    #region Material References
+    [SerializeField] private Material InitialShirt, InitialPants;
+    [SerializeField] private Renderer Shirt, Pants;
     #endregion
 
     #region Public fields
-    [SerializeField]
-    public Dictionary<string, int> OperatingUserCrew = new Dictionary<string, int>();
     public Animation PatientAnimation;
     #endregion
 
     #region private serialized fields
     [Header("Joined Crews & Players Lists")]
-    [SerializeField] public List<string> OperatingUsers = new List<string>();
-    [SerializeField] public List<int> OperatingCrews = new List<int>();
+    public List<PlayerData> NearbyUsers;
+    public List<PlayerData> TreatingUsers;
+    public List<int> TreatingCrews;
+
+    [Header("Treaters BackLog")]
+    public List<PlayerData> AllUsersTreatedThisPatient;
+    public List<int> AllCrewTreatedThisPatient;
     #endregion
 
 
-    private GameObject _player;
-    private MakeItAButton _makeItAButton;
-
     private PhotonView _photonView;
+    public PhotonView GetphotonView => _photonView;
+
+
     private void Awake()
     {
-        _makeItAButton = GetComponent<MakeItAButton>();
         _photonView = GetComponent<PhotonView>();
     }
 
-
-    //public void DisplayDictionary()
-    //{
-    //    _photonView.RPC("RPC_DisplayDictionary",RpcTarget.AllBufferedViaServer);
-
-    //}
-
-    //[PunRPC]
-    public void DisplayDictionary()
+    private void Start()
     {
+        ActionsManager.Instance.AllPatients.Add(this);
+        PatientData.PatientShirtMaterial = InitialShirt;
+        PatientData.PatientPantsMaterial = InitialPants;
+    }
 
-        OperatingUsers.Clear();
-        OperatingCrews.Clear();
+    private void Update()
+    {
+        Shirt.material = PatientData.PatientShirtMaterial;
+        Pants.material = PatientData.PatientPantsMaterial;
+    }
 
-        foreach (KeyValuePair<string, int> diction in OperatingUserCrew)
+
+
+
+    public void AddUserToTreatingLists(object currentPlayer)
+    {
+        PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
+
+        if (currentPlayerData == null)
         {
-            Debug.Log("Key = {" + diction.Key + "} " + "Value = {" + diction.Value + "}");
-            OperatingUsers.Add(diction.Key);
-            OperatingCrews.Add(diction.Value);
+            return;
+        }
+
+
+        for (int i = 0; i < 1; i++)
+        {
+            if (TreatingUsers.Contains(currentPlayerData))
+            {
+                continue;
+            }
+            else
+            {
+                TreatingUsers.Add(currentPlayerData);
+                AllUsersTreatedThisPatient.Add(currentPlayerData);
+            }
+
+            if (TreatingCrews.Contains(currentPlayerData.CrewIndex))
+            {
+                return;
+            }
+            else
+            {
+                TreatingCrews.Add(currentPlayerData.CrewIndex);
+                AllCrewTreatedThisPatient.Add(currentPlayerData.CrewIndex);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        PlayerData possiblePlayer = other.GetComponent<PlayerData>();
 
-            if (_player == null)
-            {
-                if (other.CompareTag("Player"))
-                {
-                    _player = other.gameObject;
-                    _makeItAButton.EventToCall.AddListener(delegate
-                    {
-                        _player.GetComponent<ActionsManager>().SetOperatingCrewCheck(this.gameObject);
-                      // _player.GetComponent<ActionsManager>().ConfirmOperation(_player);
-                    });
-                    
-                }
-            }
-        
-    }
-
-
-
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (possiblePlayer == null)
         {
-            _player = null;
-            _makeItAButton.EventToCall.RemoveListener(delegate { _player.GetComponent<ActionsManager>().SetOperatingCrewCheck(this.gameObject); });
+            return;
+        }
+        else if (!NearbyUsers.Contains(possiblePlayer))
+        {
+            NearbyUsers.Add(possiblePlayer);
         }
     }
 
-    // refactor for player to do on patient
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerData possiblePlayer = other.GetComponent<PlayerData>();
 
-    #region getting patient data
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (_player == null)
-    //    {
-    //        if (other.CompareTag("Player"))
-    //        {
-    //            _player = other.gameObject;
-    //        }
-    //    }
-    //}
+        if (possiblePlayer != null)
+        {
+            if (!NearbyUsers.Contains(possiblePlayer))
+            {
+                return;
+            }
+            else
+            {
+                NearbyUsers.Remove(possiblePlayer);
+            }
+        }
+    }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        _player = null;
-    //    }
-    //}
+    public bool IsPlayerJoined(PlayerData playerData)
+    {
+        Debug.Log("Attempting to check if player is joined");
 
-    //private void GetPatientInfo()
-    //{
-    //    if (_currentPatientScript.CheckIfPlayerJoined())
-    //    {
-    //        AmbulanceActionPanel.SetActive(true);
-    //        _patientInfoSO = _currentPatientScript.PatientInfoSO;
-    //    }
-    //    else
-    //    {
-    //        AmbulanceActionPanel.SetActive(false);
-    //        _patientInfoSO = null;
-    //    }
-    //}
+        if (TreatingUsers.Contains(playerData))
+        {
+            Debug.Log("Checked if player is joined, it is true");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Checked if player is joined, it is false");
+            return false;
+        }
+    }
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Patient"))
-    //    {
-    //        _currentPatientScript = other.gameObject.GetComponent<Patient>();
-    //        GetPatientInfo();
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Patient"))
-    //    {
-    //        AmbulanceActionPanel.SetActive(false);
-    //        _currentPatientScript = null;
-    //        _patientInfoSO = null;
-    //    }
-    //}
-    #endregion
-
-    //// For Use Externally
-    //public bool CheckIfPlayerJoined()
-    //{
-    //    bool playerIsJoined = false;
-    //    if (_player != null)
-    //    {
-    //        if (OperatingUserCrew.ContainsKey(_player.GetComponent<CrewMember>().UserName))
-    //        {
-    //            playerIsJoined = true;
-    //        }
-    //    }
-    //    return playerIsJoined;
-    //}
+    public void OnInteracted()
+    {
+        ActionsManager.Instance.OnPatientClicked();
+    }
 }

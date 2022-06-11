@@ -23,17 +23,17 @@ public class CheckMeasurement : MonoBehaviour
 
     public void CheckMeasurementAction(int measurementNumber)
     {
-        if (!_actionManager.CheckIfPlayerJoined())
-            return;
+        //if (!_actionManager.CheckIfPlayerJoined())
+        //    return;
 
-        foreach (Measurements measurement in measurementList)
-        {
-            if ((Measurements)measurementNumber == measurement)
-            {
-                // Must be on the same order as the enum list (from 0 - 8)
-                _measurement = _actionManager.CurrentPatientData.GetMeasurementName(measurementNumber);
-            }
-        }
+        //foreach (Measurements measurement in measurementList)
+        //{
+        //    if ((Measurements)measurementNumber == measurement)
+        //    {
+        //        // Must be on the same order as the enum list (from 0 - 8)
+        //        _measurement = _actionManager.CurrentPatientData.GetMeasurementName(measurementNumber);
+        //    }
+        //}
 
         //switch (_measurementTitle.ToLower())
         //{

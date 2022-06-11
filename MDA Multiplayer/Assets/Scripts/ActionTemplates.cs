@@ -112,13 +112,13 @@ public class ActionTemplates : MonoBehaviourPunCallbacks
         _docLog.LogThisText(textToLog);
     } 
 
-    public bool IsPlayerJoined(ActionsManager AOM)
-    {
-        if (AOM.CheckIfPlayerJoined())
-            return true;
-        else
-            return false;
-    }
+    //public bool IsPlayerJoined(ActionsManagerOld AOM)
+    //{
+    //    if (AOM.CheckIfPlayerJoined())
+    //        return true;
+    //    else
+    //        return false;
+    //}
     #endregion
 
     // not sure about this - patient bool - isConsious vs if is currently conscious

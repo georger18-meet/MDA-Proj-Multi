@@ -1,39 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public static PlayerData Instance;
+
     [field: SerializeField] public string UserName { get; set; }
     [field: SerializeField] public string CrewName { get; set; }
     [field: SerializeField] public int UserIndexInCrew { get; set; }
     [field: SerializeField] public int CrewIndex { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
+    [field: SerializeField] public Patient CurrentPatientTreating { get; set; }
 
     [field: SerializeField] public Animation PlayerAnimation;
 
-    public List<string> JoinedPatients;
+    private PhotonView _photonView;
+    public PhotonView GetPhotonView => _photonView;
 
-    public bool CheckPatientIsJoined(string patientName)
+    private void Awake()
     {
-        bool isJoined = false;
+        _photonView = GetComponent<PhotonView>();
 
-        for (int i = 0; i < JoinedPatients.Count; i++)
+
+        if (_photonView.IsMine)
         {
-            if (JoinedPatients[i] == patientName)
-            {
-                print($"{patientName} is Joined");
-                isJoined = true;
-                break;
-            }
-            
-            if (i == JoinedPatients.Count)
-            {
-                print($"{patientName} is not Joined");
-                isJoined = false;
-            }
-        }
+            Instance = this;
 
-        return isJoined;
+        }
     }
+    
 }
