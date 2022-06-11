@@ -17,6 +17,9 @@ public class PlayerData : MonoBehaviour
 
     [field: SerializeField] public Animation PlayerAnimation;
 
+
+
+    public int testing;
     private PhotonView _photonView;
     public PhotonView GetPhotonView => _photonView;
 
@@ -30,6 +33,8 @@ public class PlayerData : MonoBehaviour
             Instance = this;
 
         }
+
+        testing++;
     }
     
 }

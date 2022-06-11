@@ -1708,6 +1708,7 @@ MonoBehaviour:
   <UserRole>k__BackingField: 1
   <CurrentPatientTreating>k__BackingField: {fileID: 0}
   PlayerAnimation: {fileID: 0}
+  testing: 0
 --- !u!114 &2825814850721328581
 MonoBehaviour:
   m_ObjectHideFlags: 0

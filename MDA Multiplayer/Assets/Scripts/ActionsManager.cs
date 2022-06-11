@@ -21,7 +21,6 @@ public class ActionsManager : MonoBehaviour
 
     private Patient _lastClickedPatient;
     private PatientData _lastClickedPatientData;
-    private PlayerData _playerData;
     #endregion
 
     private PhotonView _photonView;
@@ -54,18 +53,18 @@ public class ActionsManager : MonoBehaviour
     public void OnPatientClicked()
     {
         
-        if (_playerData.CurrentPatientTreating == null)
+        if (PlayerData.Instance.CurrentPatientTreating == null)
         {
             return;
         }
 
-        _lastClickedPatient = _playerData.CurrentPatientTreating;
+        _lastClickedPatient = PlayerData.Instance.CurrentPatientTreating;
 
-        PatientData currentPatientData = _playerData.CurrentPatientTreating != null ? _playerData.CurrentPatientTreating.PatientData : null;
+        PatientData currentPatientData = PlayerData.Instance.CurrentPatientTreating != null ? PlayerData.Instance.CurrentPatientTreating.PatientData : null;
 
         _lastClickedPatientData = currentPatientData;
 
-        if (!_playerData.CurrentPatientTreating.IsPlayerJoined(_playerData))
+        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
         {
             _uIManager.JoinPatientPopUp.SetActive(true);
         }
@@ -122,12 +121,12 @@ public class ActionsManager : MonoBehaviour
         if (isJoined)
         {
 
-            _lastClickedPatient.AddUserToTreatingLists(_playerData);
+            _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
 
             SetupPatientInfoDisplay();
 
             _uIManager.JoinPatientPopUp.SetActive(false);
-           // _uIManager.PatientMenuParent.SetActive(true);
+            _uIManager.PatientMenuParent.SetActive(true);
             _uIManager.PatientInfoParent.SetActive(false);
         }
         else
@@ -157,7 +156,7 @@ public class ActionsManager : MonoBehaviour
         // if (_photonView.isMine)
         // {
             _uIManager.CloseAllPatientWindows();
-            _playerData.CurrentPatientTreating.TreatingUsers.Remove(_playerData);
+            PlayerData.Instance.CurrentPatientTreating.TreatingUsers.Remove(PlayerData.Instance);
             Debug.Log("Left Patient Succesfully");
         // }
     }
