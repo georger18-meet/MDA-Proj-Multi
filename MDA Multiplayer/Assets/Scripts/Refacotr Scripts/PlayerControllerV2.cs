@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
 using UnityEngine;
 
 public class PlayerControllerV2 : MonoBehaviour
@@ -30,9 +28,6 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private Transform _groundCheckTransform;
     [SerializeField] private float _groundCheckRadius = 0.5f;
     private bool _isGrounded;
-
-
-    private PhotonView _photonView;
     
     //private float _gravity = Physics.gravity.y;
 
@@ -44,31 +39,15 @@ public class PlayerControllerV2 : MonoBehaviour
     private State _stateAction;
     // -------------
 
-    private void Awake()
-    {
-        _photonView = GetComponent<PhotonView>();
-    }
-
     private void Start()
     {
         FreeMouse(true);
         _stateAction = UseTankIdleState;
-
-
-
-        if (!_photonView.IsMine)
-        {
-            _playerCamera.gameObject.SetActive(false);
-        }
     }
 
     private void Update()
     {
-        if (_photonView.IsMine)
-        {
-            _stateAction.Invoke();
-        }
-       
+        _stateAction.Invoke();
     }
 
     #region Private Methods

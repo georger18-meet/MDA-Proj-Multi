@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +12,6 @@ public class CameraControllerV2 : MonoBehaviour
     [SerializeField] private GameObject _indicatorIcon;
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
-    
 
     private void Update()
     {

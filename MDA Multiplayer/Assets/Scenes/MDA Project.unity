@@ -245,8 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4438bb276d1937544ba2a2c6ab62443f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   playerPrefab: {fileID: 6345027128269859885, guid: 2afc6491ed37845418ebf83483503c0f, type: 3}
   patientPrefab: {fileID: 5650985257199756701, guid: d8ea93ef7702e564f93d20b238adc373, type: 3}
+=======
+  playerPrefab: {fileID: 2800181749609793683, guid: 123b273cb848e7448a7aad8d46facd00, type: 3}
+  patientPrefab: {fileID: 8481257282461550181, guid: 6486666eded008d41bc987a1d19201eb, type: 3}
+>>>>>>> parent of 12ed7b0 (New Scripts are now working in the network)
   minX: -90
   minZ: -90
   maxX: 90
