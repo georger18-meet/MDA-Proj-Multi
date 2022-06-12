@@ -23,10 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 3f, _flyUpwardsSpeed = 9f, _maxFlyingHeight = 100f;
     private Vector2 _input;
 
-    [Header("Models")]
-    [SerializeField] private GameObject _originalModel;
-    [SerializeField] private GameObject _alternativeFlyingModel;
-
     [Header("Physics")]
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _groundCheckTransform;
