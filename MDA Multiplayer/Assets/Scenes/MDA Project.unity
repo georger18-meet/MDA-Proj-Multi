@@ -117378,6 +117378,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1460660236}
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: AllPatients.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[5]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[6]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
+      propertyPath: MeasurementList.Array.data[7]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: PatientOnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

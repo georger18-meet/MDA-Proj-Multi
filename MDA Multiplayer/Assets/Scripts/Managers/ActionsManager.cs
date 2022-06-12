@@ -58,8 +58,8 @@ public class ActionsManager : MonoBehaviour
     // Triggered upon Clicking on the Patient
     public void OnPatientClicked()
     {
-        if (_photonView.IsMine)
-        {
+        //if (_photonView.IsMine)
+        //{
             if (PlayerData.Instance.CurrentPatientTreating == null)
             {
                 return;
@@ -80,13 +80,19 @@ public class ActionsManager : MonoBehaviour
                 SetupPatientInfoDisplay();
                 UIManager.Instance.PatientMenuParent.SetActive(true);
             }
-        }
+        //}
     }
 
+    public void OnJoinPatientRPC(bool isJoined)
+    {
+        _photonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+    }
+
+    [PunRPC]
     public void OnJoinPatient(bool isJoined)
     {
-        if (_photonView.IsMine)
-        {
+        //if (_photonView.IsMine)
+        //{
             if (isJoined)
             {
                 _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
@@ -101,7 +107,7 @@ public class ActionsManager : MonoBehaviour
             {
                 UIManager.Instance.JoinPatientPopUp.SetActive(false);
             }
-        }
+        //}
     }
 
     private void SetupPatientInfoDisplay()
@@ -118,15 +124,21 @@ public class ActionsManager : MonoBehaviour
         UIManager.Instance.PhoneNumber.text = _lastClickedPatientData.PhoneNumber.ToString();
     }
 
+    public void LeavePatientRPC()
+    {
+        _photonView.RPC("LeavePatient", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
     public void LeavePatient()
     {
         if (_photonView.IsMine)
         {
-            Debug.Log("Attempting leave patient");
+          Debug.Log("Attempting leave patient");
 
-            UIManager.Instance.CloseAllPatientWindows();
-            PlayerData.Instance.CurrentPatientTreating.TreatingUsers.Remove(PlayerData.Instance);
-            Debug.Log("Left Patient Succesfully");
+          UIManager.Instance.CloseAllPatientWindows();
+          PlayerData.Instance.CurrentPatientTreating.TreatingUsers.Remove(PlayerData.Instance);
+          Debug.Log("Left Patient Succesfully");
         }
     }
     #endregion
