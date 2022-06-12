@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerData : MonoBehaviour
 {
     public static PlayerData Instance;
+
+    [Header("Photon")]
+    [SerializeField] private PhotonView _photonView;
 
     [field: SerializeField] public string UserName { get; set; }
     [field: SerializeField] public string CrewName { get; set; }
@@ -17,9 +21,13 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        //if (_photonView.isMine)
-        //{
+        if (_photonView.IsMine)
+        {
             Instance = this;
-        //}
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 }

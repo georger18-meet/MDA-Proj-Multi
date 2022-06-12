@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Patient : MonoBehaviour
 {
+    [Header("Photon")]
+    [SerializeField] private PhotonView _photonView;
+
     #region Script References
     [Header("Data & Scripts")]
     public PatientData PatientData;

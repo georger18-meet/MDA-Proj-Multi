@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Photon")]
+    [SerializeField] private PhotonView _photonView;
+
     [Header("Camera")]
     [SerializeField] private Camera _playerCamera;
 
@@ -15,7 +19,10 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        Interact();
+        if (_photonView.IsMine)
+        {
+            Interact();
+        }
     }
 
     public RaycastHit Interact()

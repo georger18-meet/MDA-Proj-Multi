@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813059805939038391}
   m_Layer: 7
-  m_Name: PatientMale Parent
+  m_Name: PatientMale Parent Backup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
