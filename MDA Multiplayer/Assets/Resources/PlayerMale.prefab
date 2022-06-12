@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 8822803002174255575}
   - component: {fileID: 8822803002174255579}
   - component: {fileID: 1154062206}
+  - component: {fileID: 5894249763403884857}
   - component: {fileID: 6846980335483256472}
   - component: {fileID: 4762676014754726370}
   m_Layer: 0
@@ -425,6 +426,21 @@ MonoBehaviour:
   _indicatorIcon: {fileID: 8774286273773846890, guid: 98382ce2162216d4bb2ca6711a8675f7, type: 3}
   _indicatorSound: {fileID: 1667097624735805022, guid: 6a4dd2558288bae49a843774015a1963, type: 3}
   _raycastDistance: 10
+--- !u!114 &5894249763403884857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822803002174255568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bc2d982fefa7644a3920c2682b4bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeasurementList: 0000000001000000020000000300000004000000050000000600000007000000
+  _photonView: {fileID: 6846980335483256472}
+  AllPatients: []
 --- !u!114 &6846980335483256472
 MonoBehaviour:
   m_ObjectHideFlags: 0
