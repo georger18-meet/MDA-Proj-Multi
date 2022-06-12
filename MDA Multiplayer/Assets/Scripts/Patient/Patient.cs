@@ -128,6 +128,28 @@ public class Patient : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    private void OnJoinPatient(bool isJoined)
+    {
+        if (PhotonView.IsMine)
+        {
+            if (isJoined)
+            {
+                AddUserToTreatingLists(PlayerData.Instance);
+
+                ActionsManager.Instance.SetupPatientInfoDisplay();
+
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.PatientMenuParent.SetActive(true);
+                UIManager.Instance.PatientInfoParent.SetActive(false);
+            }
+            else
+            {
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            }
+        }
+    }
+
     public void OnInteracted()
     {
         ActionsManager.Instance.OnPatientClicked();

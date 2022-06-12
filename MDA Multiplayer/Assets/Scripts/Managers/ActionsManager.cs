@@ -106,29 +106,29 @@ public class ActionsManager : MonoBehaviour
         }
     }
 
-    [PunRPC]
-    private void OnJoinPatient(bool isJoined)
-    {
-        //if (_photonView.IsMine)
-        //{
-            if (isJoined)
-            {
-                _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
+    //[PunRPC]
+    //private void OnJoinPatient(bool isJoined)
+    //{
+    //    //if (_photonView.IsMine)
+    //    //{
+    //        if (isJoined)
+    //        {
+    //            _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
+    //
+    //            SetupPatientInfoDisplay();
+    //
+    //            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+    //            UIManager.Instance.PatientMenuParent.SetActive(true);
+    //            UIManager.Instance.PatientInfoParent.SetActive(false);
+    //        }
+    //        else
+    //        {
+    //            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+    //        }
+    //    //}
+    //}
 
-                SetupPatientInfoDisplay();
-
-                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                UIManager.Instance.PatientMenuParent.SetActive(true);
-                UIManager.Instance.PatientInfoParent.SetActive(false);
-            }
-            else
-            {
-                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            }
-        //}
-    }
-
-    private void SetupPatientInfoDisplay()
+    public void SetupPatientInfoDisplay()
     {
         UIManager.Instance.SureName.text = _lastClickedPatientData.SureName;
         UIManager.Instance.LastName.text = _lastClickedPatientData.LastName;
