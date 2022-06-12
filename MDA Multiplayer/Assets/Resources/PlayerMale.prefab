@@ -403,7 +403,7 @@ MonoBehaviour:
   <UserIndexInCrew>k__BackingField: 0
   <CrewIndex>k__BackingField: 0
   <UserRole>k__BackingField: 1
-  <CurrentPatientTreating>k__BackingField: {fileID: 0}
+  <CurrentPatientNearby>k__BackingField: {fileID: 0}
   PlayerAnimation: {fileID: 0}
 --- !u!114 &1154062206
 MonoBehaviour:

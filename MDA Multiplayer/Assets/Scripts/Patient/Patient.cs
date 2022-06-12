@@ -9,8 +9,7 @@ using Photon.Pun;
 public class Patient : MonoBehaviour
 {
     [Header("Photon")]
-    [SerializeField] private PhotonView _photonView;
-    [SerializeField] private PhotonView _playerPhotonView;
+    public PhotonView PhotonView;
 
     #region Script References
     [Header("Data & Scripts")]
@@ -37,6 +36,7 @@ public class Patient : MonoBehaviour
     private void Start()
     {
         ActionsManager.Instance.AllPatients.Add(this);
+        ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
         PatientRenderer.material = PatientData.FullyClothedMaterial;
         //GetComponent<MakeItAButton>().EventToCall = ActionsManager.Instance.GameObject.GetComponent<ActionsManager>().PatientOnClick;
     }

@@ -15,12 +15,12 @@ public class ChangeMeasurement : MonoBehaviour
 
     public void ApplyMeasurementAction(int measurementNumber)
     {
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
             return;
 
         // loops throughout measurementList and catches the first element that is equal to measurementNumber
         Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-        PlayerData.Instance.CurrentPatientTreating.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
+        PlayerData.Instance.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
 
         _actionTemplates.ShowAlertWindow(_measurementTitle, _newMeasurement);
         _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed");

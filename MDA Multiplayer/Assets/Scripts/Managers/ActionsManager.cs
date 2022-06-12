@@ -16,7 +16,7 @@ public class ActionsManager : MonoBehaviour
     //public GameObject GameObject;
 
     [Header("Photon")]
-    [SerializeField] private PhotonView _photonView;
+    public List<PhotonView> AllPatientsPhotonViews;
 
     #region Data References
     [Header("Data & Scripts")]
@@ -54,24 +54,32 @@ public class ActionsManager : MonoBehaviour
     }
     #endregion
 
+    //private void Start()
+    //{
+    //    for (int i = 0; i < AllPatients.Count; i++)
+    //    {
+    //        _allPatientsPhotonViews[i] = AllPatients[i].PhotonView;
+    //    }
+    //}
+
     #region Assignment
     // Triggered upon Clicking on the Patient
     public void OnPatientClicked()
     {
         //if (_photonView.IsMine)
         //{
-            if (PlayerData.Instance.CurrentPatientTreating == null)
+            if (PlayerData.Instance.CurrentPatientNearby == null)
             {
                 return;
             }
 
-            _lastClickedPatient = PlayerData.Instance.CurrentPatientTreating;
+            _lastClickedPatient = PlayerData.Instance.CurrentPatientNearby;
 
-            PatientData currentPatientData = PlayerData.Instance.CurrentPatientTreating != null ? PlayerData.Instance.CurrentPatientTreating.PatientData : null;
+            PatientData currentPatientData = PlayerData.Instance.CurrentPatientNearby != null ? PlayerData.Instance.CurrentPatientNearby.PatientData : null;
 
             _lastClickedPatientData = currentPatientData;
 
-            if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+            if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
             {
                 UIManager.Instance.JoinPatientPopUp.SetActive(true);
             }
@@ -85,11 +93,21 @@ public class ActionsManager : MonoBehaviour
 
     public void OnJoinPatientRPC(bool isJoined)
     {
-        _photonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+        Debug.Log("attempting Join Patient");
+
+        if (AllPatientsPhotonViews.Contains(PlayerData.Instance.CurrentPatientNearby.PhotonView))
+        {
+            Debug.Log("Found correct PhotonView");
+            PlayerData.Instance.CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+        }
+        else
+        {
+            Debug.Log("Didn't found correct PhotonView");
+        }
     }
 
     [PunRPC]
-    public void OnJoinPatient(bool isJoined)
+    private void OnJoinPatient(bool isJoined)
     {
         //if (_photonView.IsMine)
         //{
@@ -126,18 +144,18 @@ public class ActionsManager : MonoBehaviour
 
     public void LeavePatientRPC()
     {
-        _photonView.RPC("LeavePatient", RpcTarget.AllBuffered);
+        PlayerData.Instance.CurrentPatientNearby.PhotonView.RPC("LeavePatient", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
-    public void LeavePatient()
+    private void LeavePatient()
     {
-        if (_photonView.IsMine)
+        if (PlayerData.Instance.CurrentPatientNearby.PhotonView.IsMine)
         {
           Debug.Log("Attempting leave patient");
 
           UIManager.Instance.CloseAllPatientWindows();
-          PlayerData.Instance.CurrentPatientTreating.TreatingUsers.Remove(PlayerData.Instance);
+          PlayerData.Instance.CurrentPatientNearby.TreatingUsers.Remove(PlayerData.Instance);
           Debug.Log("Left Patient Succesfully");
         }
     }

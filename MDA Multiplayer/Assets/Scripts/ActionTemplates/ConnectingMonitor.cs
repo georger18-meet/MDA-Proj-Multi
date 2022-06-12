@@ -12,7 +12,7 @@ public class ConnectingMonitor : MonoBehaviour
 
     public void Defibrillation()
     {
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance)/* || (int)actionData.RolesAD <= 1*/)
+        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance)/* || (int)actionData.RolesAD <= 1*/)
         {
             Debug.Log("You Are NOT WORTHY!");
             return;

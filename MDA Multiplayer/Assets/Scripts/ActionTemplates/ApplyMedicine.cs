@@ -16,12 +16,12 @@ public class ApplyMedicine : MonoBehaviour
 
     public void ApplyMedicineAction(int measurementNumber)
     {
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
             return;
 
         // loops throughout measurementList and catches the first element that is equal to measurementNumber
         Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-        PlayerData.Instance.CurrentPatientTreating.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
+        PlayerData.Instance.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
 
         _actionTemplates.ShowAlertWindow(_alertTitle, _medicineToApply);
         _actionTemplates.UpdatePatientLog($"Applied {_medicineToApply} on Patient");

@@ -21,7 +21,7 @@ public class ChangeClothing : MonoBehaviour
 
     public void ChangeClothingAction(int measurementNumber)
     {
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
             return;
 
         // loops throughout measurementList and catches the first element that is equal to measurementNumber
@@ -30,19 +30,19 @@ public class ChangeClothing : MonoBehaviour
         switch (_clothing)
         {
             case Clothing.FullyClothed:
-                PlayerData.Instance.CurrentPatientTreating.PatientRenderer.material = PlayerData.Instance.CurrentPatientTreating.PatientData.FullyClothedMaterial;
+                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.FullyClothedMaterial;
                 break;
 
             case Clothing.ShirtOnly:
-                PlayerData.Instance.CurrentPatientTreating.PatientRenderer.material = PlayerData.Instance.CurrentPatientTreating.PatientData.ShirtOnlyMaterial;
+                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.ShirtOnlyMaterial;
                 break;
 
             case Clothing.PantsOnly:
-                PlayerData.Instance.CurrentPatientTreating.PatientRenderer.material = PlayerData.Instance.CurrentPatientTreating.PatientData.PantsOnlyMaterial;
+                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.PantsOnlyMaterial;
                 break;
 
             case Clothing.UnderwearOnly:
-                PlayerData.Instance.CurrentPatientTreating.PatientRenderer.material = PlayerData.Instance.CurrentPatientTreating.PatientData.UnderwearOnlyMaterial;
+                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.UnderwearOnlyMaterial;
                 break;
 
             default:

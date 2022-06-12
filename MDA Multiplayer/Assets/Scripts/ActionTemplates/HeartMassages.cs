@@ -11,7 +11,7 @@ public class HeartMassages : MonoBehaviour
 
     public void DoHeartMassage()
     {
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
             return;
 
         //PlayerData.Instance.transform.position = _actionManager.PlayerTreatingTr.position;

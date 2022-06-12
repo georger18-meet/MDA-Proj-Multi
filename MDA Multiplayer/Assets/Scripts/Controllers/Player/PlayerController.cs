@@ -378,7 +378,7 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-            PlayerData.Instance.CurrentPatientTreating = possiblePatient;
+            PlayerData.Instance.CurrentPatientNearby = possiblePatient;
             UIManager.Instance.CurrentActionBarParent.SetActive(true);
         }
     }
@@ -391,7 +391,7 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-            PlayerData.Instance.CurrentPatientTreating = null;
+            PlayerData.Instance.CurrentPatientNearby = null;
             UIManager.Instance.CurrentActionBarParent.SetActive(false);
         }
         

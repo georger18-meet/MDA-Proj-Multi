@@ -20,12 +20,12 @@ public class CheckMeasurement : MonoBehaviour
 
     public void CheckMeasurementAction(int measurementNumber)
     {
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
             return;
 
         // loops throughout measurementList and catches the first element that is equal to measurementNumber
         Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-        _measurement = PlayerData.Instance.CurrentPatientTreating.PatientData.GetMeasurementName(measurementNumber);
+        _measurement = PlayerData.Instance.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
 
         _actionTemplates.ShowAlertWindow(_measurementTitle, _measurement);
         _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} is: {_measurement}");
