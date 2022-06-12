@@ -16,8 +16,10 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public int CrewIndex { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
+    [field: SerializeField] public Animation PlayerAnimation { get; set; }
 
-    [field: SerializeField] public Animation PlayerAnimation;
+    private GameObject _playerGameObject;
+    public GameObject PlayerGameObject => _playerGameObject;
 
     private void Awake()
     {
@@ -29,5 +31,10 @@ public class PlayerData : MonoBehaviour
         //{
         //    Destroy(this);
         //}
+    }
+
+    private void Start()
+    {
+        _playerGameObject = gameObject;
     }
 }

@@ -16,6 +16,7 @@ public class ActionsManager : MonoBehaviour
     //public GameObject GameObject;
 
     [Header("Photon")]
+    public PhotonView _playerPhotonView;
     public List<PhotonView> AllPatientsPhotonViews;
 
     #region Data References
@@ -98,6 +99,7 @@ public class ActionsManager : MonoBehaviour
         if (AllPatientsPhotonViews.Contains(PlayerData.Instance.CurrentPatientNearby.PhotonView))
         {
             Debug.Log("Found correct PhotonView");
+
             PlayerData.Instance.CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
         }
         else
@@ -130,16 +132,16 @@ public class ActionsManager : MonoBehaviour
 
     public void SetupPatientInfoDisplay()
     {
-        UIManager.Instance.SureName.text = _lastClickedPatientData.SureName;
-        UIManager.Instance.LastName.text = _lastClickedPatientData.LastName;
-        UIManager.Instance.Gender.text = _lastClickedPatientData.Gender;
-        UIManager.Instance.Adress.text = _lastClickedPatientData.AddressLocation;
-        UIManager.Instance.InsuranceCompany.text = _lastClickedPatientData.MedicalCompany;
-        UIManager.Instance.Complaint.text = _lastClickedPatientData.Complaint;
-
-        UIManager.Instance.Age.text = _lastClickedPatientData.Age.ToString();
-        UIManager.Instance.Id.text = _lastClickedPatientData.Id.ToString();
-        UIManager.Instance.PhoneNumber.text = _lastClickedPatientData.PhoneNumber.ToString();
+        //UIManager.Instance.SureName.text = _lastClickedPatientData.SureName;
+        //UIManager.Instance.LastName.text = _lastClickedPatientData.LastName;
+        //UIManager.Instance.Gender.text = _lastClickedPatientData.Gender;
+        //UIManager.Instance.Adress.text = _lastClickedPatientData.AddressLocation;
+        //UIManager.Instance.InsuranceCompany.text = _lastClickedPatientData.MedicalCompany;
+        //UIManager.Instance.Complaint.text = _lastClickedPatientData.Complaint;
+        //
+        //UIManager.Instance.Age.text = _lastClickedPatientData.Age.ToString();
+        //UIManager.Instance.Id.text = _lastClickedPatientData.Id.ToString();
+        //UIManager.Instance.PhoneNumber.text = _lastClickedPatientData.PhoneNumber.ToString();
     }
 
     public void LeavePatientRPC()
