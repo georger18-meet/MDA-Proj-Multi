@@ -378,6 +378,14 @@ PrefabInstance:
     - target: {fileID: 8703915284327120927, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}
       propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1813059807496664965}
+    - target: {fileID: 8703915284327120927, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}
+      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInteracted
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703915284327120927, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}
+      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Patient, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}
@@ -386,6 +394,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8703915284327120926, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}
   m_PrefabInstance: {fileID: 7053706411830228893}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1813059807496664965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8703915284327120920, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}
+  m_PrefabInstance: {fileID: 7053706411830228893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06678e687e4ed4f4fa18d61c9eefee92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &6485730327194283750 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4315079299199506811, guid: cc463a72aa6e3074e981852f5b43fc53, type: 3}

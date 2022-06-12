@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     {
         if (!_photonView.IsMine)
         {
-            Destroy(_playerCamera);
+            Destroy(_playerCamera.gameObject);
             Destroy(this);
         }
     }

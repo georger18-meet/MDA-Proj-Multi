@@ -13,7 +13,7 @@ public class ActionsManager : MonoBehaviour
 
     public List<Measurements> MeasurementList;
 
-    public GameObject GameObject;
+    //public GameObject GameObject;
 
     [Header("Photon")]
     [SerializeField] private PhotonView _photonView;
@@ -27,19 +27,30 @@ public class ActionsManager : MonoBehaviour
     private PatientData _lastClickedPatientData;
     #endregion
 
-    public UnityEvent PatientOnClick;
+    //public UnityEvent PatientOnClick;
 
     #region MonoBehaviour Callbacks
     private void Awake()
     {
-        if (_photonView.IsMine)
+        if (Instance == null) 
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
+
+        //if (_photonView.IsMine)
+        //{
+        //    Instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(this);
+        //}
+
     }
     #endregion
 

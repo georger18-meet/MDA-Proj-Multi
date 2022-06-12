@@ -38,7 +38,7 @@ public class Patient : MonoBehaviour
     {
         ActionsManager.Instance.AllPatients.Add(this);
         PatientRenderer.material = PatientData.FullyClothedMaterial;
-        GetComponent<MakeItAButton>().EventToCall = ActionsManager.Instance.GameObject.GetComponent<ActionsManager>().PatientOnClick;
+        //GetComponent<MakeItAButton>().EventToCall = ActionsManager.Instance.GameObject.GetComponent<ActionsManager>().PatientOnClick;
     }
 
     public void AddUserToTreatingLists(object currentPlayer)
@@ -132,73 +132,4 @@ public class Patient : MonoBehaviour
     {
         ActionsManager.Instance.OnPatientClicked();
     }
-
-    //public void SetOperatingCrewCheck(GameObject patient)
-    //{
-    //    PatientData _currentPatientInfoSo = patient != null ? patient.GetComponent<PatientData>() : null;
-    //
-    //    if (_currentPatientInfoSo == null)
-    //    {
-    //        return;
-    //    }
-    //
-    //    if (patient.CompareTag("Patient"))
-    //    {
-    //        _currentPatientScript = patient.GetComponent<PatientV2>();
-    //        GetPatientInfo();
-    //    }
-    //
-    //    if (_player == null)
-    //    {
-    //        return;
-    //    }
-    //    else if (!_currentPatientScript.OperatingUserCrew.ContainsKey(PlayerData.UserName))
-    //    {
-    //        _joinPatientPopUp.SetActive(true);
-    //    }
-    //    else if (_currentPatientScript.OperatingUserCrew.ContainsKey(PlayerData.UserName))
-    //    {
-    //        SetupPatientInfoDisplay();
-    //        _patientMenuParent.SetActive(true);
-    //    }
-    //}
-
-    /*public PlayerData GetPlayerData(object collidingObject)
-    * {
-    *     GameObject collidingGameObject = collidingObject as GameObject;
-    * 
-    *     if (!collidingGameObject.CompareTag("Player"))
-    *     {
-    *         return null;
-    *     }
-    *     else
-    *     {
-    *         PlayerData lastEnteredPlayer = collidingGameObject.GetComponent<PlayerData>();
-    *         NearbyUsers.Add(lastEnteredPlayer);
-    *         return lastEnteredPlayer;
-    *     }
-    * }
-    */
-
-    //private void SetOperatingCrew(Dictionary<string, int> operatingUserCrew)
-    //{
-    //    if (!OperatingUserCrew.ContainsKey(PlayerData.UserName))
-    //    {
-    //        OperatingUserCrew.Add(PlayerData.UserName, PlayerData.CrewIndex);
-    //        DisplayDictionary();
-    //    }
-    //}
-
-    //public void DisplayDictionary()
-    //{
-    //    CurrentlyTreatingUser.Clear();
-    //    CurrentlyTreatingCrew.Clear();
-    //
-    //    foreach (KeyValuePair<string, int> diction in OperatingUserCrew)
-    //    {
-    //        Debug.Log("Key = {" + diction.Key + "} " + "Value = {" + diction.Value + "}");
-    //        CurrentlyTreatingUser.Add(diction.Key);
-    //        CurrentlyTreatingCrew.Add(diction.Value);
-    //    }
-    //}
 }
