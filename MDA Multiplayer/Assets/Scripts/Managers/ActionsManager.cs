@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine;
+using Photon.Pun;
 using TMPro;
 
 public class ActionsManager : MonoBehaviour
@@ -10,6 +12,11 @@ public class ActionsManager : MonoBehaviour
     public static ActionsManager Instance;
 
     public List<Measurements> MeasurementList;
+
+    public GameObject GameObject;
+
+    [Header("Photon")]
+    [SerializeField] private PhotonView _photonView;
 
     #region Data References
     [Header("Data & Scripts")]
@@ -20,14 +27,19 @@ public class ActionsManager : MonoBehaviour
     private PatientData _lastClickedPatientData;
     #endregion
 
+    public UnityEvent PatientOnClick;
 
     #region MonoBehaviour Callbacks
     private void Awake()
     {
-        //if (_photonView.isMine)
-        //{
+        if (_photonView.IsMine)
+        {
             Instance = this;
-        //}
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
     #endregion
 
@@ -35,43 +47,49 @@ public class ActionsManager : MonoBehaviour
     // Triggered upon Clicking on the Patient
     public void OnPatientClicked()
     {
-        if (PlayerData.Instance.CurrentPatientTreating == null)
+        if (_photonView.IsMine)
         {
-            return;
-        }
+            if (PlayerData.Instance.CurrentPatientTreating == null)
+            {
+                return;
+            }
 
-        _lastClickedPatient = PlayerData.Instance.CurrentPatientTreating;
+            _lastClickedPatient = PlayerData.Instance.CurrentPatientTreating;
 
-        PatientData currentPatientData = PlayerData.Instance.CurrentPatientTreating != null ? PlayerData.Instance.CurrentPatientTreating.PatientData : null;
+            PatientData currentPatientData = PlayerData.Instance.CurrentPatientTreating != null ? PlayerData.Instance.CurrentPatientTreating.PatientData : null;
 
-        _lastClickedPatientData = currentPatientData;
+            _lastClickedPatientData = currentPatientData;
 
-        if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
-        {
-            UIManager.Instance.JoinPatientPopUp.SetActive(true);
-        }
-        else
-        {
-            SetupPatientInfoDisplay();
-            UIManager.Instance.PatientMenuParent.SetActive(true);
+            if (!PlayerData.Instance.CurrentPatientTreating.IsPlayerJoined(PlayerData.Instance))
+            {
+                UIManager.Instance.JoinPatientPopUp.SetActive(true);
+            }
+            else
+            {
+                SetupPatientInfoDisplay();
+                UIManager.Instance.PatientMenuParent.SetActive(true);
+            }
         }
     }
 
     public void OnJoinPatient(bool isJoined)
     {
-        if (isJoined)
+        if (_photonView.IsMine)
         {
-            _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
+            if (isJoined)
+            {
+                _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
 
-            SetupPatientInfoDisplay();
+                SetupPatientInfoDisplay();
 
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            UIManager.Instance.PatientMenuParent.SetActive(true);
-            UIManager.Instance.PatientInfoParent.SetActive(false);
-        }
-        else
-        {
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.PatientMenuParent.SetActive(true);
+                UIManager.Instance.PatientInfoParent.SetActive(false);
+            }
+            else
+            {
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            }
         }
     }
 
@@ -91,14 +109,14 @@ public class ActionsManager : MonoBehaviour
 
     public void LeavePatient()
     {
-        Debug.Log("Attempting leave patient");
+        if (_photonView.IsMine)
+        {
+            Debug.Log("Attempting leave patient");
 
-        // if (_photonView.isMine)
-        // {
-        UIManager.Instance.CloseAllPatientWindows();
+            UIManager.Instance.CloseAllPatientWindows();
             PlayerData.Instance.CurrentPatientTreating.TreatingUsers.Remove(PlayerData.Instance);
             Debug.Log("Left Patient Succesfully");
-        // }
+        }
     }
     #endregion
 }

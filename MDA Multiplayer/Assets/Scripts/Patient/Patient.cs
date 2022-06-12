@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using Photon.Pun;
 
 public class Patient : MonoBehaviour
 {
     [Header("Photon")]
     [SerializeField] private PhotonView _photonView;
+    [SerializeField] private PhotonView _playerPhotonView;
 
     #region Script References
     [Header("Data & Scripts")]
@@ -20,11 +23,6 @@ public class Patient : MonoBehaviour
     #endregion
 
     #region Public fields
-    //public Dictionary<string, int> OperatingUserCrew = new Dictionary<string, int>();
-    public Animation PatientAnimation;
-    #endregion
-
-    #region private serialized fields
     [Header("Joined Crews & Players Lists")]
     public List<PlayerData> NearbyUsers;
     public List<PlayerData> TreatingUsers;
@@ -33,17 +31,15 @@ public class Patient : MonoBehaviour
     public List<int> AllCrewTreatedThisPatient;
     #endregion
 
+    //public Dictionary<string, int> OperatingUserCrew = new Dictionary<string, int>();
+    //public Animation PatientAnimation;
+
     private void Start()
     {
         ActionsManager.Instance.AllPatients.Add(this);
         PatientRenderer.material = PatientData.FullyClothedMaterial;
+        GetComponent<MakeItAButton>().EventToCall = ActionsManager.Instance.GameObject.GetComponent<ActionsManager>().PatientOnClick;
     }
-
-    private void Update()
-    {
-
-    }
-
 
     public void AddUserToTreatingLists(object currentPlayer)
     {
