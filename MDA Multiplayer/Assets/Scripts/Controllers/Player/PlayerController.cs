@@ -55,7 +55,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _stateAction.Invoke();
+        if (_photonView.IsMine)
+        {
+            _stateAction.Invoke();
+        }
     }
     #endregion
 

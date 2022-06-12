@@ -17,6 +17,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
 
+    private void Start()
+    {
+        if (!_photonView.IsMine)
+        {
+            Destroy(_playerCamera);
+            Destroy(this);
+        }
+    }
+
     private void Update()
     {
         if (_photonView.IsMine)
