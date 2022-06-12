@@ -14504,10 +14504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7b1e725501ff143981e78523210e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomName: ER
-  PatientsEvacuated: []
-  UICanvas: {fileID: 0}
-  textMeshProUGUI: {fileID: 0}
+  _roomName: Emergency Room
+  _evacuationUI: {fileID: 0}
+  _destinationName: {fileID: 0}
+  _patientsEvacuated: []
 --- !u!1 &8950140319665641217
 GameObject:
   m_ObjectHideFlags: 0
