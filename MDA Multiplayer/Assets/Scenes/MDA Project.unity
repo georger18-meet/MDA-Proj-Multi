@@ -446,6 +446,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1339287177}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: _eventSystem
+      value: 
+      objectReference: {fileID: 722779423}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: ActionLogParent
       value: 
       objectReference: {fileID: 1339287185}

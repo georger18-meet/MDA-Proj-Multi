@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5242308325d4a9c4bb31aec1866f0403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 6846980335483256472}
+  PhotonView: {fileID: 6846980335483256472}
   <UserName>k__BackingField: David
   <CrewName>k__BackingField: Hulon 521
   <UserIndexInCrew>k__BackingField: 0

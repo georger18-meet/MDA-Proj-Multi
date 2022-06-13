@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     #region Monobehavior Callbacks
     private void Start()
     {
+        PlayerData.Instance = GetComponent<PlayerData>();
+
         if (_photonView.IsMine)
         {
             FreeMouse(true);

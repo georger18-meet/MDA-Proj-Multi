@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -24,9 +25,26 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint; /*IncidentAdress*/
     #endregion
 
+    #region EventSystem
+    [Header("EventSystem")]
+    [SerializeField] private EventSystem _eventSystem;
+    private GameObject? _lastSelectedGameObject;
+    private GameObject _currentSelectedGameObject;
+    #endregion
+
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        _lastSelectedGameObject = _currentSelectedGameObject;
     }
 
     private void Start()
@@ -43,5 +61,16 @@ public class UIManager : MonoBehaviour
         PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
+    }
+
+    public void GetLastGameObjectSelected()
+    {
+        if (_eventSystem.currentSelectedGameObject != _currentSelectedGameObject)
+        {
+            _lastSelectedGameObject = _currentSelectedGameObject;
+            _currentSelectedGameObject = _eventSystem.currentSelectedGameObject;
+
+            Debug.Log($"{_currentSelectedGameObject.name}");
+        }
     }
 }

@@ -131,26 +131,35 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void OnJoinPatient(bool isJoined)
     {
+        UIManager.Instance.GetLastGameObjectSelected();
+
         if (isJoined)
         {
             ActionsManager.Instance.SetupPatientInfoDisplay();
 
-            if (PlayerData.Instance.GetComponent<PhotonView>().IsMine)
-            {
-                AddUserToTreatingLists(PlayerData.Instance);
+            AddUserToTreatingLists(PlayerData.Instance);
 
-                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                UIManager.Instance.PatientMenuParent.SetActive(true);
-                UIManager.Instance.PatientInfoParent.SetActive(false);
-            }
-            
+            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            UIManager.Instance.PatientMenuParent.SetActive(true);
+            UIManager.Instance.PatientInfoParent.SetActive(false);
+
         }
         else
         {
-            if (PhotonView.IsMine)
-            {
-                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            }
+            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+        }
+    }
+
+    [PunRPC]
+    private void LeavePatient()
+    {
+        if (PlayerData.Instance.CurrentPatientNearby.PhotonView.IsMine)
+        {
+            Debug.Log("Attempting leave patient");
+
+            UIManager.Instance.CloseAllPatientWindows();
+            PlayerData.Instance.CurrentPatientNearby.TreatingUsers.Remove(PlayerData.Instance);
+            Debug.Log("Left Patient Succesfully");
         }
     }
 
