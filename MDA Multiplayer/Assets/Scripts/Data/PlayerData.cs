@@ -27,10 +27,6 @@ public class PlayerData : MonoBehaviour
         {
             Instance = this;
         }
-        //else
-        //{
-        //    Destroy(this);
-        //}
     }
 
     private void Start()

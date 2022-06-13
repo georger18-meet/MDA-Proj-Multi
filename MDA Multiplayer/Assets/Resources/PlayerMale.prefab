@@ -513,8 +513,6 @@ MonoBehaviour:
   _jumpForce: 3
   _flyUpwardsSpeed: 9
   _maxFlyingHeight: 100
-  _originalModel: {fileID: 0}
-  _alternativeFlyingModel: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 520
@@ -666,7 +664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9057974928903436735
 RectTransform:
   m_ObjectHideFlags: 0
