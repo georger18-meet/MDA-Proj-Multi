@@ -52,6 +52,8 @@ public class ActionsManager : MonoBehaviour
     //    }
     //}
 
+
+
     #region Assignment
     // Triggered upon Clicking on the Patient
     public void OnPatientClicked()
@@ -97,23 +99,23 @@ public class ActionsManager : MonoBehaviour
         }
     }
 
-    //private void OnJoinPatient(bool isJoined)
-    //{
-    //    if (isJoined)
-    //    {
-    //        _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
-    //
-    //        SetupPatientInfoDisplay();
-    //
-    //        UIManager.Instance.JoinPatientPopUp.SetActive(false);
-    //        UIManager.Instance.PatientMenuParent.SetActive(true);
-    //        UIManager.Instance.PatientInfoParent.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        UIManager.Instance.JoinPatientPopUp.SetActive(false);
-    //    }
-    //}
+    private void OnJoinPatient(bool isJoined)
+    {
+        if (isJoined)
+        {
+            _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
+    
+            SetupPatientInfoDisplay();
+    
+            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            UIManager.Instance.PatientMenuParent.SetActive(true);
+            UIManager.Instance.PatientInfoParent.SetActive(false);
+        }
+        else
+        {
+            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+        }
+    }
 
     public void SetupPatientInfoDisplay()
     {

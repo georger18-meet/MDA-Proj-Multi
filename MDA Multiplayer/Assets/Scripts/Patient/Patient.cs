@@ -137,11 +137,15 @@ public class Patient : MonoBehaviour
         {
             ActionsManager.Instance.SetupPatientInfoDisplay();
 
-            AddUserToTreatingLists(PlayerData.Instance);
+            if (PhotonView.IsMine)
+            {
+                GameObject playerGo = GameObject.Find(PhotonView.Owner.NickName);
+                AddUserToTreatingLists(playerGo.GetComponent<PlayerData>());
 
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            UIManager.Instance.PatientMenuParent.SetActive(true);
-            UIManager.Instance.PatientInfoParent.SetActive(false);
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.PatientMenuParent.SetActive(true);
+                UIManager.Instance.PatientInfoParent.SetActive(false);
+            }
 
         }
         else

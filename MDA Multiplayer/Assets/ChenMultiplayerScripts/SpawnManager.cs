@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class SpawnManager : MonoBehaviour
 {
-
     [SerializeField] private GameObject _playerPrefab, _patientPrefab;
     [SerializeField] private Transform _patientSpawner;
 

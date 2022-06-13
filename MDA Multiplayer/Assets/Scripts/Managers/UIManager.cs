@@ -4,10 +4,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+
+    public PhotonView PlayerPhotonView;
 
     #region Player UI
     [Header("Player UI Parents")]
@@ -49,10 +52,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        // if photonview.isMine
-        // 
-
+        PlayerPhotonView = PlayerData.Instance.PhotonView;
         CurrentActionBarParent = AmbulanceActionBarParent;
+
     }
 
     public void CloseAllPatientWindows()
@@ -63,7 +65,8 @@ public class UIManager : MonoBehaviour
         ActionLogParent.SetActive(false);
     }
 
-    public void GetLastGameObjectSelected()
+    // catch last gameObject to fire an event
+    public GameObject GetLastGameObjectSelected()
     {
         Debug.Log($"Attemting to get last client who tried to join patient");
 
@@ -72,7 +75,12 @@ public class UIManager : MonoBehaviour
             _lastSelectedGameObject = _currentSelectedGameObject;
             _currentSelectedGameObject = _eventSystem.currentSelectedGameObject;
 
-            Debug.Log($"{_currentSelectedGameObject.name}");
+            //Debug.Log($"{_currentSelectedGameObject.name}");
+            return _currentSelectedGameObject;
+        }
+        else
+        {
+            return null;
         }
     }
 }
