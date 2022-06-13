@@ -153,14 +153,11 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void LeavePatient()
     {
-        if (PlayerData.Instance.CurrentPatientNearby.PhotonView.IsMine)
-        {
-            Debug.Log("Attempting leave patient");
+        Debug.Log("Attempting leave patient");
 
-            UIManager.Instance.CloseAllPatientWindows();
-            PlayerData.Instance.CurrentPatientNearby.TreatingUsers.Remove(PlayerData.Instance);
-            Debug.Log("Left Patient Succesfully");
-        }
+        UIManager.Instance.CloseAllPatientWindows();
+        PlayerData.Instance.CurrentPatientNearby.TreatingUsers.Remove(PlayerData.Instance);
+        Debug.Log("Left Patient Succesfully");
     }
 
     public void OnInteracted()

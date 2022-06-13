@@ -65,6 +65,8 @@ public class UIManager : MonoBehaviour
 
     public void GetLastGameObjectSelected()
     {
+        Debug.Log($"Attemting to get last client who tried to join patient");
+
         if (_eventSystem.currentSelectedGameObject != _currentSelectedGameObject)
         {
             _lastSelectedGameObject = _currentSelectedGameObject;
