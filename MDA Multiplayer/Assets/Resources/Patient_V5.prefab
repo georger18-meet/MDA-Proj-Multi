@@ -3124,6 +3124,7 @@ GameObject:
   - component: {fileID: 5650985257199759986}
   - component: {fileID: 5650985257199760028}
   - component: {fileID: 5650985257199760134}
+  - component: {fileID: 1950055323741864326}
   m_Layer: 7
   m_Name: Patient_V5
   m_TagString: Patient
@@ -3200,6 +3201,7 @@ MonoBehaviour:
   TreatingCrews: 
   AllUsersTreatedThisPatient: []
   AllCrewTreatedThisPatient: 
+  Transfer: {fileID: 1950055323741864326}
 --- !u!114 &5650985257199760244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3243,7 +3245,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 2
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5650985257199760028}
@@ -3300,3 +3302,15 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &1950055323741864326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650985257199756701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c313d5e2f1297f479bd3896b62a3283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

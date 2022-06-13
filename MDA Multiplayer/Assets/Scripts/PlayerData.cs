@@ -33,8 +33,6 @@ public class PlayerData : MonoBehaviour
             Instance = this;
 
         }
-
-        testing++;
     }
     
 }

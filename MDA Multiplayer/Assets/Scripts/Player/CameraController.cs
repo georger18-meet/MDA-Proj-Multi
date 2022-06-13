@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
 
+    // [SerializeField]private Patient _patient;
+
     private PhotonView _photonView;
 
     private void Awake()
@@ -44,6 +46,7 @@ public class CameraController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                PlayerData.Instance.CurrentPatientTreating.Transfer.ClickToJoinPatient();
                 _indicatorSound.Play();
                 raycastHit.transform.GetComponent<MakeItAButton>().EventToCall.Invoke();
 

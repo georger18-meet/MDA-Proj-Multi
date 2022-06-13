@@ -25,9 +25,11 @@ public class ActionsManager : MonoBehaviour
 
     private PhotonView _photonView;
     #region MonoBehaviour Callbacks
+
     private void Awake()
     {
-        if (Instance == null) 
+
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this);
@@ -48,7 +50,7 @@ public class ActionsManager : MonoBehaviour
     #region Assignment
     // Triggered upon Clicking on the Patient
 
-
+  
 
     public void OnPatientClicked()
     {
@@ -126,13 +128,19 @@ public class ActionsManager : MonoBehaviour
             SetupPatientInfoDisplay();
 
             _uIManager.JoinPatientPopUp.SetActive(false);
-            _uIManager.PatientMenuParent.SetActive(true);
+           // _uIManager.PatientMenuParent.SetActive(true);
             _uIManager.PatientInfoParent.SetActive(false);
         }
         else
         {
             _uIManager.JoinPatientPopUp.SetActive(false);
         }
+    }
+
+    [PunRPC]
+    private void RPC_OnJoinPatient(bool isJoined)
+    {
+
     }
 
     private void SetupPatientInfoDisplay()

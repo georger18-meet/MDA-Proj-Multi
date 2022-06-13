@@ -38,12 +38,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject PlayerUiPrefab;
 
-    private PlayerData _playerData;
 
     private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
-        _playerData = GetComponent<PlayerData>();
+        PlayerData.Instance = GetComponent<PlayerData>();
     }
 
     private void Start()
@@ -149,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
     private void UseTankIdleState()
     {
-        Debug.Log("Current State: Idle");
+        //Debug.Log("Current State: Idle");
 
         GetInputAxis();
 
@@ -176,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     private void UseFirstPersonIdleState()
     {
-        Debug.Log("Current State: First Person Idle");
+       // Debug.Log("Current State: First Person Idle");
 
         GetInputAxis();
 
@@ -204,7 +203,7 @@ public class PlayerController : MonoBehaviour
 
     private void UseTankWalkingState()
     {
-        Debug.Log("Current State: Walking");
+      //  Debug.Log("Current State: Walking");
 
         GetInputAxis();
 
@@ -233,7 +232,7 @@ public class PlayerController : MonoBehaviour
 
     private void UseFirstPersonWalkingState()
     {
-        Debug.Log("Current State: First Person Walking");
+      //  Debug.Log("Current State: First Person Walking");
 
         GetInputAxis();
 
@@ -282,7 +281,7 @@ public class PlayerController : MonoBehaviour
 
     private void UseFlyingIdleState()
     {
-        Debug.Log("Current State: FlyingIdle");
+       // Debug.Log("Current State: FlyingIdle");
 
         GetInputAxis();
 
@@ -312,7 +311,7 @@ public class PlayerController : MonoBehaviour
 
     private void UseFlyingMovingState()
     {
-        Debug.Log("Current State: FlyingMoving");
+      //  Debug.Log("Current State: FlyingMoving");
 
         GetInputAxis();
 
@@ -357,7 +356,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Patient possiblePatient))
         {
-            _playerData.CurrentPatientTreating = possiblePatient;
+            PlayerData.Instance.CurrentPatientTreating = possiblePatient;
         }
     }
 
@@ -366,7 +365,7 @@ public class PlayerController : MonoBehaviour
         
         if (other.gameObject.TryGetComponent(out Patient possiblePatient))
         {
-            _playerData.CurrentPatientTreating = null;
+            PlayerData.Instance.CurrentPatientTreating = null;
         }
     }
     #endregion

@@ -16,6 +16,7 @@ public class NameTagDisplay : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
         text.text = playerPhotonView.Owner.NickName;
     }
 }
