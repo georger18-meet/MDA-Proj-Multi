@@ -30,17 +30,19 @@ public class Patient : MonoBehaviour
     public List<int> AllCrewTreatedThisPatient;
     #endregion
 
-    //public Dictionary<string, int> OperatingUserCrew = new Dictionary<string, int>();
-    //public Animation PatientAnimation;
+    private void Awake()
+    {
+        PatientRenderer.material = PatientData.FullyClothedMaterial;
+        DontDestroyOnLoad(gameObject.transform.parent);
+    }
 
     private void Start()
     {
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
-        PatientRenderer.material = PatientData.FullyClothedMaterial;
-        //GetComponent<MakeItAButton>().EventToCall = ActionsManager.Instance.GameObject.GetComponent<ActionsManager>().PatientOnClick;
     }
 
+    [PunRPC]
     public void AddUserToTreatingLists(object currentPlayer)
     {
         PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
@@ -49,7 +51,6 @@ public class Patient : MonoBehaviour
         {
             return;
         }
-
 
         for (int i = 0; i < 1; i++)
         {
@@ -82,9 +83,7 @@ public class Patient : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerData possiblePlayer = other.GetComponent<PlayerData>();
-
-        if (possiblePlayer == null)
+        if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
         }
@@ -96,9 +95,8 @@ public class Patient : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        PlayerData possiblePlayer = other.GetComponent<PlayerData>();
-
-        if (possiblePlayer != null)
+        
+        if (other.TryGetComponent(out PlayerData possiblePlayer))
         {
 
             if (!NearbyUsers.Contains(possiblePlayer))
@@ -129,49 +127,18 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
-    private void OnJoinPatient(bool isJoined)
+    public void UpdatePatientInfoDisplay()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
-        {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-    
-            if (photonView.IsMine)
-            {
-                if (isJoined)
-                {
-                    AddUserToTreatingLists(desiredPlayerData);
+        UIManager.Instance.SureName.text = PatientData.SureName;
+        UIManager.Instance.LastName.text = PatientData.LastName;
+        UIManager.Instance.Gender.text = PatientData.Gender;
+        UIManager.Instance.Adress.text = PatientData.AddressLocation;
+        UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
+        UIManager.Instance.Complaint.text = PatientData.Complaint;
 
-                    ActionsManager.Instance.SetupPatientInfoDisplay();
-    
-                    UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                    UIManager.Instance.PatientMenuParent.SetActive(true);
-                    UIManager.Instance.PatientInfoParent.SetActive(false);
-    
-                }
-                else
-                {
-                    UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                }
-            }
-        }
-    }
-
-    [PunRPC]
-    private void LeavePatient()
-    {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
-        {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
-            if (photonView.IsMine)
-            {
-                Debug.Log("Attempting leave patient");
-
-                UIManager.Instance.CloseAllPatientWindows();
-                TreatingUsers.Remove(desiredPlayerData);
-                Debug.Log("Left Patient Succesfully");
-            }
-        }
+        UIManager.Instance.Age.text = PatientData.Age.ToString();
+        UIManager.Instance.Id.text = PatientData.Id.ToString();
+        UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
     }
 
     public void OnInteracted()
