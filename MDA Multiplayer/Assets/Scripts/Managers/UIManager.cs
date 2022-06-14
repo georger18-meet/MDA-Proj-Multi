@@ -8,6 +8,10 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+
+    private static UIManager _instance;
+    public static UIManager getInstance => _instance;
+
     #region Player UI
     [Header("Player UI Parents")]
     public GameObject AmbulanceActionBarParent;
@@ -24,8 +28,14 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint; /*IncidentAdress*/
     #endregion
 
- 
 
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+    }
 
     private void Start()
     {

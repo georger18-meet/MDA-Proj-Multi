@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 
 public class PlayerController : MonoBehaviour
@@ -34,15 +35,20 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     private PhotonView _photonView;
-
+    
     [SerializeField]
     private GameObject PlayerUiPrefab;
 
+
+    private Patient _lastClickedPatient;
+
+    public PhotonView GetphotonView => _photonView;
 
     private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
         PlayerData.Instance = GetComponent<PlayerData>();
+        
     }
 
     private void Start()
@@ -54,20 +60,25 @@ public class PlayerController : MonoBehaviour
         {
             _playerCamera.gameObject.SetActive(false);
             PlayerUiPrefab.gameObject.SetActive(false);
-            
-        }
 
-       
+
+        }
+        PlayerData.Instance.UserName = _photonView.Owner.NickName;
+
+
     }
 
     private void Update()
     {
-        if (_photonView.IsMine)
-        {
-            _stateAction.Invoke();
-        }
-    }
+        if (!_photonView.IsMine)
+            return;
 
+        _stateAction.Invoke();
+
+
+
+    }
+ 
     #region Private Methods
     private void GetInputAxis()
     {
@@ -351,6 +362,44 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    [PunRPC]
+    private void RPC_AddUserToTreatingLists(int currentPlayer)
+    {
+
+        Player currentPlayerData = PhotonNetwork.LocalPlayer.Get(currentPlayer);
+        Debug.Log("currentPlayerData ID" + " " + currentPlayerData);
+
+        PlayerData.Instance.CurrentPatientTreating.TreatingUsersTest.Add(currentPlayerData.ActorNumber);
+
+
+        //if (_photonView.AmOwner)
+        //{
+        //    PhotonView currentPlayerData = PhotonView.Find(currentPlayer);
+        //    Debug.Log("currentPlayerData ID" + " " + currentPlayerData);
+
+        //    TreatingUsersTest.Add(currentPlayerData.ViewID);
+        //}
+
+
+        //for (int i = 0; i < TreatingUsersTest.Count; i++)
+        //{
+        //    if (TreatingUsersTest.Contains(currentPlayerData.ViewID))
+        //    {
+        //        Debug.Log("Didnt add To List");
+
+        //        continue;
+        //    }
+        //    TreatingUsersTest.Add(currentPlayerData.ViewID);
+        //        // AllUsersTreatedThisPatient.Add(currentPlayerData);
+        //        Debug.Log("Added To List");
+
+
+
+        //}
+    }
+
+
+
     #region Collisions & Triggers
     private void OnTriggerEnter(Collider other)
     {
@@ -369,6 +418,9 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+    
+
+
 
     #region Gizmos
     private void OnDrawGizmosSelected()

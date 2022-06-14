@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431195896889960292}
   - component: {fileID: 1244657126598751746}
-  - component: {fileID: 3796253326018125214}
+  - component: {fileID: 723567882620647505}
   m_Layer: 0
   m_Name: ActionsManager
   m_TagString: Untagged
@@ -47,7 +47,7 @@ MonoBehaviour:
   MeasurementList: 
   _uIManager: {fileID: 0}
   AllPatients: []
---- !u!114 &3796253326018125214
+--- !u!114 &723567882620647505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -23,7 +24,6 @@ public class ActionsManager : MonoBehaviour
     private PatientData _lastClickedPatientData;
     #endregion
 
-    private PhotonView _photonView;
     #region MonoBehaviour Callbacks
 
     private void Awake()
@@ -43,7 +43,6 @@ public class ActionsManager : MonoBehaviour
 
     private void Start()
     {
-        _photonView = GetComponent<PhotonView>();
     }
     #endregion
 
@@ -83,7 +82,6 @@ public class ActionsManager : MonoBehaviour
 
         PlayerData addedToPatient = null;
 
-        Patient treatedPatient = GetPatientByViewID(patientID);
 
         for (int i = 0; i < playerData.Length; i++)
         {
@@ -94,10 +92,7 @@ public class ActionsManager : MonoBehaviour
             }
         }
 
-        if (addedToPatient&& treatedPatient)
-        {
-            
-        }
+    
     }
 
     private Patient GetPatientByViewID(int viewID)
@@ -118,23 +113,37 @@ public class ActionsManager : MonoBehaviour
     }
 
 
+    public void TestingJoin()
+    {
+
+
+
+    }
+
+
+
+
+
+
     public void OnJoinPatient(bool isJoined)
     {
-        if (isJoined)
-        {
+        
+            if (isJoined)
+            {
+            Debug.Log("PlayerData.Instance.GetPhotonView.ViewID" + " " + PhotonNetwork.LocalPlayer.ActorNumber);
 
-            _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
+            PlayerData.Instance.CurrentPatientTreating.AddUserToTreatingLists(PhotonNetwork.LocalPlayer.ActorNumber);
+                SetupPatientInfoDisplay();
 
-            SetupPatientInfoDisplay();
-
-            _uIManager.JoinPatientPopUp.SetActive(false);
-           // _uIManager.PatientMenuParent.SetActive(true);
-            _uIManager.PatientInfoParent.SetActive(false);
-        }
-        else
-        {
-            _uIManager.JoinPatientPopUp.SetActive(false);
-        }
+                UIManager.getInstance.JoinPatientPopUp.SetActive(false);
+            // _uIManager.PatientMenuParent.SetActive(true);
+                  UIManager.getInstance.PatientInfoParent.SetActive(false);
+            }
+            else
+            {
+                UIManager.getInstance.JoinPatientPopUp.SetActive(false);
+            }
+        
     }
 
     [PunRPC]
@@ -161,12 +170,10 @@ public class ActionsManager : MonoBehaviour
     {
         Debug.Log("Attempting leave patient");
 
-        // if (_photonView.isMine)
-        // {
             _uIManager.CloseAllPatientWindows();
             PlayerData.Instance.CurrentPatientTreating.TreatingUsers.Remove(PlayerData.Instance);
             Debug.Log("Left Patient Succesfully");
-        // }
+      
     }
     #endregion
 }

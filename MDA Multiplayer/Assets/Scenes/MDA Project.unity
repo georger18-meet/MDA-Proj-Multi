@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnJoinPatient
       objectReference: {fileID: 0}
+    - target: {fileID: 65042390438993015, guid: e5e4896062dafe44ea2c20188fdf9f5f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ActionsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 65042390485082603, guid: e5e4896062dafe44ea2c20188fdf9f5f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -438,6 +442,10 @@ PrefabInstance:
     - target: {fileID: 65042391580683556, guid: e5e4896062dafe44ea2c20188fdf9f5f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnJoinPatient
+      objectReference: {fileID: 0}
+    - target: {fileID: 65042391580683556, guid: e5e4896062dafe44ea2c20188fdf9f5f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ActionsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 65042391580683558, guid: e5e4896062dafe44ea2c20188fdf9f5f, type: 3}
       propertyPath: m_IsActive
@@ -633,10 +641,6 @@ PrefabInstance:
       propertyPath: _uIManager
       value: 
       objectReference: {fileID: 1596554308}
-    - target: {fileID: 1244657126598751746, guid: 72651d26827dd824b8920f55b4f46ce5, type: 3}
-      propertyPath: playerData
-      value: 
-      objectReference: {fileID: 6345027128269859878, guid: 2afc6491ed37845418ebf83483503c0f, type: 3}
     - target: {fileID: 1431195896889960290, guid: 72651d26827dd824b8920f55b4f46ce5, type: 3}
       propertyPath: m_Name
       value: ActionsManager
@@ -684,10 +688,6 @@ PrefabInstance:
     - target: {fileID: 1431195896889960292, guid: 72651d26827dd824b8920f55b4f46ce5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3796253326018125214, guid: 72651d26827dd824b8920f55b4f46ce5, type: 3}
-      propertyPath: sceneViewId
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72651d26827dd824b8920f55b4f46ce5, type: 3}

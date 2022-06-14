@@ -17,9 +17,8 @@ public class PlayerData : MonoBehaviour
 
     [field: SerializeField] public Animation PlayerAnimation;
 
+    public int Playerindex;
 
-
-    public int testing;
     private PhotonView _photonView;
     public PhotonView GetPhotonView => _photonView;
 
@@ -27,6 +26,7 @@ public class PlayerData : MonoBehaviour
     {
         _photonView = GetComponent<PhotonView>();
 
+        Debug.Log("GetPhotonView"+" "+_photonView.ViewID);
 
         if (_photonView.IsMine)
         {
@@ -34,5 +34,7 @@ public class PlayerData : MonoBehaviour
 
         }
     }
-    
+
+   
+
 }

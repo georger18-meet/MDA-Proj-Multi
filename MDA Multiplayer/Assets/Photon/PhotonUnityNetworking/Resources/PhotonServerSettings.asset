@@ -45,6 +45,9 @@ MonoBehaviour:
   - RPC_OnInteracted
   - RPC_OnJoinPatient
   - RPC_AddUserToTreatingLists
+  - Rpc_AddedToList
+  - RPC_AdduserList
+  - rrRPC_AddUserToTreatingLists
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

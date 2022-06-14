@@ -3201,7 +3201,10 @@ MonoBehaviour:
   TreatingCrews: 
   AllUsersTreatedThisPatient: []
   AllCrewTreatedThisPatient: 
+  playerDistance: 2
   Transfer: {fileID: 1950055323741864326}
+  TreatingUsersTest: 
+  players: []
 --- !u!114 &5650985257199760244
 MonoBehaviour:
   m_ObjectHideFlags: 0

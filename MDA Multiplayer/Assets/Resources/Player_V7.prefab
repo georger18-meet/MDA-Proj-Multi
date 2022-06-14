@@ -1708,6 +1708,7 @@ MonoBehaviour:
   <UserRole>k__BackingField: 1
   <CurrentPatientTreating>k__BackingField: {fileID: 0}
   PlayerAnimation: {fileID: 0}
+  Playerindex: 0
 --- !u!114 &2825814850721328581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,7 +1785,6 @@ MonoBehaviour:
   _indicatorIcon: {fileID: 1955325939637764695, guid: 9f7bd2387d6c2c249b420f555bbfc28f, type: 3}
   _indicatorSound: {fileID: 540410928904683331}
   _raycastDistance: 10
-  playerData: {fileID: 6345027128269859878}
 --- !u!114 &2805926115995731195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,7 +1816,6 @@ MonoBehaviour:
   _groundCheckTransform: {fileID: 6345027128726204342}
   _groundCheckRadius: 0.5
   PlayerUiPrefab: {fileID: 65042390485082607, guid: e5e4896062dafe44ea2c20188fdf9f5f, type: 3}
-  _playerData: {fileID: 6345027128269859878}
 --- !u!1 &6345027128726204345
 GameObject:
   m_ObjectHideFlags: 0
