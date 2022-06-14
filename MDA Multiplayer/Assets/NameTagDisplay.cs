@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using Photon.Pun;
 
 public class NameTagDisplay : MonoBehaviour
 {
@@ -18,5 +18,7 @@ public class NameTagDisplay : MonoBehaviour
         }
 
         text.text = playerPhotonView.Owner.NickName;
+        playerPhotonView.GetComponent<PlayerData>().UserName = playerPhotonView.Owner.NickName;
+        playerPhotonView.gameObject.name = playerPhotonView.Owner.NickName;
     }
 }

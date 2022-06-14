@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 6
+    AppVersion: 
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -42,12 +42,11 @@ MonoBehaviour:
   - AddUserToTreatingLists
   - RPC_ClickJOine
   - RPC_OnPatientClicked
-  - RPC_OnInteracted
-  - RPC_OnJoinPatient
-  - RPC_AddUserToTreatingLists
-  - Rpc_AddedToList
-  - RPC_AdduserList
-  - rrRPC_AddUserToTreatingLists
+  - LeavePatient
+  - OnJoinPatient
+  - UpdateTreatingUsersListOverNetwork
+  - UpdatePatientInfoDisplay
+  - OnLeavePatient
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
   DevRegionSetOnce: 1

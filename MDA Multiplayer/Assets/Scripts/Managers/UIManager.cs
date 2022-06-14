@@ -1,21 +1,19 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class UIManager : MonoBehaviour
 {
-
-    private static UIManager _instance;
-    public static UIManager getInstance => _instance;
+    public static UIManager Instance;
 
     #region Player UI
     [Header("Player UI Parents")]
-    public GameObject AmbulanceActionBarParent;
-    public GameObject NatanActionBarParent, BasicActionMenuParent;
+    public GameObject CurrentActionBarParent;
+    public GameObject AmbulanceActionBarParent, NatanActionBarParent, BasicActionMenuParent;
     #endregion
 
     #region Patient UI 
@@ -28,27 +26,53 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint; /*IncidentAdress*/
     #endregion
 
+    //#region EventSystem
+    //[Header("EventSystem")]
+    //[SerializeField] private EventSystem _eventSystem;
+    //private GameObject? _lastSelectedGameObject;
+    //private GameObject _currentSelectedGameObject;
+    //#endregion
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-    }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
 
-    private void Start()
-    {
-      
-        
+        //_lastSelectedGameObject = _currentSelectedGameObject;
+        CurrentActionBarParent = AmbulanceActionBarParent;
     }
 
     public void CloseAllPatientWindows()
     {
-
         JoinPatientPopUp.SetActive(false);
         PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
     }
+
+    // catch last gameObject to fire an event
+    //public GameObject GetLastGameObjectSelected()
+    //{
+    //    Debug.Log($"Attemting to get last client who tried to join patient");
+    //
+    //    if (_eventSystem.currentSelectedGameObject != _currentSelectedGameObject)
+    //    {
+    //        _lastSelectedGameObject = _currentSelectedGameObject;
+    //        _currentSelectedGameObject = _eventSystem.currentSelectedGameObject;
+    //
+    //        //Debug.Log($"{_currentSelectedGameObject.name}");
+    //        return _currentSelectedGameObject;
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
 }
