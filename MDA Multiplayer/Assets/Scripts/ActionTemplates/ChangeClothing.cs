@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum Clothing
 {
@@ -11,7 +12,6 @@ public enum Clothing
 public class ChangeClothing : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
     [SerializeField] private ActionTemplates _actionTemplates;
 
     [Header("Component's Data")]
@@ -21,35 +21,43 @@ public class ChangeClothing : MonoBehaviour
 
     public void ChangeClothingAction(int measurementNumber)
     {
-        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
-            return;
-
-        // loops throughout measurementList and catches the first element that is equal to measurementNumber
-        Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-
-        switch (_clothing)
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            case Clothing.FullyClothed:
-                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.FullyClothedMaterial;
-                break;
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
-            case Clothing.ShirtOnly:
-                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.ShirtOnlyMaterial;
-                break;
+            if (photonView.IsMine)
+            {
+                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                    return;
 
-            case Clothing.PantsOnly:
-                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.PantsOnlyMaterial;
-                break;
+                // loops throughout measurementList and catches the first element that is equal to measurementNumber
+                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
 
-            case Clothing.UnderwearOnly:
-                PlayerData.Instance.CurrentPatientNearby.PatientRenderer.material = PlayerData.Instance.CurrentPatientNearby.PatientData.UnderwearOnlyMaterial;
-                break;
+                switch (_clothing)
+                {
+                    case Clothing.FullyClothed:
+                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.FullyClothedMaterial;
+                        break;
 
-            default:
-                break;
+                    case Clothing.ShirtOnly:
+                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.ShirtOnlyMaterial;
+                        break;
+
+                    case Clothing.PantsOnly:
+                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.PantsOnlyMaterial;
+                        break;
+
+                    case Clothing.UnderwearOnly:
+                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.UnderwearOnlyMaterial;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                _actionTemplates.ShowAlertWindow(_textureToChange, _alertContent);
+                _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");
+            }
         }
-
-        _actionTemplates.ShowAlertWindow(_textureToChange, _alertContent);
-        _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");
     }
 }

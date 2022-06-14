@@ -5,10 +5,6 @@ using Photon.Pun;
 
 public class PlayerData : MonoBehaviour
 {
-    public static PlayerData Instance;
-
-    public PhotonView PlayerPhotonView;
-
     [field: SerializeField] public string UserName { get; set; }
     [field: SerializeField] public string CrewName { get; set; }
     [field: SerializeField] public int UserIndexInCrew { get; set; }
@@ -17,30 +13,8 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
 
-    private GameObject _playerGameObject;
-    public GameObject PlayerGameObject => _playerGameObject;
-
-    private void Awake()
-    {
-        //if (GetComponent<PhotonView>().IsMine)
-        //{
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Instance = new PlayerData();
-                DontDestroyOnLoad(gameObject);
-                //Destroy(this);
-            }
-        //}
-    }
-
     private void Start()
     {
         ActionsManager.Instance.AllPlayersPhotonViews.Add(GetComponent<PhotonView>());
-        _playerGameObject = gameObject;
     }
 }

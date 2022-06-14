@@ -18,7 +18,7 @@ public class NameTagDisplay : MonoBehaviour
         }
 
         text.text = playerPhotonView.Owner.NickName;
-        PlayerData.Instance.UserName = playerPhotonView.Owner.NickName;
-        PlayerData.Instance.PlayerGameObject.name = playerPhotonView.Owner.NickName;
+        playerPhotonView.GetComponent<PlayerData>().UserName = playerPhotonView.Owner.NickName;
+        playerPhotonView.gameObject.name = playerPhotonView.Owner.NickName;
     }
 }

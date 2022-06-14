@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ApplyMedicine : MonoBehaviour
 {
@@ -16,14 +17,22 @@ public class ApplyMedicine : MonoBehaviour
 
     public void ApplyMedicineAction(int measurementNumber)
     {
-        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
-            return;
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
-        // loops throughout measurementList and catches the first element that is equal to measurementNumber
-        Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-        PlayerData.Instance.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
+            if (photonView.IsMine)
+            {
+                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                    return;
 
-        _actionTemplates.ShowAlertWindow(_alertTitle, _medicineToApply);
-        _actionTemplates.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
+                // loops throughout measurementList and catches the first element that is equal to measurementNumber
+                Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+                desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
+
+                _actionTemplates.ShowAlertWindow(_alertTitle, _medicineToApply);
+                _actionTemplates.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
+            }
+        }
     }
 }

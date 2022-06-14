@@ -131,27 +131,27 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void OnJoinPatient(bool isJoined)
     {
-        UIManager.Instance.GetLastGameObjectSelected();
-
-        if (isJoined)
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            ActionsManager.Instance.SetupPatientInfoDisplay();
-
-            AddUserToTreatingLists(PlayerData.Instance);
-
-            if (PhotonView.IsMine)
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+    
+            if (photonView.IsMine)
             {
-                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                UIManager.Instance.PatientMenuParent.SetActive(true);
-                UIManager.Instance.PatientInfoParent.SetActive(false);
-            }
+                if (isJoined)
+                {
+                    AddUserToTreatingLists(desiredPlayerData);
 
-        }
-        else
-        {
-            if (PhotonView.IsMine)
-            {
-                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                    ActionsManager.Instance.SetupPatientInfoDisplay();
+    
+                    UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                    UIManager.Instance.PatientMenuParent.SetActive(true);
+                    UIManager.Instance.PatientInfoParent.SetActive(false);
+    
+                }
+                else
+                {
+                    UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                }
             }
         }
     }
@@ -159,11 +159,19 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void LeavePatient()
     {
-        Debug.Log("Attempting leave patient");
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
-        UIManager.Instance.CloseAllPatientWindows();
-        PlayerData.Instance.CurrentPatientNearby.TreatingUsers.Remove(PlayerData.Instance);
-        Debug.Log("Left Patient Succesfully");
+            if (photonView.IsMine)
+            {
+                Debug.Log("Attempting leave patient");
+
+                UIManager.Instance.CloseAllPatientWindows();
+                TreatingUsers.Remove(desiredPlayerData);
+                Debug.Log("Left Patient Succesfully");
+            }
+        }
     }
 
     public void OnInteracted()

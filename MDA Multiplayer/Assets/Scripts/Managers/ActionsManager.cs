@@ -22,7 +22,6 @@ public class ActionsManager : MonoBehaviour
 
     #region Data References
     [Header("Data & Scripts")]
-    
     public List<Patient> AllPatients;
 
     private Patient _lastClickedPatient;
@@ -58,102 +57,106 @@ public class ActionsManager : MonoBehaviour
     // Triggered upon Clicking on the Patient
     public void OnPatientClicked()
     {
-        //if (_photonView.IsMine)
-        //{
-            if (PlayerData.Instance.CurrentPatientNearby == null)
+        Debug.Log($"Attempting to Click On Patient");
+        foreach (PhotonView photonView in AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
+            if (photonView.IsMine)
             {
-                return;
+                if (desiredPlayerData.CurrentPatientNearby == null)
+                {
+                    return;
+                }
+
+                _lastClickedPatient = desiredPlayerData.CurrentPatientNearby;
+
+                PatientData currentPatientData = desiredPlayerData.CurrentPatientNearby != null ? desiredPlayerData.CurrentPatientNearby.PatientData : null;
+                _lastClickedPatientData = currentPatientData;
+
+                Debug.Log($"{desiredPlayerData.UserName} Clicked on: {desiredPlayerData.CurrentPatientNearby}");
+
+                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                {
+                    UIManager.Instance.JoinPatientPopUp.SetActive(true);
+                }
+                else
+                {
+                    SetupPatientInfoDisplay();
+                    UIManager.Instance.PatientMenuParent.SetActive(true);
+                }
             }
-
-            _lastClickedPatient = PlayerData.Instance.CurrentPatientNearby;
-
-            PatientData currentPatientData = PlayerData.Instance.CurrentPatientNearby != null ? PlayerData.Instance.CurrentPatientNearby.PatientData : null;
-
-            _lastClickedPatientData = currentPatientData;
-
-            if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
-            {
-                UIManager.Instance.JoinPatientPopUp.SetActive(true);
-            }
-            else
-            {
-                SetupPatientInfoDisplay();
-                UIManager.Instance.PatientMenuParent.SetActive(true);
-            }
-        //}
+        }
     }
 
     public void OnJoinPatientRPC(bool isJoined)
     {
         Debug.Log("attempting Join Patient");
 
-        //if (AllPatientsPhotonViews.Contains(PlayerData.Instance.CurrentPatientNearby.PhotonView))
-        //{
-        Debug.Log("Found correct PhotonView");
-
-        //GameObject desiredPlayer = FindObjectOfType<PlayerController>().gameObject.GetPhotonView().IsMine;
-        CharacterController[] allPlayersCharacterControllers = FindObjectsOfType<CharacterController>();
-
-        for (int i = 0; i < allPlayersCharacterControllers.Length; i++)
+        foreach (PhotonView photonView in AllPlayersPhotonViews)
         {
-            allPlayersCharacterControllers[i].gameObject.GetComponent<PlayerData>().CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
-            //if (allPlayersCharacterControllers[i].GetComponent<PhotonView>().IsMine)
-            //{
-            //}
-            //else
-            //{
-            //    Debug.Log("Didn't found correct PhotonView");
-            //}
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
+            if (photonView.IsMine)
+            {
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+            }
         }
-        //_playerPhotonView = FindObjectOfType<CharacterController>().gameObject.GetPhotonView().IsMine ? FindObjectOfType<PlayerController>().gameObject.GetPhotonView() : null;
-        //GameObject desiredPlayer = _playerPhotonView.gameObject;
-        //if (_playerPhotonView.IsMine)
-        //{
-        //    desiredPlayer.GetComponent<PlayerData>().CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
-        //}
-        ////}
-        //else
-        //{
-        //    Debug.Log("Didn't found correct PhotonView");
-        //}
     }
 
-    private void OnJoinPatient(bool isJoined)
+    public void LeavePatientRPC()
     {
-        if (isJoined)
+        foreach (PhotonView photonView in AllPlayersPhotonViews)
         {
-            _lastClickedPatient.AddUserToTreatingLists(PlayerData.Instance);
-    
-            SetupPatientInfoDisplay();
-    
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            UIManager.Instance.PatientMenuParent.SetActive(true);
-            UIManager.Instance.PatientInfoParent.SetActive(false);
-        }
-        else
-        {
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
+            if (photonView.IsMine)
+            {
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("LeavePatient", RpcTarget.AllBuffered);
+            }
         }
     }
 
     public void SetupPatientInfoDisplay()
     {
-        //UIManager.Instance.SureName.text = _lastClickedPatientData.SureName;
-        //UIManager.Instance.LastName.text = _lastClickedPatientData.LastName;
-        //UIManager.Instance.Gender.text = _lastClickedPatientData.Gender;
-        //UIManager.Instance.Adress.text = _lastClickedPatientData.AddressLocation;
-        //UIManager.Instance.InsuranceCompany.text = _lastClickedPatientData.MedicalCompany;
-        //UIManager.Instance.Complaint.text = _lastClickedPatientData.Complaint;
-        //
-        //UIManager.Instance.Age.text = _lastClickedPatientData.Age.ToString();
-        //UIManager.Instance.Id.text = _lastClickedPatientData.Id.ToString();
-        //UIManager.Instance.PhoneNumber.text = _lastClickedPatientData.PhoneNumber.ToString();
+        UIManager.Instance.SureName.text = _lastClickedPatientData.SureName;
+        UIManager.Instance.LastName.text = _lastClickedPatientData.LastName;
+        UIManager.Instance.Gender.text = _lastClickedPatientData.Gender;
+        UIManager.Instance.Adress.text = _lastClickedPatientData.AddressLocation;
+        UIManager.Instance.InsuranceCompany.text = _lastClickedPatientData.MedicalCompany;
+        UIManager.Instance.Complaint.text = _lastClickedPatientData.Complaint;
+
+        UIManager.Instance.Age.text = _lastClickedPatientData.Age.ToString();
+        UIManager.Instance.Id.text = _lastClickedPatientData.Id.ToString();
+        UIManager.Instance.PhoneNumber.text = _lastClickedPatientData.PhoneNumber.ToString();
     }
 
-    public void LeavePatientRPC()
-    {
-        PlayerData.Instance.CurrentPatientNearby.PhotonView.RPC("LeavePatient", RpcTarget.AllBuffered);
-    }
+    //private void OnJoinPatient(bool isJoined)
+    //{
+    //    foreach (PhotonView photonView in AllPlayersPhotonViews)
+    //    {
+    //        PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+    //
+    //        if (photonView.IsMine)
+    //        {
+    //            if (isJoined)
+    //            {
+    //                _lastClickedPatient.AddUserToTreatingLists(desiredPlayerData);
+    //
+    //                SetupPatientInfoDisplay();
+    //
+    //                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+    //                UIManager.Instance.PatientMenuParent.SetActive(true);
+    //                UIManager.Instance.PatientInfoParent.SetActive(false);
+    //
+    //            }
+    //            else
+    //            {
+    //                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+    //            }
+    //        }
+    //    }
+    //}
 
     //private void LeavePatient()
     //{

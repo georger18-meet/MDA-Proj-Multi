@@ -435,7 +435,6 @@ GameObject:
   - component: {fileID: 8822803002174255573}
   - component: {fileID: 8822803002174255574}
   - component: {fileID: 8822803002174255575}
-  - component: {fileID: 8822803002174255579}
   - component: {fileID: 1154062206}
   - component: {fileID: 6846980335483256472}
   - component: {fileID: 4762676014754726370}
@@ -500,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 6846980335483256472}
+  PlayerData: {fileID: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _firstPersonCameraTransform: {fileID: 8822803000982418763}
   _thirdPersonCameraTransform: {fileID: 8822803000880888004}
@@ -518,26 +518,6 @@ MonoBehaviour:
     m_Bits: 520
   _groundCheckTransform: {fileID: 8822803002723430987}
   _groundCheckRadius: 0.5
---- !u!114 &8822803002174255579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8822803002174255568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5242308325d4a9c4bb31aec1866f0403, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerPhotonView: {fileID: 6846980335483256472}
-  <UserName>k__BackingField: David
-  <CrewName>k__BackingField: Hulon 521
-  <UserIndexInCrew>k__BackingField: 0
-  <CrewIndex>k__BackingField: 0
-  <UserRole>k__BackingField: 1
-  <CurrentPatientNearby>k__BackingField: {fileID: 0}
-  <PlayerAnimation>k__BackingField: {fileID: 0}
 --- !u!114 &1154062206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c5f2425bbf594c82540528d0c737c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 6846980335483256472}
   _playerCamera: {fileID: 8822803001239547996}
   _interactableLayer:
     serializedVersion: 2
@@ -899,14 +878,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6dafb1cffe9e5c24399b7c2fcd2f9846, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b4e7c7215bab042acc8c58268d4e85, type: 3}
---- !u!4 &3515100071927603633 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79b4e7c7215bab042acc8c58268d4e85, type: 3}
-  m_PrefabInstance: {fileID: 3981918302070670938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4288539863944379147 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 79b4e7c7215bab042acc8c58268d4e85, type: 3}
+  m_PrefabInstance: {fileID: 3981918302070670938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3515100071927603633 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79b4e7c7215bab042acc8c58268d4e85, type: 3}
   m_PrefabInstance: {fileID: 3981918302070670938}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &7292725682840954819

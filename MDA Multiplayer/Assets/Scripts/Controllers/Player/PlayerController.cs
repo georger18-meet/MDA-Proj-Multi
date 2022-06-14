@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [Header("Photon")]
     [SerializeField] private PhotonView _photonView;
 
+    [Header("Data")]
+    public PlayerData PlayerData;
+
     [Header("Camera")]
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
@@ -36,10 +39,13 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Monobehavior Callbacks
+    private void Awake()
+    {
+        PlayerData = gameObject.AddComponent<PlayerData>();
+    }
+
     private void Start()
     {
-        PlayerData.Instance = GetComponent<PlayerData>();
-
         if (_photonView.IsMine)
         {
             FreeMouse(true);
@@ -376,7 +382,7 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-            PlayerData.Instance.CurrentPatientNearby = possiblePatient;
+            PlayerData.CurrentPatientNearby = possiblePatient;
             UIManager.Instance.CurrentActionBarParent.SetActive(true);
         }
     }
@@ -389,7 +395,7 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-            PlayerData.Instance.CurrentPatientNearby = null;
+            PlayerData.CurrentPatientNearby = null;
             UIManager.Instance.CurrentActionBarParent.SetActive(false);
         }
         

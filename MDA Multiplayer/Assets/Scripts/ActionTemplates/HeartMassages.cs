@@ -1,6 +1,8 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class HeartMassages : MonoBehaviour
 {
@@ -11,15 +13,23 @@ public class HeartMassages : MonoBehaviour
 
     public void DoHeartMassage()
     {
-        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance))
-            return;
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
-        //PlayerData.Instance.transform.position = _actionManager.PlayerTreatingTr.position;
-        //PlayerData.Instance.transform.rotation = _actionManager.PlayerTreatingTr.rotation;
-        //_playerAnimator.Play(,)
-        // change heart rate after x seconds
+            if (photonView.IsMine)
+            {
+                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                    return;
 
-        _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
-        Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+                //PlayerData.Instance.transform.position = _actionManager.PlayerTreatingTr.position;
+                //PlayerData.Instance.transform.rotation = _actionManager.PlayerTreatingTr.rotation;
+                //_playerAnimator.Play(,)
+                // change heart rate after x seconds
+
+                _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
+                Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+            }
+        }
     }
 }

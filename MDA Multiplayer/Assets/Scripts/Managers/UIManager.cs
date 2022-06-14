@@ -10,8 +10,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    public PhotonView PlayerPhotonView;
-
     #region Player UI
     [Header("Player UI Parents")]
     public GameObject CurrentActionBarParent;
@@ -28,12 +26,12 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint; /*IncidentAdress*/
     #endregion
 
-    #region EventSystem
-    [Header("EventSystem")]
-    [SerializeField] private EventSystem _eventSystem;
-    private GameObject? _lastSelectedGameObject;
-    private GameObject _currentSelectedGameObject;
-    #endregion
+    //#region EventSystem
+    //[Header("EventSystem")]
+    //[SerializeField] private EventSystem _eventSystem;
+    //private GameObject? _lastSelectedGameObject;
+    //private GameObject _currentSelectedGameObject;
+    //#endregion
 
     private void Awake()
     {
@@ -47,14 +45,8 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _lastSelectedGameObject = _currentSelectedGameObject;
-    }
-
-    private void Start()
-    {
-        PlayerPhotonView = PlayerData.Instance.GetComponent<PhotonView>();
+        //_lastSelectedGameObject = _currentSelectedGameObject;
         CurrentActionBarParent = AmbulanceActionBarParent;
-
     }
 
     public void CloseAllPatientWindows()
@@ -66,21 +58,21 @@ public class UIManager : MonoBehaviour
     }
 
     // catch last gameObject to fire an event
-    public GameObject GetLastGameObjectSelected()
-    {
-        Debug.Log($"Attemting to get last client who tried to join patient");
-
-        if (_eventSystem.currentSelectedGameObject != _currentSelectedGameObject)
-        {
-            _lastSelectedGameObject = _currentSelectedGameObject;
-            _currentSelectedGameObject = _eventSystem.currentSelectedGameObject;
-
-            //Debug.Log($"{_currentSelectedGameObject.name}");
-            return _currentSelectedGameObject;
-        }
-        else
-        {
-            return null;
-        }
-    }
+    //public GameObject GetLastGameObjectSelected()
+    //{
+    //    Debug.Log($"Attemting to get last client who tried to join patient");
+    //
+    //    if (_eventSystem.currentSelectedGameObject != _currentSelectedGameObject)
+    //    {
+    //        _lastSelectedGameObject = _currentSelectedGameObject;
+    //        _currentSelectedGameObject = _eventSystem.currentSelectedGameObject;
+    //
+    //        //Debug.Log($"{_currentSelectedGameObject.name}");
+    //        return _currentSelectedGameObject;
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
 }

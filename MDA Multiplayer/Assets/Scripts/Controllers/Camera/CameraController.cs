@@ -6,7 +6,7 @@ using Photon.Pun;
 public class CameraController : MonoBehaviour
 {
     [Header("Photon")]
-    [SerializeField] private PhotonView _photonView;
+    private PhotonView _photonView;
 
     [Header("Camera")]
     [SerializeField] private Camera _playerCamera;
@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _indicatorIcon;
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
+
+    private void Awake()
+    {
+        _photonView = GetComponent<PhotonView>();
+    }
 
     private void Start()
     {

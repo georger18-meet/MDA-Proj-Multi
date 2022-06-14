@@ -1,6 +1,8 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ConnectingMonitor : MonoBehaviour
 {
@@ -12,18 +14,21 @@ public class ConnectingMonitor : MonoBehaviour
 
     public void Defibrillation()
     {
-        if (!PlayerData.Instance.CurrentPatientNearby.IsPlayerJoined(PlayerData.Instance)/* || (int)actionData.RolesAD <= 1*/)
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            Debug.Log("You Are NOT WORTHY!");
-            return;
-        }
-        else
-        {
-            //_player.transform.position = _actionManager.PlayerTreatingTr.position;
-            //MonoBehaviour.Instantiate(_monitor, _actionManager.PatientEquipmentTr.position, Quaternion.identity);
-        }
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
-        _actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient");
-        Debug.Log("CLEAR!!! Defibrillator On " /*+ _AOM.Patient.name*/);
+            if (photonView.IsMine)
+            {
+                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                    return;
+
+                //_player.transform.position = _actionManager.PlayerTreatingTr.position;
+                //MonoBehaviour.Instantiate(_monitor, _actionManager.PatientEquipmentTr.position, Quaternion.identity);
+
+                _actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient");
+                Debug.Log("CLEAR!!! Defibrillator On " /*+ _AOM.Patient.name*/);
+            }
+        }
     }
 }
