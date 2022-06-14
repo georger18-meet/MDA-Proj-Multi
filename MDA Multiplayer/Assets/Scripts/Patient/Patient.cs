@@ -43,6 +43,11 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        {
+            _playerActions = photonView != null ? photonView.GetComponent<PlayerActions>() : null;
+        }
+
         GameManager.Instance.AllPatients.Add(this);
         GameManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
     }
