@@ -7,14 +7,14 @@ using Photon.Pun;
 public class ConnectingMonitor : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
+    [SerializeField] private PlayerActions _actionManager;
     [SerializeField] private ActionTemplates _actionTemplates;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _monitor;
 
     public void Defibrillation()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 

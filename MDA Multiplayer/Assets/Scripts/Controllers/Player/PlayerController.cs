@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Data")]
     public PlayerData PlayerData;
+    public PlayerActions PlayerActions;
 
     [Header("Camera")]
     [SerializeField] private Camera _playerCamera;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         PlayerData = gameObject.AddComponent<PlayerData>();
+        PlayerActions = gameObject.AddComponent<PlayerActions>();
     }
 
     private void Start()
@@ -383,6 +385,8 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             PlayerData.CurrentPatientNearby = possiblePatient;
+
+            // Error null referece
             UIManager.Instance.CurrentActionBarParent.SetActive(true);
         }
     }
@@ -396,6 +400,8 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             PlayerData.CurrentPatientNearby = null;
+
+            // Error null reference
             UIManager.Instance.CurrentActionBarParent.SetActive(false);
         }
         

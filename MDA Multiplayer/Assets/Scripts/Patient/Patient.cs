@@ -11,6 +11,9 @@ public class Patient : MonoBehaviour
     [Header("Photon")]
     public PhotonView PhotonView;
 
+    [Header("Data")]
+    private PlayerActions _playerActions;
+
     #region Script References
     [Header("Data & Scripts")]
     public PatientData PatientData;
@@ -33,23 +36,25 @@ public class Patient : MonoBehaviour
     //public Dictionary<string, int> OperatingUserCrew = new Dictionary<string, int>();
     //public Animation PatientAnimation;
 
-    private void Start()
+    private void Awake()
     {
-        ActionsManager.Instance.AllPatients.Add(this);
-        ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
         PatientRenderer.material = PatientData.FullyClothedMaterial;
-        //GetComponent<MakeItAButton>().EventToCall = ActionsManager.Instance.GameObject.GetComponent<ActionsManager>().PatientOnClick;
     }
 
-    public void AddUserToTreatingLists(object currentPlayer)
+    private void Start()
     {
-        PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
+        GameManager.Instance.AllPatients.Add(this);
+        GameManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
+    }
+
+    public void AddUserToTreatingLists(PlayerData currentPlayerData)
+    {
+        currentPlayerData = currentPlayerData != null ? currentPlayerData : null;
 
         if (currentPlayerData == null)
         {
             return;
         }
-
 
         for (int i = 0; i < 1; i++)
         {
@@ -131,22 +136,23 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void OnJoinPatient(bool isJoined)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-    
+            PlayerData desiredPlayerData = photonView != null ? photonView.GetComponent<PlayerData>() : null;
+            _playerActions = photonView != null ? photonView.GetComponent<PlayerActions>() : null;
+
             if (photonView.IsMine)
             {
                 if (isJoined)
                 {
                     AddUserToTreatingLists(desiredPlayerData);
 
-                    ActionsManager.Instance.SetupPatientInfoDisplay();
-    
+                    _playerActions.SetupPatientInfoDisplay();
+
                     UIManager.Instance.JoinPatientPopUp.SetActive(false);
                     UIManager.Instance.PatientMenuParent.SetActive(true);
                     UIManager.Instance.PatientInfoParent.SetActive(false);
-    
+
                 }
                 else
                 {
@@ -159,7 +165,7 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void LeavePatient()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
@@ -176,6 +182,6 @@ public class Patient : MonoBehaviour
 
     public void OnInteracted()
     {
-        ActionsManager.Instance.OnPatientClicked();
+        _playerActions.OnPatientClicked();
     }
 }

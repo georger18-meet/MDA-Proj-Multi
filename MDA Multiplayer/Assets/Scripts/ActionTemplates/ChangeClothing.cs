@@ -21,7 +21,7 @@ public class ChangeClothing : MonoBehaviour
 
     public void ChangeClothingAction(int measurementNumber)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
@@ -31,7 +31,7 @@ public class ChangeClothing : MonoBehaviour
                     return;
 
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+                Measurements measurements = GameManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
 
                 switch (_clothing)
                 {

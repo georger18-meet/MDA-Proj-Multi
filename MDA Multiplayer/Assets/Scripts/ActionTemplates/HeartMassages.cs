@@ -7,13 +7,13 @@ using Photon.Pun;
 public class HeartMassages : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
+    [SerializeField] private PlayerActions _actionManager;
     [SerializeField] private ActionTemplates _actionTemplates;
     [SerializeField] private Animator _playerAnimator;
 
     public void DoHeartMassage()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 

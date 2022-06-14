@@ -1,14 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine;
+using Photon.Pun;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    //public GameObject GameMenuCanvas;
-    public bool GameMenuOpen = false;
+    public static GameManager Instance;
 
-    // Start is called before the first frame update
+    public List<Measurements> MeasurementList;
+
+    [Header("Photon")]
+    public List<PhotonView> AllPatientsPhotonViews;
+    public List<PhotonView> AllPlayersPhotonViews;
+
+    #region Data References
+    [Header("Data & Scripts")]
+    public List<Patient> AllPatients;
+
+    public Patient LastClickedPatient;
+    public PatientData LastClickedPatientData;
+    #endregion
+
+    #region MonoBehaviour Callbacks
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     void Start()
     {
         OnEscape(false);
@@ -38,22 +70,7 @@ public class GameManager : MonoBehaviour
     private void OnEscape(bool paused)
     {
         ChangeCursorMode(paused);
-        //GameMenuMode(paused);
     }
-
-    //private void GameMenuMode(bool mode)
-    //{
-    //    if (mode)
-    //    {
-    //        GameMenuCanvas.gameObject.SetActive(true);
-    //        GameMenuOpen = true;
-    //    }
-    //    else
-    //    {
-    //        GameMenuCanvas.gameObject.SetActive(false);
-    //        GameMenuOpen = false;
-    //    }
-    //}
 
     private void ChangeCursorMode(bool unlocked)
     {

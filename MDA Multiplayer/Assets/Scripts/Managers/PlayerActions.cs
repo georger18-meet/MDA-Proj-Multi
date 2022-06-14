@@ -7,58 +7,18 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
-public class ActionsManager : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
-    public static ActionsManager Instance;
-
-    public List<Measurements> MeasurementList;
-
-    //public GameObject GameObject;
-
-    [Header("Photon")]
-    public PhotonView _playerPhotonView;
-    public List<PhotonView> AllPatientsPhotonViews;
-    public List<PhotonView> AllPlayersPhotonViews;
-
-    #region Data References
-    [Header("Data & Scripts")]
-    public List<Patient> AllPatients;
-
-    private Patient _lastClickedPatient;
-    private PatientData _lastClickedPatientData;
-    #endregion
-
     #region MonoBehaviour Callbacks
-    private void Awake()
-    {
-        if (Instance == null) 
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+
     #endregion
-
-    //private void Start()
-    //{
-    //    for (int i = 0; i < AllPatients.Count; i++)
-    //    {
-    //        _allPatientsPhotonViews[i] = AllPatients[i].PhotonView;
-    //    }
-    //}
-
-
 
     #region Assignment
     // Triggered upon Clicking on the Patient
     public void OnPatientClicked()
     {
         Debug.Log($"Attempting to Click On Patient");
-        foreach (PhotonView photonView in AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
@@ -69,10 +29,10 @@ public class ActionsManager : MonoBehaviour
                     return;
                 }
 
-                _lastClickedPatient = desiredPlayerData.CurrentPatientNearby;
+                GameManager.Instance.LastClickedPatient = desiredPlayerData.CurrentPatientNearby;
 
                 PatientData currentPatientData = desiredPlayerData.CurrentPatientNearby != null ? desiredPlayerData.CurrentPatientNearby.PatientData : null;
-                _lastClickedPatientData = currentPatientData;
+                GameManager.Instance.LastClickedPatientData = currentPatientData;
 
                 Debug.Log($"{desiredPlayerData.UserName} Clicked on: {desiredPlayerData.CurrentPatientNearby}");
 
@@ -93,7 +53,7 @@ public class ActionsManager : MonoBehaviour
     {
         Debug.Log("attempting Join Patient");
 
-        foreach (PhotonView photonView in AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
@@ -106,29 +66,25 @@ public class ActionsManager : MonoBehaviour
 
     public void LeavePatientRPC()
     {
-        foreach (PhotonView photonView in AllPlayersPhotonViews)
+        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
-            if (photonView.IsMine)
-            {
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("LeavePatient", RpcTarget.AllBuffered);
-            }
+            desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("LeavePatient", RpcTarget.AllBuffered);
         }
     }
 
     public void SetupPatientInfoDisplay()
     {
-        UIManager.Instance.SureName.text = _lastClickedPatientData.SureName;
-        UIManager.Instance.LastName.text = _lastClickedPatientData.LastName;
-        UIManager.Instance.Gender.text = _lastClickedPatientData.Gender;
-        UIManager.Instance.Adress.text = _lastClickedPatientData.AddressLocation;
-        UIManager.Instance.InsuranceCompany.text = _lastClickedPatientData.MedicalCompany;
-        UIManager.Instance.Complaint.text = _lastClickedPatientData.Complaint;
+        UIManager.Instance.SureName.text = GameManager.Instance.LastClickedPatientData.SureName;
+        UIManager.Instance.LastName.text = GameManager.Instance.LastClickedPatientData.LastName;
+        UIManager.Instance.Gender.text = GameManager.Instance.LastClickedPatientData.Gender;
+        UIManager.Instance.Adress.text = GameManager.Instance.LastClickedPatientData.AddressLocation;
+        UIManager.Instance.InsuranceCompany.text = GameManager.Instance.LastClickedPatientData.MedicalCompany;
+        UIManager.Instance.Complaint.text = GameManager.Instance.LastClickedPatientData.Complaint;
 
-        UIManager.Instance.Age.text = _lastClickedPatientData.Age.ToString();
-        UIManager.Instance.Id.text = _lastClickedPatientData.Id.ToString();
-        UIManager.Instance.PhoneNumber.text = _lastClickedPatientData.PhoneNumber.ToString();
+        UIManager.Instance.Age.text = GameManager.Instance.LastClickedPatientData.Age.ToString();
+        UIManager.Instance.Id.text = GameManager.Instance.LastClickedPatientData.Id.ToString();
+        UIManager.Instance.PhoneNumber.text = GameManager.Instance.LastClickedPatientData.PhoneNumber.ToString();
     }
 
     //private void OnJoinPatient(bool isJoined)

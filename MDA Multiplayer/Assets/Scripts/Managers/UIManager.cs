@@ -35,17 +35,22 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        // Error null reference
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this);
         }
-        else if (Instance != this)
+        else
         {
             Destroy(gameObject);
         }
 
         //_lastSelectedGameObject = _currentSelectedGameObject;
+    }
+
+    private void Start()
+    {
         CurrentActionBarParent = AmbulanceActionBarParent;
     }
 

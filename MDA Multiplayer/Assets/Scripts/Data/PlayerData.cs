@@ -15,6 +15,6 @@ public class PlayerData : MonoBehaviour
 
     private void Start()
     {
-        ActionsManager.Instance.AllPlayersPhotonViews.Add(GetComponent<PhotonView>());
+        GameManager.Instance.AllPlayersPhotonViews.Add(GetComponent<PhotonView>());
     }
 }

@@ -15,13 +15,13 @@ public enum Measurements
 
 public struct ActionsData
 {
-    public ActionsManager ActionsManagerAD;
+    public PlayerActions ActionsManagerAD;
     public Patient Patient;
     public GameObject Player;
     public GameObject Monitor;
     public Roles RolesAD;
 
-    public ActionsData(ActionsManager aom, Patient patient, GameObject player, GameObject monitor, Roles roles)
+    public ActionsData(PlayerActions aom, Patient patient, GameObject player, GameObject monitor, Roles roles)
     {
         ActionsManagerAD = aom;
         Patient = patient;
