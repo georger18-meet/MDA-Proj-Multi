@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 
+    AppVersion: Elektra v0.5
     UseNameServer: 1
     FixedRegion: 
     Server: 

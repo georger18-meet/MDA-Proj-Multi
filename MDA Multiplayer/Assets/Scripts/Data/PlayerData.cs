@@ -33,7 +33,7 @@ public class PlayerData : MonoBehaviour
 
         if (isJoined)
         {
-            CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBuffered, UserName);
+            CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
             //CurrentPatientNearby.AddUserToTreatingLists(this);
 
             UIManager.Instance.JoinPatientPopUp.SetActive(false);

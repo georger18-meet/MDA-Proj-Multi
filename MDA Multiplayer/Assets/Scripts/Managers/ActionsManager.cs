@@ -67,7 +67,7 @@ public class ActionsManager : MonoBehaviour
             }
             else
             {
-                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBuffered);
+                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
                 UIManager.Instance.PatientMenuParent.SetActive(true);
             }
         }
@@ -83,7 +83,7 @@ public class ActionsManager : MonoBehaviour
             //    return;
 
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
-            myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+            myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer, isJoined);
         }
     }
 
@@ -97,7 +97,7 @@ public class ActionsManager : MonoBehaviour
                 return;
 
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
-            myPlayerData.PhotonView.RPC("OnLeavePatient", RpcTarget.AllBuffered);
+            myPlayerData.PhotonView.RPC("OnLeavePatient", RpcTarget.AllBufferedViaServer);
         }
     }
     #endregion

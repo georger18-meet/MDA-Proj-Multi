@@ -97,7 +97,7 @@ public class Patient : MonoBehaviour
     //    Debug.Log("currentPlayer Id IS : " + " " + currentPlayer);
     //
     //
-    //    players[players.Count - 1].GetphotonView().RPC("RPC_AddUserToTreatingLists", RpcTarget.AllBuffered, currentPlayer);
+    //    players[players.Count - 1].GetphotonView().RPC("RPC_AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, currentPlayer);
     //
     //
     //
