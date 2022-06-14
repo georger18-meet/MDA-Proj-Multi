@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerController : MonoBehaviour
 {
@@ -372,6 +373,15 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    //[PunRPC]
+    //private void RPC_AddUserToTreatingLists(int currentPlayer)
+    //{
+    //    Player currentPlayerData = PhotonNetwork.LocalPlayer.Get(currentPlayer);
+    //    Debug.Log("currentPlayerData ID" + " " + currentPlayerData);
+    //
+    //    GetComponent<PlayerData>().CurrentPatientNearby.TreatingUsersTest.Add(currentPlayerData.ActorNumber);
+    //}
 
     #region Collisions & Triggers
     private void OnTriggerEnter(Collider other)

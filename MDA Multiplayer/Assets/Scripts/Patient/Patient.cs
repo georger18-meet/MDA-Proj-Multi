@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Patient : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class Patient : MonoBehaviour
     public List<int> AllCrewTreatedThisPatient;
     #endregion
 
+    //public List<PlayerController> players;
+    //public List<int> TreatingUsersTest;
+
     private void Awake()
     {
         PatientRenderer.material = PatientData.FullyClothedMaterial;
@@ -38,14 +42,18 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
+        //players = new List<PlayerController>();
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
     }
 
+
+
     [PunRPC]
-    public void AddUserToTreatingLists(object currentPlayer)
+    public void AddUserToTreatingLists(string currentPlayer)
     {
-        PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
+        PlayerData currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PlayerData>();
+        //PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
 
         if (currentPlayerData == null)
         {
@@ -80,6 +88,20 @@ public class Patient : MonoBehaviour
             }
         }
     }
+
+    //public void AddUserToTreatingLists(int currentPlayer)
+    //{
+    //    if (!PhotonView.IsMine)
+    //        return;
+    //
+    //    Debug.Log("currentPlayer Id IS : " + " " + currentPlayer);
+    //
+    //
+    //    players[players.Count - 1].GetphotonView().RPC("RPC_AddUserToTreatingLists", RpcTarget.AllBuffered, currentPlayer);
+    //
+    //
+    //
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
