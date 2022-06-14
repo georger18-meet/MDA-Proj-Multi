@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPhotonView = PlayerData.Instance.PhotonView;
+        PlayerPhotonView = PlayerData.Instance.GetComponent<PhotonView>();
         CurrentActionBarParent = AmbulanceActionBarParent;
 
     }

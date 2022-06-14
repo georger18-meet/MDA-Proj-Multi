@@ -7,8 +7,7 @@ public class PlayerData : MonoBehaviour
 {
     public static PlayerData Instance;
 
-    [Header("Photon")]
-    public PhotonView PhotonView;
+    public PhotonView PlayerPhotonView;
 
     [field: SerializeField] public string UserName { get; set; }
     [field: SerializeField] public string CrewName { get; set; }
@@ -23,8 +22,8 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        if (PhotonView.IsMine)
-        {
+        //if (GetComponent<PhotonView>().IsMine)
+        //{
             if (Instance == null)
             {
                 Instance = this;
@@ -32,14 +31,16 @@ public class PlayerData : MonoBehaviour
             }
             else
             {
-                Destroy(this);
+                Instance = new PlayerData();
+                DontDestroyOnLoad(gameObject);
+                //Destroy(this);
             }
-        }
+        //}
     }
 
     private void Start()
     {
-        ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
+        ActionsManager.Instance.AllPlayersPhotonViews.Add(GetComponent<PhotonView>());
         _playerGameObject = gameObject;
     }
 }

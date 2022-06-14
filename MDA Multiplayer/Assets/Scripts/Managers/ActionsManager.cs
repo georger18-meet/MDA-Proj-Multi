@@ -16,7 +16,7 @@ public class ActionsManager : MonoBehaviour
     //public GameObject GameObject;
 
     [Header("Photon")]
-    //public PhotonView _playerPhotonView;
+    public PhotonView _playerPhotonView;
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
 
@@ -87,16 +87,35 @@ public class ActionsManager : MonoBehaviour
     {
         Debug.Log("attempting Join Patient");
 
-        if (AllPatientsPhotonViews.Contains(PlayerData.Instance.CurrentPatientNearby.PhotonView))
-        {
-            Debug.Log("Found correct PhotonView");
+        //if (AllPatientsPhotonViews.Contains(PlayerData.Instance.CurrentPatientNearby.PhotonView))
+        //{
+        Debug.Log("Found correct PhotonView");
 
-            PlayerData.Instance.CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
-        }
-        else
+        //GameObject desiredPlayer = FindObjectOfType<PlayerController>().gameObject.GetPhotonView().IsMine;
+        CharacterController[] allPlayersCharacterControllers = FindObjectsOfType<CharacterController>();
+
+        for (int i = 0; i < allPlayersCharacterControllers.Length; i++)
         {
-            Debug.Log("Didn't found correct PhotonView");
+            allPlayersCharacterControllers[i].gameObject.GetComponent<PlayerData>().CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+            //if (allPlayersCharacterControllers[i].GetComponent<PhotonView>().IsMine)
+            //{
+            //}
+            //else
+            //{
+            //    Debug.Log("Didn't found correct PhotonView");
+            //}
         }
+        //_playerPhotonView = FindObjectOfType<CharacterController>().gameObject.GetPhotonView().IsMine ? FindObjectOfType<PlayerController>().gameObject.GetPhotonView() : null;
+        //GameObject desiredPlayer = _playerPhotonView.gameObject;
+        //if (_playerPhotonView.IsMine)
+        //{
+        //    desiredPlayer.GetComponent<PlayerData>().CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+        //}
+        ////}
+        //else
+        //{
+        //    Debug.Log("Didn't found correct PhotonView");
+        //}
     }
 
     private void OnJoinPatient(bool isJoined)
