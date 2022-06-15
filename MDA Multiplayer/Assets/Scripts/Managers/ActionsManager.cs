@@ -16,7 +16,6 @@ public class ActionsManager : MonoBehaviour
     //public GameObject GameObject;
 
     [Header("Photon")]
-    public PhotonView _playerPhotonView;
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
 
