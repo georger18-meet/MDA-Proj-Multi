@@ -28,32 +28,17 @@ public class PlayerData : MonoBehaviour
 
     #region PunRPC invoked by Player
     [PunRPC]
-    private void OnJoinPatient(bool isJoined)
+    private void OnJoinPatient()
     {
-        if (isJoined)
-        {
-            CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            UIManager.Instance.PatientMenuParent.SetActive(true);
-            UIManager.Instance.PatientInfoParent.SetActive(false);
-        }
-        else
-        {
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-        }
+        CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
     }
 
     [PunRPC]
     private void OnLeavePatient()
     {
-        if (PhotonView.IsMine)
-        {
-            Debug.Log("Attempting leave patient");
-
-            UIManager.Instance.CloseAllPatientWindows();
-            CurrentPatientNearby.TreatingUsers.Remove(this);
-            Debug.Log("Left Patient Succesfully");
-        }
+        Debug.Log("Attempting leave patient");
+        CurrentPatientNearby.TreatingUsers.Remove(this);
+        Debug.Log("Left Patient Succesfully");
     }
 
     [PunRPC]

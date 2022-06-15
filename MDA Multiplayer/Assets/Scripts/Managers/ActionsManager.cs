@@ -79,7 +79,18 @@ public class ActionsManager : MonoBehaviour
         for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
-            myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer, isJoined);
+
+            if (isJoined)
+            {
+                myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer);
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.PatientMenuParent.SetActive(true);
+                UIManager.Instance.PatientInfoParent.SetActive(false);
+            }
+            else
+            {
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            }
         }
     }
 
@@ -91,6 +102,7 @@ public class ActionsManager : MonoBehaviour
         {
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
             myPlayerData.PhotonView.RPC("OnLeavePatient", RpcTarget.AllBufferedViaServer);
+            UIManager.Instance.CloseAllPatientWindows();
         }
     }
     #endregion
