@@ -79,9 +79,6 @@ public class ActionsManager : MonoBehaviour
 
         for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            //if (!AllPlayersPhotonViews[i].IsMine)
-            //    return;
-
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
             myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer, isJoined);
         }

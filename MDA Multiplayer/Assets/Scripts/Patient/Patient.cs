@@ -34,6 +34,7 @@ public class Patient : MonoBehaviour
     //public List<PlayerController> players;
     //public List<int> TreatingUsersTest;
 
+    #region Monovehavior Callbacks
     private void Awake()
     {
         PatientRenderer.material = PatientData.FullyClothedMaterial;
@@ -46,9 +47,41 @@ public class Patient : MonoBehaviour
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
     }
+    #endregion
+
+    #region Collision & Triggers
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.TryGetComponent(out PlayerData possiblePlayer))
+        {
+            return;
+        }
+        else if (!NearbyUsers.Contains(possiblePlayer))
+        {
+            NearbyUsers.Add(possiblePlayer);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.TryGetComponent(out PlayerData possiblePlayer))
+        {
+
+            if (!NearbyUsers.Contains(possiblePlayer))
+            {
+                return;
+            }
+            else
+            {
+                NearbyUsers.Remove(possiblePlayer);
+            }
+        }
+    }
+    #endregion
 
 
-
+    #region PunRPC invoke by Patient
     [PunRPC]
     public void AddUserToTreatingLists(string currentPlayer)
     {
@@ -89,6 +122,22 @@ public class Patient : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    public void UpdatePatientInfoDisplay()
+    {
+        UIManager.Instance.SureName.text = PatientData.SureName;
+        UIManager.Instance.LastName.text = PatientData.LastName;
+        UIManager.Instance.Gender.text = PatientData.Gender;
+        UIManager.Instance.Adress.text = PatientData.AddressLocation;
+        UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
+        UIManager.Instance.Complaint.text = PatientData.Complaint;
+
+        UIManager.Instance.Age.text = PatientData.Age.ToString();
+        UIManager.Instance.Id.text = PatientData.Id.ToString();
+        UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
+    }
+    #endregion
+
     //public void AddUserToTreatingLists(int currentPlayer)
     //{
     //    if (!PhotonView.IsMine)
@@ -103,34 +152,7 @@ public class Patient : MonoBehaviour
     //
     //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.TryGetComponent(out PlayerData possiblePlayer))
-        {
-            return;
-        }
-        else if (!NearbyUsers.Contains(possiblePlayer))
-        {
-            NearbyUsers.Add(possiblePlayer);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
-        if (other.TryGetComponent(out PlayerData possiblePlayer))
-        {
-
-            if (!NearbyUsers.Contains(possiblePlayer))
-            {
-                return;
-            }
-            else
-            {
-                NearbyUsers.Remove(possiblePlayer);
-            }
-        }
-    }
+    
 
     public bool IsPlayerJoined(PlayerData playerData)
     {
@@ -146,21 +168,6 @@ public class Patient : MonoBehaviour
             Debug.Log("Checked if player is joined, it is false");
             return false;
         }
-    }
-
-    [PunRPC]
-    public void UpdatePatientInfoDisplay()
-    {
-        UIManager.Instance.SureName.text = PatientData.SureName;
-        UIManager.Instance.LastName.text = PatientData.LastName;
-        UIManager.Instance.Gender.text = PatientData.Gender;
-        UIManager.Instance.Adress.text = PatientData.AddressLocation;
-        UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
-        UIManager.Instance.Complaint.text = PatientData.Complaint;
-
-        UIManager.Instance.Age.text = PatientData.Age.ToString();
-        UIManager.Instance.Id.text = PatientData.Id.ToString();
-        UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
     }
 
     public void OnInteracted()

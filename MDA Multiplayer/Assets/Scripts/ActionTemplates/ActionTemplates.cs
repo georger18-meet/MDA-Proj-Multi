@@ -18,8 +18,6 @@ public class ActionTemplates : MonoBehaviour
     public void OpenCloseDisplayWindow(GameObject window)
     {
         Debug.Log($"Attempting to Open/Close {window.name}");
-        // if (_photonView.IsMine)
-        // {
             if (window.activeInHierarchy)
             {
                 window.SetActive(false);
@@ -30,20 +28,6 @@ public class ActionTemplates : MonoBehaviour
                 window.SetActive(true);
                 Debug.Log($"Opened {window.name}");
             }
-        // }
-
-        
-    }
-
-    public void CreateDestroyWindow(GameObject window)
-    {
-        // if (_photonView.IsMine)
-        // {
-            if (window.activeInHierarchy)
-                Instantiate(window);
-            else
-                Destroy(window);
-        // }
     }
 
     public void UpdateDisplayWindow(GameObject window, TextMeshProUGUI text, int newValue)
@@ -78,6 +62,7 @@ public class ActionTemplates : MonoBehaviour
             _alertWindow.SetActive(false);
     }
 
+    // should be RPC
     public void ChangeMeasurement(int oldValue, int newValue)
     {
         oldValue = newValue;
@@ -85,6 +70,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed {oldValue} to {newValue}");
     }
 
+    // should be RPC
     public void SpawnEquipment(GameObject additionalEquipment, Transform desiredPositionTransform)
     {
         Vector3 desiredPos = desiredPositionTransform.position;
@@ -94,6 +80,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Spawned {additionalEquipment.name} at {desiredPos}");
     }
 
+    // should be RPC
     public void MoveCharacter(Transform characterTransform, Transform desiredPositionTransform)
     {
         Vector3 oldPos = characterTransform.position;
@@ -105,6 +92,7 @@ public class ActionTemplates : MonoBehaviour
     }
 
     // need fixing
+    // should be RPC
     public void PlayAnimationOnCharacter(Transform characterTransform, Animation animation)
     {
         animation.Play();
@@ -112,6 +100,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Played animation {animation} on {characterTransform.name}");
     }
 
+    // should be RPC
     public void ChangeCharacterTextrues(Texture currentTexture, Texture newTexture)
     {
         currentTexture = newTexture;
@@ -119,6 +108,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
+    // should be RPC
     public void UpdatePatientLog(string textToLog)
     {
         _docLog.LogThisText(textToLog);
@@ -127,10 +117,15 @@ public class ActionTemplates : MonoBehaviour
 
     private void Awake()
     {
-        //if (_photonView.isMine)
-        //{
+        if (Instance == null)
+        {
             Instance = this;
-        //}
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // not sure about this - patient bool - isConsious vs if is currently conscious

@@ -6,10 +6,6 @@ using Photon.Pun;
 
 public class ApplyMedicine : MonoBehaviour
 {
-    [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
     [SerializeField] private string _medicineToApply;
     [SerializeField] private string  _measurementTitle, _alertTitle;
@@ -27,11 +23,11 @@ public class ApplyMedicine : MonoBehaviour
                     return;
 
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
                 desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
 
-                _actionTemplates.ShowAlertWindow(_alertTitle, _medicineToApply);
-                _actionTemplates.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
+                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
+                ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
             }
         }
     }

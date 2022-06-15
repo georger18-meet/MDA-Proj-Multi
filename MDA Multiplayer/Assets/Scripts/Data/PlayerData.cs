@@ -25,21 +25,16 @@ public class PlayerData : MonoBehaviour
         ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
     }
 
+    #region PunRPC invoked by Player
     [PunRPC]
     private void OnJoinPatient(bool isJoined)
     {
-        //if (!PhotonView.IsMine)
-        //    return;
-
         if (isJoined)
         {
             CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
-            //CurrentPatientNearby.AddUserToTreatingLists(this);
-
             UIManager.Instance.JoinPatientPopUp.SetActive(false);
             UIManager.Instance.PatientMenuParent.SetActive(true);
             UIManager.Instance.PatientInfoParent.SetActive(false);
-
         }
         else
         {
@@ -59,4 +54,5 @@ public class PlayerData : MonoBehaviour
             Debug.Log("Left Patient Succesfully");
         }
     }
+    #endregion
 }
