@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,6 +54,17 @@ public class PlayerData : MonoBehaviour
             CurrentPatientNearby.TreatingUsers.Remove(this);
             Debug.Log("Left Patient Succesfully");
         }
+    }
+
+    [PunRPC]
+    private void OnApplyMedicine(int measurementNumber, int _newMeasurement)
+    {
+        if (!CurrentPatientNearby.IsPlayerJoined(this))
+            return;
+
+        // loops throughout measurementList and catches the first element that is equal to measurementNumber
+        Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+        CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
     }
     #endregion
 }

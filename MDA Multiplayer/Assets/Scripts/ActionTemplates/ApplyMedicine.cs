@@ -11,24 +11,15 @@ public class ApplyMedicine : MonoBehaviour
     [SerializeField] private string  _measurementTitle, _alertTitle;
     [SerializeField] private int _newMeasurement;
 
-    public void ApplyMedicineAction(int measurementNumber)
+    public void OnApplyMedicineRPC(int measurementNumber)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
+            myPlayerData.PhotonView.RPC("OnApplyMedicine", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
-            if (photonView.IsMine)
-            {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
-
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
-
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-                ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
-            }
+            ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
+            ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
         }
     }
 }
