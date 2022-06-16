@@ -16,6 +16,10 @@ public class ApplyMedicine : MonoBehaviour
         for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
         {
             PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
+
+            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
+                return;
+
             myPlayerData.PhotonView.RPC("OnApplyMedicine", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
             ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);

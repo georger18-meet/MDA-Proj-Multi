@@ -12,6 +12,7 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public string CrewName { get; set; }
     [field: SerializeField] public int UserIndexInCrew { get; set; }
     [field: SerializeField] public int CrewIndex { get; set; }
+    [field: SerializeField] public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
@@ -44,12 +45,10 @@ public class PlayerData : MonoBehaviour
     [PunRPC]
     private void OnApplyMedicine(int measurementNumber, int _newMeasurement)
     {
-        if (!CurrentPatientNearby.IsPlayerJoined(this))
-            return;
-
         // loops throughout measurementList and catches the first element that is equal to measurementNumber
         Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-        CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
+
+        CurrentPatientNearby.PatientData.SetMeasurementByIndex(2, _newMeasurement);
     }
     #endregion
 }
