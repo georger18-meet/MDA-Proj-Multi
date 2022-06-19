@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public string CrewName { get; set; }
     [field: SerializeField] public int UserIndexInCrew { get; set; }
     [field: SerializeField] public int CrewIndex { get; set; }
+    [field: SerializeField] public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
@@ -25,38 +27,28 @@ public class PlayerData : MonoBehaviour
         ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
     }
 
+    #region PunRPC invoked by Player
     [PunRPC]
-    private void OnJoinPatient(bool isJoined)
+    private void OnJoinPatient()
     {
-        //if (!PhotonView.IsMine)
-        //    return;
-
-        if (isJoined)
-        {
-            CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
-            //CurrentPatientNearby.AddUserToTreatingLists(this);
-
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-            UIManager.Instance.PatientMenuParent.SetActive(true);
-            UIManager.Instance.PatientInfoParent.SetActive(false);
-
-        }
-        else
-        {
-            UIManager.Instance.JoinPatientPopUp.SetActive(false);
-        }
+        CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
     }
 
     [PunRPC]
     private void OnLeavePatient()
     {
-        if (PhotonView.IsMine)
-        {
-            Debug.Log("Attempting leave patient");
-
-            UIManager.Instance.CloseAllPatientWindows();
-            CurrentPatientNearby.TreatingUsers.Remove(this);
-            Debug.Log("Left Patient Succesfully");
-        }
+        Debug.Log("Attempting leave patient");
+        CurrentPatientNearby.TreatingUsers.Remove(this);
+        Debug.Log("Left Patient Succesfully");
     }
+
+    [PunRPC]
+    private void OnApplyMedicine(int measurementNumber, int _newMeasurement)
+    {
+        // loops throughout measurementList and catches the first element that is equal to measurementNumber
+        Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+
+        CurrentPatientNearby.PatientData.SetMeasurementByIndex(2, _newMeasurement);
+    }
+    #endregion
 }

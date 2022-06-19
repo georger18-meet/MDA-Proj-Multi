@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 _mouseSensitivity = new Vector2(60f, 40f);
     [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 6f, _runningSpeed = 11f, _flyingSpeed = 16f;
     [SerializeField] private float _jumpForce = 3f, _flyUpwardsSpeed = 9f, _maxFlyingHeight = 100f;
+    private float _stateSpeed;
     private Vector2 _input;
 
     [Header("Physics")]
@@ -76,7 +77,17 @@ public class PlayerController : MonoBehaviour
     private void UseTankMovement()
     {
         Vector3 moveDirerction;
-        moveDirerction = (Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed) * _input.y * transform.forward;
+        float actualSpeed = Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed;
+        moveDirerction = actualSpeed * _input.y * transform.forward;
+
+        if (_input.y > 0)
+        {
+            _playerAnimator.SetFloat("Movement Speed", actualSpeed == _walkingSpeed ? 0.5f : 1f, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
+        }
 
         // moves the character in diagonal direction
         _characterController.Move(moveDirerction * Time.deltaTime - Vector3.up * 0.1f);
@@ -95,12 +106,14 @@ public class PlayerController : MonoBehaviour
 
     private void UseTankRotate()
     {
+        _playerAnimator.SetFloat("Rotatation Speed", _input.x, 0.1f, Time.deltaTime);
         transform.Rotate(0, _input.x * _turnSpeed * Time.deltaTime, 0);
     }
 
     private void UseFirstPersonMovement()
     {
-        _characterController.Move((Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed) * _input.x * Time.deltaTime * transform.right +  (Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed) * _input.y * Time.deltaTime * transform.forward);
+        float actualSpeed = Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed;
+        _characterController.Move(actualSpeed * _input.x * Time.deltaTime * transform.right + actualSpeed * _input.y * Time.deltaTime * transform.forward);
     }
 
     private void UseFirstPersonRotate()
@@ -150,6 +163,9 @@ public class PlayerController : MonoBehaviour
         if (_photonView.IsMine)
         {
             Debug.Log("Current State: Idle");
+
+            _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
+            _playerAnimator.SetFloat("Rotatation Speed", 0f, 0.1f, Time.deltaTime);
 
             GetInputAxis();
 

@@ -34,7 +34,7 @@ public class PatientData : ScriptableObject
         return measurementName[index];
     }
 
-    public void SetMeasurementName(int index, int value)
+    public void SetMeasurementByIndex(int index, int value)
     {
         measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
         measurementName[index] = value;

@@ -6,33 +6,24 @@ using Photon.Pun;
 
 public class ApplyMedicine : MonoBehaviour
 {
-    [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
     [SerializeField] private string _medicineToApply;
     [SerializeField] private string  _measurementTitle, _alertTitle;
     [SerializeField] private int _newMeasurement;
 
-    public void ApplyMedicineAction(int measurementNumber)
+    public void OnApplyMedicineRPC(int measurementNumber)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
 
-            if (photonView.IsMine)
-            {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
+                return;
 
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
+            myPlayerData.PhotonView.RPC("OnApplyMedicine", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
-                _actionTemplates.ShowAlertWindow(_alertTitle, _medicineToApply);
-                _actionTemplates.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
-            }
+            ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
+            ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
         }
     }
 }

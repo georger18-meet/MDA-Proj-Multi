@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Elektra v0.5
+    AppVersion: Falcon v0.6
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -47,6 +47,7 @@ MonoBehaviour:
   - UpdateTreatingUsersListOverNetwork
   - UpdatePatientInfoDisplay
   - OnLeavePatient
+  - OnApplyMedicine
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

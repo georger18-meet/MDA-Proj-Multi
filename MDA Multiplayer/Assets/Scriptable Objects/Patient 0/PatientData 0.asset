@@ -23,7 +23,7 @@ MonoBehaviour:
   Complaint: severe Headache
   BPM: 94
   PainLevel: 80
-  RespiratoryRate: 14
+  RespiratoryRate: 12
   CincinnatiLevel: 2
   BloodSuger: 15
   BloodPressure: 5

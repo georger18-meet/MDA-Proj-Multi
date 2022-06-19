@@ -16,7 +16,6 @@ public class ActionsManager : MonoBehaviour
     //public GameObject GameObject;
 
     [Header("Photon")]
-    public PhotonView _playerPhotonView;
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
 
@@ -79,11 +78,19 @@ public class ActionsManager : MonoBehaviour
 
         for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            //if (!AllPlayersPhotonViews[i].IsMine)
-            //    return;
-
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
-            myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer, isJoined);
+
+            if (isJoined)
+            {
+                myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer);
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.PatientMenuParent.SetActive(true);
+                UIManager.Instance.PatientInfoParent.SetActive(false);
+            }
+            else
+            {
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+            }
         }
     }
 
@@ -93,11 +100,9 @@ public class ActionsManager : MonoBehaviour
 
         for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            if (!AllPlayersPhotonViews[i].IsMine)
-                return;
-
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
             myPlayerData.PhotonView.RPC("OnLeavePatient", RpcTarget.AllBufferedViaServer);
+            UIManager.Instance.CloseAllPatientWindows();
         }
     }
     #endregion
