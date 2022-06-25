@@ -194,7 +194,7 @@ public class EmergencyBedController : MonoBehaviour
             transform.position = _emergencyBedPositionInsideVehicle.position;
             transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
             transform.SetParent(_emergencyBedPositionInsideVehicle);
-            _takeReturnText.text = "Take Out";
+           // _takeReturnText.text = "Take Out";
         }
         else if (_inCar && _takeOutBed)
         {

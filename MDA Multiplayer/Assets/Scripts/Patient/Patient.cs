@@ -50,8 +50,30 @@ public class Patient : MonoBehaviour
     #endregion
 
     #region Collision & Triggers
+
+    private void OnTriggerStay(Collider other)
+    {
+        EvacuationManager enumType = other.GetComponent<EvacuationManager>();
+        if (enumType != null)
+        {
+            switch (enumType.RoomEnum)
+            {
+                case EvacRoom.CT_Room:
+                    Debug.Log("CT_Room");
+                    break;
+                case EvacRoom.Children_Room:
+                    Debug.Log("Children_Room");
+                    break;
+            }
+        }
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+
+
+    
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;

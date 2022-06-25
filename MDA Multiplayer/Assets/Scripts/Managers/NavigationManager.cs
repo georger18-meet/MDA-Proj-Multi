@@ -9,43 +9,51 @@ public class NavigationManager : MonoBehaviour
     private LineRenderer _lineRenderer;
     private bool _reachedDestination;
 
+    [SerializeField] private EvacuationManager _evacuationManager;
+    [SerializeField] private List<GameObject> listRoomEnums;
     [SerializeField] private Transform _destination;
     [SerializeField] private GameObject _destinationMarkerPrefab;
 
-    // Start is called before the first frame update
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _lineRenderer = GetComponent<LineRenderer>();
-
         _lineRenderer.positionCount = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         StopGPSNav();
     }
 
-    //public void SetNavagationPoint()
-    //{
-    //}
-
     public void StartGPSNav()
     {
-        _destinationMarkerPrefab.SetActive(true);
-        _destinationMarkerPrefab.transform.SetParent(_destination);
-        _destinationMarkerPrefab.transform.position = _destination.position + new Vector3(0f, 4f, 0f);
-        _agent.SetDestination(_destination.position);
-        _agent.isStopped = true;
-        _reachedDestination = false;
+        // EvacuationManager.Instance.DropDown_IndexChanged(index);
+        Debug.Log(UIManager.Instance._dropDown.value); // Gives me the Enum value
+
+        int enumRoom = UIManager.Instance._dropDown.value;
+
+        for (int i = 0; i < listRoomEnums.Count; i++)
+        {
+
+            if (i == enumRoom)
+            {
+                _destinationMarkerPrefab.SetActive(true);
+                //_destinationMarkerPrefab.transform.SetParent(listRoomEnums[i].transform);
+                _destinationMarkerPrefab.transform.position =
+                    listRoomEnums[i].transform.position + new Vector3(0f, 4f, 0f);
+                _agent.SetDestination(listRoomEnums[i].transform.position);
+                _agent.isStopped = true;
+                _reachedDestination = false;
+            }
+        }
     }
 
     public void StopGPSNav()
     {
         if (Vector3.Distance(_agent.destination, transform.position) <= _agent.stoppingDistance)
         {
-            _destinationMarkerPrefab.transform.SetParent(transform);
+           // _destinationMarkerPrefab.transform.SetParent(transform);
             _destinationMarkerPrefab.SetActive(false);
             _reachedDestination = true;
         }

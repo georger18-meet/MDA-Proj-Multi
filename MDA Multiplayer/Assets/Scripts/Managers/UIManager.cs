@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using System;
+using System.Xml;
+
+public enum EvacRoom { CT_Room, Emergency_Room, Children_Room, Shock_Room, }
 
 public class UIManager : MonoBehaviour
 {
@@ -33,6 +37,14 @@ public class UIManager : MonoBehaviour
     //private GameObject _currentSelectedGameObject;
     //#endregion
 
+    #region Evacuation UI
+
+    [Header("Evacuation UI Drop Down")]
+    public TMP_Dropdown _dropDown;
+
+    public GameObject EvacPatientPopUp;
+    #endregion
+
     private void Awake()
     {
         if (Instance == null)
@@ -55,6 +67,7 @@ public class UIManager : MonoBehaviour
         PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
+        EvacPatientPopUp.SetActive(false);
     }
 
     // catch last gameObject to fire an event
@@ -75,4 +88,22 @@ public class UIManager : MonoBehaviour
     //        return null;
     //    }
     //}
+
+    private void Start()
+    {
+        AddRoomToList();
+    }
+
+
+    //Evacuation DropDown in UI 
+    void AddRoomToList()
+    {
+        string[] enumNames = Enum.GetNames(typeof(EvacRoom));
+        List<string> roomNames = new List<string>(enumNames);
+
+
+        _dropDown.AddOptions(roomNames);
+    }
+
+
 }
