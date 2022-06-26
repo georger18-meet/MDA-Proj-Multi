@@ -14455,7 +14455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8950140318339158946}
   - component: {fileID: 8950140318339158945}
-  - component: {fileID: 8950140318339158944}
+  - component: {fileID: 1368304011}
   m_Layer: 3
   m_Name: EvacuationGoal
   m_TagString: Evac
@@ -14492,7 +14492,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!114 &8950140318339158944
+--- !u!114 &1368304011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14501,14 +14501,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8950140318339158947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df7b1e725501ff143981e78523210e77, type: 3}
+  m_Script: {fileID: 11500000, guid: d5200ffd09611a54a99154604995e613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomEnum: 1
-  _roomName: Emergency Room
-  _evacuationUI: {fileID: 0}
-  _destinationName: {fileID: 0}
-  _patientsEvacuated: []
+  NearbyPatient: []
+  RoomEnum: 2
 --- !u!1 &8950140319665641217
 GameObject:
   m_ObjectHideFlags: 0

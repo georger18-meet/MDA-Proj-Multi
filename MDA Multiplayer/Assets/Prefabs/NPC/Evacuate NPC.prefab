@@ -2158,7 +2158,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8152898974818227905}
-  m_Layer: 0
+  - component: {fileID: 3138204691305382877}
+  - component: {fileID: 3138204691305382876}
+  - component: {fileID: 3138204691305382879}
+  m_Layer: 7
   m_Name: Evacuate NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2172,7 +2175,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8822334823178669179}
-  m_LocalRotation: {x: -0, y: 0.986364, z: -0, w: 0.16457818}
+  m_LocalRotation: {x: 0, y: 0.9863647, z: 0, w: 0.1645744}
   m_LocalPosition: {x: -289.05197, y: 0.152, z: -153.93925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2181,3 +2184,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 161.055, z: 0}
+--- !u!65 &3138204691305382877
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822334823178669179}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5088489, y: 1.8621476, z: 1}
+  m_Center: {x: 0.000989586, y: 0.92329824, z: -1.2042183e-11}
+--- !u!114 &3138204691305382876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822334823178669179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventToCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EvacuationManager, Assembly-CSharp
+        m_MethodName: OnEvacuateNPCClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3138204691305382879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822334823178669179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84850bad09a379e41be32e754e768155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

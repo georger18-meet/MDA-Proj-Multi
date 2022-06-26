@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     public List<PlayerData> NearbyPatient;
 
-
     public static GameManager Instance;
 
     private void Awake()
@@ -52,13 +51,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnEvacuateNPCClicked()
-    {
-        Debug.Log($"Attempting to Click On Npc");
 
-
-        UIManager.Instance.EvacPatientPopUp.SetActive(true);
-    }
 
     public void ExitGame()
     {
