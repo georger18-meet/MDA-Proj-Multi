@@ -10,7 +10,7 @@ using TMPro;
 public class EvacuationManager : MonoBehaviour
 {
    // [SerializeField] public EvacRoom RoomEnum;
-     public GameObject _evacuationUI;
+    // public GameObject _evacuationUI;
     [SerializeField] private TMP_Text _destinationName;
 
     //public List<Patient> AllPatients;
@@ -49,7 +49,7 @@ public class EvacuationManager : MonoBehaviour
     void Start()
     {
        // _destinationName.text = $"Evacuate Patient To {_roomName}?";
-        _evacuationUI.SetActive(false);
+       // _evacuationUI.SetActive(false);
         // Debug.Log((int)RoomEnum);
 
     }
@@ -94,7 +94,7 @@ public class EvacuationManager : MonoBehaviour
 
     public void DestroyPatient(Patient patient)
     {
-        Destroy(patient.gameObject);
+        patient.gameObject.SetActive(false);
     }
     //public void EvacuatePatient(bool choice)
     //{
@@ -112,13 +112,7 @@ public class EvacuationManager : MonoBehaviour
     //}
 
 
-    public void OnEvacuateNPCClicked()
-    {
-        Debug.Log($"Attempting to Click On Npc");
-        _evacuationUI.SetActive(true);
-
-
-    }
+  
 
 
     //public void AddUserToEvacuationLists(int currentPatient)
