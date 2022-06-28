@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EvacuationNpc : MonoBehaviour
@@ -34,8 +35,15 @@ public class EvacuationNpc : MonoBehaviour
         //Evacuation currentPlayerData = gameObject.GetComponentInParent<Evacuation>();
         //if (currentPlayerData.NearbyPatient.Contains())
         //{
-        EvacuationManager.Instance.AddPatientToRooms(evacuation.NearbyPatient[0], evacuation.RoomEnum);
-            EvacuationManager.Instance.DestroyPatient(evacuation.NearbyPatient[0]);
+       // EvacuationManager.Instance.ShockRoomList = new List<Patient>();
+
+
+
+            EvacuationManager.Instance.AddPatientToRooms(evacuation.NearbyPatient[0], evacuation.RoomEnum);
+          EvacuationManager.Instance.DestroyPatient(evacuation.NearbyPatient[0]);
+       // Destroy(evacuation.NearbyPatient[0].gameObject);
+        evacuation.NearbyPatient.Clear();
+         
             _evacuationUI.SetActive(false);
             //}
     }

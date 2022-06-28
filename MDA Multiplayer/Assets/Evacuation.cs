@@ -21,10 +21,11 @@ public class Evacuation : MonoBehaviour
         }
         else if (!NearbyPatient.Contains(possiblePatient))
         {
-            NearbyPatient.Add(possiblePatient);
+                NearbyPatient.Add(possiblePatient);
         }
 
     }
+
 
     private void OnTriggerExit(Collider other)
     {

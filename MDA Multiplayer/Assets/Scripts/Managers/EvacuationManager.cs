@@ -16,7 +16,7 @@ public class EvacuationManager : MonoBehaviour
     //public List<Patient> AllPatients;
 
     public List<Patient> CtRoomList;
-    public List<Patient> ShockRoomList;
+    public  List<Patient> ShockRoomList;
     public List<Patient> ChildrenRoomList;
     public List<Patient> EmergencyRoomList;
 
@@ -30,7 +30,7 @@ public class EvacuationManager : MonoBehaviour
    // private GameObject _currentPatient;
 
     // public List<string> roomNames = new List<string>() { "Room 1", "Room 2", "Room 3", "Room 4" };
-
+    
     public static EvacuationManager Instance;
 
     private void Awake()
@@ -50,30 +50,34 @@ public class EvacuationManager : MonoBehaviour
     {
        // _destinationName.text = $"Evacuate Patient To {_roomName}?";
        // _evacuationUI.SetActive(false);
-        // Debug.Log((int)RoomEnum);
+       // Debug.Log((int)RoomEnum);
+        ShockRoomList = new List<Patient>();
+        CtRoomList = new List<Patient>();
+        ChildrenRoomList = new List<Patient>();
+        EmergencyRoomList = new List<Patient>();
 
-    }
+}
 
-    //public EvacuationManager(EvacRoom RoomEnum)
-    //{
-    //    this.RoomEnum = RoomEnum;
-    //}
+//public EvacuationManager(EvacRoom RoomEnum)
+//{
+//    this.RoomEnum = RoomEnum;
+//}
 
-    //public bool HasRelationToRoom(string otherRoom)
-    //{
-    //    foreach (EvacuationManager evacuationManager in evacuationRooms)
-    //    {
-    //        if (evacuationManager.RoomEnum.ToString() == otherRoom)
-    //        {
-    //            Debug.Log(otherRoom);
-    //            return true;
-    //        }
-    //    }
-    //    Debug.Log(otherRoom);
-    //    return false;
-    //}
+//public bool HasRelationToRoom(string otherRoom)
+//{
+//    foreach (EvacuationManager evacuationManager in evacuationRooms)
+//    {
+//        if (evacuationManager.RoomEnum.ToString() == otherRoom)
+//        {
+//            Debug.Log(otherRoom);
+//            return true;
+//        }
+//    }
+//    Debug.Log(otherRoom);
+//    return false;
+//}
 
-    public void AddPatientToRooms(Patient patient, EvacRoom enumRoom)
+public void AddPatientToRooms(Patient patient, EvacRoom enumRoom)
     {
         switch (enumRoom)
         {
@@ -95,6 +99,7 @@ public class EvacuationManager : MonoBehaviour
     public void DestroyPatient(Patient patient)
     {
         patient.gameObject.SetActive(false);
+        
     }
     //public void EvacuatePatient(bool choice)
     //{
