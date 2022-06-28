@@ -20,17 +20,14 @@ public class EvacuationManager : MonoBehaviour
     public List<Patient> ChildrenRoomList;
     public List<Patient> EmergencyRoomList;
 
+    private Evacuation evacuation;
 
-
-    //public bool ClickedYes;
-
-
-    public List<PhotonView> AllPatientsPhotonViews;
+   // public List<EvacuationNpc> _evacuationNpcs;
 
     // public List<EvacuationManager> evacuationRooms = new List<EvacuationManager>();
 
     //  [SerializeField] private List<GameObject> _patientsEvacuated = new List<GameObject>();
-    private GameObject _currentPatient;
+   // private GameObject _currentPatient;
 
     // public List<string> roomNames = new List<string>() { "Room 1", "Room 2", "Room 3", "Room 4" };
 
@@ -97,7 +94,7 @@ public class EvacuationManager : MonoBehaviour
 
     public void DestroyPatient(Patient patient)
     {
-        Destroy(patient);
+        Destroy(patient.gameObject);
     }
     //public void EvacuatePatient(bool choice)
     //{
