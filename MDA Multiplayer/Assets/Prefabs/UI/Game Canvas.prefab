@@ -9761,7 +9761,7 @@ RectTransform:
   m_Children:
   - {fileID: 7840522651223037383}
   m_Father: {fileID: 6309766608969122167}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16485,7 +16485,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ActionsManager, Assembly-CSharp
-        m_MethodName: OnJoinPatient
+        m_MethodName: OnPlayerJoinPatientRPC
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31600,7 +31600,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ActionsManager, Assembly-CSharp
-        m_MethodName: LeavePatient
+        m_MethodName: OnPlayerLeavePatientRPC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37336,7 +37336,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ActionsManager, Assembly-CSharp
-        m_MethodName: OnJoinPatient
+        m_MethodName: OnPlayerJoinPatientRPC
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -38941,7 +38941,7 @@ RectTransform:
   - {fileID: 6309766607746846840}
   - {fileID: 6309766608441242368}
   m_Father: {fileID: 6309766608969122167}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -40666,8 +40666,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4026154426700688813}
   - {fileID: 6309766608887057554}
+  - {fileID: 4026154426700688813}
   m_Father: {fileID: 6309766609095688798}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -67114,7 +67114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8372329009303030509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -71510,7 +71510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ActionTemplates, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OpenCloseDisplayWindow
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8372329009303030508}
