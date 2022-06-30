@@ -28,7 +28,6 @@ public class NavigationManager : MonoBehaviour
 
     public void StartGPSNav()
     {
-        // EvacuationManager.Instance.DropDown_IndexChanged(index);
         Debug.Log(UIManager.Instance._dropDown.value); // Gives me the Enum value
 
         int enumRoom = UIManager.Instance._dropDown.value;
@@ -39,7 +38,6 @@ public class NavigationManager : MonoBehaviour
             if (i == enumRoom)
             {
                 _destinationMarkerPrefab.SetActive(true);
-                //_destinationMarkerPrefab.transform.SetParent(listRoomEnums[i].transform);
                 _destinationMarkerPrefab.transform.position =
                     listRoomEnums[i].transform.position + new Vector3(0f, 4f, 0f);
                 _agent.SetDestination(listRoomEnums[i].transform.position);
@@ -53,7 +51,6 @@ public class NavigationManager : MonoBehaviour
     {
         if (Vector3.Distance(_agent.destination, transform.position) <= _agent.stoppingDistance)
         {
-           // _destinationMarkerPrefab.transform.SetParent(transform);
             _destinationMarkerPrefab.SetActive(false);
             _reachedDestination = true;
         }
