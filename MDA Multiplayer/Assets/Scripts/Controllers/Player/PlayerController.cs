@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 6f, _runningSpeed = 11f, _flyingSpeed = 16f;
     [SerializeField] private float _jumpForce = 3f, _flyUpwardsSpeed = 9f, _maxFlyingHeight = 100f;
     private float _stateSpeed;
+    private bool _isDriving;
+    public bool IsDriving { get => _isDriving; set => _isDriving = value; }
     private Vector2 _input;
 
     [Header("Physics")]
@@ -169,6 +171,11 @@ public class PlayerController : MonoBehaviour
 
             GetInputAxis();
 
+            if (_isDriving)
+            {
+                _stateAction = UseDrivingState;
+            }
+
             if (_input != Vector2.zero)
             {
                 FreeMouse(true);
@@ -198,6 +205,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Current State: First Person Idle");
 
             GetInputAxis();
+
+            if (_isDriving)
+            {
+                _stateAction = UseDrivingState;
+            }
 
             if (_input != Vector2.zero)
             {
@@ -230,6 +242,11 @@ public class PlayerController : MonoBehaviour
 
             GetInputAxis();
 
+            if (_isDriving)
+            {
+                _stateAction = UseDrivingState;
+            }
+
             if (_input == Vector2.zero)
             {
                 FreeMouse(true);
@@ -261,6 +278,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Current State: First Person Walking");
 
             GetInputAxis();
+
+            if (_isDriving)
+            {
+                _stateAction = UseDrivingState;
+            }
 
             if (_input == Vector2.zero)
             {
@@ -313,6 +335,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Current State: FlyingIdle");
 
             GetInputAxis();
+
+            if (_isDriving)
+            {
+                _stateAction = UseDrivingState;
+            }
 
             if (_input != Vector2.zero)
             {
@@ -377,7 +404,12 @@ public class PlayerController : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
+            Debug.Log("Current State: Driving");
 
+            if (!_isDriving)
+            {
+                _stateAction = UseTankIdleState;
+            }
         }
     }
 

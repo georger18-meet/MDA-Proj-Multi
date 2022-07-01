@@ -69,19 +69,27 @@ public class CarDoorCollision : MonoBehaviour
 
     public void EnterExitToggle(int number)
     {
+        // test line
+        IsDoorOpen = true;
+
         if (IsDoorOpen && CollidingPlayer != null)
         {
+            PlayerController playerController = CollidingPlayer.GetComponent<PlayerController>();
+
             if (!IsSeatOccupied)
             {
-                PlayerController playerController = CollidingPlayer.GetComponent<PlayerController>();
+                Debug.Log("supposed to drive");
                 OpenCloseDoorToggle(number);
                 IsSeatOccupied = true;
+                playerController.IsDriving = true;
                 // use player driving state
             }
             else if (IsSeatOccupied)
             {
+                Debug.Log("NOT supposed to drive");
                 IsSeatOccupied = false;
                 CollidingPlayer.transform.position = gameObject.transform.position;
+                playerController.IsDriving = false;
                 // use player driving state
             }
         }

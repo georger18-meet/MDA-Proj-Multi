@@ -157,7 +157,7 @@ public class CarControllerSimple : MonoBehaviour
 
     private void CheckIfDriveable()
     {
-        foreach (var item in CarDoorCollisions)
+        foreach (CarDoorCollision item in CarDoorCollisions)
         {
             if (item.SeatNumber == 1 && item.IsSeatOccupied)
             {
