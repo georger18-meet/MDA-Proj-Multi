@@ -307,14 +307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1813059805939038391}
     m_Modifications:
-    - target: {fileID: 890673021, guid: 140672d04e65dba46b6b1472035102ed, type: 3}
-      propertyPath: m_PositionModel.TeleportEnabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 890673021, guid: 140672d04e65dba46b6b1472035102ed, type: 3}
-      propertyPath: m_ScaleModel.SynchronizeEnabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8703915284327120920, guid: 140672d04e65dba46b6b1472035102ed, type: 3}
       propertyPath: PhotonView
       value: 
@@ -367,9 +359,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6397799318829542287, guid: 140672d04e65dba46b6b1472035102ed, type: 3}
-    - {fileID: 890673021, guid: 140672d04e65dba46b6b1472035102ed, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 140672d04e65dba46b6b1472035102ed, type: 3}
 --- !u!4 &6670413361437529120 stripped
 Transform:
