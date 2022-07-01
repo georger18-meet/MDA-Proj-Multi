@@ -20,7 +20,7 @@ public class CarDoorCollision : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Collider>().enabled = IsDoorOpen;
+        //GetComponent<Collider>().enabled = IsDoorOpen;
         EnterExitVehicle();
     }
 
