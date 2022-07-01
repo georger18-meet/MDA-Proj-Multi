@@ -13,11 +13,12 @@ public class EvacuationManager : MonoBehaviour
     [SerializeField] private TMP_Text _destinationName;
 
 
-    public List<Patient> CtRoomList;
-    public  List<Patient> ShockRoomList;
-    public List<Patient> ChildrenRoomList;
-    public List<Patient> EmergencyRoomList;
+    public List<PhotonView> CtRoomList;
+    public  List<PhotonView> ShockRoomList;
+    public List<PhotonView> ChildrenRoomList;
+    public List<PhotonView> EmergencyRoomList;
 
+    //public List<PhotonView> AllPatientsPhotonViews;
 
     // Singleton Declaration
     public static EvacuationManager Instance;
@@ -37,13 +38,17 @@ public class EvacuationManager : MonoBehaviour
 
     void Start()
     {
-        ShockRoomList = new List<Patient>();
-        CtRoomList = new List<Patient>();
-        ChildrenRoomList = new List<Patient>();
-        EmergencyRoomList = new List<Patient>();
+        ShockRoomList = new List<PhotonView>();
+        CtRoomList = new List<PhotonView>();
+        ChildrenRoomList = new List<PhotonView>();
+        EmergencyRoomList = new List<PhotonView>();
     }
 
-    public void AddPatientToRooms(Patient patient, EvacRoom enumRoom)
+
+
+
+
+    public void AddPatientToRooms(PhotonView patient, EvacRoom enumRoom)
     {
         switch (enumRoom)
         {
@@ -62,7 +67,8 @@ public class EvacuationManager : MonoBehaviour
         }
     }
 
-    public void DestroyPatient(Patient patient)
+
+    public void DestroyPatient(PhotonView patient)
     {
         patient.gameObject.SetActive(false);
         

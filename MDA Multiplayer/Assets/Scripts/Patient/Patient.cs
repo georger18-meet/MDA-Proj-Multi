@@ -178,4 +178,11 @@ public class Patient : MonoBehaviour
     {
         ActionsManager.Instance.OnPatientClicked();
     }
+
+
+
+
+
+
+
 }
