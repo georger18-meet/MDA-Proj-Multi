@@ -406,8 +406,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Current State: Driving");
 
+            _characterController.enabled = false;
+
             if (!_isDriving)
             {
+                _characterController.enabled = true;
                 _stateAction = UseTankIdleState;
             }
         }

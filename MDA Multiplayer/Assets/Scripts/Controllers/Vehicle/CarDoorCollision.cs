@@ -69,9 +69,6 @@ public class CarDoorCollision : MonoBehaviour
 
     public void EnterExitToggle(int number)
     {
-        // test line
-        IsDoorOpen = true;
-
         if (IsDoorOpen && CollidingPlayer != null)
         {
             PlayerController playerController = CollidingPlayer.GetComponent<PlayerController>();
