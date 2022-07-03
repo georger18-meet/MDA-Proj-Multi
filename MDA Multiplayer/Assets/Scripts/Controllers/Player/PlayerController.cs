@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
-            Debug.Log("Current State: Idle");
+           //Debug.Log("Current State: Idle");
 
             _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
             _playerAnimator.SetFloat("Rotatation Speed", 0f, 0.1f, Time.deltaTime);
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
-            Debug.Log("Current State: Walking");
+           // Debug.Log("Current State: Walking");
 
             GetInputAxis();
 

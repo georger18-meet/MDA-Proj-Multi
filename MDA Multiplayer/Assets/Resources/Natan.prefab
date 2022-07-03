@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127562312964687751}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1, z: -1.625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6331270310104958076}
   m_Father: {fileID: 4708559084637840080}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &159944193966880755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,13 +2351,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161729646257067390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4708559084637840080}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6245518099263300427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,8 +4164,8 @@ GameObject:
   - component: {fileID: 7669767572850168274}
   - component: {fileID: 6159584138486793083}
   - component: {fileID: 3067121893086342230}
+  - component: {fileID: 9143353566069815919}
   - component: {fileID: 2098928909}
-  - component: {fileID: 2098928910}
   m_Layer: 0
   m_Name: Natan
   m_TagString: Car
@@ -4255,6 +4255,29 @@ MonoBehaviour:
   - {fileID: 7439580472678481756}
   - {fileID: 3242784158595230447}
   CarDashboardUI: {fileID: 0}
+--- !u!114 &9143353566069815919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9223238086303951802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 2098928909}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &2098928909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4268,7 +4291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -4279,7 +4302,7 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -4288,22 +4311,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &2098928910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9223238086303951802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &9223238087115977878
 GameObject:
   m_ObjectHideFlags: 0
@@ -4343,22 +4350,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5679549230053717812}
     m_Modifications:
-    - target: {fileID: 66790119364669929, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Name
-      value: MD_EmergencyBedClosed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957684, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Size.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957684, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957684, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Size.z
-      value: 3.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4381,15 +4372,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4416,22 +4407,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: _emergencyBedUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: _takeReturnText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: _followUnfollowText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: _placeRemovePatientText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: _emergencyBedPositionInsideVehicle
       value: 
       objectReference: {fileID: 5679549230053717812}
@@ -4439,21 +4414,9 @@ PrefabInstance:
       propertyPath: _emergencyBedPositionOutsideVehicle
       value: 
       objectReference: {fileID: 5457931676979428435}
-    - target: {fileID: 2514615090674820700, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Name
-      value: MD_EmergencyBedOpen
-      objectReference: {fileID: 0}
     - target: {fileID: 2908853869985648674, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587745613101021979, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5424467342941879032, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.75
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1291643038897957686, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
@@ -4463,67 +4426,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
   m_PrefabInstance: {fileID: 5058077076726673227}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8762619599337870416 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4587745613101021979, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 5058077076726673227}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &2098928911
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8762619599337870416}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &2098928912
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8762619599337870416}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.25, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3426588527200631463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8762619599337870416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EmergencyBedController, Assembly-CSharp
-        m_MethodName: ShowInteractionsToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &7853661107795478645
 PrefabInstance:
   m_ObjectHideFlags: 0

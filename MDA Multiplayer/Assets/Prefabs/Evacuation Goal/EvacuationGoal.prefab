@@ -14455,14 +14455,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8950140318339158946}
   - component: {fileID: 8950140318339158945}
-  - component: {fileID: 8950140318339158944}
+  - component: {fileID: 1368304011}
   m_Layer: 3
   m_Name: EvacuationGoal
   m_TagString: Evac
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8950140318339158946
 Transform:
   m_ObjectHideFlags: 0
@@ -14471,7 +14471,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8950140318339158947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.25, y: 0, z: -31.25}
+  m_LocalPosition: {x: -258.76, y: 4.450001, z: -165.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8950140319665641216}
@@ -14492,7 +14492,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!114 &8950140318339158944
+--- !u!114 &1368304011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14501,13 +14501,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8950140318339158947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df7b1e725501ff143981e78523210e77, type: 3}
+  m_Script: {fileID: 11500000, guid: d5200ffd09611a54a99154604995e613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomName: Emergency Room
-  _evacuationUI: {fileID: 0}
-  _destinationName: {fileID: 0}
-  _patientsEvacuated: []
+  NearbyPatient: []
+  RoomEnum: 2
+  _roomName: 
 --- !u!1 &8950140319665641217
 GameObject:
   m_ObjectHideFlags: 0

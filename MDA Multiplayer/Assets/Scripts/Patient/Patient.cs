@@ -50,8 +50,12 @@ public class Patient : MonoBehaviour
     #endregion
 
     #region Collision & Triggers
+
     private void OnTriggerEnter(Collider other)
     {
+
+
+    
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
@@ -174,4 +178,11 @@ public class Patient : MonoBehaviour
     {
         ActionsManager.Instance.OnPatientClicked();
     }
+
+
+
+
+
+
+
 }

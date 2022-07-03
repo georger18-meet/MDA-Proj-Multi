@@ -41,12 +41,12 @@ public class EmergencyBedController : MonoBehaviour
         // In Car
         if (_inCar)
         {
-            _emergencyBed.GetComponent<BoxCollider>().isTrigger = true;
+            //_emergencyBed.GetComponent<BoxCollider>().isTrigger = true;
             _isBedClosed = true;
         }
         else if (!_inCar)
         {
-            _emergencyBed.GetComponent<BoxCollider>().isTrigger = false;
+            //_emergencyBed.GetComponent<BoxCollider>().isTrigger = false;
             _isBedClosed = false;
         }
     
@@ -120,7 +120,6 @@ public class EmergencyBedController : MonoBehaviour
         {
             if (_isFollowingPlayer)
             {
-                //_player.transform.position = _playerHoldPos.position;
                 //if (!_isFacingTrolley)
                 //{
                 //var lookPos = transform.position - Player.transform.position;
@@ -135,6 +134,7 @@ public class EmergencyBedController : MonoBehaviour
                 //    FollowUnfollowText.text = "Detach \n Bed";
                 //}
                 //}
+                _player.transform.position = _playerHoldPos.position;
                 _player.transform.LookAt(transform.position);
                 gameObject.transform.SetParent(_player.transform);
                 _followUnfollowText.text = "Detach \n Bed";
@@ -154,8 +154,8 @@ public class EmergencyBedController : MonoBehaviour
         {
             _isPatientOnBed = true;
             _patient.GetComponent<BoxCollider>().enabled = false;
-            _patient.transform.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation);
-            _patient.transform.SetParent(this.transform);
+            _patient.transform.parent.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation);
+            _patient.transform.parent.SetParent(this.transform);
             _placeRemovePatientText.text = "Drop \n Patient";
             _emergencyBedUI.SetActive(false);
         }
@@ -163,8 +163,8 @@ public class EmergencyBedController : MonoBehaviour
         {
             _isPatientOnBed = false;
             _patient.GetComponent<BoxCollider>().enabled = true;
-            _patient.transform.position = _patientPosOffBed.position;
-            _patient.transform.SetParent(null);
+            _patient.transform.parent.position = _patientPosOffBed.position;
+            _patient.transform.parent.SetParent(null);
             _placeRemovePatientText.text = "Place \n Patient";
             _emergencyBedUI.SetActive(false);
         }
@@ -194,7 +194,7 @@ public class EmergencyBedController : MonoBehaviour
             transform.position = _emergencyBedPositionInsideVehicle.position;
             transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
             transform.SetParent(_emergencyBedPositionInsideVehicle);
-            _takeReturnText.text = "Take Out";
+           // _takeReturnText.text = "Take Out";
         }
         else if (_inCar && _takeOutBed)
         {
