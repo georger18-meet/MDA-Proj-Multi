@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint; /*IncidentAdress*/
     #endregion
 
+    [SerializeField]
+    public GameObject MapWindow, ContentPanel;
+
     //#region EventSystem
     //[Header("EventSystem")]
     //[SerializeField] private EventSystem _eventSystem;
@@ -55,6 +58,12 @@ public class UIManager : MonoBehaviour
         PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
+    }
+
+    public void PauseHomeBtn()
+    {
+        MapWindow.SetActive(false);
+        ContentPanel.SetActive(true);
     }
 
     // catch last gameObject to fire an event
