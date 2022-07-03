@@ -87285,10 +87285,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 970088129154717107, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.75
-      objectReference: {fileID: 0}
     - target: {fileID: 3067121893086342230, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: CarDashboardUI
       value: 
@@ -87300,42 +87296,6 @@ PrefabInstance:
     - target: {fileID: 3426588527200631463, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowInteractionsToggle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457931676979428435, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.00000058114523
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457931676979428435, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457931676979428435, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457931676979428435, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457931676979428435, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270310104958079, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_Size.z
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270310104958079, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270310104958079, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_Center.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270310104958079, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6331270310281796135, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: m_IsActive

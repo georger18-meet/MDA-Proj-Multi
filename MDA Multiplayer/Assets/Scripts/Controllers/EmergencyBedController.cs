@@ -41,12 +41,12 @@ public class EmergencyBedController : MonoBehaviour
         // In Car
         if (_inCar)
         {
-            _emergencyBed.GetComponent<BoxCollider>().isTrigger = true;
+            //_emergencyBed.GetComponent<BoxCollider>().isTrigger = true;
             _isBedClosed = true;
         }
         else if (!_inCar)
         {
-            _emergencyBed.GetComponent<BoxCollider>().isTrigger = false;
+            //_emergencyBed.GetComponent<BoxCollider>().isTrigger = false;
             _isBedClosed = false;
         }
     
@@ -120,7 +120,6 @@ public class EmergencyBedController : MonoBehaviour
         {
             if (_isFollowingPlayer)
             {
-                //_player.transform.position = _playerHoldPos.position;
                 //if (!_isFacingTrolley)
                 //{
                 //var lookPos = transform.position - Player.transform.position;
@@ -135,6 +134,7 @@ public class EmergencyBedController : MonoBehaviour
                 //    FollowUnfollowText.text = "Detach \n Bed";
                 //}
                 //}
+                _player.transform.position = _playerHoldPos.position;
                 _player.transform.LookAt(transform.position);
                 gameObject.transform.SetParent(_player.transform);
                 _followUnfollowText.text = "Detach \n Bed";
