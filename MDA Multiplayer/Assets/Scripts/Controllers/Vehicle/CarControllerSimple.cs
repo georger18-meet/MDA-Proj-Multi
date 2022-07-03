@@ -69,7 +69,21 @@ public class CarControllerSimple : MonoBehaviour
 
     private void HandleMotor()
     {
-        float moveSpeed = _verticalInput *= _verticalInput > 0 ? _forwardSpeed : _reverseSpeed;
+        float moveSpeed;
+
+        if (_verticalInput > 0)
+        {
+            moveSpeed = _forwardSpeed;
+        }
+        else if (_verticalInput < 0)
+        {
+            moveSpeed = -_reverseSpeed;
+        }
+        else
+        {
+            moveSpeed = 0;
+        }
+
         _carRb.AddForce(transform.forward * moveSpeed, ForceMode.Acceleration);
     }
 

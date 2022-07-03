@@ -3973,7 +3973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4708559084637840080
 Transform:
   m_ObjectHideFlags: 0
@@ -4203,8 +4203,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9223238086303951802}
   serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 3
+  m_Mass: 5
+  m_Drag: 1.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -4239,7 +4239,7 @@ MonoBehaviour:
   _isDrivable: 0
   _forwardSpeed: 30
   _reverseSpeed: 20
-  _turningSpeed: 10
+  _turningSpeed: 5
   _breakForce: 0
   _centerOfMassOffset: 0
   frontLeftWheelTransform: {fileID: 2495592763246304594}
@@ -4347,6 +4347,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MD_EmergencyBedClosed
       objectReference: {fileID: 0}
+    - target: {fileID: 1291643038897957684, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291643038897957684, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291643038897957684, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: m_Size.z
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4369,15 +4381,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4403,6 +4415,30 @@ PrefabInstance:
       propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: _emergencyBedUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: _takeReturnText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: _followUnfollowText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: _placeRemovePatientText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: _emergencyBedPositionInsideVehicle
+      value: 
+      objectReference: {fileID: 5679549230053717812}
+    - target: {fileID: 2363899286819551835, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: _emergencyBedPositionOutsideVehicle
+      value: 
+      objectReference: {fileID: 5457931676979428435}
     - target: {fileID: 2514615090674820700, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_Name
       value: MD_EmergencyBedOpen
@@ -4411,75 +4447,83 @@ PrefabInstance:
       propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4587745613101021979, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424467342941879032, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1291643038897957686, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
---- !u!4 &6331270308824517869 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1291643039644672934, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 5058077076726673227}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &970088129154717107 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5424467342941879032, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 5058077076726673227}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5106148556891905698 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 66790119364669929, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 5058077076726673227}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7265523733967964439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2514615090674820700, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 5058077076726673227}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6331270310104958067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1291643038897957688, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 5058077076726673227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6331270310104958076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
   m_PrefabInstance: {fileID: 5058077076726673227}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6331270309174527286 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1291643039861025405, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+--- !u!1 &8762619599337870416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4587745613101021979, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
   m_PrefabInstance: {fileID: 5058077076726673227}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &743308831
+--- !u!54 &2098928911
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762619599337870416}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2098928912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762619599337870416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.25, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3426588527200631463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6331270310104958067}
+  m_GameObject: {fileID: 8762619599337870416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277d8103a323cd244ac13df20a936c23, type: 3}
+  m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patient: {fileID: 0}
-  _player: {fileID: 0}
-  _emergencyBedOpen: {fileID: 7265523733967964439}
-  _emergencyBedClosed: {fileID: 5106148556891905698}
-  _emergencyBed: {fileID: 6331270310104958067}
-  _emergencyBedUI: {fileID: 0}
-  _takeReturnText: {fileID: 0}
-  _followUnfollowText: {fileID: 0}
-  _placeRemovePatientText: {fileID: 0}
-  _playerHoldPos: {fileID: 970088129154717107}
-  _patientPosOnBed: {fileID: 6331270308824517869}
-  _patientPosOffBed: {fileID: 6331270309174527286}
-  _emergencyBedPositionInsideVehicle: {fileID: 5679549230053717812}
-  _emergencyBedPositionOutsideVehicle: {fileID: 5457931676979428435}
-  _takeOutBed: 0
-  _isBedClosed: 0
-  _isPatientOnBed: 0
-  _isFollowingPlayer: 0
-  _inCar: 0
+  EventToCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EmergencyBedController, Assembly-CSharp
+        m_MethodName: ShowInteractionsToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &7853661107795478645
 PrefabInstance:
   m_ObjectHideFlags: 0

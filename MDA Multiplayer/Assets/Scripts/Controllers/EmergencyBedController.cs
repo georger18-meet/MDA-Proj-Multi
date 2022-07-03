@@ -120,7 +120,7 @@ public class EmergencyBedController : MonoBehaviour
         {
             if (_isFollowingPlayer)
             {
-                _player.transform.position = _playerHoldPos.position;
+                //_player.transform.position = _playerHoldPos.position;
                 //if (!_isFacingTrolley)
                 //{
                 //var lookPos = transform.position - Player.transform.position;
