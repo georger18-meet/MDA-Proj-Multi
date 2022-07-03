@@ -494,6 +494,10 @@ PrefabInstance:
       propertyPath: CarDashboardUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9143353566069815919, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9223238086303951801, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: m_RootOrder
       value: 3

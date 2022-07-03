@@ -154,8 +154,8 @@ public class EmergencyBedController : MonoBehaviour
         {
             _isPatientOnBed = true;
             _patient.GetComponent<BoxCollider>().enabled = false;
-            _patient.transform.parent.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation);
-            _patient.transform.parent.SetParent(this.transform);
+            _patient.transform.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation); // parent
+            _patient.transform.SetParent(this.transform);// parent
             _placeRemovePatientText.text = "Drop \n Patient";
             _emergencyBedUI.SetActive(false);
         }
@@ -163,8 +163,8 @@ public class EmergencyBedController : MonoBehaviour
         {
             _isPatientOnBed = false;
             _patient.GetComponent<BoxCollider>().enabled = true;
-            _patient.transform.parent.position = _patientPosOffBed.position;
-            _patient.transform.parent.SetParent(null);
+            _patient.transform.position = _patientPosOffBed.position;// parent
+            _patient.transform.SetParent(null);// parent
             _placeRemovePatientText.text = "Place \n Patient";
             _emergencyBedUI.SetActive(false);
         }

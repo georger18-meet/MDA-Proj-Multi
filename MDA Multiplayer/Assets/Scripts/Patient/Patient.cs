@@ -38,7 +38,7 @@ public class Patient : MonoBehaviour
     private void Awake()
     {
         PatientRenderer.material = PatientData.FullyClothedMaterial;
-        DontDestroyOnLoad(gameObject.transform.parent);
+        DontDestroyOnLoad(gameObject.transform);
     }
 
     private void Start()
