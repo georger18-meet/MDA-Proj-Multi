@@ -69,7 +69,21 @@ public class CarControllerSimple : MonoBehaviour
 
     private void HandleMotor()
     {
-        float moveSpeed = _verticalInput *= _verticalInput > 0 ? _forwardSpeed : _reverseSpeed;
+        float moveSpeed;
+
+        if (_verticalInput > 0)
+        {
+            moveSpeed = _forwardSpeed;
+        }
+        else if (_verticalInput < 0)
+        {
+            moveSpeed = -_reverseSpeed;
+        }
+        else
+        {
+            moveSpeed = 0;
+        }
+
         _carRb.AddForce(transform.forward * moveSpeed, ForceMode.Acceleration);
     }
 
@@ -157,15 +171,15 @@ public class CarControllerSimple : MonoBehaviour
 
     private void CheckIfDriveable()
     {
-        foreach (var item in CarDoorCollisions)
+        foreach (CarDoorCollision item in CarDoorCollisions)
         {
-            if (item.SeatNumber == 1 && item.IsSeatOccupied)
+            if (item.SeatNumber == 0 && item.IsSeatOccupied)
             {
                 _isDrivable = true;
                 _carRb.isKinematic = false;
                 CarDashboardUI.SetActive(true);
             }
-            else if (item.SeatNumber == 1 && !item.IsSeatOccupied)
+            else if (item.SeatNumber == 0 && !item.IsSeatOccupied)
             {
                 _isDrivable = false;
                 _carRb.isKinematic = true;
