@@ -43828,27 +43828,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 714930254, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: sceneViewId
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1643585237, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1643585237, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: _emergencyBedUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1643585237, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: _takeReturnText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1643585237, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: _followUnfollowText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1643585237, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: _placeRemovePatientText
-      value: 
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1556003281518673553, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: m_RootOrder
@@ -43900,7 +43880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697815649666482422, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: sceneViewId
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4681234033772804478, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: CarDashboardUI
@@ -43922,10 +43902,6 @@ PrefabInstance:
       propertyPath: _placeRemovePatientText
       value: 
       objectReference: {fileID: 1339287173}
-    - target: {fileID: 8862923347476754581, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
 --- !u!114 &714930252 stripped
@@ -86330,6 +86306,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1011662884}
+    - target: {fileID: 6309766607460022569, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851170986}
     - target: {fileID: 6309766607670136679, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
