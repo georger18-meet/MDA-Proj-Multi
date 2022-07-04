@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     public PlayerData PlayerData;
 
     [Header("Camera")]
+    private Camera _currentCamera;
     [SerializeField] private Camera _playerCamera;
+    [SerializeField] private Camera _vehicleCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
 
     [Header("Animation")]
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         PlayerData = gameObject.AddComponent<PlayerData>();
+        _currentCamera = _playerCamera;
     }
 
     private void Start()
@@ -123,13 +126,13 @@ public class PlayerController : MonoBehaviour
         Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
 
         transform.Rotate(_mouseSensitivity.x * mouseInput.x * Time.deltaTime * Vector3.up);
-        _playerCamera.transform.Rotate(_mouseSensitivity.y * mouseInput.y * Time.deltaTime * Vector3.right);
+        _currentCamera.transform.Rotate(_mouseSensitivity.y * mouseInput.y * Time.deltaTime * Vector3.right);
     }
 
     private void SetFirstPersonCamera(bool value)
     {
-        _playerCamera.transform.position = value ? _firstPersonCameraTransform.position : _thirdPersonCameraTransform.position;
-        _playerCamera.transform.rotation = value ? _firstPersonCameraTransform.rotation : _thirdPersonCameraTransform.rotation;
+        _currentCamera.transform.position = value ? _firstPersonCameraTransform.position : _thirdPersonCameraTransform.position;
+        _currentCamera.transform.rotation = value ? _firstPersonCameraTransform.rotation : _thirdPersonCameraTransform.rotation;
     }
 
     private void FreeMouse(bool value)
@@ -145,7 +148,7 @@ public class PlayerController : MonoBehaviour
             Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
 
             transform.Rotate(Vector3.up * mouseInput.x * _mouseSensitivity.x * Time.deltaTime);
-            _playerCamera.transform.Rotate(Vector3.right * mouseInput.y * _mouseSensitivity.y * Time.deltaTime);
+            _currentCamera.transform.Rotate(Vector3.right * mouseInput.y * _mouseSensitivity.y * Time.deltaTime);
         }
     }
 
@@ -406,10 +409,16 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Current State: Driving");
 
+            _playerCamera.enabled = false;
+            _vehicleCamera.enabled = true;
+            _currentCamera = _vehicleCamera;
             _characterController.enabled = false;
 
             if (!_isDriving)
             {
+                _vehicleCamera.enabled = false;
+                _playerCamera.enabled = true;
+                _currentCamera = _playerCamera;
                 _characterController.enabled = true;
                 _stateAction = UseTankIdleState;
             }
