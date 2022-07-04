@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,8 +38,14 @@ public class CarControllerSimple : MonoBehaviour
 
     public GameObject CarDashboardUI;
 
+    private void Awake()
+    {
+        CarDashboardUI = GameObject.Find("AmbulanceEmergencyBed UI");
+    }
+
     private void Start()
     {
+       
         _carRb = GetComponent<Rigidbody>();
         _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
     }

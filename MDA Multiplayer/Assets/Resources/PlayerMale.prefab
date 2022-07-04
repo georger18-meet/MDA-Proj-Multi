@@ -231,10 +231,10 @@ RectTransform:
   m_Father: {fileID: 9057974928903436735}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 25}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1408635676542862667
 CanvasRenderer:
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 6987719693297268781}
   m_Layer: 0
   m_Name: Vehicle Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -738,6 +738,7 @@ MonoBehaviour:
   PlayerData: {fileID: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _vehicleCamera: {fileID: 8959073057551848424}
+  _MiniMaCamera: {fileID: 666755789287419742}
   _firstPersonCameraTransform: {fileID: 8822803000982418763}
   _thirdPersonCameraTransform: {fileID: 8822803000880888004}
   _playerAnimator: {fileID: 7292725682840954819}

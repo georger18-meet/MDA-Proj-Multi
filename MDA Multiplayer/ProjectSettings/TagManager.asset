@@ -7,6 +7,8 @@ TagManager:
   - Patient
   - Car
   - Evac
+  - Equipment Position
+  - Natan
   layers:
   - Default
   - TransparentFX

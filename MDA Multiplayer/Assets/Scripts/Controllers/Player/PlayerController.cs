@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Camera _currentCamera;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Camera _vehicleCamera;
+    [SerializeField] private GameObject _MiniMaCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
 
     [Header("Animation")]
@@ -57,10 +58,12 @@ public class PlayerController : MonoBehaviour
         {
             FreeMouse(true);
             _stateAction = UseTankIdleState;
+            _MiniMaCamera.SetActive(true);
         }
         else
         {
             Destroy(this);
+            _MiniMaCamera.SetActive(false);
         }
     }
 

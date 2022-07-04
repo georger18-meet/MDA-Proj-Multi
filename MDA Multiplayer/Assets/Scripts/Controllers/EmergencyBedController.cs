@@ -28,28 +28,22 @@ public class EmergencyBedController : MonoBehaviour
     [SerializeField] private bool _takeOutBed;
     [SerializeField] private bool _isBedClosed, _isPatientOnBed, _isFollowingPlayer, _inCar;
 
-   [SerializeField] private PhotonView _photonView;
+   //[SerializeField] private PhotonView _photonView;
     public OwnershipTransfer _transfer;
     void Start()
     {
         _emergencyBedUI.SetActive(false);
-        _photonView = GetComponent<PhotonView>();
+       // _photonView = GetComponent<PhotonView>();
     }
-    
+
     void Update()
     {
 
-        if (_photonView.IsMine)
-        {
-            AlwaysChecking();
-
-        }
-
-
+        AlwaysChecking();
 
 
     }
-    
+
     private void AlwaysChecking()
     {
         // In Car
