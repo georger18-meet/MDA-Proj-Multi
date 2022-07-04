@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Fields
     [Header("Photon")]
-    [SerializeField] private PhotonView _photonView;
+    [SerializeField] public PhotonView _photonView;
 
     [Header("Data")]
     public PlayerData PlayerData;

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using TMPro;
 
@@ -25,15 +27,27 @@ public class EmergencyBedController : MonoBehaviour
     [Header("Booleans")]
     [SerializeField] private bool _takeOutBed;
     [SerializeField] private bool _isBedClosed, _isPatientOnBed, _isFollowingPlayer, _inCar;
-    
+
+   [SerializeField] private PhotonView _photonView;
+    public OwnershipTransfer _transfer;
     void Start()
     {
         _emergencyBedUI.SetActive(false);
+        _photonView = GetComponent<PhotonView>();
     }
     
     void Update()
     {
-        AlwaysChecking();
+
+        if (_photonView.IsMine)
+        {
+            AlwaysChecking();
+
+        }
+
+
+
+
     }
     
     private void AlwaysChecking()
@@ -174,6 +188,7 @@ public class EmergencyBedController : MonoBehaviour
     {
         if (_inCar && !_takeOutBed)
         {
+            _transfer.BedPickUp();
             _takeOutBed = true;
             _emergencyBedUI.SetActive(true);
             transform.SetPositionAndRotation(_emergencyBedPositionOutsideVehicle.position, _emergencyBedPositionOutsideVehicle.rotation);

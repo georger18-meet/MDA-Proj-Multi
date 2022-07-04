@@ -22,6 +22,11 @@ public class OwnershipTransfer : MonoBehaviourPun,IPunOwnershipCallbacks
         base.photonView.RequestOwnership();
     }
 
+    public void BedPickUp()
+    {
+        base.photonView.RequestOwnership();
+    }
+
     public void OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
     {
         Debug.Log("Changing Ownership " + requestingPlayer.NickName);
