@@ -86304,6 +86304,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 851170986}
+    - target: {fileID: 1741901408619566885, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_TagString
+      value: Vehicle UI
+      objectReference: {fileID: 0}
     - target: {fileID: 2573098252806425779, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -86447,6 +86451,10 @@ PrefabInstance:
     - target: {fileID: 6309766608721691564, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_Name
       value: Game Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309766608721691564, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6309766608801480244, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

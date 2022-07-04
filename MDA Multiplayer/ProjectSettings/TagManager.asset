@@ -9,6 +9,7 @@ TagManager:
   - Evac
   - Equipment Position
   - Natan
+  - Vehicle UI
   layers:
   - Default
   - TransparentFX

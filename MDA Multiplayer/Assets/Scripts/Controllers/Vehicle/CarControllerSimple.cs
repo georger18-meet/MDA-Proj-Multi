@@ -38,16 +38,15 @@ public class CarControllerSimple : MonoBehaviour
 
     public GameObject CarDashboardUI;
 
-    private void Awake()
-    {
-        CarDashboardUI = GameObject.Find("AmbulanceEmergencyBed UI");
-    }
+ 
 
     private void Start()
     {
        
         _carRb = GetComponent<Rigidbody>();
         _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
+        CarDashboardUI = GameObject.Find("Game Canvas/Vehicle UI");
+
     }
 
     private void Update()
@@ -184,13 +183,13 @@ public class CarControllerSimple : MonoBehaviour
             {
                 _isDrivable = true;
                 _carRb.isKinematic = false;
-                CarDashboardUI.SetActive(true);
+               // CarDashboardUI.SetActive(true);
             }
             else if (item.SeatNumber == 0 && !item.IsSeatOccupied)
             {
                 _isDrivable = false;
                 _carRb.isKinematic = true;
-                CarDashboardUI.SetActive(false);
+               // CarDashboardUI.SetActive(false);
             }
         }
     }
