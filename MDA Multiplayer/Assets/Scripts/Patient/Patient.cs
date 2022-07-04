@@ -29,6 +29,10 @@ public class Patient : MonoBehaviour
     public List<PlayerData> AllUsersTreatedThisPatient;
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
+
+    [Header("Treatment Positions")]
+    public Transform ChestPosPlayerTransform;
+    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
     #endregion
 
     //public List<PlayerController> players;

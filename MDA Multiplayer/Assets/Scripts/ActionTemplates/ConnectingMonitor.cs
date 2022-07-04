@@ -9,9 +9,10 @@ public class ConnectingMonitor : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private ActionsManager _actionManager;
     [SerializeField] private ActionTemplates _actionTemplates;
-    [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _monitor;
 
+    private GameObject _player;
+    
     public void Defibrillation()
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
@@ -23,7 +24,9 @@ public class ConnectingMonitor : MonoBehaviour
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
-                //_player.transform.position = _actionManager.PlayerTreatingTr.position;
+                _player = desiredPlayerData.gameObject;
+                _player.transform.position = desiredPlayerData.CurrentPatientNearby.ChestPosPlayerTransform.position;
+                PhotonNetwork.Instantiate(_monitor.name, desiredPlayerData.CurrentPatientNearby.ChestPosEquipmentTransform.position, Quaternion.identity);
                 //MonoBehaviour.Instantiate(_monitor, _actionManager.PatientEquipmentTr.position, Quaternion.identity);
 
                 _actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient");
