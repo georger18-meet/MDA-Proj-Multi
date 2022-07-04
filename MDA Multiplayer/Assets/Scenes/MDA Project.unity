@@ -43882,25 +43882,13 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4380602823039877177, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4681234033772804478, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: CarDashboardUI
       value: 
       objectReference: {fileID: 1339287163}
-    - target: {fileID: 4681234033772804478, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: CarSirenAudioSource
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5317031175619973055, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: sceneViewId
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480320184562552982, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: sceneViewId
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7568196157338490164, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: _emergencyBedUI
@@ -43918,10 +43906,6 @@ PrefabInstance:
       propertyPath: _placeRemovePatientText
       value: 
       objectReference: {fileID: 1339287173}
-    - target: {fileID: 8882163892129112095, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
 --- !u!114 &714930252 stripped
@@ -86450,6 +86434,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 851170986}
+    - target: {fileID: 8338885264586291888, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851170986}
+    - target: {fileID: 8338885264586291888, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenCloseDisplayWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338885264586291888, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ActionTemplates, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8338885265382903458, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -87121,61 +87117,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 743308831, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 743308831, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: _emergencyBedUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 743308831, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: _takeReturnText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 743308831, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: _followUnfollowText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 743308831, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: _placeRemovePatientText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 276342513163182247, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2098928908}
-    - target: {fileID: 276342513163182247, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowInteractionsToggle
-      objectReference: {fileID: 0}
     - target: {fileID: 3067121893086342230, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: CarDashboardUI
       value: 
       objectReference: {fileID: 1339287163}
-    - target: {fileID: 4897110232793698482, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: sceneViewId
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 5058077076936576923, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: sceneViewId
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245518100391695633, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270309174527286, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.901
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270309174527286, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.707
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331270310104958067, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7421835072795006224, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: _emergencyBedUI
@@ -87195,7 +87143,7 @@ PrefabInstance:
       objectReference: {fileID: 1339287167}
     - target: {fileID: 9143353566069815919, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: sceneViewId
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9223238086303951801, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: m_RootOrder
@@ -87258,32 +87206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277d8103a323cd244ac13df20a936c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2098928909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7990499019719860762, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
-  m_PrefabInstance: {fileID: 2098928907}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2098928910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098928909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 1
-    Name: IsDoorOpen
-  m_SynchronizeLayers:
-  - SynchronizeType: 1
-    LayerIndex: 0
 --- !u!1001 &5118137908120566047
 PrefabInstance:
   m_ObjectHideFlags: 0

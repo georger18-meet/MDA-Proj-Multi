@@ -502,7 +502,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375342510873012328}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2932ab4754683014a8edc63e550bda2c, type: 3}
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   rearLeftWheelTransform: {fileID: 6663019294478121785}
   CarHeadLights: {fileID: 7835427840823393566}
   CarSiren: {fileID: 375342510873012328}
-  CarSirenAudioSource: {fileID: 4380602823039877177}
+  CarSirenAudioSource: {fileID: 0}
   CarDoorCollisions:
   - {fileID: 499556919957999390}
   - {fileID: 2354718780450016062}
@@ -4338,7 +4338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1007229924468966720
 Transform:
   m_ObjectHideFlags: 0
@@ -4424,6 +4424,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7964470773790381229}
     m_Modifications:
+    - target: {fileID: 361701584, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_RootOrder
       value: 0

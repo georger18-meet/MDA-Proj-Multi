@@ -3154,6 +3154,7 @@ GameObject:
   - component: {fileID: 365334901302045477}
   - component: {fileID: 3242784158595230447}
   - component: {fileID: 4295830345557133594}
+  - component: {fileID: 2098928910}
   m_Layer: 0
   m_Name: BackPassengerDoorCollider
   m_TagString: Untagged
@@ -3227,6 +3228,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2098928910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990499019719860762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDoorOpen
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &8021740619891440960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,7 +3309,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8021740619891440960}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2932ab4754683014a8edc63e550bda2c, type: 3}
@@ -4275,6 +4297,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2098928909}
+  - {fileID: 2098928910}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -4350,6 +4373,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5679549230053717812}
     m_Modifications:
+    - target: {fileID: 361701584, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
       propertyPath: m_RootOrder
       value: 0
