@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class UsernameFaceCamera : MonoBehaviour
 {
-    private Camera cam;
+    private Transform _mainCam;
 
-     void Update()
+    private void Start()
     {
-        if (cam == null)
-            cam = FindObjectOfType<Camera>();
-        
+        _mainCam = Camera.main.transform;
+    }
 
-        if (cam==null)
-            return;
-        
-        transform.LookAt(cam.transform);
-        transform.Rotate(Vector3.up*180); //to rotate the text in the right way (text was revert)
+    void Update()
+    {
+        //if (cam == null)
+        //    cam = FindObjectOfType<Camera>();
+
+        //if (cam==null)
+        //    return;
+
+        //transform.Rotate(Vector3.up*180); //to rotate the text in the right way (text was revert)
+        transform.LookAt(transform.position + _mainCam.rotation * Vector3.forward, _mainCam.rotation * Vector3.up);
     }
 }

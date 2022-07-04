@@ -10311,7 +10311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 0}
   _actionTemplates: {fileID: 0}
-  _player: {fileID: 0}
   _monitor: {fileID: 1147925305141470002, guid: f725c2ac6c511a0478d82c3d74e786b1, type: 3}
 --- !u!1 &3793029388537450087
 GameObject:
@@ -12114,7 +12113,7 @@ RectTransform:
   m_Children:
   - {fileID: 7840522651223037383}
   m_Father: {fileID: 6309766608969122167}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -40316,7 +40315,7 @@ RectTransform:
   - {fileID: 6309766607746846840}
   - {fileID: 6309766608441242368}
   m_Father: {fileID: 6309766608969122167}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -42041,8 +42040,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4026154426700688813}
   - {fileID: 6309766608887057554}
+  - {fileID: 4026154426700688813}
   m_Father: {fileID: 6309766609095688798}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69364,7 +69363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 0}
   _actionTemplates: {fileID: 0}
-  _player: {fileID: 0}
   _monitor: {fileID: 1147925305141470002, guid: f725c2ac6c511a0478d82c3d74e786b1, type: 3}
 --- !u!1 &8372329009555597891
 GameObject:

@@ -738,6 +738,7 @@ MonoBehaviour:
   PlayerData: {fileID: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _vehicleCamera: {fileID: 8959073057551848424}
+  _MiniMapCamera: {fileID: 666755789287419742}
   _firstPersonCameraTransform: {fileID: 8822803000982418763}
   _thirdPersonCameraTransform: {fileID: 8822803000880888004}
   _playerAnimator: {fileID: 7292725682840954819}
