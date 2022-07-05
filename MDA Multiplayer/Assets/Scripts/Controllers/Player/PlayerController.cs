@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Camera _currentCamera;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Camera _vehicleCamera;
-    [SerializeField] private GameObject _MiniMapCamera;
+    [SerializeField] private GameObject _MiniMaCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
 
     [Header("Animation")]
@@ -58,12 +59,12 @@ public class PlayerController : MonoBehaviour
         {
             FreeMouse(true);
             _stateAction = UseTankIdleState;
-            _MiniMapCamera.SetActive(true);
+            _MiniMaCamera.SetActive(true);
         }
         else
         {
             Destroy(this);
-            _MiniMapCamera.SetActive(false);
+            _MiniMaCamera.SetActive(false);
         }
     }
 
@@ -72,9 +73,23 @@ public class PlayerController : MonoBehaviour
         if (_photonView.IsMine)
         {
             _stateAction.Invoke();
+           CarControllerSimple.Instance.CheckIfDriveable();
+           CarControllerSimple.Instance.GetInput();
+           CarControllerSimple.Instance.CheckIsMovingBackwards();
         }
     }
     #endregion
+
+
+    private void FixedUpdate()
+    {
+        if (_photonView.IsMine)
+        {
+            CarControllerSimple.Instance.HandleMotor();
+            CarControllerSimple.Instance.HandleSteering();
+            CarControllerSimple.Instance.UpdateWheels();
+        }
+    }
 
     #region Private Methods
     private void GetInputAxis()
@@ -170,7 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
-            //Debug.Log("Current State: Idle");
+           //Debug.Log("Current State: Idle");
 
             _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
             _playerAnimator.SetFloat("Rotatation Speed", 0f, 0.1f, Time.deltaTime);
@@ -244,7 +259,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
-            // Debug.Log("Current State: Walking");
+           // Debug.Log("Current State: Walking");
 
             GetInputAxis();
 
@@ -471,7 +486,7 @@ public class PlayerController : MonoBehaviour
             PlayerData.CurrentPatientNearby = null;
             UIManager.Instance.CurrentActionBarParent.SetActive(false);
         }
-
+        
     }
     #endregion
 

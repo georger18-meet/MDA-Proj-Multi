@@ -28,24 +28,29 @@ public class EmergencyBedController : MonoBehaviour
     [SerializeField] private bool _takeOutBed;
     [SerializeField] private bool _isBedClosed, _isPatientOnBed, _isFollowingPlayer, _inCar;
 
-    [SerializeField] private PhotonView _photonView;
+
+
+
+
+
+   //[SerializeField] private PhotonView _photonView;
     public OwnershipTransfer _transfer;
     void Start()
     {
         _emergencyBedUI.SetActive(false);
-        _photonView = GetComponent<PhotonView>();
+       // _photonView = GetComponent<PhotonView>();
     }
 
     void Update()
     {
+
         AlwaysChecking();
+
+
     }
 
-    private void AlwaysChecking()
+    public void AlwaysChecking()
     {
-        if (!_photonView.IsMine)
-            return;
-
         // In Car
         if (_inCar)
         {
@@ -57,17 +62,17 @@ public class EmergencyBedController : MonoBehaviour
             //_emergencyBed.GetComponent<BoxCollider>().isTrigger = false;
             _isBedClosed = false;
         }
-
+    
         // Fold
         FoldUnfold();
-
+    
         // Follow Player
         FollowPlayer();
-
+    
         // Take Out Bed
         TakeOutReturnBed();
     }
-
+    
     public void ShowInteractionsToggle()
     {
         if (_emergencyBedUI.activeInHierarchy)
@@ -79,7 +84,7 @@ public class EmergencyBedController : MonoBehaviour
             _emergencyBedUI.SetActive(true);
         }
     }
-
+    
     public void FoldUnfoldToggle()
     {
         if (_isBedClosed)
@@ -91,7 +96,7 @@ public class EmergencyBedController : MonoBehaviour
             _isBedClosed = true;
         }
     }
-
+    
     private void FoldUnfold()
     {
         if (_isBedClosed)
@@ -105,7 +110,7 @@ public class EmergencyBedController : MonoBehaviour
             _emergencyBedClosed.SetActive(false);
         }
     }
-
+    
     public void FollowPlayerToggle()
     {
         if (_player != null && _takeOutBed)
@@ -121,7 +126,7 @@ public class EmergencyBedController : MonoBehaviour
             _emergencyBedUI.SetActive(false);
         }
     }
-
+    
     private void FollowPlayer()
     {
         if (_player != null)
@@ -155,7 +160,7 @@ public class EmergencyBedController : MonoBehaviour
             }
         }
     }
-
+    
     public void PutRemovePatient()
     {
         if (_patient != null && !_isPatientOnBed)
@@ -177,7 +182,7 @@ public class EmergencyBedController : MonoBehaviour
             _emergencyBedUI.SetActive(false);
         }
     }
-
+    
     public void TakeOutReturnBedToggle()
     {
         if (_inCar && !_takeOutBed)
@@ -194,7 +199,7 @@ public class EmergencyBedController : MonoBehaviour
             _emergencyBedUI.SetActive(false);
         }
     }
-
+    
     private void TakeOutReturnBed()
     {
         if (_inCar && !_takeOutBed)
@@ -203,14 +208,14 @@ public class EmergencyBedController : MonoBehaviour
             transform.position = _emergencyBedPositionInsideVehicle.position;
             transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
             transform.SetParent(_emergencyBedPositionInsideVehicle);
-            // _takeReturnText.text = "Take Out";
+           // _takeReturnText.text = "Take Out";
         }
         else if (_inCar && _takeOutBed)
         {
             _takeReturnText.text = "Return";
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -236,7 +241,7 @@ public class EmergencyBedController : MonoBehaviour
             _patient.GetComponent<BoxCollider>().enabled = true;
         }
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
