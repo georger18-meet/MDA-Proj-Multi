@@ -28,10 +28,23 @@ public class EmergencyBedController : MonoBehaviour
     [SerializeField] private bool _takeOutBed;
     [SerializeField] private bool _isBedClosed, _isPatientOnBed, _isFollowingPlayer, _inCar;
 
+
+
+
+
+
    //[SerializeField] private PhotonView _photonView;
     public OwnershipTransfer _transfer;
     void Start()
     {
+
+        _emergencyBedUI = UIManager.Instance.EmergencyBedUI;
+        _takeReturnText = UIManager.Instance.TakeReturnText;
+        _followUnfollowText = UIManager.Instance.FollowUnfollowText;
+        _placeRemovePatientText = UIManager.Instance.PlaceRemovePatientText;
+
+
+
         _emergencyBedUI.SetActive(false);
        // _photonView = GetComponent<PhotonView>();
     }

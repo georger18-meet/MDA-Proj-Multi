@@ -4254,7 +4254,7 @@ MonoBehaviour:
   - {fileID: 5389166980767489558}
   - {fileID: 7439580472678481756}
   - {fileID: 3242784158595230447}
-  CarDashboardUI: {fileID: 6309766608721691564, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+  CarDashboardUI: {fileID: 0}
 --- !u!114 &9143353566069815919
 MonoBehaviour:
   m_ObjectHideFlags: 0

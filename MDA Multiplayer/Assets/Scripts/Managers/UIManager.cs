@@ -48,6 +48,18 @@ public class UIManager : MonoBehaviour
     public GameObject EvacPatientPopUp;
     #endregion
 
+    #region Car UI
+
+    public GameObject VehicleUI;
+    public GameObject EmergencyBedUI;
+    public TextMeshProUGUI TakeReturnText;
+    public TextMeshProUGUI FollowUnfollowText;
+    public TextMeshProUGUI PlaceRemovePatientText;
+    
+
+
+    #endregion
+
     private void Awake()
     {
         if (Instance == null)

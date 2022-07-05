@@ -43552,6 +43552,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1339287171}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: VehicleUI
+      value: 
+      objectReference: {fileID: 1339287163}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: _dropDown
       value: 
       objectReference: {fileID: 437171793}
@@ -43567,6 +43571,14 @@ PrefabInstance:
       propertyPath: _eventSystem
       value: 
       objectReference: {fileID: 722779423}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: EmergencyBedUI
+      value: 
+      objectReference: {fileID: 1339287170}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: TakeReturnText
+      value: 
+      objectReference: {fileID: 1339287169}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: ActionLogParent
       value: 
@@ -43596,6 +43608,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1339287190}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: FollowUnfollowText
+      value: 
+      objectReference: {fileID: 1339287168}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: NatanActionBarParent
       value: 
       objectReference: {fileID: 1339287188}
@@ -43603,6 +43619,10 @@ PrefabInstance:
       propertyPath: BasicActionMenuParent
       value: 
       objectReference: {fileID: 1339287187}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: PlaceRemovePatientText
+      value: 
+      objectReference: {fileID: 1339287167}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: AmbulanceActionBarParent
       value: 
