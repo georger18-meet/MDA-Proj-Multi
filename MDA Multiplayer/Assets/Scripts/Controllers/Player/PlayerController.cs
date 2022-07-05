@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
 {
     #region Fields
     [Header("Photon")]
-    [SerializeField] public PhotonView _photonView;
+    [SerializeField] private PhotonView _photonView;
+    [SerializeField] public PhotonView PhotonView => _photonView;
 
     [Header("Data")]
     public PlayerData PlayerData;
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Momvement")]
     [SerializeField] private CharacterController _characterController;
+    private CarControllerSimple _currentCarController;
+    public CarControllerSimple CurrentCarController { get => _currentCarController; set => _currentCarController = value; }
+
     [SerializeField] private Vector2 _mouseSensitivity = new Vector2(60f, 40f);
     [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 6f, _runningSpeed = 11f, _flyingSpeed = 16f;
     [SerializeField] private float _jumpForce = 3f, _flyUpwardsSpeed = 9f, _maxFlyingHeight = 100f;
@@ -73,23 +77,22 @@ public class PlayerController : MonoBehaviour
         if (_photonView.IsMine)
         {
             _stateAction.Invoke();
-           CarControllerSimple.Instance.CheckIfDriveable();
-           CarControllerSimple.Instance.GetInput();
-           CarControllerSimple.Instance.CheckIsMovingBackwards();
+            _currentCarController.CheckIfDriveable();
+            _currentCarController.GetInput();
+            _currentCarController.CheckIsMovingBackwards();
         }
     }
-    #endregion
-
 
     private void FixedUpdate()
     {
-        if (_photonView.IsMine)
+        if (_photonView.IsMine && _currentCarController != null)
         {
-            CarControllerSimple.Instance.HandleMotor();
-            CarControllerSimple.Instance.HandleSteering();
-            CarControllerSimple.Instance.UpdateWheels();
+            _currentCarController.HandleMotor();
+            _currentCarController.HandleSteering();
+            _currentCarController.UpdateWheels();
         }
     }
+    #endregion
 
     #region Private Methods
     private void GetInputAxis()
@@ -180,7 +183,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region States
-
     private void UseTankIdleState()
     {
         if (_photonView.IsMine)
@@ -218,7 +220,6 @@ public class PlayerController : MonoBehaviour
             RotateBodyWithMouse();
         }
     }
-
     private void UseFirstPersonIdleState()
     {
         if (_photonView)
@@ -254,7 +255,6 @@ public class PlayerController : MonoBehaviour
             FreeMouseWithAlt();
         }
     }
-
     private void UseTankWalkingState()
     {
         if (_photonView.IsMine)
@@ -291,7 +291,6 @@ public class PlayerController : MonoBehaviour
             UseTankMovement();
         }
     }
-
     private void UseFirstPersonWalkingState()
     {
         if (_photonView.IsMine)
@@ -348,7 +347,6 @@ public class PlayerController : MonoBehaviour
             FreeMouseWithAlt();
         }
     }
-
     private void UseFlyingIdleState()
     {
         if (_photonView.IsMine)
@@ -386,7 +384,6 @@ public class PlayerController : MonoBehaviour
             RotateBodyWithMouse();
         }
     }
-
     private void UseFlyingMovingState()
     {
         if (_photonView.IsMine)
@@ -420,7 +417,6 @@ public class PlayerController : MonoBehaviour
             UseFlyingMovement();
         }
     }
-
     private void UseDrivingState()
     {
         if (_photonView.IsMine)
@@ -461,6 +457,18 @@ public class PlayerController : MonoBehaviour
     //    GetComponent<PlayerData>().CurrentPatientNearby.TreatingUsersTest.Add(currentPlayerData.ActorNumber);
     //}
 
+    [PunRPC]
+    private void ChangeCharControllerStateRPC()
+    {
+        if (_characterController.enabled)
+        {
+            _characterController.enabled = false;
+        }
+        else
+        {
+            _characterController.enabled = true;
+        }
+    }
     #region Collisions & Triggers
     private void OnTriggerEnter(Collider other)
     {
