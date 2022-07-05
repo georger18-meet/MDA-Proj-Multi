@@ -37,14 +37,6 @@ public class EmergencyBedController : MonoBehaviour
     public OwnershipTransfer _transfer;
     void Start()
     {
-
-        _emergencyBedUI = UIManager.Instance.EmergencyBedUI;
-        _takeReturnText = UIManager.Instance.TakeReturnText;
-        _followUnfollowText = UIManager.Instance.FollowUnfollowText;
-        _placeRemovePatientText = UIManager.Instance.PlaceRemovePatientText;
-
-
-
         _emergencyBedUI.SetActive(false);
        // _photonView = GetComponent<PhotonView>();
     }
@@ -57,7 +49,7 @@ public class EmergencyBedController : MonoBehaviour
 
     }
 
-    private void AlwaysChecking()
+    public void AlwaysChecking()
     {
         // In Car
         if (_inCar)

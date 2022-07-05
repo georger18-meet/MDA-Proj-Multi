@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,9 +73,23 @@ public class PlayerController : MonoBehaviour
         if (_photonView.IsMine)
         {
             _stateAction.Invoke();
+           CarControllerSimple.Instance.CheckIfDriveable();
+           CarControllerSimple.Instance.GetInput();
+           CarControllerSimple.Instance.CheckIsMovingBackwards();
         }
     }
     #endregion
+
+
+    private void FixedUpdate()
+    {
+        if (_photonView.IsMine)
+        {
+            CarControllerSimple.Instance.HandleMotor();
+            CarControllerSimple.Instance.HandleSteering();
+            CarControllerSimple.Instance.UpdateWheels();
+        }
+    }
 
     #region Private Methods
     private void GetInputAxis()

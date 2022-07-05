@@ -49,15 +49,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Car UI
-
     public GameObject VehicleUI;
-    public GameObject EmergencyBedUI;
-    public TextMeshProUGUI TakeReturnText;
-    public TextMeshProUGUI FollowUnfollowText;
-    public TextMeshProUGUI PlaceRemovePatientText;
-    
-
-
     #endregion
 
     private void Awake()

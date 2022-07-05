@@ -38,9 +38,27 @@ public class CarControllerSimple : MonoBehaviour
 
     public GameObject CarDashboardUI;
 
- 
+     public OwnershipTransfer _transfer;
 
-    private void Start()
+
+
+     public static CarControllerSimple Instance;
+
+
+     private void Awake()
+     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+     private void Start()
     {
        
         _carRb = GetComponent<Rigidbody>();
@@ -51,19 +69,19 @@ public class CarControllerSimple : MonoBehaviour
 
     private void Update()
     {
-        CheckIfDriveable();
-        GetInput();
-        CheckIsMovingBackwards();
+        //CheckIfDriveable();
+        //GetInput();
+        //CheckIsMovingBackwards();
     }
 
     private void FixedUpdate()
     {
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
+        //HandleMotor();
+        //HandleSteering();
+        //UpdateWheels();
     }
 
-    private void GetInput()
+    public void GetInput()
     {
         if (_isDrivable)
         {
@@ -73,7 +91,7 @@ public class CarControllerSimple : MonoBehaviour
         }
     }
 
-    private void HandleMotor()
+    public void HandleMotor()
     {
         float moveSpeed;
 
@@ -97,7 +115,7 @@ public class CarControllerSimple : MonoBehaviour
     {
     }
 
-    private void HandleSteering()
+    public void HandleSteering()
     {
         float turnSpeed = _horizontalInput * _turningSpeed * Time.deltaTime * _carRb.velocity.magnitude;
         if (_isMovingBackwards)
@@ -107,7 +125,7 @@ public class CarControllerSimple : MonoBehaviour
         transform.Rotate(0, turnSpeed, 0, Space.World);
     }
 
-    private void UpdateWheels()
+    public void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheeTransform);
@@ -127,7 +145,7 @@ public class CarControllerSimple : MonoBehaviour
         }
     }
 
-    private void CheckIsMovingBackwards()
+    public void CheckIsMovingBackwards()
     {
         if (_carRb.angularVelocity.y > 0)
         {
@@ -175,7 +193,7 @@ public class CarControllerSimple : MonoBehaviour
     }
 
 
-    private void CheckIfDriveable()
+    public void CheckIfDriveable()
     {
         foreach (CarDoorCollision item in CarDoorCollisions)
         {
