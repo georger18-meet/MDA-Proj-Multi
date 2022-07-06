@@ -5,7 +5,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour,IPunObservable
 {
     #region Fields
     [Header("Photon")]
@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     #endregion
 
+
+    public GameObject CarCollider;
+
+
     #region State Machine
     private delegate void State();
     private State _stateAction;
@@ -59,16 +63,21 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+    
+
         if (_photonView.IsMine)
         {
             FreeMouse(true);
             _stateAction = UseTankIdleState;
             _MiniMaCamera.SetActive(true);
+           // CarCollider.SetActive(true);
         }
         else
         {
             Destroy(this);
             _MiniMaCamera.SetActive(false);
+          //  CarCollider.SetActive(false);
+
         }
     }
 
@@ -77,9 +86,15 @@ public class PlayerController : MonoBehaviour
         if (_photonView.IsMine)
         {
             _stateAction.Invoke();
-            _currentCarController.CheckIfDriveable();
-            _currentCarController.GetInput();
-            _currentCarController.CheckIsMovingBackwards();
+            if (_currentCarController != null)
+            {
+                CarCollider = _currentCarController.gameObject.transform.GetChild(2).GetChild(0).gameObject;
+
+                _currentCarController.CheckIfDriveable();
+                _currentCarController.GetInput();
+                _currentCarController.CheckIsMovingBackwards();
+            }
+          
         }
     }
 
@@ -514,4 +529,20 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //owner is writing
+        if (stream.IsWriting)
+        {
+            
+        }
+
+        //reciver is reading 
+        if (stream.IsReading)
+        {
+
+        }
+
+    }
 }

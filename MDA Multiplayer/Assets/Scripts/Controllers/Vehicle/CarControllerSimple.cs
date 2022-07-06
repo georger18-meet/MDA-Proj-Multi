@@ -26,6 +26,7 @@ public class CarControllerSimple : MonoBehaviour
     private Rigidbody _carRb;
 
     public GameObject CarHeadLights;
+    public GameObject CarCollider;
     private bool _carHeadLightsOn = false;
 
     public GameObject CarSiren;
