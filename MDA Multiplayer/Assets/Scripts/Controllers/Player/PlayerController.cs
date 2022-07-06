@@ -5,7 +5,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerController : MonoBehaviour,IPunObservable
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     #region Fields
     [Header("Photon")]
@@ -70,13 +70,17 @@ public class PlayerController : MonoBehaviour,IPunObservable
             FreeMouse(true);
             _stateAction = UseTankIdleState;
             _MiniMaCamera.SetActive(true);
-           // CarCollider.SetActive(true);
+            // CarCollider.SetActive(true);
+            _characterController.enabled = true;
+
         }
         else
         {
             Destroy(this);
             _MiniMaCamera.SetActive(false);
-          //  CarCollider.SetActive(false);
+            //  CarCollider.SetActive(false);
+            _characterController.enabled = false;
+
 
         }
     }
@@ -88,13 +92,19 @@ public class PlayerController : MonoBehaviour,IPunObservable
             _stateAction.Invoke();
             if (_currentCarController != null)
             {
-                CarCollider = _currentCarController.gameObject.transform.GetChild(2).GetChild(0).gameObject;
-
+                //CarCollider = _currentCarController.gameObject.transform.GetChild(2).GetChild(0).gameObject;
+              //  CarCollider.SetActive(true);
                 _currentCarController.CheckIfDriveable();
                 _currentCarController.GetInput();
                 _currentCarController.CheckIsMovingBackwards();
             }
           
+        }
+        else
+        {
+            
+           // CarCollider.SetActive(false);
+
         }
     }
 
@@ -530,19 +540,5 @@ public class PlayerController : MonoBehaviour,IPunObservable
     }
     #endregion
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        //owner is writing
-        if (stream.IsWriting)
-        {
-            
-        }
-
-        //reciver is reading 
-        if (stream.IsReading)
-        {
-
-        }
-
-    }
+ 
 }
