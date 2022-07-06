@@ -12,7 +12,6 @@ public class HeartMassages : MonoBehaviour
 
     private Animator _playerAnimator;
     private string _playerName;
-    private float _cprCounter = 0f, _cprTimeLimit = 0.1f;
 
     private IEnumerator WaitToFinishCPR()
     {
@@ -20,7 +19,6 @@ public class HeartMassages : MonoBehaviour
 
         _playerAnimator.SetBool("Administering Cpr", false);
         _actionTemplates.UpdatePatientLog($"{_playerName} has finished Administering Heart Massages");
-        _cprTimeLimit = 0f;
     }
 
     public void DoHeartMassage()
@@ -39,7 +37,9 @@ public class HeartMassages : MonoBehaviour
                 desiredPlayerData.transform.SetPositionAndRotation(desiredPlayerData.CurrentPatientNearby.transform.GetChild(1).GetChild(0).position, desiredPlayerData.CurrentPatientNearby.transform.GetChild(1).GetChild(0).rotation);
 
                 _playerAnimator.SetBool("Administering Cpr", true);
-                desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
+
+                //desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
 
                 StartCoroutine(WaitToFinishCPR());
                 _playerName = photonView.Owner.NickName;

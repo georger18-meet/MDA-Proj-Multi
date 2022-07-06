@@ -35,9 +35,6 @@ public class Patient : MonoBehaviour
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
     #endregion
 
-    //public List<PlayerController> players;
-    //public List<int> TreatingUsersTest;
-
     #region Monovehavior Callbacks
     private void Awake()
     {
@@ -146,22 +143,6 @@ public class Patient : MonoBehaviour
     }
     #endregion
 
-    //public void AddUserToTreatingLists(int currentPlayer)
-    //{
-    //    if (!PhotonView.IsMine)
-    //        return;
-    //
-    //    Debug.Log("currentPlayer Id IS : " + " " + currentPlayer);
-    //
-    //
-    //    players[players.Count - 1].GetphotonView().RPC("RPC_AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, currentPlayer);
-    //
-    //
-    //
-    //}
-
-    
-
     public bool IsPlayerJoined(PlayerData playerData)
     {
         Debug.Log("Attempting to check if player is joined");
@@ -183,10 +164,12 @@ public class Patient : MonoBehaviour
         ActionsManager.Instance.OnPatientClicked();
     }
 
+    #region PunRPC Methods
 
-
-
-
-
-
+    [PunRPC]
+    private void ChangeHeartRateRPC(int newBPM)
+    {
+        PatientData.HeartRateBPM = newBPM;
+    }
+    #endregion
 }

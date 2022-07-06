@@ -16,7 +16,7 @@ public class PatientData : ScriptableObject
 
     // Health Data
     [Header("Measurments")]
-    public int BPM;
+    public int HeartRateBPM;
     public int PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2;
 
     // Appearance
@@ -29,14 +29,14 @@ public class PatientData : ScriptableObject
 
     public int GetMeasurementName(int index)
     {
-        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        measurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 
         return measurementName[index];
     }
 
     public void SetMeasurementByIndex(int index, int value)
     {
-        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        measurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
         measurementName[index] = value;
 
         Measurements measurements = (Measurements)index;
@@ -45,7 +45,7 @@ public class PatientData : ScriptableObject
         switch (measurements)
         {
             case Measurements.BPM:
-                BPM = measurementName[index];
+                HeartRateBPM = measurementName[index];
                 break;
 
             case Measurements.PainLevel:
