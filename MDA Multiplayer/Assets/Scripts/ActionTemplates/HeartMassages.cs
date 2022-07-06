@@ -11,28 +11,16 @@ public class HeartMassages : MonoBehaviour
     [SerializeField] private ActionTemplates _actionTemplates;
 
     private Animator _playerAnimator;
-    private float _cprCounter = 0, _cprTimeLimit = 2.5f;
-
-    private void Update()
-    {
-        StartCoroutine(WaitToFinishCPR());
-
-        if (_playerAnimator != null && _playerAnimator.GetBool("Administering Cpr") && _cprCounter >= _cprTimeLimit)
-        {
-            _playerAnimator.SetBool("Administering Cpr", false);
-        }
-    }
+    private string _playerName;
+    private float _cprCounter = 0f, _cprTimeLimit = 0.1f;
 
     private IEnumerator WaitToFinishCPR()
     {
-        if (!(_cprCounter >= _cprTimeLimit))
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                _cprTimeLimit++;
-                yield return new WaitForSeconds(1);
-            }
-        }
+        yield return new WaitForSeconds(4);
+
+        _playerAnimator.SetBool("Administering Cpr", false);
+        _actionTemplates.UpdatePatientLog($"{_playerName} has finished Administering Heart Massages");
+        _cprTimeLimit = 0f;
     }
 
     public void DoHeartMassage()
@@ -53,7 +41,10 @@ public class HeartMassages : MonoBehaviour
                 _playerAnimator.SetBool("Administering Cpr", true);
                 desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
 
-                _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
+                StartCoroutine(WaitToFinishCPR());
+                _playerName = photonView.Owner.NickName;
+
+                _actionTemplates.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
             }
         }
