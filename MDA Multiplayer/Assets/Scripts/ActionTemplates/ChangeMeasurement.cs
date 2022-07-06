@@ -27,7 +27,8 @@ public class ChangeMeasurement : MonoBehaviour
 
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
                 Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementByIndex(measurementNumber, _newMeasurement);
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
+                //desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementByIndex(measurementNumber, _newMeasurement);
 
                 _actionTemplates.ShowAlertWindow(_measurementTitle, _newMeasurement);
                 _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed");

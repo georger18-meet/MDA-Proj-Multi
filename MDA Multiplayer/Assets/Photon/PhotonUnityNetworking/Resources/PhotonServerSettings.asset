@@ -51,6 +51,7 @@ MonoBehaviour:
   - EvacPatient_RPC
   - ChangeCharControllerStateRPC
   - ChangeHeartRateRPC
+  - SetMeasurementByIndexRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

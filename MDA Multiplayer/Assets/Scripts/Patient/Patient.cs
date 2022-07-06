@@ -56,7 +56,7 @@ public class Patient : MonoBehaviour
     {
 
 
-    
+
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
@@ -171,5 +171,50 @@ public class Patient : MonoBehaviour
     {
         PatientData.HeartRateBPM = newBPM;
     }
-    #endregion
+
+    [PunRPC]
+    private void SetMeasurementByIndexRPC(int index, int value)
+    {
+        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
+        PatientData.MeasurementName[index] = value;
+
+        Measurements measurements = (Measurements)index;
+
+        // to be replaced
+        switch (measurements)
+        {
+            case Measurements.BPM:
+                PatientData.HeartRateBPM = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.PainLevel:
+                PatientData.PainLevel = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.RespiratoryRate:
+                PatientData.RespiratoryRate = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.CincinnatiLevel:
+                PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.BloodSuger:
+                PatientData.BloodSuger = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.BloodPressure:
+                PatientData.BloodPressure = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.OxygenSaturation:
+                PatientData.OxygenSaturation = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.ETCO2:
+                PatientData.ETCO2 = PatientData.MeasurementName[index];
+                break;
+        }
+        #endregion
+    }
 }

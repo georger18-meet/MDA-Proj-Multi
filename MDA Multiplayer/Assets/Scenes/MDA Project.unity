@@ -87124,6 +87124,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1460660234}
     - target: {fileID: 4719041671786253990, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: _newMeasurement
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719041671786253990, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: _actionTemplates
       value: 
       objectReference: {fileID: 851170986}
@@ -87435,6 +87439,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 851170986}
+    - target: {fileID: 7093874194157427739, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7113529092996944444, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -87458,6 +87466,10 @@ PrefabInstance:
     - target: {fileID: 7113529092996944444, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379576830278853218, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_Name
+      value: Apply Insulin Btn
       objectReference: {fileID: 0}
     - target: {fileID: 7578548052282080810, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: _actionManager
