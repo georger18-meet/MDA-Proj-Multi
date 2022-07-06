@@ -472,6 +472,7 @@ public class PlayerController : MonoBehaviour,IPunObservable
     //    GetComponent<PlayerData>().CurrentPatientNearby.TreatingUsersTest.Add(currentPlayerData.ActorNumber);
     //}
 
+    #region PunRPC
     [PunRPC]
     private void ChangeCharControllerStateRPC()
     {
@@ -484,6 +485,14 @@ public class PlayerController : MonoBehaviour,IPunObservable
             _characterController.enabled = true;
         }
     }
+
+    [PunRPC]
+    private void UpdatePatientLogRPC(string textToLog)
+    {
+        ActionTemplates.Instance.DocLog.LogThisText(textToLog);
+    }
+    #endregion
+
     #region Collisions & Triggers
     private void OnTriggerEnter(Collider other)
     {

@@ -10,6 +10,8 @@ public class ActionTemplates : MonoBehaviour
     public static ActionTemplates Instance;
 
     [SerializeField] private DocumentationLogManager _docLog;
+    public DocumentationLogManager DocLog => _docLog;
+
     [SerializeField] private GameObject _alertWindow;
     [SerializeField] private TextMeshProUGUI _alertTitle, _alertText;
     [SerializeField] private float _alertTimer;
@@ -112,7 +114,7 @@ public class ActionTemplates : MonoBehaviour
     public void UpdatePatientLog(string textToLog)
     {
         _docLog.LogThisText(textToLog);
-    } 
+    }
     #endregion
 
     private void Awake()
