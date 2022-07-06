@@ -5498,7 +5498,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9223238086303951802}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 180
   m_Drag: 1.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -5542,6 +5542,7 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 9074789563764571723}
   rearLeftWheelTransform: {fileID: 6615681593660284998}
   CarHeadLights: {fileID: 493855040142370870}
+  CarCollider: {fileID: 6245518099922122822}
   CarSiren: {fileID: 8021740619891440960}
   CarSirenAudioSource: {fileID: 6245518100391695633}
   CarDoorCollisions:
@@ -5590,7 +5591,7 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
     ExtrapolateOption: 0

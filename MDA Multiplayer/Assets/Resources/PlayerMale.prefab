@@ -738,7 +738,7 @@ MonoBehaviour:
   PlayerData: {fileID: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _vehicleCamera: {fileID: 8959073057551848424}
-  _MiniMaCamera: {fileID: 0}
+  _MiniMaCamera: {fileID: 666755789287419742}
   _firstPersonCameraTransform: {fileID: 8822803000982418763}
   _thirdPersonCameraTransform: {fileID: 8822803000880888004}
   _playerAnimator: {fileID: 7292725682840954819}
@@ -756,6 +756,7 @@ MonoBehaviour:
     m_Bits: 520
   _groundCheckTransform: {fileID: 8822803002723430987}
   _groundCheckRadius: 0.5
+  CarCollider: {fileID: 0}
 --- !u!114 &1154062206
 MonoBehaviour:
   m_ObjectHideFlags: 0
