@@ -67,7 +67,7 @@ public class Lobby : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                PhotonNetwork.LoadLevel("MDA Project");
+                PhotonNetwork.LoadLevel(1);
             }
         }
 
