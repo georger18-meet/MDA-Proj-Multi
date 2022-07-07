@@ -1893,7 +1893,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10646,8 +10646,8 @@ RectTransform:
   - {fileID: 2399976834813543153}
   - {fileID: 2399976836013574427}
   - {fileID: 2399976834555496321}
-  m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 5
+  m_Father: {fileID: 4273662431078215767}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12105,7 +12105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &722596295225454455
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12439,6 +12439,10 @@ RectTransform:
   - {fileID: 9078619276086178126}
   - {fileID: 7994697898989439186}
   - {fileID: 7994697898589096567}
+  - {fileID: 4134889592690244841}
+  - {fileID: 8231440785055992188}
+  - {fileID: 2399976835450785835}
+  - {fileID: 3254954561529882193}
   - {fileID: 7994697899904858195}
   - {fileID: 7994697898685885123}
   - {fileID: 5394115924545907634}
@@ -14952,8 +14956,8 @@ RectTransform:
   m_Children:
   - {fileID: 2815151140140471605}
   - {fileID: 4134889592447075169}
-  m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 2
+  m_Father: {fileID: 7994697898832250195}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -48416,8 +48420,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4134889593532345397}
-  m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 7
+  m_Father: {fileID: 4273662431078215767}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -51149,7 +51153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3254954561529882193}
   m_Layer: 5
-  m_Name: AmbulanceEmergencyBed UI
+  m_Name: EmergencyBed UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51169,8 +51173,8 @@ RectTransform:
   - {fileID: 3925808064828979772}
   - {fileID: 1192835960236170794}
   - {fileID: 7412218400912045300}
-  m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 8
+  m_Father: {fileID: 4273662431078215767}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -54282,7 +54286,7 @@ RectTransform:
   m_Children:
   - {fileID: 5394115924821686089}
   m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -55766,7 +55770,7 @@ RectTransform:
   m_Children:
   - {fileID: 3042945920434233447}
   m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -55919,7 +55923,7 @@ RectTransform:
   m_Children:
   - {fileID: 5394115925910017981}
   m_Father: {fileID: 4273662431078215767}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -62092,7 +62096,7 @@ MonoBehaviour:
         m_MethodName: OpenCloseDisplayWindow
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 2686988292381002504}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -63674,10 +63678,10 @@ RectTransform:
   m_Father: {fileID: 354651383171868396}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 185, y: -60}
+  m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7901501065080812817
 CanvasRenderer:
@@ -66325,8 +66329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionTemplates: {fileID: 0}
-  _clothing: 0
-  _textureToChange: Player's Clothing
+  _clothing: 3
+  _textureToChange: Patient's Clothing
   _alertContent: Naked with shorts
 --- !u!1 &6895854621571916695
 GameObject:
@@ -76023,7 +76027,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4273662431078215767}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -79944,6 +79948,7 @@ RectTransform:
   - {fileID: 7994697898984572538}
   - {fileID: 7994697899320426588}
   - {fileID: 722596295225454455}
+  - {fileID: 2815151138455516731}
   m_Father: {fileID: 7994697899139794085}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85181,13 +85186,8 @@ RectTransform:
   m_Children:
   - {fileID: 4273662431078215767}
   - {fileID: 7994697898832250195}
-  - {fileID: 2815151138455516731}
   - {fileID: 5394115924519175164}
   - {fileID: 5394115923906069153}
-  - {fileID: 2399976835450785835}
-  - {fileID: 8231440785055992188}
-  - {fileID: 4134889592690244841}
-  - {fileID: 3254954561529882193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98031,7 +98031,7 @@ RectTransform:
   - {fileID: 7994697898566642839}
   - {fileID: 1954779658369857752}
   m_Father: {fileID: 4273662431078215767}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -112856,13 +112856,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2976943960101704339}
-  m_Father: {fileID: 7994697899139794085}
-  m_RootOrder: 6
+  m_Father: {fileID: 4273662431078215767}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 635, y: 359}
-  m_SizeDelta: {x: -1820, y: -980}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 260, y: 172.75}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &9174618947248878318
 GameObject:
