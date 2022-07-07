@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 {
     #region Fields
     [Header("Photon")]
-    [SerializeField] private PhotonView _photonView;
+    [SerializeField] public PhotonView _photonView;
     [SerializeField] public PhotonView PhotonView => _photonView;
 
     [Header("Data")]

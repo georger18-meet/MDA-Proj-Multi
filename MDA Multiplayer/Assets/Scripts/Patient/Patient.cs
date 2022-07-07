@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class Patient : MonoBehaviour
+public class Patient : MonoBehaviourPunCallbacks
 {
     [Header("Photon")]
     public PhotonView PhotonView;
@@ -33,6 +33,8 @@ public class Patient : MonoBehaviour
     [Header("Treatment Positions")]
     public Transform ChestPosPlayerTransform;
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
+
+    private OwnershipTransfer _transfer;
     #endregion
 
     //public List<PlayerController> players;
@@ -41,6 +43,7 @@ public class Patient : MonoBehaviour
     #region Monovehavior Callbacks
     private void Awake()
     {
+        _transfer = GetComponent<OwnershipTransfer>();
         PatientRenderer.material = PatientData.FullyClothedMaterial;
         DontDestroyOnLoad(gameObject.transform);
     }
@@ -58,8 +61,6 @@ public class Patient : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-
-    
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
@@ -67,6 +68,7 @@ public class Patient : MonoBehaviour
         else if (!NearbyUsers.Contains(possiblePlayer))
         {
             NearbyUsers.Add(possiblePlayer);
+            _transfer.ClickToJoinPatient();
         }
     }
 
@@ -182,11 +184,5 @@ public class Patient : MonoBehaviour
     {
         ActionsManager.Instance.OnPatientClicked();
     }
-
-
-
-
-
-
 
 }
