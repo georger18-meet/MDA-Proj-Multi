@@ -18,7 +18,6 @@ public class ChangeClothing : MonoBehaviour
     [SerializeField] private Clothing _clothing;
     [SerializeField] private string _textureToChange, _alertContent;
 
-
     public void ChangeClothingAction(int measurementNumber)
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
