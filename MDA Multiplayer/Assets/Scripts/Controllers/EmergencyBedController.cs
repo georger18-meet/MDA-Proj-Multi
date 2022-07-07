@@ -282,6 +282,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
             stream.SendNext(_emergencyBedPositionInsideVehicle.position);
             stream.SendNext(_emergencyBedPositionOutsideVehicle.position);
             stream.SendNext(_isBedClosed);
@@ -294,6 +295,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         else
         {
             transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
             _emergencyBedPositionInsideVehicle.position = (Vector3)stream.ReceiveNext();
             _emergencyBedPositionOutsideVehicle.position = (Vector3)stream.ReceiveNext();
             _isBedClosed = (bool)stream.ReceiveNext();
