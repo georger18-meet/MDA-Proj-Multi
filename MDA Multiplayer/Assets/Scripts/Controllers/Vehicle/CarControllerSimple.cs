@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class CarControllerSimple : MonoBehaviour
+public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
 {
     private float _verticalInput;
     private float _horizontalInput;
     private float _currentbreakForce;
     private bool _isBreaking;
     private bool _isMovingBackwards;
-    [SerializeField] private bool _isDrivable;
+    [SerializeField] public bool _isDrivable;
 
     [SerializeField] private float _forwardSpeed = 20;
     [SerializeField] private float _reverseSpeed = 15;
@@ -190,6 +191,18 @@ public class CarControllerSimple : MonoBehaviour
                 _carRb.isKinematic = true;
                // CarDashboardUI.SetActive(false);
             }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+        }
+        else
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
         }
     }
 }

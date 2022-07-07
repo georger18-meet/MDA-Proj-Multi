@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Falcon v0.6.1
+    AppVersion: Falcon v0.6
     UseNameServer: 1
     FixedRegion: eu
     Server: 

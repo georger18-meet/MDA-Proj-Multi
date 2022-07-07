@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -5,7 +6,7 @@ using Photon.Realtime;
 using UnityEngine;
 using TMPro;
 
-public class EmergencyBedController : MonoBehaviour
+public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
 {
     [Header("Player & Patient")]
     [SerializeField] private GameObject _patient;
@@ -29,24 +30,32 @@ public class EmergencyBedController : MonoBehaviour
     [SerializeField] private bool _isBedClosed, _isPatientOnBed, _isFollowingPlayer, _inCar;
 
 
+    private PhotonView _photonView;
 
-
-
-
-   //[SerializeField] private PhotonView _photonView;
+    //[SerializeField] private PhotonView _photonView;
     public OwnershipTransfer _transfer;
+
+    private void Awake()
+    {
+        _photonView = GetComponent<PhotonView>();
+    }
+
     void Start()
     {
-        _emergencyBedUI.SetActive(false);
-       // _photonView = GetComponent<PhotonView>();
+        if (photonView.IsMine)
+        {
+            _emergencyBedUI.SetActive(false);
+        }
+
     }
 
     void Update()
     {
+        if (photonView.IsMine)
+        {
+            AlwaysChecking();
 
-        AlwaysChecking();
-
-
+        }
     }
 
     public void AlwaysChecking()
@@ -187,7 +196,6 @@ public class EmergencyBedController : MonoBehaviour
     {
         if (_inCar && !_takeOutBed)
         {
-            _transfer.BedPickUp();
             _takeOutBed = true;
             _emergencyBedUI.SetActive(true);
             transform.SetPositionAndRotation(_emergencyBedPositionOutsideVehicle.position, _emergencyBedPositionOutsideVehicle.rotation);
@@ -220,7 +228,10 @@ public class EmergencyBedController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+
             _player = other.gameObject;
+            _transfer.BedPickUp();
+
         }
 
         if (other.CompareTag("Patient"))
@@ -230,7 +241,7 @@ public class EmergencyBedController : MonoBehaviour
                 _patient = other.gameObject;
             }
         }
-
+        
         if (other.CompareTag("Car"))
         {
             _inCar = true;
@@ -264,5 +275,36 @@ public class EmergencyBedController : MonoBehaviour
         {
             _patient.GetComponent<BoxCollider>().enabled = false;
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(_emergencyBedPositionInsideVehicle.position);
+            stream.SendNext(_emergencyBedPositionOutsideVehicle.position);
+            stream.SendNext(_isBedClosed);
+            stream.SendNext(_isPatientOnBed);
+            stream.SendNext(_isFollowingPlayer);
+            stream.SendNext(_inCar);
+            stream.SendNext(_takeOutBed);
+            stream.SendNext(_patientPosOnBed.position);
+        }
+        else
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
+            _emergencyBedPositionInsideVehicle.position = (Vector3)stream.ReceiveNext();
+            _emergencyBedPositionOutsideVehicle.position = (Vector3)stream.ReceiveNext();
+            _isBedClosed = (bool)stream.ReceiveNext();
+            _isPatientOnBed = (bool)stream.ReceiveNext();
+            _isFollowingPlayer = (bool)stream.ReceiveNext();
+            _inCar = (bool)stream.ReceiveNext();
+            _takeOutBed = (bool)stream.ReceiveNext();
+            _patientPosOnBed.position = (Vector3)stream.ReceiveNext();
+        }
+
     }
 }
