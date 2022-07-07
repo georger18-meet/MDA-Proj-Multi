@@ -1,23 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class CarControllerSimple : MonoBehaviour
+public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
 {
     private float _verticalInput;
     private float _horizontalInput;
     private float _currentbreakForce;
     private bool _isBreaking;
     private bool _isMovingBackwards;
-    [SerializeField] private bool _isDrivable;
+    [SerializeField] public bool _isDrivable;
 
     [SerializeField] private float _forwardSpeed = 20;
     [SerializeField] private float _reverseSpeed = 15;
     [SerializeField] private float _turningSpeed = 2;
     [SerializeField] private float _breakForce;
     [SerializeField] private float _centerOfMassOffset;
-
-
 
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheeTransform;
@@ -27,6 +27,7 @@ public class CarControllerSimple : MonoBehaviour
     private Rigidbody _carRb;
 
     public GameObject CarHeadLights;
+    public GameObject CarCollider;
     private bool _carHeadLightsOn = false;
 
     public GameObject CarSiren;
@@ -37,27 +38,32 @@ public class CarControllerSimple : MonoBehaviour
 
     public GameObject CarDashboardUI;
 
-    private void Start()
+     public OwnershipTransfer _transfer;
+
+     private void Start()
     {
+       
         _carRb = GetComponent<Rigidbody>();
         _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
+        CarDashboardUI = UIManager.Instance.VehicleUI;
+
     }
 
     private void Update()
     {
-        CheckIfDriveable();
-        GetInput();
-        CheckIsMovingBackwards();
+        //CheckIfDriveable();
+        //GetInput();
+        //CheckIsMovingBackwards();
     }
 
     private void FixedUpdate()
     {
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
+        //HandleMotor();
+        //HandleSteering();
+        //UpdateWheels();
     }
 
-    private void GetInput()
+    public void GetInput()
     {
         if (_isDrivable)
         {
@@ -67,7 +73,7 @@ public class CarControllerSimple : MonoBehaviour
         }
     }
 
-    private void HandleMotor()
+    public void HandleMotor()
     {
         float moveSpeed;
 
@@ -91,7 +97,7 @@ public class CarControllerSimple : MonoBehaviour
     {
     }
 
-    private void HandleSteering()
+    public void HandleSteering()
     {
         float turnSpeed = _horizontalInput * _turningSpeed * Time.deltaTime * _carRb.velocity.magnitude;
         if (_isMovingBackwards)
@@ -101,7 +107,7 @@ public class CarControllerSimple : MonoBehaviour
         transform.Rotate(0, turnSpeed, 0, Space.World);
     }
 
-    private void UpdateWheels()
+    public void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheeTransform);
@@ -121,7 +127,7 @@ public class CarControllerSimple : MonoBehaviour
         }
     }
 
-    private void CheckIsMovingBackwards()
+    public void CheckIsMovingBackwards()
     {
         if (_carRb.angularVelocity.y > 0)
         {
@@ -169,7 +175,7 @@ public class CarControllerSimple : MonoBehaviour
     }
 
 
-    private void CheckIfDriveable()
+    public void CheckIfDriveable()
     {
         foreach (CarDoorCollision item in CarDoorCollisions)
         {
@@ -177,14 +183,26 @@ public class CarControllerSimple : MonoBehaviour
             {
                 _isDrivable = true;
                 _carRb.isKinematic = false;
-                CarDashboardUI.SetActive(true);
+               // CarDashboardUI.SetActive(true);
             }
             else if (item.SeatNumber == 0 && !item.IsSeatOccupied)
             {
                 _isDrivable = false;
                 _carRb.isKinematic = true;
-                CarDashboardUI.SetActive(false);
+               // CarDashboardUI.SetActive(false);
             }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+        }
+        else
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
         }
     }
 }

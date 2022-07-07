@@ -1,20 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     #region Fields
     [Header("Photon")]
-    [SerializeField] private PhotonView _photonView;
+    [SerializeField] public PhotonView _photonView;
+    [SerializeField] public PhotonView PhotonView => _photonView;
 
     [Header("Data")]
     public PlayerData PlayerData;
 
     [Header("Camera")]
+    private Camera _currentCamera;
     [SerializeField] private Camera _playerCamera;
+    [SerializeField] private Camera _vehicleCamera;
+    [SerializeField] private GameObject _MiniMaCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
 
     [Header("Animation")]
@@ -22,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Momvement")]
     [SerializeField] private CharacterController _characterController;
+    private CarControllerSimple _currentCarController;
+    public CarControllerSimple CurrentCarController { get => _currentCarController; set => _currentCarController = value; }
+
     [SerializeField] private Vector2 _mouseSensitivity = new Vector2(60f, 40f);
     [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 6f, _runningSpeed = 11f, _flyingSpeed = 16f;
     [SerializeField] private float _jumpForce = 3f, _flyUpwardsSpeed = 9f, _maxFlyingHeight = 100f;
@@ -37,6 +45,10 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     #endregion
 
+
+    public GameObject CarCollider;
+
+
     #region State Machine
     private delegate void State();
     private State _stateAction;
@@ -46,18 +58,30 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         PlayerData = gameObject.AddComponent<PlayerData>();
+        _currentCamera = _playerCamera;
     }
 
     private void Start()
     {
+    
+
         if (_photonView.IsMine)
         {
             FreeMouse(true);
             _stateAction = UseTankIdleState;
+            _MiniMaCamera.SetActive(true);
+            // CarCollider.SetActive(true);
+            _characterController.enabled = true;
+
         }
         else
         {
             Destroy(this);
+            _MiniMaCamera.SetActive(false);
+            //  CarCollider.SetActive(false);
+            _characterController.enabled = false;
+
+
         }
     }
 
@@ -66,6 +90,31 @@ public class PlayerController : MonoBehaviour
         if (_photonView.IsMine)
         {
             _stateAction.Invoke();
+            if (_currentCarController != null)
+            {
+                //CarCollider = _currentCarController.gameObject.transform.GetChild(2).GetChild(0).gameObject;
+              //  CarCollider.SetActive(true);
+                _currentCarController.CheckIfDriveable();
+                _currentCarController.GetInput();
+                _currentCarController.CheckIsMovingBackwards();
+            }
+          
+        }
+        else
+        {
+            
+           // CarCollider.SetActive(false);
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_photonView.IsMine && _currentCarController != null)
+        {
+            _currentCarController.HandleMotor();
+            _currentCarController.HandleSteering();
+            _currentCarController.UpdateWheels();
         }
     }
     #endregion
@@ -123,13 +172,13 @@ public class PlayerController : MonoBehaviour
         Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
 
         transform.Rotate(_mouseSensitivity.x * mouseInput.x * Time.deltaTime * Vector3.up);
-        _playerCamera.transform.Rotate(_mouseSensitivity.y * mouseInput.y * Time.deltaTime * Vector3.right);
+        _currentCamera.transform.Rotate(_mouseSensitivity.y * mouseInput.y * Time.deltaTime * Vector3.right);
     }
 
     private void SetFirstPersonCamera(bool value)
     {
-        _playerCamera.transform.position = value ? _firstPersonCameraTransform.position : _thirdPersonCameraTransform.position;
-        _playerCamera.transform.rotation = value ? _firstPersonCameraTransform.rotation : _thirdPersonCameraTransform.rotation;
+        _currentCamera.transform.position = value ? _firstPersonCameraTransform.position : _thirdPersonCameraTransform.position;
+        _currentCamera.transform.rotation = value ? _firstPersonCameraTransform.rotation : _thirdPersonCameraTransform.rotation;
     }
 
     private void FreeMouse(bool value)
@@ -145,7 +194,7 @@ public class PlayerController : MonoBehaviour
             Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
 
             transform.Rotate(Vector3.up * mouseInput.x * _mouseSensitivity.x * Time.deltaTime);
-            _playerCamera.transform.Rotate(Vector3.right * mouseInput.y * _mouseSensitivity.y * Time.deltaTime);
+            _currentCamera.transform.Rotate(Vector3.right * mouseInput.y * _mouseSensitivity.y * Time.deltaTime);
         }
     }
 
@@ -159,12 +208,11 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region States
-
     private void UseTankIdleState()
     {
         if (_photonView.IsMine)
         {
-            Debug.Log("Current State: Idle");
+           //Debug.Log("Current State: Idle");
 
             _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
             _playerAnimator.SetFloat("Rotatation Speed", 0f, 0.1f, Time.deltaTime);
@@ -197,7 +245,6 @@ public class PlayerController : MonoBehaviour
             RotateBodyWithMouse();
         }
     }
-
     private void UseFirstPersonIdleState()
     {
         if (_photonView)
@@ -233,12 +280,11 @@ public class PlayerController : MonoBehaviour
             FreeMouseWithAlt();
         }
     }
-
     private void UseTankWalkingState()
     {
         if (_photonView.IsMine)
         {
-            Debug.Log("Current State: Walking");
+           // Debug.Log("Current State: Walking");
 
             GetInputAxis();
 
@@ -270,7 +316,6 @@ public class PlayerController : MonoBehaviour
             UseTankMovement();
         }
     }
-
     private void UseFirstPersonWalkingState()
     {
         if (_photonView.IsMine)
@@ -327,7 +372,6 @@ public class PlayerController : MonoBehaviour
             FreeMouseWithAlt();
         }
     }
-
     private void UseFlyingIdleState()
     {
         if (_photonView.IsMine)
@@ -365,7 +409,6 @@ public class PlayerController : MonoBehaviour
             RotateBodyWithMouse();
         }
     }
-
     private void UseFlyingMovingState()
     {
         if (_photonView.IsMine)
@@ -399,17 +442,22 @@ public class PlayerController : MonoBehaviour
             UseFlyingMovement();
         }
     }
-
     private void UseDrivingState()
     {
         if (_photonView.IsMine)
         {
             Debug.Log("Current State: Driving");
 
+            _playerCamera.enabled = false;
+            _vehicleCamera.enabled = true;
+            _currentCamera = _vehicleCamera;
             _characterController.enabled = false;
 
             if (!_isDriving)
             {
+                _vehicleCamera.enabled = false;
+                _playerCamera.enabled = true;
+                _currentCamera = _playerCamera;
                 _characterController.enabled = true;
                 _stateAction = UseTankIdleState;
             }
@@ -433,6 +481,27 @@ public class PlayerController : MonoBehaviour
     //
     //    GetComponent<PlayerData>().CurrentPatientNearby.TreatingUsersTest.Add(currentPlayerData.ActorNumber);
     //}
+
+    #region PunRPC
+    [PunRPC]
+    private void ChangeCharControllerStateRPC()
+    {
+        if (_characterController.enabled)
+        {
+            _characterController.enabled = false;
+        }
+        else
+        {
+            _characterController.enabled = true;
+        }
+    }
+
+    [PunRPC]
+    private void UpdatePatientLogRPC(string textToLog)
+    {
+        ActionTemplates.Instance.DocLog.LogThisText(textToLog);
+    }
+    #endregion
 
     #region Collisions & Triggers
     private void OnTriggerEnter(Collider other)
@@ -479,4 +548,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+ 
 }

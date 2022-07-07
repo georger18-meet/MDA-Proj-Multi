@@ -16,7 +16,7 @@ public class PatientData : ScriptableObject
 
     // Health Data
     [Header("Measurments")]
-    public int BPM;
+    public int HeartRateBPM;
     public int PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2;
 
     // Appearance
@@ -25,19 +25,19 @@ public class PatientData : ScriptableObject
     public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
 
     // Catch Measurement Name
-    private List<int> measurementName;
+    public List<int> MeasurementName;
 
     public int GetMeasurementName(int index)
     {
-        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 
-        return measurementName[index];
+        return MeasurementName[index];
     }
 
     public void SetMeasurementByIndex(int index, int value)
     {
-        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
-        measurementName[index] = value;
+        MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        MeasurementName[index] = value;
 
         Measurements measurements = (Measurements)index;
 
@@ -45,35 +45,35 @@ public class PatientData : ScriptableObject
         switch (measurements)
         {
             case Measurements.BPM:
-                BPM = measurementName[index];
+                HeartRateBPM = MeasurementName[index];
                 break;
 
             case Measurements.PainLevel:
-                PainLevel = measurementName[index];
+                PainLevel = MeasurementName[index];
                 break;
 
             case Measurements.RespiratoryRate:
-                RespiratoryRate = measurementName[index];
+                RespiratoryRate = MeasurementName[index];
                 break;
 
             case Measurements.CincinnatiLevel:
-                CincinnatiLevel = measurementName[index];
+                CincinnatiLevel = MeasurementName[index];
                 break;
 
             case Measurements.BloodSuger:
-                BloodSuger = measurementName[index];
+                BloodSuger = MeasurementName[index];
                 break;
 
             case Measurements.BloodPressure:
-                BloodPressure = measurementName[index];
+                BloodPressure = MeasurementName[index];
                 break;
 
             case Measurements.OxygenSaturation:
-                OxygenSaturation = measurementName[index];
+                OxygenSaturation = MeasurementName[index];
                 break;
 
             case Measurements.ETCO2:
-                ETCO2 = measurementName[index];
+                ETCO2 = MeasurementName[index];
                 break;
         }
     }

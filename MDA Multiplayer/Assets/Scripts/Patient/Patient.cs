@@ -29,16 +29,17 @@ public class Patient : MonoBehaviour
     public List<PlayerData> AllUsersTreatedThisPatient;
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
-    #endregion
 
-    //public List<PlayerController> players;
-    //public List<int> TreatingUsersTest;
+    [Header("Treatment Positions")]
+    public Transform ChestPosPlayerTransform;
+    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
+    #endregion
 
     #region Monovehavior Callbacks
     private void Awake()
     {
         PatientRenderer.material = PatientData.FullyClothedMaterial;
-        DontDestroyOnLoad(gameObject.transform.parent);
+        DontDestroyOnLoad(gameObject.transform);
     }
 
     private void Start()
@@ -50,8 +51,12 @@ public class Patient : MonoBehaviour
     #endregion
 
     #region Collision & Triggers
+
     private void OnTriggerEnter(Collider other)
     {
+
+
+
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
@@ -138,22 +143,6 @@ public class Patient : MonoBehaviour
     }
     #endregion
 
-    //public void AddUserToTreatingLists(int currentPlayer)
-    //{
-    //    if (!PhotonView.IsMine)
-    //        return;
-    //
-    //    Debug.Log("currentPlayer Id IS : " + " " + currentPlayer);
-    //
-    //
-    //    players[players.Count - 1].GetphotonView().RPC("RPC_AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, currentPlayer);
-    //
-    //
-    //
-    //}
-
-    
-
     public bool IsPlayerJoined(PlayerData playerData)
     {
         Debug.Log("Attempting to check if player is joined");
@@ -173,5 +162,59 @@ public class Patient : MonoBehaviour
     public void OnInteracted()
     {
         ActionsManager.Instance.OnPatientClicked();
+    }
+
+    #region PunRPC Methods
+
+    [PunRPC]
+    private void ChangeHeartRateRPC(int newBPM)
+    {
+        PatientData.HeartRateBPM = newBPM;
+    }
+
+    [PunRPC]
+    private void SetMeasurementByIndexRPC(int index, int value)
+    {
+        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
+        PatientData.MeasurementName[index] = value;
+
+        Measurements measurements = (Measurements)index;
+
+        // to be replaced
+        switch (measurements)
+        {
+            case Measurements.BPM:
+                PatientData.HeartRateBPM = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.PainLevel:
+                PatientData.PainLevel = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.RespiratoryRate:
+                PatientData.RespiratoryRate = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.CincinnatiLevel:
+                PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.BloodSuger:
+                PatientData.BloodSuger = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.BloodPressure:
+                PatientData.BloodPressure = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.OxygenSaturation:
+                PatientData.OxygenSaturation = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.ETCO2:
+                PatientData.ETCO2 = PatientData.MeasurementName[index];
+                break;
+        }
+        #endregion
     }
 }

@@ -18,7 +18,6 @@ public class ChangeClothing : MonoBehaviour
     [SerializeField] private Clothing _clothing;
     [SerializeField] private string _textureToChange, _alertContent;
 
-
     public void ChangeClothingAction(int measurementNumber)
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
@@ -36,19 +35,20 @@ public class ChangeClothing : MonoBehaviour
                 switch (_clothing)
                 {
                     case Clothing.FullyClothed:
-                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.FullyClothedMaterial;
+
+                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.FullyClothedMaterial;
                         break;
 
                     case Clothing.ShirtOnly:
-                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.ShirtOnlyMaterial;
+                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.ShirtOnlyMaterial;
                         break;
 
                     case Clothing.PantsOnly:
-                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.PantsOnlyMaterial;
+                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.PantsOnlyMaterial;
                         break;
 
                     case Clothing.UnderwearOnly:
-                        desiredPlayerData.CurrentPatientNearby.PatientRenderer.material = desiredPlayerData.CurrentPatientNearby.PatientData.UnderwearOnlyMaterial;
+                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.UnderwearOnlyMaterial;
                         break;
 
                     default:

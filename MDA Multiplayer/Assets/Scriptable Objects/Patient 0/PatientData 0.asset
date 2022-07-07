@@ -21,8 +21,8 @@ MonoBehaviour:
   MedicalCompany: klalit
   AddressLocation: Rosh Aain, Herzel street 25, Apartment 6
   Complaint: severe Headache
-  BPM: 94
-  PainLevel: 80
+  HeartRateBPM: 64
+  PainLevel: 8
   RespiratoryRate: 12
   CincinnatiLevel: 2
   BloodSuger: 15

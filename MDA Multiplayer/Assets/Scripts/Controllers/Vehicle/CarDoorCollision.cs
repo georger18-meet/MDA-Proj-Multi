@@ -11,11 +11,14 @@ public class CarDoorCollision : MonoBehaviour
     public GameObject CollidingPlayer;
     public Transform SeatPosition;
 
+
+    [SerializeField] private CarControllerSimple _carController;
     private Animator _doorAnimator;
 
     void Start()
     {
         _doorAnimator = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -75,10 +78,18 @@ public class CarDoorCollision : MonoBehaviour
 
             if (!IsSeatOccupied)
             {
+                
                 Debug.Log("supposed to drive");
                 OpenCloseDoorToggle(number);
                 IsSeatOccupied = true;
                 playerController.IsDriving = true;
+                
+                if (SeatNumber == 0)
+                {
+                    _carController._transfer.CarDriver();
+                    playerController.CurrentCarController = _carController;
+                    //playerController.PhotonView.RPC("ChangeCharControllerStateRPC", Photon.Pun.RpcTarget.Others);
+                }
                 // use player driving state
             }
             else if (IsSeatOccupied)
@@ -87,6 +98,12 @@ public class CarDoorCollision : MonoBehaviour
                 IsSeatOccupied = false;
                 CollidingPlayer.transform.position = gameObject.transform.position;
                 playerController.IsDriving = false;
+
+                if (SeatNumber != 0)
+                {
+                    playerController.CurrentCarController = null;
+                    //playerController.PhotonView.RPC("ChangeCharControllerStateRPC", Photon.Pun.RpcTarget.Others);
+                }
                 // use player driving state
             }
         }

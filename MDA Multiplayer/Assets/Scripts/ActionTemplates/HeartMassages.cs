@@ -9,7 +9,17 @@ public class HeartMassages : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private ActionsManager _actionManager;
     [SerializeField] private ActionTemplates _actionTemplates;
-    [SerializeField] private Animator _playerAnimator;
+
+    private Animator _playerAnimator;
+    private string _playerName;
+
+    private IEnumerator WaitToFinishCPR()
+    {
+        yield return new WaitForSeconds(4);
+
+        _playerAnimator.SetBool("Administering Cpr", false);
+        _actionTemplates.UpdatePatientLog($"{_playerName} has finished Administering Heart Massages");
+    }
 
     public void DoHeartMassage()
     {
@@ -22,12 +32,19 @@ public class HeartMassages : MonoBehaviour
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
-                //PlayerData.Instance.transform.position = _actionManager.PlayerTreatingTr.position;
-                //PlayerData.Instance.transform.rotation = _actionManager.PlayerTreatingTr.rotation;
-                //_playerAnimator.Play(,)
-                // change heart rate after x seconds
+                _playerAnimator = desiredPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
 
-                _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
+                desiredPlayerData.transform.SetPositionAndRotation(desiredPlayerData.CurrentPatientNearby.transform.GetChild(1).GetChild(0).position, desiredPlayerData.CurrentPatientNearby.transform.GetChild(1).GetChild(0).rotation);
+
+                _playerAnimator.SetBool("Administering Cpr", true);
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
+
+                //desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
+
+                StartCoroutine(WaitToFinishCPR());
+                _playerName = photonView.Owner.NickName;
+
+                _actionTemplates.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
             }
         }

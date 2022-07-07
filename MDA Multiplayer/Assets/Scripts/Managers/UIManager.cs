@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using System;
+using System.Xml;
+
+public enum EvacRoom { CT_Room, Emergency_Room, Children_Room, Shock_Room, }
 
 public class UIManager : MonoBehaviour
 {
@@ -13,7 +17,7 @@ public class UIManager : MonoBehaviour
     #region Player UI
     [Header("Player UI Parents")]
     public GameObject CurrentActionBarParent;
-    public GameObject AmbulanceActionBarParent, NatanActionBarParent, BasicActionMenuParent;
+    public GameObject AmbulanceActionBarParent, NatanActionBarParent;
     #endregion
 
     #region Patient UI 
@@ -35,6 +39,18 @@ public class UIManager : MonoBehaviour
     //private GameObject? _lastSelectedGameObject;
     //private GameObject _currentSelectedGameObject;
     //#endregion
+
+    #region Evacuation UI
+
+    [Header("Evacuation UI Drop Down")]
+    public TMP_Dropdown _dropDown;
+
+    public GameObject EvacPatientPopUp;
+    #endregion
+
+    #region Car UI
+    public GameObject VehicleUI;
+    #endregion
 
     private void Awake()
     {
@@ -58,6 +74,13 @@ public class UIManager : MonoBehaviour
         PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
+        EvacPatientPopUp.SetActive(false);
+    }
+
+    public void PauseHomeBtn()
+    {
+        MapWindow.SetActive(false);
+        ContentPanel.SetActive(true);
     }
 
     public void PauseHomeBtn()
@@ -84,4 +107,22 @@ public class UIManager : MonoBehaviour
     //        return null;
     //    }
     //}
+
+    private void Start()
+    {
+        AddRoomToList();
+    }
+
+
+    //Evacuation DropDown in UI 
+    void AddRoomToList()
+    {
+        string[] enumNames = Enum.GetNames(typeof(EvacRoom));
+        List<string> roomNames = new List<string>(enumNames);
+
+
+        _dropDown.AddOptions(roomNames);
+    }
+
+
 }

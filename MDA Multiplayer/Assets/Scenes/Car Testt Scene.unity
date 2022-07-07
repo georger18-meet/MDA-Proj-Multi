@@ -473,9 +473,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1697815649666482422, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4681234033772804478, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: CarDashboardUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317031175619973055, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
+      propertyPath: sceneViewId
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6155599564183247685, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: m_IsActive
@@ -493,6 +501,14 @@ PrefabInstance:
     - target: {fileID: 3067121893086342230, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: CarDashboardUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058077076936576923, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143353566069815919, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9223238086303951801, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: m_RootOrder

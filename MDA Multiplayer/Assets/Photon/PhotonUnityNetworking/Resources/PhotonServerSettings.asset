@@ -17,9 +17,9 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Falcon v0.6
+    AppVersion: Falcon v0.6.5
     UseNameServer: 1
-    FixedRegion: 
+    FixedRegion: eu
     Server: 
     Port: 0
     ProxyServer: 
@@ -48,6 +48,11 @@ MonoBehaviour:
   - UpdatePatientInfoDisplay
   - OnLeavePatient
   - OnApplyMedicine
+  - EvacPatient_RPC
+  - ChangeCharControllerStateRPC
+  - ChangeHeartRateRPC
+  - SetMeasurementByIndexRPC
+  - UpdatePatientLogRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
