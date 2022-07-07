@@ -196,7 +196,6 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (_inCar && !_takeOutBed)
         {
-            _transfer.BedPickUp();
             _takeOutBed = true;
             _emergencyBedUI.SetActive(true);
             transform.SetPositionAndRotation(_emergencyBedPositionOutsideVehicle.position, _emergencyBedPositionOutsideVehicle.rotation);
@@ -229,7 +228,10 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (other.CompareTag("Player"))
         {
+
             _player = other.gameObject;
+            _transfer.BedPickUp();
+
         }
 
         if (other.CompareTag("Patient"))
