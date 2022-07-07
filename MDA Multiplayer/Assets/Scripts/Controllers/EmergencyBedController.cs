@@ -226,11 +226,11 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
     
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
-
-            _player = other.gameObject;
             _transfer.BedPickUp();
+            _player = other.gameObject;
 
         }
 
