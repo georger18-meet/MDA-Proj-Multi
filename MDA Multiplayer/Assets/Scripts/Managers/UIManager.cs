@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     #region Player UI
     [Header("Player UI Parents")]
     public GameObject CurrentActionBarParent;
-    public GameObject AmbulanceActionBarParent, NatanActionBarParent, BasicActionMenuParent;
+    public GameObject AmbulanceActionBarParent, NatanActionBarParent;
     #endregion
 
     #region Patient UI 
