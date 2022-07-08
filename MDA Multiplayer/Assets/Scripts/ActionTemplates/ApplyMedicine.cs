@@ -8,8 +8,10 @@ public class ApplyMedicine : MonoBehaviour
 {
     [Header("Component's Data")]
     [SerializeField] private string _medicineToApply;
-    [SerializeField] private string  _measurementTitle, _alertTitle;
+    [SerializeField] private string  _measurementTitle;
     [SerializeField] private int _newMeasurement;
+
+    private string _alertTitle = "Applied Medicine:";
 
     public void OnApplyMedicineRPC(int measurementNumber)
     {
@@ -20,10 +22,12 @@ public class ApplyMedicine : MonoBehaviour
             if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
                 return;
 
-            myPlayerData.PhotonView.RPC("OnApplyMedicine", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
+            Patient currentPatient = myPlayerData.CurrentPatientNearby;
+
+            currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
             ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-            ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
+            ActionTemplates.Instance.UpdatePatientLog($"{_alertTitle} {_medicineToApply} on {currentPatient.PatientData.SureName} {currentPatient.PatientData.LastName}");
         }
     }
 }

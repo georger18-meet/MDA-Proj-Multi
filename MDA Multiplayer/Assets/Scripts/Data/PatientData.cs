@@ -25,11 +25,11 @@ public class PatientData : ScriptableObject
     public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
 
     // Catch Measurement Name
-    [Header("Measurement Name")]
+    [HideInInspector]
     public List<int> MeasurementName;
 
     // Catch Clothing Material
-    [Header("Clothing Material")]
+    [HideInInspector]
     public List<Material> ClothingMaterial;
 
     public int GetMeasurementName(int index)
