@@ -19,19 +19,32 @@ public class PatientData : ScriptableObject
     public int HeartRateBPM;
     public int PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2;
 
-    // Appearance
-    [Header("Appearance")]
+    // Choose Appearance Material
+    [Header("Appearance Material")]
     public Material FullyClothedMaterial;
     public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
 
     // Catch Measurement Name
+    [Header("Measurement Name")]
     public List<int> MeasurementName;
+
+    // Catch Clothing Material
+    [Header("Clothing Material")]
+    public List<Material> ClothingMaterial;
 
     public int GetMeasurementName(int index)
     {
         MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 
         return MeasurementName[index];
+    }
+
+    private Material GetClothingMaterial(int index)
+    {
+        ClothingMaterial = new List<Material>() { FullyClothedMaterial, ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial };
+
+        return ClothingMaterial[index];
+
     }
 
     public void SetMeasurementByIndex(int index, int value)

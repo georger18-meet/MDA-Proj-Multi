@@ -13,6 +13,11 @@ public enum Measurements
    BloodSuger, BloodPressure, OxygenSaturation, ETCO2
 }
 
+public enum Clothing
+{
+    FullyClothed, ShirtOnly, PantsOnly, UnderwearOnly
+}
+
 public struct ActionsData
 {
     public ActionsManager ActionsManagerAD;

@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public enum Clothing
-{
-    FullyClothed, ShirtOnly, PantsOnly, UnderwearOnly
-}
-
 public class ChangeClothing : MonoBehaviour
 {
     [Header("Scripts")]
@@ -18,7 +13,7 @@ public class ChangeClothing : MonoBehaviour
     [SerializeField] private Clothing _clothing;
     [SerializeField] private string _textureToChange, _alertContent;
 
-    public void ChangeClothingAction(int measurementNumber)
+    public void ChangeClothingAction(int clothingMaterial)
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
@@ -30,30 +25,9 @@ public class ChangeClothing : MonoBehaviour
                     return;
 
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+                Clothing clothing = ActionsManager.Instance.ClothingList.FirstOrDefault(item => item == (Clothing)clothingMaterial);
 
-                switch (_clothing)
-                {
-                    case Clothing.FullyClothed:
-
-                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.FullyClothedMaterial;
-                        break;
-
-                    case Clothing.ShirtOnly:
-                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.ShirtOnlyMaterial;
-                        break;
-
-                    case Clothing.PantsOnly:
-                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.PantsOnlyMaterial;
-                        break;
-
-                    case Clothing.UnderwearOnly:
-                        desiredPlayerData.CurrentPatientNearby.transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = desiredPlayerData.CurrentPatientNearby.PatientData.UnderwearOnlyMaterial;
-                        break;
-
-                    default:
-                        break;
-                }
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, clothingMaterial);
 
                 _actionTemplates.ShowAlertWindow(_textureToChange, _alertContent);
                 _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");

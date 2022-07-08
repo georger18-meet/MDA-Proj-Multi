@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -215,6 +216,37 @@ public class Patient : MonoBehaviour
                 PatientData.ETCO2 = PatientData.MeasurementName[index];
                 break;
         }
-        #endregion
     }
+
+    [PunRPC]
+    private void ChangeClothingRPC(int index)
+    {
+        PatientData.ClothingMaterial = new List<Material>() { PatientData.FullyClothedMaterial, PatientData.ShirtOnlyMaterial, PatientData.PantsOnlyMaterial, PatientData.UnderwearOnlyMaterial };
+
+        Clothing clothing = (Clothing)index;
+
+        switch (clothing)
+        {
+            case Clothing.FullyClothed:
+
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.FullyClothedMaterial;
+                break;
+
+            case Clothing.ShirtOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.ShirtOnlyMaterial;
+                break;
+
+            case Clothing.PantsOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.PantsOnlyMaterial;
+                break;
+
+            case Clothing.UnderwearOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.UnderwearOnlyMaterial;
+                break;
+
+            default:
+                break;
+        }
+    }
+    #endregion
 }

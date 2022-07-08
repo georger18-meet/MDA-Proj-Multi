@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Falcon v0.6.5
+    AppVersion: Falcon v0.6.6
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -53,6 +53,7 @@ MonoBehaviour:
   - ChangeHeartRateRPC
   - SetMeasurementByIndexRPC
   - UpdatePatientLogRPC
+  - ChangeClothingRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

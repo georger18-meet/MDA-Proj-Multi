@@ -87623,6 +87623,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 851170986}
+    - target: {fileID: 4530160467635946745, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4897337105201974976, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -87840,9 +87844,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 851170986}
     - target: {fileID: 8827267099607560846, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: _alertContent
+      value: Only Shorts
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827267099607560846, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: _actionTemplates
       value: 
       objectReference: {fileID: 851170986}
+    - target: {fileID: 8827267099607560846, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: _textureToChange
+      value: Patient's Chaned Cloths
+      objectReference: {fileID: 0}
     - target: {fileID: 8991403761574259289, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
