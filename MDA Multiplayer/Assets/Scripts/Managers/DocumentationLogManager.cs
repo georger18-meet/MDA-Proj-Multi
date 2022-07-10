@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DocumentationLogManager : MonoBehaviour
+public class DocumentationLogManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     public TextMeshProUGUI UIDisplayer;
     public int LogsToDisplayAtOnce = 5;
@@ -14,27 +15,49 @@ public class DocumentationLogManager : MonoBehaviour
     private string[] _queueArray;
     private List<string> _queueList = new List<string>();
     private int _queueIndex = 0;
+    public OwnershipTransfer _transfer;
+    private PhotonView _photonView;
+
+    public static DocumentationLogManager Instance;
+
 
     private void Awake()
     {
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        _photonView = GetComponent<PhotonView>();
+        _transfer = GetComponent<OwnershipTransfer>();
         _queueArray = new string[LogsToDisplayAtOnce + 1];
         _queueList.Add("");
     }
 
     void Update()
     {
-        if (!InfiniteList)
+        if (_photonView.IsMine)
         {
-            if (_queueArray[LogsToDisplayAtOnce] != null)
+            if (!InfiniteList)
             {
-                Dequeue();
+                if (_queueArray[LogsToDisplayAtOnce] != null)
+                {
+                    Dequeue();
+                }
+                RefreshText();
             }
-            RefreshText();
+            else
+            {
+                RefreshText();
+            }
         }
-        else
-        {
-            RefreshText();
-        }
+ 
     }
 
     void OnEnable()
@@ -164,4 +187,20 @@ public class DocumentationLogManager : MonoBehaviour
         }
         _queueIndex--;
     }
+
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(myLog);
+        }
+        else
+        {
+            myLog = (string)stream.ReceiveNext();
+        }
+    }
+
+
 }

@@ -22,7 +22,11 @@ public class OwnershipTransfer : MonoBehaviourPun,IPunOwnershipCallbacks
         base.photonView.RequestOwnership();
     }
 
-
+    public void PatientJoinBed()
+    {
+        base.photonView.RequestOwnership();
+    }
+ 
     public void CarDriver()
     {
         base.photonView.RequestOwnership();
@@ -30,6 +34,11 @@ public class OwnershipTransfer : MonoBehaviourPun,IPunOwnershipCallbacks
     }
 
     public void BedPickUp()
+    {
+        base.photonView.RequestOwnership();
+    }
+
+    public void LogCheack()
     {
         base.photonView.RequestOwnership();
     }

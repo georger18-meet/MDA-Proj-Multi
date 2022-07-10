@@ -1460,6 +1460,7 @@ MonoBehaviour:
   ChestPosEquipmentTransform: {fileID: 629437207945255640}
   HeadPosPlayerTransform: {fileID: 629437208365349993}
   HeadPosEquipmentTransform: {fileID: 629437208607401553}
+  _transfer: {fileID: 0}
 --- !u!114 &5550523932109703410
 MonoBehaviour:
   m_ObjectHideFlags: 0

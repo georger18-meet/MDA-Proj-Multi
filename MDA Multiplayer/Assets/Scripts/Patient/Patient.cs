@@ -34,7 +34,7 @@ public class Patient : MonoBehaviourPunCallbacks
     public Transform ChestPosPlayerTransform;
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
 
-    private OwnershipTransfer _transfer;
+    public OwnershipTransfer _transfer;
     #endregion
 
     //public List<PlayerController> players;
@@ -46,6 +46,7 @@ public class Patient : MonoBehaviourPunCallbacks
         _transfer = GetComponent<OwnershipTransfer>();
         PatientRenderer.material = PatientData.FullyClothedMaterial;
         DontDestroyOnLoad(gameObject.transform);
+        
     }
 
     private void Start()

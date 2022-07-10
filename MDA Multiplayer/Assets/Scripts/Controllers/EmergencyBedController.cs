@@ -46,7 +46,6 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         {
             _emergencyBedUI.SetActive(false);
         }
-
     }
 
     void Update()
@@ -90,6 +89,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         }
         else
         {
+            _transfer.BedPickUp();
             _emergencyBedUI.SetActive(true);
         }
     }
@@ -110,13 +110,14 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (_isBedClosed)
         {
-            _emergencyBedOpen.SetActive(false);
-            _emergencyBedClosed.SetActive(true);
+            _photonView.RPC("SetThisActive", RpcTarget.AllBufferedViaServer);
+
         }
         else if (!_isBedClosed)
         {
-            _emergencyBedOpen.SetActive(true);
-            _emergencyBedClosed.SetActive(false);
+            _photonView.RPC("SetThisInactive", RpcTarget.AllBufferedViaServer);
+
+
         }
     }
     
@@ -142,20 +143,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         {
             if (_isFollowingPlayer)
             {
-                //if (!_isFacingTrolley)
-                //{
-                //var lookPos = transform.position - Player.transform.position;
-                //lookPos.y = 0f;
-                //var rotation = Quaternion.LookRotation(lookPos);
-                //Player.transform.rotation = Quaternion.Slerp(Player.transform.rotation, rotation, Time.deltaTime * 10f);
-                //print($"{Mathf.Abs((Player.transform.rotation.y * Mathf.Rad2Deg) - (rotation.y * Mathf.Rad2Deg))}");
-                //if (Mathf.Abs((Player.transform.rotation.y * Mathf.Rad2Deg) - (rotation.y * Mathf.Rad2Deg)) <= 2)
-                //{
-                //    _isFacingTrolley = true;
-                //    gameObject.transform.SetParent(Player.transform);
-                //    FollowUnfollowText.text = "Detach \n Bed";
-                //}
-                //}
+                
                 _player.transform.position = _playerHoldPos.position;
                 _player.transform.LookAt(transform.position);
                 gameObject.transform.SetParent(_player.transform);
@@ -174,21 +162,13 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (_patient != null && !_isPatientOnBed)
         {
-            _isPatientOnBed = true;
-            _patient.GetComponent<BoxCollider>().enabled = false;
-            _patient.transform.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation); // parent
-            _patient.transform.SetParent(this.transform);// parent
-            _placeRemovePatientText.text = "Drop \n Patient";
-            _emergencyBedUI.SetActive(false);
+             _photonView.RPC("PutOnBed", RpcTarget.AllBufferedViaServer);
+
         }
         else if (_patient != null && _isPatientOnBed && !_inCar)
         {
-            _isPatientOnBed = false;
-            _patient.GetComponent<BoxCollider>().enabled = true;
-            _patient.transform.position = _patientPosOffBed.position;// parent
-            _patient.transform.SetParent(null);// parent
-            _placeRemovePatientText.text = "Place \n Patient";
-            _emergencyBedUI.SetActive(false);
+            _photonView.RPC("RemoveFromBed", RpcTarget.AllBufferedViaServer);
+
         }
     }
     
@@ -216,7 +196,6 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
             transform.position = _emergencyBedPositionInsideVehicle.position;
             transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
             transform.SetParent(_emergencyBedPositionInsideVehicle);
-           // _takeReturnText.text = "Take Out";
         }
         else if (_inCar && _takeOutBed)
         {
@@ -229,7 +208,6 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
 
         if (other.CompareTag("Player"))
         {
-            _transfer.BedPickUp();
             _player = other.gameObject;
 
         }
@@ -307,4 +285,43 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         }
 
     }
+
+
+    [PunRPC]
+    void PutOnBed()
+    {
+        _isPatientOnBed = true;
+        _patient.GetComponent<BoxCollider>().enabled = false;
+        _patient.transform.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation); // parent
+        _patient.transform.SetParent(this.transform);// parent
+        _placeRemovePatientText.text = "Drop \n Patient";
+        _emergencyBedUI.SetActive(false);
+    }
+
+    [PunRPC]
+    void RemoveFromBed()
+    {
+        _isPatientOnBed = false;
+        _patient.GetComponent<BoxCollider>().enabled = true;
+        _patient.transform.position = _patientPosOffBed.position;// parent
+        _patient.transform.SetParent(null);// parent
+        _placeRemovePatientText.text = "Place \n Patient";
+        _emergencyBedUI.SetActive(false);
+    }
+
+    [PunRPC]
+    void SetThisActive()
+    {
+
+        _emergencyBedOpen.SetActive(false);
+        _emergencyBedClosed.SetActive(true);
+    }
+
+    [PunRPC]
+    void SetThisInactive()
+    {
+        _emergencyBedOpen.SetActive(true);
+        _emergencyBedClosed.SetActive(false);
+    }
+
 }

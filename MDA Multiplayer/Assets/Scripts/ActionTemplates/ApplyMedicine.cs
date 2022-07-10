@@ -13,6 +13,10 @@ public class ApplyMedicine : MonoBehaviour
 
     public void OnApplyMedicineRPC(int measurementNumber)
     {
+
+        DocumentationLogManager.Instance._transfer.LogCheack();
+        
+
         for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
         {
             PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();

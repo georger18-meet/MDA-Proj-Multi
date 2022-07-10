@@ -43533,7 +43533,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 8822803002174255568, guid: 8830eeb28e58b914d9f6dc74e6519565, type: 3}
   _patientPrefab: {fileID: 5550523932109703408, guid: 44ebbbd978de22f4db240bb9438e8683, type: 3}
+  NatanPrefab: {fileID: 0}
   _patientSpawner: {fileID: 1303862087}
+  NatanSpanwner: {fileID: 0}
   _minX: 83
   _minZ: -397
   _maxX: 72
@@ -44181,6 +44183,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5724318046219832081, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
+      propertyPath: sceneViewId
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7568196157338490164, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
       propertyPath: _emergencyBedUI
       value: 
@@ -44239,17 +44245,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
---- !u!114 &714930252 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7568196157338490164, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
-  m_PrefabInstance: {fileID: 714930251}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277d8103a323cd244ac13df20a936c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &714930253 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5145118015697076167, guid: b9f409d1ac8d2f5498ef3863b0d44104, type: 3}
@@ -87107,7 +87102,7 @@ PrefabInstance:
     - target: {fileID: 909902340656988053, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 714930252}
+      objectReference: {fileID: 0}
     - target: {fileID: 1388403719989315888, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -87139,7 +87134,7 @@ PrefabInstance:
     - target: {fileID: 2573098252806425779, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 714930252}
+      objectReference: {fileID: 0}
     - target: {fileID: 3281380515524452908, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -87159,7 +87154,7 @@ PrefabInstance:
     - target: {fileID: 4885967768155321781, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 714930252}
+      objectReference: {fileID: 0}
     - target: {fileID: 5719209533367855006, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -87404,44 +87399,6 @@ MonoBehaviour:
 --- !u!1 &1339287166 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8338885266079378616, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
-  m_PrefabInstance: {fileID: 1339287162}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1339287167 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3049307419968252385, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
-  m_PrefabInstance: {fileID: 1339287162}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1339287168 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3011080568200471296, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
-  m_PrefabInstance: {fileID: 1339287162}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1339287169 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2668485763242123020, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
-  m_PrefabInstance: {fileID: 1339287162}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1339287170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8082891086439337041, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
   m_PrefabInstance: {fileID: 1339287162}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339287171 stripped
@@ -88439,19 +88396,19 @@ PrefabInstance:
     - target: {fileID: 7421835072795006224, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: _emergencyBedUI
       value: 
-      objectReference: {fileID: 1339287170}
+      objectReference: {fileID: 0}
     - target: {fileID: 7421835072795006224, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: _takeReturnText
       value: 
-      objectReference: {fileID: 1339287169}
+      objectReference: {fileID: 0}
     - target: {fileID: 7421835072795006224, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: _followUnfollowText
       value: 
-      objectReference: {fileID: 1339287168}
+      objectReference: {fileID: 0}
     - target: {fileID: 7421835072795006224, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: _placeRemovePatientText
       value: 
-      objectReference: {fileID: 1339287167}
+      objectReference: {fileID: 0}
     - target: {fileID: 9143353566069815919, guid: e9ed67e391075c143a7ed9ceb735ba35, type: 3}
       propertyPath: sceneViewId
       value: 12
