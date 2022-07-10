@@ -6,10 +6,6 @@ using Photon.Pun;
 
 public class ChangeMeasurement : MonoBehaviour
 {
-    [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
     [SerializeField] private string _measurementTitle;
     [SerializeField] private int _newMeasurement;
@@ -25,13 +21,16 @@ public class ChangeMeasurement : MonoBehaviour
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
+                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = _actionManager.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
+                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+
+                currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
                 //desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementByIndex(measurementNumber, _newMeasurement);
 
-                _actionTemplates.ShowAlertWindow(_measurementTitle, _newMeasurement);
-                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed");
+                ActionTemplates.Instance.ShowAlertWindow(_measurementTitle, _newMeasurement);
+                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_measurementTitle} was changed");
                 break;
             }
         }

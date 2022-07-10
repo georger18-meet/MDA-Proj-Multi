@@ -6,10 +6,6 @@ using Photon.Pun;
 
 public class HeartMassages : MonoBehaviour
 {
-    [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     private Animator _playerAnimator;
     private string _playerName;
 
@@ -18,7 +14,7 @@ public class HeartMassages : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         _playerAnimator.SetBool("Administering Cpr", false);
-        _actionTemplates.UpdatePatientLog($"{_playerName} has finished Administering Heart Massages");
+        ActionTemplates.Instance.UpdatePatientLog($"{_playerName} has finished Administering Heart Massages");
     }
 
     public void DoHeartMassage()
@@ -44,7 +40,7 @@ public class HeartMassages : MonoBehaviour
                 StartCoroutine(WaitToFinishCPR());
                 _playerName = photonView.Owner.NickName;
 
-                _actionTemplates.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
+                ActionTemplates.Instance.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
             }
         }

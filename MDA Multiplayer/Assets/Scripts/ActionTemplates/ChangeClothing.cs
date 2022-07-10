@@ -6,9 +6,6 @@ using Photon.Pun;
 
 public class ChangeClothing : MonoBehaviour
 {
-    [Header("Scripts")]
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
     [SerializeField] private Clothing _clothing;
     [SerializeField] private string _textureToChange, _alertContent;
@@ -26,8 +23,8 @@ public class ChangeClothing : MonoBehaviour
 
                 desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, (int)_clothing);
 
-                _actionTemplates.ShowAlertWindow(_textureToChange, _alertContent);
-                _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");
+                ActionTemplates.Instance.ShowAlertWindow(_textureToChange, _alertContent);
+                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");
             }
         }
     }

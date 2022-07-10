@@ -6,9 +6,6 @@ using Photon.Pun;
 
 public class ConnectingMonitor : MonoBehaviour
 {
-    [Header("Scripts")]
-    [SerializeField] private ActionsManager _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
     [SerializeField] private GameObject _monitor;
 
     private GameObject _player;
@@ -30,7 +27,7 @@ public class ConnectingMonitor : MonoBehaviour
 
                 photonView.RPC("UpdatePatientLogRPC", RpcTarget.AllViaServer, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
 
-                //_actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
+                //ActionTemplates.Instance.UpdatePatientLog($"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
                 Debug.Log("CLEAR!!! Defibrillator");
             }
         }
