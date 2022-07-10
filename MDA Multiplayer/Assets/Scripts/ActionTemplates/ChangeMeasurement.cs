@@ -18,10 +18,10 @@ public class ChangeMeasurement : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
             if (photonView.IsMine)
             {
+                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
@@ -32,6 +32,7 @@ public class ChangeMeasurement : MonoBehaviour
 
                 _actionTemplates.ShowAlertWindow(_measurementTitle, _newMeasurement);
                 _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed");
+                break;
             }
         }
     }

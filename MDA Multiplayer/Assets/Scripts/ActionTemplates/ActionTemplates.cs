@@ -12,7 +12,7 @@ public class ActionTemplates : MonoBehaviour
     [SerializeField] private DocumentationLogManager _docLog;
     public DocumentationLogManager DocLog => _docLog;
 
-    [SerializeField] private GameObject _alertWindow;
+    [SerializeField] private GameObject _textAlertWindow, _numAlertWindow;
     [SerializeField] private TextMeshProUGUI _alertTitle, _alertText;
     [SerializeField] private float _alertTimer;
 
@@ -43,25 +43,25 @@ public class ActionTemplates : MonoBehaviour
     public void ShowAlertWindow(string measurementTitle, int measurement)
     {
         _alertTimer = 0;
-        _alertWindow.SetActive(true);
+        _numAlertWindow.SetActive(true);
 
         _alertTitle.text = measurementTitle;
         _alertText.text = measurement.ToString();
 
-        if (_alertTimer > 3)
-            _alertWindow.SetActive(false);
+        //if (_alertTimer > 3)
+        //    _numAlertWindow.SetActive(false);
     }
 
     public void ShowAlertWindow(string AlertTitle, string alertContent)
     {
         _alertTimer = 0;
-        _alertWindow.SetActive(true);
+        _textAlertWindow.SetActive(true);
 
         _alertTitle.text = AlertTitle;
         _alertText.text = alertContent.ToString();
 
-        if (_alertTimer > 3)
-            _alertWindow.SetActive(false);
+        //if (_alertTimer > 3)
+        //    _textAlertWindow.SetActive(false);
     }
 
     // should be RPC

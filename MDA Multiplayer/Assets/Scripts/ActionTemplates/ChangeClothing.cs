@@ -13,21 +13,18 @@ public class ChangeClothing : MonoBehaviour
     [SerializeField] private Clothing _clothing;
     [SerializeField] private string _textureToChange, _alertContent;
 
-    public void ChangeClothingAction(int clothingMaterial)
+    public void ChangeClothingAction()
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
             if (photonView.IsMine)
             {
+                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Clothing clothing = ActionsManager.Instance.ClothingList.FirstOrDefault(item => item == (Clothing)clothingMaterial);
-
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, clothingMaterial);
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, (int)_clothing);
 
                 _actionTemplates.ShowAlertWindow(_textureToChange, _alertContent);
                 _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");

@@ -17,19 +17,19 @@ public class ConnectingMonitor : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
             if (photonView.IsMine)
             {
+                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
                 _player = desiredPlayerData.gameObject;
                 _player.transform.position = desiredPlayerData.CurrentPatientNearby.ChestPosPlayerTransform.position;
                 GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, desiredPlayerData.CurrentPatientNearby.ChestPosEquipmentTransform.position, desiredPlayerData.CurrentPatientNearby.ChestPosEquipmentTransform.rotation);
-                //MonoBehaviour.Instantiate(_monitor, _actionManager.PatientEquipmentTr.position, Quaternion.identity);
 
                 photonView.RPC("UpdatePatientLogRPC", RpcTarget.AllViaServer, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
+
                 //_actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
                 Debug.Log("CLEAR!!! Defibrillator");
             }

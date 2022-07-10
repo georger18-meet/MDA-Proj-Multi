@@ -34,6 +34,7 @@ public class CheckMeasurement : MonoBehaviour
 
                 _actionTemplates.ShowAlertWindow(_measurementTitle, _measurement);
                 _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} is: {_measurement}");
+                break;
             }
         }
     }

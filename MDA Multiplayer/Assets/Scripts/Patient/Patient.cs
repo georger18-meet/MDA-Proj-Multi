@@ -221,8 +221,6 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void ChangeClothingRPC(int index)
     {
-        PatientData.ClothingMaterial = new List<Material>() { PatientData.FullyClothedMaterial, PatientData.ShirtOnlyMaterial, PatientData.PantsOnlyMaterial, PatientData.UnderwearOnlyMaterial };
-
         Clothing clothing = (Clothing)index;
 
         switch (clothing)
