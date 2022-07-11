@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 629437207851787677}
   - component: {fileID: 629437207851787746}
   m_Layer: 0
-  m_Name: ChestPos Player
+  m_Name: ChestPos Player 0
   m_TagString: Equipment Position
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 629437207945255640}
   - component: {fileID: 629437207945255641}
   m_Layer: 0
-  m_Name: ChestPos Equipment
+  m_Name: ChestPos Equipment 1
   m_TagString: Equipment Position
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 629437208365349993}
   - component: {fileID: 629437208365349998}
   m_Layer: 0
-  m_Name: HeadPos Player
+  m_Name: HeadPos Player 2
   m_TagString: Equipment Position
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629437208365349992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.2500005, z: 0.725}
+  m_LocalPosition: {x: 0, y: 4.2500005, z: 0.7249999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 629437208585384459}
@@ -258,6 +258,7 @@ Transform:
   - {fileID: 629437207945255640}
   - {fileID: 629437208365349993}
   - {fileID: 629437208607401553}
+  - {fileID: 6786317825040480731}
   m_Father: {fileID: 5550523932109703411}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -272,7 +273,7 @@ GameObject:
   - component: {fileID: 629437208607401553}
   - component: {fileID: 629437208607401558}
   m_Layer: 0
-  m_Name: HeadPos Equipment
+  m_Name: HeadPos Equipment 3
   m_TagString: Equipment Position
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629437208607401552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2500005, z: 0.72500026}
+  m_LocalPosition: {x: 0, y: 3.2500005, z: 0.7249999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 629437208585384459}
@@ -1789,6 +1790,50 @@ Transform:
   m_Father: {fileID: 1655136077916330108}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6551432284235125166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6786317825040480731}
+  - component: {fileID: 4502673985872904546}
+  m_Layer: 0
+  m_Name: LegsPos Player 4
+  m_TagString: Equipment Position
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6786317825040480731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551432284235125166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.74999994, z: 0.7250007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 629437208585384459}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4502673985872904546
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551432284235125166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6765423221322622231
 GameObject:
   m_ObjectHideFlags: 0

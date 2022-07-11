@@ -29,7 +29,7 @@ public class CalmPatientDown : MonoBehaviour
                 string patientName = currentPatient.PhotonView.Owner.NickName;
 
                 _newHeartRate = currentPatient.PatientData.HeartRateBPM - _calmDownHeartRateBy;
-                _newRespiratoryRate = currentPatient.PatientData.HeartRateBPM - _calmDownHeartRateBy;
+                _newRespiratoryRate = currentPatient.PatientData.HeartRateBPM - _calmDownRespiratoryRateBy;
 
                 currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
 

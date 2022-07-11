@@ -55,9 +55,6 @@ public class Patient : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-
-
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
@@ -70,10 +67,8 @@ public class Patient : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
         if (other.TryGetComponent(out PlayerData possiblePlayer))
         {
-
             if (!NearbyUsers.Contains(possiblePlayer))
             {
                 return;
@@ -86,6 +81,26 @@ public class Patient : MonoBehaviour
     }
     #endregion
 
+    public bool IsPlayerJoined(PlayerData playerData)
+    {
+        Debug.Log("Attempting to check if player is joined");
+
+        if (TreatingUsers.Contains(playerData))
+        {
+            Debug.Log("Checked if player is joined, it is true");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Checked if player is joined, it is false");
+            return false;
+        }
+    }
+
+    public void OnInteracted()
+    {
+        ActionsManager.Instance.OnPatientClicked();
+    }
 
     #region PunRPC invoke by Patient
     [PunRPC]
@@ -142,30 +157,6 @@ public class Patient : MonoBehaviour
         UIManager.Instance.Id.text = PatientData.Id.ToString();
         UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
     }
-    #endregion
-
-    public bool IsPlayerJoined(PlayerData playerData)
-    {
-        Debug.Log("Attempting to check if player is joined");
-
-        if (TreatingUsers.Contains(playerData))
-        {
-            Debug.Log("Checked if player is joined, it is true");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Checked if player is joined, it is false");
-            return false;
-        }
-    }
-
-    public void OnInteracted()
-    {
-        ActionsManager.Instance.OnPatientClicked();
-    }
-
-    #region PunRPC Methods
 
     [PunRPC]
     private void ChangeHeartRateRPC(int newBPM)

@@ -12,28 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83d140e50bd7634dbe3fa7acf7a3576, type: 3}
   m_Name: PatientData 0
   m_EditorClassIdentifier: 
-  SureName: Koral
-  LastName: Regev
+  SureName: "\u05E7\u05D5\u05E8\u05DC"
+  LastName: "\u05E8\u05D2\u05D1"
   Id: 22251457
   Age: 32
   Gender: f
   PhoneNumber: 582256873
-  MedicalCompany: klalit
-  AddressLocation: Rosh Aain, Herzel street 25, Apartment 6
+  MedicalCompany: "\u05DB\u05DC\u05DC\u05D9\u05EA"
+  AddressLocation: "\u05E8\u05D0\u05E9 \u05D4\u05E2\u05D9\u05DF, \u05E8\u05D7\u05D5\u05D1
+    \u05D4\u05E8\u05E6\u05DC 25, \u05D3\u05D9\u05E8\u05D4 6"
   Complaint: severe Headache
   HeartRateBPM: 64
-  PainLevel: 8
-  RespiratoryRate: 3
-  CincinnatiLevel: 2
-  BloodSuger: 15
-  BloodPressure: 5
-  OxygenSaturation: 2
-  ETCO2: 50
+  PainLevel: 4
+  RespiratoryRate: 12
+  CincinnatiLevel: 0
+  BloodSuger: 80
+  BloodPressure: 98
+  OxygenSaturation: 96
+  ETCO2: 41
   FullyClothedMaterial: {fileID: 2100000, guid: c6f7a8bad586457428a700c5b6b6b82b, type: 2}
   ShirtOnlyMaterial: {fileID: 2100000, guid: b679808b4e664094581537001ef10c58, type: 2}
   PantsOnlyMaterial: {fileID: 2100000, guid: ef4583040eca60c428504c9b48727fe1, type: 2}
   UnderwearOnlyMaterial: {fileID: 2100000, guid: b8d9b2b3092ab614b95207d1019f89d4, type: 2}
-  MeasurementName: 400000000300000003000000020000000f000000050000000200000032000000
+  MeasurementName: 2c000000080000002c0000000200000050000000050000000200000032000000
   ClothingMaterial:
   - {fileID: 2100000, guid: c6f7a8bad586457428a700c5b6b6b82b, type: 2}
   - {fileID: 2100000, guid: b679808b4e664094581537001ef10c58, type: 2}
