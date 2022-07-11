@@ -6,11 +6,15 @@ using Photon.Pun;
 
 public class CalmPatientDown : MonoBehaviour
 {
+    [Header("Alert Content")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
     [Header("Component's Data")]
     [SerializeField] private int _calmDownHeartRateBy = 0;
     [SerializeField] private int _calmDownRespiratoryRateBy;
 
-    private string _alertTitle, _alertText;
+    
     private int _newHeartRate, _newRespiratoryRate;
     private int _heartRateIndex = 0, _respiratoryRate = 2;
 

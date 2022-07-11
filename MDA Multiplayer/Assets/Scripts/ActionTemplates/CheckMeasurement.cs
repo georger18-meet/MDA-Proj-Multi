@@ -7,7 +7,7 @@ using Photon.Pun;
 public class CheckMeasurement : MonoBehaviour
 {
     [Header("Component's Data")]
-    [SerializeField] private string _measurementTitle;
+    [SerializeField] private string _alertTitle;
 
     [SerializeField] private List<Measurements> measurementList;
 
@@ -17,10 +17,11 @@ public class CheckMeasurement : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
 
             if (photonView.IsMine)
             {
+                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
@@ -29,8 +30,9 @@ public class CheckMeasurement : MonoBehaviour
 
                 _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
 
-                ActionTemplates.Instance.ShowAlertWindow(_measurementTitle, _measurement);
-                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_measurementTitle} is: {_measurement}");
+                Debug.Log($"{_alertTitle} {_measurement}");
+                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _measurement);
+                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_alertTitle} is: {_measurement}");
                 break;
             }
         }

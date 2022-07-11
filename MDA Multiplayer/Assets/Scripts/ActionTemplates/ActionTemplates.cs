@@ -13,7 +13,8 @@ public class ActionTemplates : MonoBehaviour
     public DocumentationLogManager DocLog => _docLog;
 
     [SerializeField] private GameObject _textAlertWindow, _numAlertWindow;
-    [SerializeField] private TextMeshProUGUI _alertTitle, _alertText;
+    [SerializeField] private TextMeshProUGUI _textAlertTitle, _textAlertText;
+    [SerializeField] private TextMeshProUGUI _numAlertTitle, _numAlertText;
     [SerializeField] private float _alertTimer;
 
     #region Most Basic Tools
@@ -45,8 +46,8 @@ public class ActionTemplates : MonoBehaviour
         _alertTimer = 0;
         _numAlertWindow.SetActive(true);
 
-        _alertTitle.text = measurementTitle;
-        _alertText.text = measurement.ToString();
+        _numAlertTitle.text = measurementTitle;
+        _numAlertText.text = measurement.ToString();
 
         //if (_alertTimer > 3)
         //    _numAlertWindow.SetActive(false);
@@ -57,8 +58,8 @@ public class ActionTemplates : MonoBehaviour
         _alertTimer = 0;
         _textAlertWindow.SetActive(true);
 
-        _alertTitle.text = AlertTitle;
-        _alertText.text = alertContent.ToString();
+        _textAlertTitle.text = AlertTitle;
+        _textAlertText.text = alertContent.ToString();
 
         //if (_alertTimer > 3)
         //    _textAlertWindow.SetActive(false);

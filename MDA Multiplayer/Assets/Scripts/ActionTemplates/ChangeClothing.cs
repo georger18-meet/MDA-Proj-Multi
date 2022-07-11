@@ -8,7 +8,7 @@ public class ChangeClothing : MonoBehaviour
 {
     [Header("Component's Data")]
     [SerializeField] private Clothing _clothing;
-    [SerializeField] private string _textureToChange, _alertContent;
+    [SerializeField] private string _alertTitle, _alertText;
 
     public void ChangeClothingAction()
     {
@@ -23,8 +23,8 @@ public class ChangeClothing : MonoBehaviour
 
                 desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, (int)_clothing);
 
-                ActionTemplates.Instance.ShowAlertWindow(_textureToChange, _alertContent);
-                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");
+                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
+                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_alertTitle} is: {_alertText}");
             }
         }
     }
