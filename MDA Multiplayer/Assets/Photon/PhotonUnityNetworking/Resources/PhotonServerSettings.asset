@@ -54,6 +54,7 @@ MonoBehaviour:
   - SetThisInactive
   - PutOnBed
   - RemoveFromBed
+  - RPC_UpdatePatientLog
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

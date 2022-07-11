@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DocumentationLogManager : MonoBehaviourPunCallbacks,IPunObservable
+public class DocumentationLogManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI UIDisplayer;
     public int LogsToDisplayAtOnce = 5;
@@ -15,49 +15,48 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks,IPunObservable
     private string[] _queueArray;
     private List<string> _queueList = new List<string>();
     private int _queueIndex = 0;
-    public OwnershipTransfer _transfer;
+
+
     private PhotonView _photonView;
 
-    public static DocumentationLogManager Instance;
+    //public static DocumentationLogManager Instance;
 
 
     private void Awake()
     {
 
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else if (Instance != this)
+        //{
+        //    Destroy(gameObject);
+        //}
 
         _photonView = GetComponent<PhotonView>();
-        _transfer = GetComponent<OwnershipTransfer>();
         _queueArray = new string[LogsToDisplayAtOnce + 1];
         _queueList.Add("");
     }
 
     void Update()
     {
-        if (_photonView.IsMine)
+        if (!InfiniteList)
         {
-            if (!InfiniteList)
+            if (_queueArray[LogsToDisplayAtOnce] != null)
             {
-                if (_queueArray[LogsToDisplayAtOnce] != null)
-                {
-                    Dequeue();
-                }
-                RefreshText();
+                Dequeue();
             }
-            else
-            {
-                RefreshText();
-            }
+
+            RefreshText();
         }
- 
+        else
+        {
+            RefreshText();
+        }
+
+
     }
 
     void OnEnable()
@@ -102,6 +101,7 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks,IPunObservable
 
     public void LogThisText(string text)
     {
+
         myLog = text;
         string newString = myLog + "\n----------------------------------------\n";
         Enqueue(newString);
@@ -186,20 +186,6 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks,IPunObservable
             }
         }
         _queueIndex--;
-    }
-
-
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(myLog);
-        }
-        else
-        {
-            myLog = (string)stream.ReceiveNext();
-        }
     }
 
 

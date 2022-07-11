@@ -10,13 +10,14 @@ public class CarDoorCollision : MonoBehaviour
     public int SeatNumber;
     public GameObject CollidingPlayer;
     public Transform SeatPosition;
-
+    private OwnershipTransfer _transfer;
 
     [SerializeField] private CarControllerSimple _carController;
     private Animator _doorAnimator;
 
     void Start()
     {
+        _transfer = GetComponent<OwnershipTransfer>();
         _doorAnimator = GetComponent<Animator>();
 
     }
@@ -80,6 +81,7 @@ public class CarDoorCollision : MonoBehaviour
             {
                 
                 Debug.Log("supposed to drive");
+
                 OpenCloseDoorToggle(number);
                 IsSeatOccupied = true;
                 playerController.IsDriving = true;
@@ -114,6 +116,7 @@ public class CarDoorCollision : MonoBehaviour
         if (other.CompareTag("Player") && !IsSeatOccupied)
         {
             CollidingPlayer = other.gameObject;
+
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System;
+using Photon.Pun;
 
 public class ActionTemplates : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ActionTemplates : MonoBehaviour
     [SerializeField] private GameObject _alertWindow;
     [SerializeField] private TextMeshProUGUI _alertTitle, _alertText;
     [SerializeField] private float _alertTimer;
+
+    private PhotonView _photonView;
 
     #region Most Basic Tools
     public void OpenCloseDisplayWindow(GameObject window)
@@ -108,11 +111,16 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
-    // should be RPC
-    public void UpdatePatientLog(string textToLog)
+    [PunRPC]
+    public void RPC_UpdatePatientLog(string textToLog)
     {
         _docLog.LogThisText(textToLog);
-    } 
+    }
+
+    public void UpdatePatientLog(string textToLog)
+    {
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, textToLog);
+    }
     #endregion
 
     private void Awake()
@@ -126,6 +134,8 @@ public class ActionTemplates : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _photonView = GetComponent<PhotonView>();
     }
 
     // not sure about this - patient bool - isConsious vs if is currently conscious
