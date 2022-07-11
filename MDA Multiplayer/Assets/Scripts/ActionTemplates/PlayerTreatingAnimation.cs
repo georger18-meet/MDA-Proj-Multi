@@ -26,7 +26,6 @@ public class PlayerTreatingAnimation : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-
             if (photonView.IsMine)
             {
                 PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
@@ -46,6 +45,7 @@ public class PlayerTreatingAnimation : MonoBehaviour
                 _playerName = photonView.Owner.NickName;
                 ActionTemplates.Instance.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+                break;
             }
         }
     }

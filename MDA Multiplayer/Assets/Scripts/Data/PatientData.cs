@@ -18,6 +18,7 @@ public class PatientData : ScriptableObject
     [Header("Measurments")]
     public int HeartRateBPM;
     public int PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2;
+    public bool IsConscious;
 
     // Choose Appearance Material
     [Header("Appearance Material")]

@@ -26,6 +26,7 @@ public class CheckMeasurement : MonoBehaviour
 
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
                 Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
+
                 _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
 
                 ActionTemplates.Instance.ShowAlertWindow(_measurementTitle, _measurement);

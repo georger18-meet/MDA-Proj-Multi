@@ -21,19 +21,22 @@ public class HeartMassages : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
             if (photonView.IsMine)
             {
+                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
+                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                Transform patientColliderTransform = currentPatient.transform.GetChild(1).GetChild(0);
+
                 _playerAnimator = desiredPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
 
-                desiredPlayerData.transform.SetPositionAndRotation(desiredPlayerData.CurrentPatientNearby.transform.GetChild(1).GetChild(0).position, desiredPlayerData.CurrentPatientNearby.transform.GetChild(1).GetChild(0).rotation);
+                desiredPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
 
                 _playerAnimator.SetBool("Administering Cpr", true);
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
+                currentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
 
                 //desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
 
@@ -42,6 +45,7 @@ public class HeartMassages : MonoBehaviour
 
                 ActionTemplates.Instance.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+                break;
             }
         }
     }

@@ -8,8 +8,6 @@ public class PatientTreatmentAnimation : MonoBehaviour
 {
     [SerializeField] private string _animationName;
     [SerializeField] private float _animationWaitTime;
-    // usually 0 /2 /4
-    [SerializeField] private int _patientColliderIndex;
 
     private Animator _patientAnimator;
     private string _patientName;
@@ -26,7 +24,6 @@ public class PatientTreatmentAnimation : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-
             if (photonView.IsMine)
             {
                 PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
@@ -35,10 +32,7 @@ public class PatientTreatmentAnimation : MonoBehaviour
                     return;
 
                 Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
-                Transform patientColliderTransform = currentPatient.transform.GetChild(1).GetChild(_patientColliderIndex);
-                _patientAnimator = currentPatient.transform.GetChild(5).GetComponent<Animator>();
-
-                desiredPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
+                _patientAnimator = currentPatient.GetComponent<Animator>();
 
                 _patientAnimator.SetBool(_animationName, true);
                 StartCoroutine(WaitToFinishAnimation());
@@ -46,6 +40,7 @@ public class PatientTreatmentAnimation : MonoBehaviour
                 _patientName = photonView.Owner.NickName;
                 ActionTemplates.Instance.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+                break;
             }
         }
     }
