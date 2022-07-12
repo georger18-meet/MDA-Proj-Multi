@@ -2016,6 +2016,7 @@ GameObject:
   - component: {fileID: 7439580472678481756}
   - component: {fileID: 3195688608059168454}
   - component: {fileID: 6620523290251127709}
+  - component: {fileID: 2209164503239479921}
   m_Layer: 0
   m_Name: SidePassengerDoorCollider
   m_TagString: Untagged
@@ -2110,6 +2111,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &2209164503239479921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000490411030009239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c313d5e2f1297f479bd3896b62a3283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4083103280733250359
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,6 +3339,7 @@ GameObject:
   - component: {fileID: 7820860080939358774}
   - component: {fileID: 6245518099978223125}
   - component: {fileID: 1255780504921788980}
+  - component: {fileID: 271315727843421417}
   m_Layer: 0
   m_Name: DriverDoorCollider
   m_TagString: Untagged
@@ -3420,6 +3434,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &271315727843421417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245518099922122822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c313d5e2f1297f479bd3896b62a3283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6331270308824517858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3444,7 +3470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6331270308824517858}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.109, z: 0.954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6331270310104958076}
@@ -4316,6 +4342,7 @@ GameObject:
   - component: {fileID: 3242784158595230447}
   - component: {fileID: 4295830345557133594}
   - component: {fileID: 6173300981996521476}
+  - component: {fileID: 1019682186230115090}
   m_Layer: 0
   m_Name: BackPassengerDoorCollider
   m_TagString: Untagged
@@ -4411,6 +4438,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &1019682186230115090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990499019719860762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c313d5e2f1297f479bd3896b62a3283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8021740619891440960
 GameObject:
   m_ObjectHideFlags: 0
@@ -5162,6 +5201,7 @@ GameObject:
   - component: {fileID: 5389166980767489558}
   - component: {fileID: 8822511249940123446}
   - component: {fileID: 7819571400641934036}
+  - component: {fileID: 4971519198862136648}
   m_Layer: 0
   m_Name: FrontPassengerDoorCollider
   m_TagString: Untagged
@@ -5256,6 +5296,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &4971519198862136648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817896392066539740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c313d5e2f1297f479bd3896b62a3283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8820518802901103986
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,10 +5699,6 @@ MonoBehaviour:
   - {fileID: 3067121893086342230}
   - {fileID: 2098928909}
   - {fileID: 8580993501867126913}
-  - {fileID: 1255780504921788980}
-  - {fileID: 7819571400641934036}
-  - {fileID: 6620523290251127709}
-  - {fileID: 6173300981996521476}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -5919,14 +5967,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33c2b911b4d9e3f4e8ae07ed1dab7f53, type: 3}
---- !u!4 &8043292577541444525 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33c2b911b4d9e3f4e8ae07ed1dab7f53, type: 3}
-  m_PrefabInstance: {fileID: 7499965104110810182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7265523733967964439 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 33c2b911b4d9e3f4e8ae07ed1dab7f53, type: 3}
+  m_PrefabInstance: {fileID: 7499965104110810182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8043292577541444525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33c2b911b4d9e3f4e8ae07ed1dab7f53, type: 3}
   m_PrefabInstance: {fileID: 7499965104110810182}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7853661107795478645

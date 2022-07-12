@@ -37,8 +37,14 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
     public List<CarDoorCollision> CarDoorCollisions;
 
     public GameObject CarDashboardUI;
-
+    private PhotonView _photonView;
      public OwnershipTransfer _transfer;
+
+
+     private void Awake()
+     {
+         _photonView = GetComponent<PhotonView>();
+     }
 
      private void Start()
     {
@@ -54,6 +60,8 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
         //CheckIfDriveable();
         //GetInput();
         //CheckIsMovingBackwards();
+       
+
     }
 
     private void FixedUpdate()
