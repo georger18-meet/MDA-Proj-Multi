@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Falcon v0.6
+    AppVersion: Gambit v0.07.2 Gal
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -55,6 +55,9 @@ MonoBehaviour:
   - PutOnBed
   - RemoveFromBed
   - RPC_UpdatePatientLog
+  - ChangeClothingRPC
+  - ChangeHeartRateRPC
+  - SetMeasurementByIndexRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

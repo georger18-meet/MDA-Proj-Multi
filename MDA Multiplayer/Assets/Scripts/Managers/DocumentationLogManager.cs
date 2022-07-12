@@ -83,7 +83,7 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void LogThisText(string text, string senderName)
+    public void LogThisText(string senderName, string text)
     {
 
         myLog = text;

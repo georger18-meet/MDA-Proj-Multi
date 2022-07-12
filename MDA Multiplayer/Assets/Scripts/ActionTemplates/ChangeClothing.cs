@@ -21,7 +21,7 @@ public class ChangeClothing : MonoBehaviour
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, (int)_clothing);
+                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllViaServer, (int)_clothing);
 
                 ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
                 ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_alertTitle} is: {_alertText}");

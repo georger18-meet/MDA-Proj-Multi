@@ -30,6 +30,7 @@ public class ActionTemplates : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _photonView = GetComponent<PhotonView>();
     }
 
     private void Update()
@@ -137,7 +138,7 @@ public class ActionTemplates : MonoBehaviour
     }
     #endregion
 
-    
+
 
     // not sure about this - patient bool - isConsious vs if is currently conscious
     public void CheckStatus(bool isConscious, bool isPatientConscious)
@@ -149,7 +150,7 @@ public class ActionTemplates : MonoBehaviour
     [PunRPC]
     public void RPC_UpdatePatientLog(string senderName, string textToLog)
     {
-        //_docLog.LogThisText(senderName, textToLog);
+        _docLog.LogThisText(senderName, textToLog);
     }
     #endregion
 }
