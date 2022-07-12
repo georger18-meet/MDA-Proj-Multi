@@ -29,7 +29,7 @@ public class ConnectingMonitor : MonoBehaviour
                 PhotonNetwork.Instantiate(_monitor.name, desiredPlayerData.CurrentPatientNearby.ChestPosEquipmentTransform.position, Quaternion.identity);
                 //MonoBehaviour.Instantiate(_monitor, _actionManager.PatientEquipmentTr.position, Quaternion.identity);
 
-                _actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient");
+                _actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient", PhotonNetwork.NickName);
                 Debug.Log("CLEAR!!! Defibrillator On " /*+ _AOM.Patient.name*/);
             }
         }

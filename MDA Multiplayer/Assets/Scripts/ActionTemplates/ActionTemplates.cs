@@ -112,14 +112,14 @@ public class ActionTemplates : MonoBehaviour
     }
 
     [PunRPC]
-    public void RPC_UpdatePatientLog(string textToLog)
+    public void RPC_UpdatePatientLog(string textToLog,string senderName)
     {
-        _docLog.LogThisText(textToLog);
+        _docLog.LogThisText(textToLog,  senderName);
     }
 
-    public void UpdatePatientLog(string textToLog)
+    public void UpdatePatientLog(string textToLog, string senderName)
     {
-        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, textToLog);
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, textToLog,  senderName);
     }
     #endregion
 

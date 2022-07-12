@@ -30,7 +30,7 @@ public class ChangeMeasurement : MonoBehaviour
                 desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementByIndex(measurementNumber, _newMeasurement);
 
                 _actionTemplates.ShowAlertWindow(_measurementTitle, _newMeasurement);
-                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed");
+                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed", PhotonNetwork.NickName);
             }
         }
     }

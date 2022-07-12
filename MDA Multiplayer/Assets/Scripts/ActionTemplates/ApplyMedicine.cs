@@ -23,7 +23,7 @@ public class ApplyMedicine : MonoBehaviour
             myPlayerData.PhotonView.RPC("OnApplyMedicine", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
             ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-            ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
+            ActionTemplates.Instance.UpdatePatientLog($"Applied {_medicineToApply} on Patient",PhotonNetwork.NickName);
         }
     }
 }

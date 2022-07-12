@@ -53,7 +53,7 @@ public class HeartMassages : MonoBehaviour
                 _playerAnimator.SetBool("Administering Cpr", true);
                 desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
 
-                _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
+                _actionTemplates.UpdatePatientLog($"Performed Heart Massages", PhotonNetwork.NickName);
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
             }
         }

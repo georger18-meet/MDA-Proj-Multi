@@ -16,26 +16,12 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks
     private List<string> _queueList = new List<string>();
     private int _queueIndex = 0;
 
-
-    private PhotonView _photonView;
-
-    //public static DocumentationLogManager Instance;
-
+   // private PhotonView _photonView;
+    
 
     private void Awake()
     {
-
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else if (Instance != this)
-        //{
-        //    Destroy(gameObject);
-        //}
-
-        _photonView = GetComponent<PhotonView>();
+       // _photonView = GetComponent<PhotonView>();
         _queueArray = new string[LogsToDisplayAtOnce + 1];
         _queueList.Add("");
     }
@@ -55,8 +41,6 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks
         {
             RefreshText();
         }
-
-
     }
 
     void OnEnable()
@@ -74,7 +58,7 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks
         if (DisplayAllLog)
         {
             myLog = logString;
-            string newString = "[" + type + "]: " + myLog + "\n----------------------------------------\n";
+            string newString =$"{PhotonNetwork.LocalPlayer.NickName} :  [{type}]:  {myLog} + \n----------------------------------------\n";
             Enqueue(newString);
             if (type == LogType.Exception)
             {
@@ -99,11 +83,11 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void LogThisText(string text)
+    public void LogThisText(string text, string senderName)
     {
 
         myLog = text;
-        string newString = myLog + "\n----------------------------------------\n";
+        string newString = senderName + ": " + myLog + "\n----------------------------------------\n";
         Enqueue(newString);
         myLog = string.Empty;
         if (!InfiniteList)

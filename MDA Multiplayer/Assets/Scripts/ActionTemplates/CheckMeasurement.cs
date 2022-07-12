@@ -33,7 +33,7 @@ public class CheckMeasurement : MonoBehaviour
                 _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
 
                 _actionTemplates.ShowAlertWindow(_measurementTitle, _measurement);
-                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} is: {_measurement}");
+                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} is: {_measurement}", PhotonNetwork.NickName);
             }
         }
     }

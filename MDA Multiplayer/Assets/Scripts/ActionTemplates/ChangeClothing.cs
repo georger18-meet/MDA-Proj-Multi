@@ -56,7 +56,7 @@ public class ChangeClothing : MonoBehaviour
                 }
 
                 _actionTemplates.ShowAlertWindow(_textureToChange, _alertContent);
-                _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}");
+                _actionTemplates.UpdatePatientLog($"Patient's {_textureToChange} is: {_alertContent}", PhotonNetwork.NickName);
             }
         }
     }
