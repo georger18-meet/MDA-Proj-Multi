@@ -24,7 +24,7 @@ public class ChangeClothing : MonoBehaviour
                 desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.All, (int)_clothing);
 
                 ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_alertTitle} is: {_alertText}");
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_alertTitle} is: {_alertText}");
             }
         }
     }

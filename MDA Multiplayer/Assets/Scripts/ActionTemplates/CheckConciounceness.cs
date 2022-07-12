@@ -29,7 +29,7 @@ public class CheckConciounceness : MonoBehaviour
                 _conciouncnessState = currentPatient.PatientData.IsConscious ? _caseConciouce : _caseNotConciouce;
 
                 ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _conciouncnessState);
-                ActionTemplates.Instance.UpdatePatientLog($"{_alertTitle} {_alertText} {_conciouncnessState}");
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_alertText} {_conciouncnessState}");
                 break;
             }
         }

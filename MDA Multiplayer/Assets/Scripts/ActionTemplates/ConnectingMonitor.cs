@@ -27,6 +27,8 @@ public class ConnectingMonitor : MonoBehaviour
 
                 photonView.RPC("UpdatePatientLogRPC", RpcTarget.AllViaServer, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
 
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
+
                 //ActionTemplates.Instance.UpdatePatientLog($"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
                 Debug.Log("CLEAR!!! Defibrillator");
             }

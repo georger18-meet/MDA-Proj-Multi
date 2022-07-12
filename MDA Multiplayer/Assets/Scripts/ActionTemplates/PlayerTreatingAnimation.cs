@@ -19,7 +19,7 @@ public class PlayerTreatingAnimation : MonoBehaviour
         yield return new WaitForSeconds(_animationWaitTime);
 
         _playerAnimator.SetBool(_animationName, false);
-        ActionTemplates.Instance.UpdatePatientLog($"{_playerName} has finished {_animationName}");
+        ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_playerName} has finished {_animationName}");
     }
 
     public void PlayAnimation()
@@ -43,7 +43,7 @@ public class PlayerTreatingAnimation : MonoBehaviour
                 StartCoroutine(WaitToFinishAnimation());
 
                 _playerName = photonView.Owner.NickName;
-                ActionTemplates.Instance.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
                 break;
             }

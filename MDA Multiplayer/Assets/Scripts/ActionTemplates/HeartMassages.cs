@@ -14,7 +14,7 @@ public class HeartMassages : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         _playerAnimator.SetBool("Administering Cpr", false);
-        ActionTemplates.Instance.UpdatePatientLog($"{_playerName} has finished Administering Heart Massages");
+        ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_playerName} has finished Administering Heart Massages");
     }
 
     public void DoHeartMassage()
@@ -43,7 +43,7 @@ public class HeartMassages : MonoBehaviour
                 StartCoroutine(WaitToFinishCPR());
                 _playerName = photonView.Owner.NickName;
 
-                ActionTemplates.Instance.UpdatePatientLog($"{photonView.Owner.NickName} is Administering Heart Massages");
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{photonView.Owner.NickName} is Administering Heart Massages");
                 Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
                 break;
             }

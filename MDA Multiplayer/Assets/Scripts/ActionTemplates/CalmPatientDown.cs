@@ -40,7 +40,7 @@ public class CalmPatientDown : MonoBehaviour
                 currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
 
                 ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                ActionTemplates.Instance.UpdatePatientLog($"Patient's {patientName} has calmed down a bit");
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {patientName} has calmed down a bit");
                 break;
             }
         }

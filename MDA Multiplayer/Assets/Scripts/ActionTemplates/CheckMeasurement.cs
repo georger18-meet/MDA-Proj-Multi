@@ -32,7 +32,7 @@ public class CheckMeasurement : MonoBehaviour
 
                 Debug.Log($"{_alertTitle} {_measurement}");
                 ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _measurement);
-                ActionTemplates.Instance.UpdatePatientLog($"Patient's {_alertTitle} is: {_measurement}");
+                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_alertTitle} is: {_measurement}");
                 break;
             }
         }

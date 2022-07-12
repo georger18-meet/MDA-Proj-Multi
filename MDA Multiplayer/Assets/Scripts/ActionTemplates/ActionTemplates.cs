@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System;
+using Photon.Pun;
 
 public class ActionTemplates : MonoBehaviour
 {
@@ -16,6 +17,25 @@ public class ActionTemplates : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textAlertTitle, _textAlertText;
     [SerializeField] private TextMeshProUGUI _numAlertTitle, _numAlertText;
     [SerializeField] private float _alertTimer;
+
+    private PhotonView _photonView;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        _alertTimer += Time.deltaTime;
+    }
 
     #region Most Basic Tools
     public void OpenCloseDisplayWindow(GameObject window)
@@ -111,25 +131,13 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
-    // should be RPC
-    public void UpdatePatientLog(string textToLog)
+    public void UpdatePatientLog(string senderName, string textToLog)
     {
-        _docLog.LogThisText(textToLog);
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderName, textToLog);
     }
     #endregion
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    
 
     // not sure about this - patient bool - isConsious vs if is currently conscious
     public void CheckStatus(bool isConscious, bool isPatientConscious)
@@ -137,8 +145,11 @@ public class ActionTemplates : MonoBehaviour
 
     }
 
-    private void Update()
+    #region PunRPC
+    [PunRPC]
+    public void RPC_UpdatePatientLog(string senderName, string textToLog)
     {
-        _alertTimer += Time.deltaTime;
+        //_docLog.LogThisText(senderName, textToLog);
     }
+    #endregion
 }
