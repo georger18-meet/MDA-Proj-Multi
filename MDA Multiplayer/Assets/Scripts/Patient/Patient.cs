@@ -34,6 +34,9 @@ public class Patient : MonoBehaviour
     [Header("Treatment Positions")]
     public Transform ChestPosPlayerTransform;
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
+
+    [Header("World Canvas")]
+    public GameObject WorldCanvas;
     #endregion
 
     #region Monovehavior Callbacks
@@ -61,6 +64,7 @@ public class Patient : MonoBehaviour
         }
         else if (!NearbyUsers.Contains(possiblePlayer))
         {
+            WorldCanvas.SetActive(true);
             NearbyUsers.Add(possiblePlayer);
         }
     }
@@ -75,6 +79,7 @@ public class Patient : MonoBehaviour
             }
             else
             {
+                WorldCanvas.SetActive(false);
                 NearbyUsers.Remove(possiblePlayer);
             }
         }
