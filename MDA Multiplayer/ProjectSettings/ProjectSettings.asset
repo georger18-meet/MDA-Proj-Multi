@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: MDA Multiplayer
-  defaultCursor: {fileID: 2800000, guid: cfc9207fda8368a4a9ef6e7d30d38d20, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 7f7b4a31c680c30419cc6d83e85cc69f, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
