@@ -14,7 +14,11 @@ public class CalmPatientDown : MonoBehaviour
     [SerializeField] private int _calmDownHeartRateBy = 0;
     [SerializeField] private int _calmDownRespiratoryRateBy;
 
-    
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
+
     private int _newHeartRate, _newRespiratoryRate;
     private int _heartRateIndex = 0, _respiratoryRate = 2;
 
@@ -39,8 +43,15 @@ public class CalmPatientDown : MonoBehaviour
 
                 currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
 
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {patientName} has calmed down a bit");
+                if (_showAlert)
+                {
+                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
+                }
+
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {patientName} has calmed down a bit");
+                }
                 break;
             }
         }

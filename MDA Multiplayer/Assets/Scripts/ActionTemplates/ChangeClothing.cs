@@ -10,6 +10,10 @@ public class ChangeClothing : MonoBehaviour
     [SerializeField] private Clothing _clothing;
     [SerializeField] private string _alertTitle, _alertText;
 
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
     public void ChangeClothingAction()
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
@@ -23,8 +27,16 @@ public class ChangeClothing : MonoBehaviour
 
                 desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllBufferedViaServer, (int)_clothing);
 
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_alertTitle} is: {_alertText}");
+                if (_showAlert)
+                {
+                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
+                }
+
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {_alertTitle} is: {_alertText}");
+                }
+                break;
             }
         }
     }

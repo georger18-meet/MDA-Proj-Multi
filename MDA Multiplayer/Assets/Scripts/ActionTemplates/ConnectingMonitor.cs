@@ -6,7 +6,12 @@ using Photon.Pun;
 
 public class ConnectingMonitor : MonoBehaviour
 {
+    [Header("Prefab References")]
     [SerializeField] private GameObject _monitor;
+
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
 
     private GameObject _player;
     
@@ -21,16 +26,23 @@ public class ConnectingMonitor : MonoBehaviour
                 if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
                     return;
 
+                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                PatientData currentPatientData = currentPatient.PatientData;
+
                 _player = desiredPlayerData.gameObject;
-                _player.transform.position = desiredPlayerData.CurrentPatientNearby.ChestPosPlayerTransform.position;
-                GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, desiredPlayerData.CurrentPatientNearby.ChestPosEquipmentTransform.position, desiredPlayerData.CurrentPatientNearby.ChestPosEquipmentTransform.rotation);
+                _player.transform.position = currentPatient.ChestPosPlayerTransform.position;
+
+                GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, currentPatient.ChestPosEquipmentTransform.position, currentPatient.ChestPosEquipmentTransform.rotation);
 
                 photonView.RPC("UpdatePatientLogRPC", RpcTarget.AllViaServer, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.Name} {desiredPlayerData.CurrentPatientNearby.PatientData.SureName}");
 
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.Name} {desiredPlayerData.CurrentPatientNearby.PatientData.SureName}");
+                // alert
 
-                //ActionTemplates.Instance.UpdatePatientLog($"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.SureName} {desiredPlayerData.CurrentPatientNearby.PatientData.LastName}");
-                Debug.Log("CLEAR!!! Defibrillator");
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Connected Defibrilator to {currentPatientData.Name} {currentPatientData.SureName}");
+                }
+                break;
             }
         }
     }

@@ -10,6 +10,10 @@ public class ChangeMeasurement : MonoBehaviour
     [SerializeField] private string _measurementTitle;
     [SerializeField] private int _newMeasurement;
 
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
     public void ApplyMeasurementAction(int measurementNumber)
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
@@ -29,8 +33,15 @@ public class ChangeMeasurement : MonoBehaviour
                 currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
                 //desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementByIndex(measurementNumber, _newMeasurement);
 
-                ActionTemplates.Instance.ShowAlertWindow(_measurementTitle, _newMeasurement);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_measurementTitle} was changed");
+                if (_showAlert)
+                {
+                    ActionTemplates.Instance.ShowAlertWindow(_measurementTitle, _newMeasurement);
+                }
+                
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {_measurementTitle} was changed");
+                }
                 break;
             }
         }

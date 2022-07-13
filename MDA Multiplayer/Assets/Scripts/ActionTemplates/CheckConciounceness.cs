@@ -10,7 +10,11 @@ public class CheckConciounceness : MonoBehaviour
     [SerializeField] private string _alertText;
     [SerializeField] private string _caseConciouce;
     [SerializeField] private string _caseNotConciouce;
-    
+
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
     private string _conciouncnessState;
 
     public void CheckConciouncenessAction()
@@ -28,8 +32,15 @@ public class CheckConciounceness : MonoBehaviour
 
                 _conciouncnessState = currentPatient.PatientData.IsConscious ? _caseConciouce : _caseNotConciouce;
 
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _conciouncnessState);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_alertText} {_conciouncnessState}");
+                if (_showAlert)
+                {
+                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _conciouncnessState);
+                }
+
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_alertTitle} {_alertText} {_conciouncnessState}");
+                }
                 break;
             }
         }

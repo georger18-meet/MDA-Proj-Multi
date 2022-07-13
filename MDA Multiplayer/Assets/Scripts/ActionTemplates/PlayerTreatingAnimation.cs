@@ -6,20 +6,25 @@ using Photon.Pun;
 
 public class PlayerTreatingAnimation : MonoBehaviour
 {
+    [Header("Data")]
     [SerializeField] private string _animationName;
-    [SerializeField] private float _animationWaitTime;
+    [SerializeField] private float _animationEndTime;
     // usually 0 /2 /4
     [SerializeField] private int _patientColliderIndex;
+
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
 
     private Animator _playerAnimator;
     private string _playerName;
 
     private IEnumerator WaitToFinishAnimation()
     {
-        yield return new WaitForSeconds(_animationWaitTime);
+        yield return new WaitForSeconds(_animationEndTime);
 
         _playerAnimator.SetBool(_animationName, false);
-        ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_playerName} has finished {_animationName}");
+        ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_playerName} has finished {_animationName}");
     }
 
     public void PlayAnimation()
@@ -42,9 +47,10 @@ public class PlayerTreatingAnimation : MonoBehaviour
                 _playerAnimator.SetBool(_animationName, true);
                 StartCoroutine(WaitToFinishAnimation());
 
-                _playerName = photonView.Owner.NickName;
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{photonView.Owner.NickName} is Administering Heart Massages");
-                Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $" is Administering Heart Massages");
+                }
                 break;
             }
         }

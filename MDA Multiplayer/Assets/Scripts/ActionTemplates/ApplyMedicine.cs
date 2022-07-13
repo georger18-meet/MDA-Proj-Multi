@@ -11,6 +11,10 @@ public class ApplyMedicine : MonoBehaviour
     [SerializeField] private string  _measurementTitle;
     [SerializeField] private int _newMeasurement;
 
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
     private string _alertTitle = "Applied Medicine:";
 
     public void OnApplyMedicineRPC(int measurementNumber)
@@ -23,11 +27,19 @@ public class ApplyMedicine : MonoBehaviour
                 return;
 
             Patient currentPatient = myPlayerData.CurrentPatientNearby;
-
+            PatientData currentPatientData = currentPatient.PatientData;
             currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
-            ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_medicineToApply} on {currentPatient.PatientData.Name} {currentPatient.PatientData.SureName}");
+            if (_showAlert)
+            {
+                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
+            }
+
+            if (_updateLog)
+            {
+                ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_alertTitle} {_medicineToApply} on {currentPatientData.Name} {currentPatientData.SureName}");
+            }
+            break;
         }
     }
 }

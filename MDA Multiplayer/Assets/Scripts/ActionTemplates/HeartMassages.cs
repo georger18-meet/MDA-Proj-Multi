@@ -6,6 +6,10 @@ using Photon.Pun;
 
 public class HeartMassages : MonoBehaviour
 {
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
     private Animator _playerAnimator;
     private string _playerName;
 
@@ -38,13 +42,15 @@ public class HeartMassages : MonoBehaviour
                 _playerAnimator.SetBool("Administering Cpr", true);
                 currentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
 
-                //desiredPlayerData.CurrentPatientNearby.PatientData.BloodPressure = 64;
+                // log
 
                 StartCoroutine(WaitToFinishCPR());
                 _playerName = photonView.Owner.NickName;
 
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{photonView.Owner.NickName} is Administering Heart Massages");
-                Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $" Administering Heart Massages");
+                }
                 break;
             }
         }

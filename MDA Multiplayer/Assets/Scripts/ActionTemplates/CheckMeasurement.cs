@@ -8,9 +8,11 @@ public class CheckMeasurement : MonoBehaviour
 {
     [Header("Component's Data")]
     [SerializeField] private string _alertTitle;
-
     [SerializeField] private List<Measurements> measurementList;
 
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
     private int _measurement;
 
     public void CheckMeasurementAction(int measurementNumber)
@@ -30,9 +32,15 @@ public class CheckMeasurement : MonoBehaviour
 
                 _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
 
-                Debug.Log($"{_alertTitle} {_measurement}");
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _measurement);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_alertTitle} is: {_measurement}");
+                if (_showAlert)
+                {
+                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _measurement);
+                }
+
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {_alertTitle} is: {_measurement}");
+                }
                 break;
             }
         }
