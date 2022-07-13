@@ -22,7 +22,7 @@ public class Alert : MonoBehaviour
             Patient currentPatient = myPlayerData.CurrentPatientNearby;
 
             ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{myPlayerData.UserName} Removed foreign object from {currentPatient.PatientData.SureName} {currentPatient.PatientData.LastName}");
+            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{myPlayerData.UserName} Removed foreign object from {currentPatient.PatientData.Name} {currentPatient.PatientData.SureName}");
         }
     }
 }

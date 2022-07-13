@@ -7,11 +7,11 @@ public class PatientData : ScriptableObject
 {
     // General Info
     [Header("Patient Informaion")]
+    public string Name;
     public string SureName;
-    public string LastName;
     public int Id, Age;
     public string Gender;
-    public int PhoneNumber;
+    public string PhoneNumber;
     public string MedicalCompany, AddressLocation, Complaint;
 
     // Health Data

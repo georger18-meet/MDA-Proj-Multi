@@ -69,7 +69,7 @@ public class ActionsManager : MonoBehaviour
             else
             {
                 _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
-                UIManager.Instance.PatientMenuParent.SetActive(true);
+                UIManager.Instance.PatientInfoParent.SetActive(true);
             }
         }
     }
@@ -86,8 +86,7 @@ public class ActionsManager : MonoBehaviour
             {
                 myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer);
                 UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                UIManager.Instance.PatientMenuParent.SetActive(true);
-                UIManager.Instance.PatientInfoParent.SetActive(false);
+                UIManager.Instance.PatientInfoParent.SetActive(true);
             }
             else
             {

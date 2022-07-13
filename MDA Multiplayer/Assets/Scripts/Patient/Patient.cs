@@ -151,8 +151,8 @@ public class Patient : MonoBehaviour
     [PunRPC]
     public void UpdatePatientInfoDisplay()
     {
-        UIManager.Instance.SureName.text = PatientData.SureName;
-        UIManager.Instance.LastName.text = PatientData.LastName;
+        UIManager.Instance.SureName.text = PatientData.Name;
+        UIManager.Instance.LastName.text = PatientData.SureName;
         UIManager.Instance.Gender.text = PatientData.Gender;
         UIManager.Instance.Adress.text = PatientData.AddressLocation;
         UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;

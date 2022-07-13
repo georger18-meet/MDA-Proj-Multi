@@ -27,7 +27,7 @@ public class ApplyMedicine : MonoBehaviour
             currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
             ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_medicineToApply} on {currentPatient.PatientData.SureName} {currentPatient.PatientData.LastName}");
+            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_medicineToApply} on {currentPatient.PatientData.Name} {currentPatient.PatientData.SureName}");
         }
     }
 }

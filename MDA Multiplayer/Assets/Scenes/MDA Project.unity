@@ -43891,7 +43891,7 @@ PrefabInstance:
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: PatientMenuParent
       value: 
-      objectReference: {fileID: 6309766607655282446}
+      objectReference: {fileID: 0}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: FollowUnfollowText
       value: 
@@ -88891,11 +88891,6 @@ GameObject:
 --- !u!1 &6309766607651498406 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7994697898989439185, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
-  m_PrefabInstance: {fileID: 4134889592247787895}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6309766607655282446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7994697898984572537, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
   m_PrefabInstance: {fileID: 4134889592247787895}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6309766607731801127 stripped

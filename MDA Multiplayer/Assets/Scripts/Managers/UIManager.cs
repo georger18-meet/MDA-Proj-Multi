@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     #region Patient UI 
     [Header("Patient UI Parents")]
     public GameObject JoinPatientPopUp;
-    public GameObject PatientMenuParent, PatientInfoParent, ActionLogParent;
+    public GameObject PatientInfoParent, ActionLogParent;
 
     [Header("Patient UI Texts")]
     public TextMeshProUGUI SureName;
@@ -93,7 +93,6 @@ public class UIManager : MonoBehaviour
     public void CloseAllPatientWindows()
     {
         JoinPatientPopUp.SetActive(false);
-        PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
         EvacPatientPopUp.SetActive(false);
