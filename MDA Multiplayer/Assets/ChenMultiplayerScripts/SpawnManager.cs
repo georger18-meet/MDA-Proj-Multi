@@ -6,7 +6,7 @@ using Photon.Pun;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playerPrefab, _patientPrefab,NatanPrefab,ColliderPrefab;
-    [SerializeField] private Transform _patientSpawner, NatanSpanwner,SpawnerTest;
+    [SerializeField] private Transform _patientSpawner, NatanSpanwner, CrewRoomSpawner1, CrewRoomSpawner2;
 
     public float _minX, _minZ, _maxX, _maxZ;
 
@@ -17,7 +17,10 @@ public class SpawnManager : MonoBehaviour
        // if (PhotonNetwork.IsMasterClient)
             PhotonNetwork.InstantiateRoomObject(_patientPrefab.name, _patientSpawner.position, _patientPrefab.transform.rotation);
         if (PhotonNetwork.IsMasterClient)
-                PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name, SpawnerTest.position, ColliderPrefab.transform.rotation);
+        {
+                PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name,  CrewRoomSpawner1.position, CrewRoomSpawner1.rotation);
+                PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name,  CrewRoomSpawner2.position, CrewRoomSpawner2.rotation);
+        }
         if (PhotonNetwork.IsMasterClient)
             PhotonNetwork.InstantiateRoomObject(NatanPrefab.name, NatanSpanwner.position, NatanPrefab.transform.rotation);
     }

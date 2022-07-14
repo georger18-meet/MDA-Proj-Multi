@@ -43730,7 +43730,8 @@ MonoBehaviour:
   ColliderPrefab: {fileID: 9121340643068738268, guid: 3c530409af416974ca2b896628a8c124, type: 3}
   _patientSpawner: {fileID: 1303862087}
   NatanSpanwner: {fileID: 1402723829}
-  SpawnerTest: {fileID: 2133931343}
+  CrewRoomSpawner1: {fileID: 1206106044}
+  CrewRoomSpawner2: {fileID: 2133931343}
   _minX: 83
   _minZ: -397
   _maxX: 72
@@ -86667,6 +86668,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084729926}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1206106043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1206106044}
+  m_Layer: 0
+  m_Name: CrewRoomPosition4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1206106044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206106043}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 67.533, y: 0.5, z: -382.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264252842
 GameObject:
   m_ObjectHideFlags: 0
@@ -87564,7 +87595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089628468 stripped
 GameObject:
@@ -87581,7 +87612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2133931343}
   m_Layer: 0
-  m_Name: Test Position (1)
+  m_Name: CrewRoomPosition5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87594,13 +87625,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133931342}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 67.533, y: 0.5, z: -387.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1229519540928403487 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2914450935303633256, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
