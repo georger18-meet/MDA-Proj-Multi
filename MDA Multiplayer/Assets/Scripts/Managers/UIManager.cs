@@ -24,8 +24,11 @@ public class UIManager : MonoBehaviour
     #region Player UI
     [Header("Player UI Parents")]
     public GameObject CurrentActionBarParent;
-    public GameObject AmbulanceActionBarParent, NatanActionBarParent;
     public GameObject MapWindow, ContentPanel;
+    public GameObject AmbulanceBar, NatanBar;
+    public GameObject AmbulanceNoBagPanel, AmbulanceAmbuPanel, AmbulanceKidsAmbuPanel, AmbulanceMedicPanel, AmbulanceDefibrilationPanel, AmbulanceOxygenPanel, AmbulanceMonitorPanel;
+    public GameObject NatanNoBagPanel, NatanAmbuPanel, NatanKidsAmbuPanel, NatanMedicPanel, NatanQuickDrugsPanel, NatanOxygenPanel, NatanMonitorPanel;
+
     #endregion
 
     #region Patient UI 
@@ -46,8 +49,10 @@ public class UIManager : MonoBehaviour
     public GameObject EvacPatientPopUp;
     #endregion
 
-    #region Car UI
+    #region Vehicle UI
+    [Header("Vehicle UI Texts")]
     public GameObject VehicleUI;
+    
     #endregion
 
     private void Awake()
@@ -63,7 +68,7 @@ public class UIManager : MonoBehaviour
         }
 
         //_lastSelectedGameObject = _currentSelectedGameObject;
-        CurrentActionBarParent = AmbulanceActionBarParent;
+        CurrentActionBarParent = AmbulanceBar;
     }
 
     private void Start()
@@ -96,6 +101,28 @@ public class UIManager : MonoBehaviour
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
         EvacPatientPopUp.SetActive(false);
+    }
+
+    public void CloseAllAmbulanceBags()
+    {
+        AmbulanceNoBagPanel.SetActive(false);
+        AmbulanceAmbuPanel.SetActive(false);
+        AmbulanceKidsAmbuPanel.SetActive(false);
+        AmbulanceMedicPanel.SetActive(false);
+        AmbulanceDefibrilationPanel.SetActive(false);
+        AmbulanceOxygenPanel.SetActive(false);
+        AmbulanceMonitorPanel.SetActive(false);
+    }
+
+    public void CloseAllNatanBags()
+    {
+        NatanNoBagPanel.SetActive(false);
+        NatanAmbuPanel.SetActive(false);
+        NatanKidsAmbuPanel.SetActive(false);
+        NatanMedicPanel.SetActive(false);
+        NatanQuickDrugsPanel.SetActive(false);
+        NatanOxygenPanel.SetActive(false);
+        NatanMonitorPanel.SetActive(false);
     }
 
     public void PauseHomeBtn()

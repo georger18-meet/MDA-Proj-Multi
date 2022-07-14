@@ -42,16 +42,16 @@ public class ActionTemplates : MonoBehaviour
     public void OpenCloseDisplayWindow(GameObject window)
     {
         Debug.Log($"Attempting to Open/Close {window.name}");
-            if (window.activeInHierarchy)
-            {
-                window.SetActive(false);
-                Debug.Log($"Closed {window.name}");
-            }
-            else
-            {
-                window.SetActive(true);
-                Debug.Log($"Opened {window.name}");
-            }
+        if (window.activeInHierarchy)
+        {
+            window.SetActive(false);
+            Debug.Log($"Closed {window.name}");
+        }
+        else
+        {
+            window.SetActive(true);
+            Debug.Log($"Opened {window.name}");
+        }
     }
 
     public void UpdateDisplayWindow(GameObject window, TextMeshProUGUI text, int newValue)

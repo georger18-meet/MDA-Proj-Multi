@@ -34,9 +34,9 @@ public class CarDoorCollision : MonoBehaviour
         {
             UIManager.Instance.CurrentActionBarParent = number switch
             {
-                0 => UIManager.Instance.AmbulanceActionBarParent,
-                1 => UIManager.Instance.NatanActionBarParent,
-                _ => UIManager.Instance.AmbulanceActionBarParent,
+                0 => UIManager.Instance.AmbulanceBar,
+                1 => UIManager.Instance.NatanBar,
+                _ => UIManager.Instance.AmbulanceBar,
             };
 
             IsDoorOpen = false;
@@ -46,9 +46,9 @@ public class CarDoorCollision : MonoBehaviour
         {
             UIManager.Instance.CurrentActionBarParent = number switch
             {
-                0 => UIManager.Instance.AmbulanceActionBarParent,
-                1 => UIManager.Instance.NatanActionBarParent,
-                _ => UIManager.Instance.AmbulanceActionBarParent,
+                0 => UIManager.Instance.AmbulanceBar,
+                1 => UIManager.Instance.NatanBar,
+                _ => UIManager.Instance.AmbulanceBar,
             };
 
             IsDoorOpen = true;
