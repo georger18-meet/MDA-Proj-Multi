@@ -248,6 +248,7 @@ MonoBehaviour:
   SeatNumber: 3
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 1679896010398503200}
+  _carController: {fileID: 0}
 --- !u!95 &5907126640177437746
 Animator:
   serializedVersion: 3
@@ -675,6 +676,7 @@ MonoBehaviour:
   SeatNumber: 1
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 2007004135531317393}
+  _carController: {fileID: 0}
 --- !u!95 &1155267507327769118
 Animator:
   serializedVersion: 3
@@ -942,6 +944,7 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 2930696281690926904}
   rearLeftWheelTransform: {fileID: 7869330755465639764}
   CarHeadLights: {fileID: 7835427840823393566}
+  CarCollider: {fileID: 0}
   CarSiren: {fileID: 375342510873012328}
   CarSirenAudioSource: {fileID: 4380602823039877177}
   CarDoorCollisions:
@@ -950,6 +953,7 @@ MonoBehaviour:
   - {fileID: 961867702671895156}
   - {fileID: 5145118015697076167}
   CarDashboardUI: {fileID: 5815950356836679225, guid: 1b9c0926ca56f3d47bf37e6726535d8f, type: 3}
+  _transfer: {fileID: 0}
 --- !u!1 &1556003282322039230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1850,7 @@ MonoBehaviour:
   SeatNumber: 0
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 125486220198329153}
+  _carController: {fileID: 0}
 --- !u!95 &4380602821645069117
 Animator:
   serializedVersion: 3
@@ -2481,6 +2486,7 @@ MonoBehaviour:
   SeatNumber: 2
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 7127847515440957280}
+  _carController: {fileID: 0}
 --- !u!95 &5061715346753455086
 Animator:
   serializedVersion: 3
@@ -2607,8 +2613,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -1.625}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8862923347476754586}
+  m_Children: []
   m_Father: {fileID: 3116393205839820792}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3257,14 +3262,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 84367b24b615a054f9430c7671958a68, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
---- !u!4 &7869330755465639764 stripped
+--- !u!4 &7324149205480789709 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1088561832790902386, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
-  m_PrefabInstance: {fileID: 7074631203677614374}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2930696281690926904 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -3853446146803900898, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
   m_PrefabInstance: {fileID: 7074631203677614374}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2389657830116429510 stripped
@@ -3272,157 +3272,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4393289222945292320, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
   m_PrefabInstance: {fileID: 7074631203677614374}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2930696281690926904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3853446146803900898, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
+  m_PrefabInstance: {fileID: 7074631203677614374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7869330755465639764 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1088561832790902386, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
+  m_PrefabInstance: {fileID: 7074631203677614374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2017931762846012197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9092487993573450243, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
   m_PrefabInstance: {fileID: 7074631203677614374}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7324149205480789709 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a79c50b5b69a09f45a5392127edf39ea, type: 3}
-  m_PrefabInstance: {fileID: 7074631203677614374}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7715716554922417069
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2645373845933056540}
-    m_Modifications:
-    - target: {fileID: 66790119364669929, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Name
-      value: MD_EmergencyBedClosed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643038897957688, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Name
-      value: EmergencyBed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643039188436932, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1291643039846222323, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2514615090674820700, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: m_Name
-      value: MD_EmergencyBedOpen
-      objectReference: {fileID: 0}
-    - target: {fileID: 2908853869985648674, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-      propertyPath: EventToCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1291643038897957686, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
---- !u!1 &8862923347476754581 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1291643038897957688, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8862923347476754586 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1291643038897957687, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8862923348657959376 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1291643039861025405, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8862923348743567371 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1291643039644672934, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2329538710267339093 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5424467342941879032, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7781923364208962116 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 66790119364669929, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5329462918440435185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2514615090674820700, guid: dce00df234fc8644994f6f10fbc834aa, type: 3}
-  m_PrefabInstance: {fileID: 7715716554922417069}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1643585237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8862923347476754581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277d8103a323cd244ac13df20a936c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _patient: {fileID: 0}
-  _player: {fileID: 0}
-  _emergencyBedOpen: {fileID: 5329462918440435185}
-  _emergencyBedClosed: {fileID: 7781923364208962116}
-  _emergencyBed: {fileID: 8862923347476754581}
-  _emergencyBedUI: {fileID: 0}
-  _takeReturnText: {fileID: 0}
-  _followUnfollowText: {fileID: 0}
-  _placeRemovePatientText: {fileID: 0}
-  _playerHoldPos: {fileID: 2329538710267339093}
-  _patientPosOnBed: {fileID: 8862923348743567371}
-  _patientPosOffBed: {fileID: 8862923348657959376}
-  _emergencyBedPositionInsideVehicle: {fileID: 2645373845933056540}
-  _emergencyBedPositionOutsideVehicle: {fileID: 2439254868137273723}
-  _takeOutBed: 0
-  _isBedClosed: 0
-  _isPatientOnBed: 0
-  _isFollowingPlayer: 0
-  _inCar: 0

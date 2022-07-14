@@ -103,26 +103,32 @@ public class UIManager : MonoBehaviour
         EvacPatientPopUp.SetActive(false);
     }
 
-    public void CloseAllAmbulanceBags()
+    public void CloseAllAmbulanceBags(GameObject currentWindow)
     {
-        AmbulanceNoBagPanel.SetActive(false);
-        AmbulanceAmbuPanel.SetActive(false);
-        AmbulanceKidsAmbuPanel.SetActive(false);
-        AmbulanceMedicPanel.SetActive(false);
-        AmbulanceDefibrilationPanel.SetActive(false);
-        AmbulanceOxygenPanel.SetActive(false);
-        AmbulanceMonitorPanel.SetActive(false);
+        if (!currentWindow.activeInHierarchy)
+        {
+            AmbulanceNoBagPanel.SetActive(false);
+            AmbulanceAmbuPanel.SetActive(false);
+            AmbulanceKidsAmbuPanel.SetActive(false);
+            AmbulanceMedicPanel.SetActive(false);
+            AmbulanceDefibrilationPanel.SetActive(false);
+            AmbulanceOxygenPanel.SetActive(false);
+            AmbulanceMonitorPanel.SetActive(false);
+        }
     }
 
-    public void CloseAllNatanBags()
+    public void CloseAllNatanBags(GameObject currentWindow)
     {
-        NatanNoBagPanel.SetActive(false);
-        NatanAmbuPanel.SetActive(false);
-        NatanKidsAmbuPanel.SetActive(false);
-        NatanMedicPanel.SetActive(false);
-        NatanQuickDrugsPanel.SetActive(false);
-        NatanOxygenPanel.SetActive(false);
-        NatanMonitorPanel.SetActive(false);
+        if (!currentWindow.activeInHierarchy)
+        {
+            NatanNoBagPanel.SetActive(false);
+            NatanAmbuPanel.SetActive(false);
+            NatanKidsAmbuPanel.SetActive(false);
+            NatanMedicPanel.SetActive(false);
+            NatanQuickDrugsPanel.SetActive(false);
+            NatanOxygenPanel.SetActive(false);
+            NatanMonitorPanel.SetActive(false);
+        }
     }
 
     public void PauseHomeBtn()
