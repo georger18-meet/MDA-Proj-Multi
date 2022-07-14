@@ -16,7 +16,8 @@ public class SpawnManager : MonoBehaviour
         PhotonNetwork.Instantiate(_playerPrefab.name, randomPos, Quaternion.identity);
        // if (PhotonNetwork.IsMasterClient)
             PhotonNetwork.InstantiateRoomObject(_patientPrefab.name, _patientSpawner.position, _patientPrefab.transform.rotation);
-            PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name, SpawnerTest.position, ColliderPrefab.transform.rotation);
+        if (PhotonNetwork.IsMasterClient)
+                PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name, SpawnerTest.position, ColliderPrefab.transform.rotation);
         if (PhotonNetwork.IsMasterClient)
             PhotonNetwork.InstantiateRoomObject(NatanPrefab.name, NatanSpanwner.position, NatanPrefab.transform.rotation);
     }
