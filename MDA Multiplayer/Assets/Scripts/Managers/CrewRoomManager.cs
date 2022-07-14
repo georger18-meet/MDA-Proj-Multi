@@ -20,8 +20,8 @@ public class CrewRoomManager : MonoBehaviour
 
     void Update()
     {
-        BlockRoomAccess();
-     
+       // BlockRoomAccess();
+       
     }
 
 
@@ -85,6 +85,7 @@ public class CrewRoomManager : MonoBehaviour
             }
         }
 
+        BlockRoomAccess();
     }
     //private void OnTriggerEnter(Collider other)
     //{
