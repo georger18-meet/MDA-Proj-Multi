@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Gambit v0.07.2 Gal
+    AppVersion: Gambit v0.07.2 Chen
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -58,6 +58,8 @@ MonoBehaviour:
   - ChangeClothingRPC
   - ChangeHeartRateRPC
   - SetMeasurementByIndexRPC
+  - test
+  - AddingToRoonList_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
