@@ -13,6 +13,7 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public int UserIndexInCrew { get; set; }
     [field: SerializeField] public int CrewIndex { get; set; }
     [field: SerializeField] public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
+    [field: SerializeField] public bool IsCrewLeader { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
@@ -40,15 +41,6 @@ public class PlayerData : MonoBehaviour
         Debug.Log("Attempting leave patient");
         CurrentPatientNearby.TreatingUsers.Remove(this);
         Debug.Log("Left Patient Succesfully");
-    }
-
-    [PunRPC]
-    private void OnApplyMedicine(int measurementNumber, int _newMeasurement)
-    {
-        // loops throughout measurementList and catches the first element that is equal to measurementNumber
-        Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-
-        CurrentPatientNearby.PatientData.SetMeasurementByIndex(2, _newMeasurement);
     }
     #endregion
 }

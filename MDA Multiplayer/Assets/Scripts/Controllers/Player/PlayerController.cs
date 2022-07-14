@@ -495,12 +495,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             _characterController.enabled = true;
         }
     }
-
-    [PunRPC]
-    private void UpdatePatientLogRPC(string textToLog)
-    {
-        ActionTemplates.Instance.DocLog.LogThisText(textToLog);
-    }
     #endregion
 
     #region Collisions & Triggers

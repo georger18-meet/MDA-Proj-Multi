@@ -13,6 +13,8 @@ public class ActionsManager : MonoBehaviour
 
     public List<Measurements> MeasurementList;
 
+    public List<Clothing> ClothingList;
+
     //public GameObject GameObject;
 
     [Header("Photon")]

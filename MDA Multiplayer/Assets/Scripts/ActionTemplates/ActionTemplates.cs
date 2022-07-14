@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System;
+using Photon.Pun;
 
 public class ActionTemplates : MonoBehaviour
 {
@@ -12,9 +13,30 @@ public class ActionTemplates : MonoBehaviour
     [SerializeField] private DocumentationLogManager _docLog;
     public DocumentationLogManager DocLog => _docLog;
 
-    [SerializeField] private GameObject _alertWindow;
-    [SerializeField] private TextMeshProUGUI _alertTitle, _alertText;
+    [SerializeField] private GameObject _textAlertWindow, _numAlertWindow;
+    [SerializeField] private TextMeshProUGUI _textAlertTitle, _textAlertText;
+    [SerializeField] private TextMeshProUGUI _numAlertTitle, _numAlertText;
     [SerializeField] private float _alertTimer;
+
+    private PhotonView _photonView;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        _photonView = GetComponent<PhotonView>();
+    }
+
+    private void Update()
+    {
+        _alertTimer += Time.deltaTime;
+    }
 
     #region Most Basic Tools
     public void OpenCloseDisplayWindow(GameObject window)
@@ -43,25 +65,25 @@ public class ActionTemplates : MonoBehaviour
     public void ShowAlertWindow(string measurementTitle, int measurement)
     {
         _alertTimer = 0;
-        _alertWindow.SetActive(true);
+        _numAlertWindow.SetActive(true);
 
-        _alertTitle.text = measurementTitle;
-        _alertText.text = measurement.ToString();
+        _numAlertTitle.text = measurementTitle;
+        _numAlertText.text = measurement.ToString();
 
-        if (_alertTimer > 3)
-            _alertWindow.SetActive(false);
+        //if (_alertTimer > 3)
+        //    _numAlertWindow.SetActive(false);
     }
 
     public void ShowAlertWindow(string AlertTitle, string alertContent)
     {
         _alertTimer = 0;
-        _alertWindow.SetActive(true);
+        _textAlertWindow.SetActive(true);
 
-        _alertTitle.text = AlertTitle;
-        _alertText.text = alertContent.ToString();
+        _textAlertTitle.text = AlertTitle;
+        _textAlertText.text = alertContent.ToString();
 
-        if (_alertTimer > 3)
-            _alertWindow.SetActive(false);
+        //if (_alertTimer > 3)
+        //    _textAlertWindow.SetActive(false);
     }
 
     // should be RPC
@@ -110,25 +132,13 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
-    // should be RPC
-    public void UpdatePatientLog(string textToLog)
+    public void UpdatePatientLog(string senderName, string textToLog)
     {
-        _docLog.LogThisText(textToLog);
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderName, textToLog);
     }
     #endregion
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+
 
     // not sure about this - patient bool - isConsious vs if is currently conscious
     public void CheckStatus(bool isConscious, bool isPatientConscious)
@@ -136,8 +146,11 @@ public class ActionTemplates : MonoBehaviour
 
     }
 
-    private void Update()
+    #region PunRPC
+    [PunRPC]
+    public void RPC_UpdatePatientLog(string senderName, string textToLog)
     {
-        _alertTimer += Time.deltaTime;
+        _docLog.LogThisText(senderName, textToLog);
     }
+    #endregion
 }

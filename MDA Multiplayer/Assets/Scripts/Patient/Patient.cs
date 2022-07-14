@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,9 @@ public class Patient : MonoBehaviour
     [Header("Treatment Positions")]
     public Transform ChestPosPlayerTransform;
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
+
+    [Header("World Canvas")]
+    public GameObject WorldCanvas;
     #endregion
 
     #region Monovehavior Callbacks
@@ -54,37 +58,54 @@ public class Patient : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-
-
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
         {
             return;
         }
         else if (!NearbyUsers.Contains(possiblePlayer))
         {
+            WorldCanvas.SetActive(true);
             NearbyUsers.Add(possiblePlayer);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-
         if (other.TryGetComponent(out PlayerData possiblePlayer))
         {
-
             if (!NearbyUsers.Contains(possiblePlayer))
             {
                 return;
             }
             else
             {
+                WorldCanvas.SetActive(false);
                 NearbyUsers.Remove(possiblePlayer);
             }
         }
     }
     #endregion
 
+    public bool IsPlayerJoined(PlayerData playerData)
+    {
+        Debug.Log("Attempting to check if player is joined");
+
+        if (TreatingUsers.Contains(playerData))
+        {
+            Debug.Log("Checked if player is joined, it is true");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Checked if player is joined, it is false");
+            return false;
+        }
+    }
+
+    public void OnInteracted()
+    {
+        ActionsManager.Instance.OnPatientClicked();
+    }
 
     #region PunRPC invoke by Patient
     [PunRPC]
@@ -141,30 +162,6 @@ public class Patient : MonoBehaviour
         UIManager.Instance.Id.text = PatientData.Id.ToString();
         UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
     }
-    #endregion
-
-    public bool IsPlayerJoined(PlayerData playerData)
-    {
-        Debug.Log("Attempting to check if player is joined");
-
-        if (TreatingUsers.Contains(playerData))
-        {
-            Debug.Log("Checked if player is joined, it is true");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Checked if player is joined, it is false");
-            return false;
-        }
-    }
-
-    public void OnInteracted()
-    {
-        ActionsManager.Instance.OnPatientClicked();
-    }
-
-    #region PunRPC Methods
 
     [PunRPC]
     private void ChangeHeartRateRPC(int newBPM)
@@ -215,6 +212,35 @@ public class Patient : MonoBehaviour
                 PatientData.ETCO2 = PatientData.MeasurementName[index];
                 break;
         }
-        #endregion
     }
+
+    [PunRPC]
+    private void ChangeClothingRPC(int index)
+    {
+        Clothing clothing = (Clothing)index;
+
+        switch (clothing)
+        {
+            case Clothing.FullyClothed:
+
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.FullyClothedMaterial;
+                break;
+
+            case Clothing.ShirtOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.ShirtOnlyMaterial;
+                break;
+
+            case Clothing.PantsOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.PantsOnlyMaterial;
+                break;
+
+            case Clothing.UnderwearOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.UnderwearOnlyMaterial;
+                break;
+
+            default:
+                break;
+        }
+    }
+    #endregion
 }
