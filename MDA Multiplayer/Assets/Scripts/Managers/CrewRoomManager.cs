@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,18 +10,18 @@ public class CrewRoomManager : MonoBehaviour
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
+    private PhotonView _photonView;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        _photonView = GetComponent<PhotonView>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         BlockRoomAccess();
+     
     }
 
 
@@ -51,12 +52,64 @@ public class CrewRoomManager : MonoBehaviour
         return playerFound;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && !CheckIfAlreadyInList(other.gameObject))
         {
-            _playersInRoomList.Add(other.gameObject.GetPhotonView());
+           // _playersInRoomList.Add(other.gameObject.GetPhotonView());
+            _photonView.RPC("AddingToRoonList_RPC", RpcTarget.AllBufferedViaServer,PhotonNetwork.NickName);
         }
     }
+
+    [PunRPC]
+    void AddingToRoonList_RPC(string currentPlayer)
+    {
+
+        PhotonView currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PhotonView>();
+        //PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
+
+        if (currentPlayerData == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < 1; i++)
+        {
+            if (_playersInRoomList.Contains(currentPlayerData))
+            {
+                continue;
+            }
+            else
+            {
+                _playersInRoomList.Add(currentPlayerData);
+            }
+        }
+
+    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.TryGetComponent(out PhotonView possiblePlayer))
+    //    {
+    //        return;
+    //    }
+    //    else if (!_playersInRoomList.Contains(possiblePlayer))
+    //    {
+    //        _playersInRoomList.Add(possiblePlayer);
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.TryGetComponent(out PhotonView possiblePlayer))
+    //    {
+    //        if (!_playersInRoomList.Contains(possiblePlayer))
+    //        {
+    //            return;
+    //        }
+    //        else
+    //        {
+    //            _playersInRoomList.Remove(possiblePlayer);
+    //        }
+    //    }
+    //}
 }
