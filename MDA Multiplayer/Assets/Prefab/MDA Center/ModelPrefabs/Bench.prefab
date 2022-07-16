@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8955003448422482735}
   - component: {fileID: 2508329543272349104}
   m_Layer: 0
-  m_Name: Bench
+  m_Name: Bench_Apt_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3268165704173905179}
-  m_Mesh: {fileID: 9096694789279361961, guid: 7a1dd57bd8b6ca44cbf5f922801b2975, type: 3}
+  m_Mesh: {fileID: 1479486012543023045, guid: 7a1dd57bd8b6ca44cbf5f922801b2975, type: 3}
 --- !u!23 &8955003448422482735
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 5231457977546826162}
   - component: {fileID: 9149029441669177026}
   - component: {fileID: 540107003}
+  - component: {fileID: 540107004}
   m_Layer: 0
   m_Name: Door.L.002
   m_TagString: Untagged
@@ -212,6 +213,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &540107004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114166783509983014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f1c4265d2e233469ca3a33b18036d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlipL: {fileID: 540107003}
+  open: 0
+  Player: {fileID: 0}
 --- !u!1 &8661859459808331984
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +241,7 @@ GameObject:
   - component: {fileID: 2772499241403781530}
   - component: {fileID: 8024803712370103315}
   - component: {fileID: 1782468464}
+  - component: {fileID: 1782468463}
   m_Layer: 0
   m_Name: Door.R.002
   m_TagString: Untagged
@@ -327,3 +344,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1782468463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661859459808331984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f1c4265d2e233469ca3a33b18036d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlipL: {fileID: 1782468464}
+  open: 0
+  Player: {fileID: 0}
