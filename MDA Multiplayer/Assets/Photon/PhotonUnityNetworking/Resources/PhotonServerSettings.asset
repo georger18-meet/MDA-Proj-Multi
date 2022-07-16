@@ -60,6 +60,7 @@ MonoBehaviour:
   - SetMeasurementByIndexRPC
   - test
   - AddingToRoonList_RPC
+  - AddingToRoomList_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
