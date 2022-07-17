@@ -10,6 +10,7 @@ public class CrewRoomManager : MonoBehaviour
     public GameObject RoomDoorBlocker;
     public GameObject RoomCrewMenuUI;
     public TextMeshProUGUI CrewMemberNameText1, CrewMemberNameText2, CrewMemberNameText3, CrewMemberNameText4;
+    public TMP_Dropdown CrewMemberRoleDropDown1, CrewMemberRoleDropDown2, CrewMemberRoleDropDown3, CrewMemberRoleDropDown4;
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
@@ -19,6 +20,7 @@ public class CrewRoomManager : MonoBehaviour
     private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
+        PopulateDropdownRoles();
         RoomCrewMenuUI.SetActive(false);
     }
 
@@ -77,6 +79,17 @@ public class CrewRoomManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void PopulateDropdownRoles()
+    {
+        string[] roles = Enum.GetNames(typeof(Roles));
+        List<string> rolesList = new List<string>(roles);
+
+        CrewMemberRoleDropDown1.AddOptions(rolesList);
+        CrewMemberRoleDropDown2.AddOptions(rolesList);
+        CrewMemberRoleDropDown3.AddOptions(rolesList);
+        CrewMemberRoleDropDown4.AddOptions(rolesList);
     }
 
     public void ShowCrewRoomMenu()
