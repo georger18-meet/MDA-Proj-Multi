@@ -670,6 +670,7 @@ GameObject:
   - component: {fileID: 8822803002174255574}
   - component: {fileID: 8822803002174255575}
   - component: {fileID: 1154062206}
+  - component: {fileID: 89372848312388637}
   - component: {fileID: 6846980335483256472}
   - component: {fileID: 4762676014754726370}
   m_Layer: 0
@@ -776,6 +777,26 @@ MonoBehaviour:
   _indicatorIcon: {fileID: 8774286273773846890, guid: 98382ce2162216d4bb2ca6711a8675f7, type: 3}
   _indicatorSound: {fileID: 1667097624735805022, guid: 6a4dd2558288bae49a843774015a1963, type: 3}
   _raycastDistance: 10
+--- !u!114 &89372848312388637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822803002174255568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5242308325d4a9c4bb31aec1866f0403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <UserName>k__BackingField: 
+  <CrewName>k__BackingField: 
+  <UserIndexInCrew>k__BackingField: 0
+  <CrewIndex>k__BackingField: 0
+  <IsCrewLeader>k__BackingField: 0
+  <UserRole>k__BackingField: 0
+  <CurrentPatientNearby>k__BackingField: {fileID: 0}
+  <PlayerAnimation>k__BackingField: {fileID: 0}
 --- !u!114 &6846980335483256472
 MonoBehaviour:
   m_ObjectHideFlags: 0
