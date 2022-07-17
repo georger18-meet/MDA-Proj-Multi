@@ -11,6 +11,7 @@ public class CrewRoomManager : MonoBehaviour
     public GameObject RoomCrewMenuUI;
     public TextMeshProUGUI CrewMemberNameText1, CrewMemberNameText2, CrewMemberNameText3, CrewMemberNameText4;
     public List<TMP_Dropdown> CrewMemberRoleDropDownList = new List<TMP_Dropdown>();
+    public TMP_Dropdown CrewLeaderDropDown;
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
@@ -59,8 +60,9 @@ public class CrewRoomManager : MonoBehaviour
         return playerFound;
     }
 
-    private void RefreshCrewNamesTexts()
+    private void RefreshCrewUITexts()
     {
+        // Crew Roles UI
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
             switch (i)
@@ -81,6 +83,15 @@ public class CrewRoomManager : MonoBehaviour
                     break;
             }
         }
+
+        // Crew Leader UI
+        List<string> nicknamesList = new List<string>();
+        foreach (var player in _playersInRoomList)
+        {
+            nicknamesList.Add(player.Owner.NickName);
+        }
+        CrewLeaderDropDown.ClearOptions();
+        CrewLeaderDropDown.AddOptions(nicknamesList);
     }
 
     private void PopulateDropdownRoles()
@@ -105,7 +116,7 @@ public class CrewRoomManager : MonoBehaviour
     public void ShowCrewRoomMenu()
     {
         RoomCrewMenuUI.SetActive(true);
-        RefreshCrewNamesTexts();
+        RefreshCrewUITexts();
     }
     public void HideCrewRoomMenu()
     {
@@ -159,7 +170,7 @@ public class CrewRoomManager : MonoBehaviour
     {
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
-
+            // Setting Roles
             string[] rolesStrings = Enum.GetNames(typeof(Roles));
             for (int z = 0; z < rolesStrings.Length; z++)
             {
@@ -169,6 +180,16 @@ public class CrewRoomManager : MonoBehaviour
                     _playersInRoomList[i].GetComponent<PlayerData>().UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
                     _playersInRoomList[i].GetComponent<PlayerData>().CrewIndex = _crewRoomIndex;
                 }
+            }
+
+            // Setting Crew Leader
+            if (CrewLeaderDropDown.GetComponentInChildren<TextMeshProUGUI>().text == _playersInRoomList[i].Owner.NickName)
+            {
+                _playersInRoomList[i].GetComponent<PlayerData>().IsCrewLeader = true;
+            }
+            else
+            {
+                _playersInRoomList[i].GetComponent<PlayerData>().IsCrewLeader = false;
             }
         }
 
