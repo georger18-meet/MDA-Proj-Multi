@@ -10,10 +10,12 @@ public class CrewRoomManager : MonoBehaviour
     public GameObject RoomDoorBlocker;
     public GameObject RoomCrewMenuUI;
     public TextMeshProUGUI CrewMemberNameText1, CrewMemberNameText2, CrewMemberNameText3, CrewMemberNameText4;
-    public TMP_Dropdown CrewMemberRoleDropDown1, CrewMemberRoleDropDown2, CrewMemberRoleDropDown3, CrewMemberRoleDropDown4;
+    public List<TMP_Dropdown> CrewMemberRoleDropDownList = new List<TMP_Dropdown>();
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
+    public int _crewRoomIndex;
+
     private PhotonView _photonView;
 
 
@@ -26,7 +28,7 @@ public class CrewRoomManager : MonoBehaviour
 
     void Update()
     {
-       // BlockRoomAccess();
+        // BlockRoomAccess();
     }
 
 
@@ -65,13 +67,13 @@ public class CrewRoomManager : MonoBehaviour
             {
                 case 0:
                     CrewMemberNameText1.text = _playersInRoomList[i].name;
-                    break;                
+                    break;
                 case 1:
                     CrewMemberNameText2.text = _playersInRoomList[i].name;
-                    break;                
+                    break;
                 case 2:
                     CrewMemberNameText3.text = _playersInRoomList[i].name;
-                    break;                
+                    break;
                 case 3:
                     CrewMemberNameText4.text = _playersInRoomList[i].name;
                     break;
@@ -86,32 +88,61 @@ public class CrewRoomManager : MonoBehaviour
         string[] roles = Enum.GetNames(typeof(Roles));
         List<string> rolesList = new List<string>(roles);
 
-        CrewMemberRoleDropDown1.AddOptions(rolesList);
-        CrewMemberRoleDropDown2.AddOptions(rolesList);
-        CrewMemberRoleDropDown3.AddOptions(rolesList);
-        CrewMemberRoleDropDown4.AddOptions(rolesList);
+        foreach (var dropdown in CrewMemberRoleDropDownList)
+        {
+            dropdown.AddOptions(rolesList);
+        }
     }
 
+    public void CreateCrewSubmit()
+    {
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+
+            string[] rolesStrings = Enum.GetNames(typeof(Roles));
+            for (int z = 0; z < rolesStrings.Length; z++)
+            {
+                if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
+                {
+                    Roles rolesTemp = new Roles();
+                    _playersInRoomList[i].GetComponent<PlayerData>().UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
+                    _playersInRoomList[i].GetComponent<PlayerData>().CrewIndex = _crewRoomIndex;
+                }
+            }
+        }
+
+
+        HideCrewRoomMenu();
+    }
+
+
+    // Show Hide MenuUI
+    // --------------------
     public void ShowCrewRoomMenu()
     {
         RoomCrewMenuUI.SetActive(true);
         RefreshCrewNamesTexts();
     }
-
     public void HideCrewRoomMenu()
     {
         RoomCrewMenuUI.SetActive(false);
     }
 
+
+    // Collision Methods
+    // --------------------
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && !CheckIfAlreadyInList(other.gameObject))
         {
-           // _playersInRoomList.Add(other.gameObject.GetPhotonView());
-            _photonView.RPC("AddingToRoomList_RPC", RpcTarget.AllBufferedViaServer,PhotonNetwork.NickName);
+            // _playersInRoomList.Add(other.gameObject.GetPhotonView());
+            _photonView.RPC("AddingToRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
     }
 
+
+    // PUN RPC Methods
+    // --------------------
     [PunRPC]
     void AddingToRoomList_RPC(string currentPlayer)
     {
