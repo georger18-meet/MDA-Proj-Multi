@@ -66,16 +66,16 @@ public class CrewRoomManager : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    CrewMemberNameText1.text = _playersInRoomList[i].name;
+                    CrewMemberNameText1.text = _playersInRoomList[i].Owner.NickName;
                     break;
                 case 1:
-                    CrewMemberNameText2.text = _playersInRoomList[i].name;
+                    CrewMemberNameText2.text = _playersInRoomList[i].Owner.NickName;
                     break;
                 case 2:
-                    CrewMemberNameText3.text = _playersInRoomList[i].name;
+                    CrewMemberNameText3.text = _playersInRoomList[i].Owner.NickName;
                     break;
                 case 3:
-                    CrewMemberNameText4.text = _playersInRoomList[i].name;
+                    CrewMemberNameText4.text = _playersInRoomList[i].Owner.NickName;
                     break;
                 default:
                     break;
@@ -96,23 +96,7 @@ public class CrewRoomManager : MonoBehaviour
 
     public void CreateCrewSubmit()
     {
-        for (int i = 0; i < _playersInRoomList.Count; i++)
-        {
-
-            string[] rolesStrings = Enum.GetNames(typeof(Roles));
-            for (int z = 0; z < rolesStrings.Length; z++)
-            {
-                if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
-                {
-                    Roles rolesTemp = new Roles();
-                    _playersInRoomList[i].GetComponent<PlayerData>().UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
-                    _playersInRoomList[i].GetComponent<PlayerData>().CrewIndex = _crewRoomIndex;
-                }
-            }
-        }
-
-
-        HideCrewRoomMenu();
+        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer);
     }
 
 
@@ -169,6 +153,29 @@ public class CrewRoomManager : MonoBehaviour
 
         BlockRoomAccess();
     }
+
+    [PunRPC]
+    void CrewCreateSubmit_RPC()
+    {
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+
+            string[] rolesStrings = Enum.GetNames(typeof(Roles));
+            for (int z = 0; z < rolesStrings.Length; z++)
+            {
+                if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
+                {
+                    Roles rolesTemp = new Roles();
+                    _playersInRoomList[i].GetComponent<PlayerData>().UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
+                    _playersInRoomList[i].GetComponent<PlayerData>().CrewIndex = _crewRoomIndex;
+                }
+            }
+        }
+
+
+        HideCrewRoomMenu();
+    }
+
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (!other.TryGetComponent(out PhotonView possiblePlayer))

@@ -6749,10 +6749,10 @@ RectTransform:
   m_Father: {fileID: 2247271485353638844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -325, y: 100}
-  m_SizeDelta: {x: -850, y: -580}
+  m_SizeDelta: {x: 1050, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6320216580228535914
 CanvasRenderer:
@@ -7094,6 +7094,7 @@ MonoBehaviour:
   - {fileID: 7665577240272220630}
   _playersInRoomList: []
   _playersMaxCount: 4
+  _crewRoomIndex: 0
 --- !u!114 &9121340643068738264
 MonoBehaviour:
   m_ObjectHideFlags: 0
