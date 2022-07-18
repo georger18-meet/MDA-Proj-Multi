@@ -20,27 +20,27 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        //ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
+        ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
     }
 
-    //#region PunRPC invoked by Player
-    //[PunRPC]
-    //private void OnJoinPatient()
-    //{
-    //    CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
-    //}
+    #region PunRPC invoked by Player
+    [PunRPC]
+    private void OnJoinPatient()
+    {
+        CurrentPatientNearby.PhotonView.RPC("AddUserToTreatingLists", RpcTarget.AllBufferedViaServer, UserName);
+    }
 
-    //[PunRPC]
-    //private void OnLeavePatient()
-    //{
-    //    Debug.Log("Attempting leave patient");
-    //    CurrentPatientNearby.TreatingUsers.Remove(this);
-    //    Debug.Log("Left Patient Succesfully");
-    //}
-    //#endregion
+    [PunRPC]
+    private void OnLeavePatient()
+    {
+        Debug.Log("Attempting leave patient");
+        CurrentPatientNearby.TreatingUsers.Remove(this);
+        Debug.Log("Left Patient Succesfully");
+    }
+    #endregion
 }

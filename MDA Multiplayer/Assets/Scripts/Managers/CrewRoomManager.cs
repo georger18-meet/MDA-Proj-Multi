@@ -10,12 +10,15 @@ public class CrewRoomManager : MonoBehaviour
     public GameObject RoomDoorBlocker;
     public GameObject RoomCrewMenuUI;
     public TextMeshProUGUI CrewMemberNameText1, CrewMemberNameText2, CrewMemberNameText3, CrewMemberNameText4;
-    public List<TMP_Dropdown> CrewMemberRoleDropDownList = new List<TMP_Dropdown>();
+    public List<TMP_Dropdown> CrewMemberRoleDropDownList;
     public TMP_Dropdown CrewLeaderDropDown;
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
     public int _crewRoomIndex;
+
+
+
 
     private PhotonView _photonView;
 
@@ -29,7 +32,7 @@ public class CrewRoomManager : MonoBehaviour
 
     void Update()
     {
-        // BlockRoomAccess();
+
     }
 
 
@@ -56,7 +59,8 @@ public class CrewRoomManager : MonoBehaviour
                 playerFound = true;
             }
         }
-;
+
+        ;
         return playerFound;
     }
 
@@ -90,6 +94,7 @@ public class CrewRoomManager : MonoBehaviour
         {
             nicknamesList.Add(player.Owner.NickName);
         }
+
         CrewLeaderDropDown.ClearOptions();
         CrewLeaderDropDown.AddOptions(nicknamesList);
     }
@@ -107,9 +112,20 @@ public class CrewRoomManager : MonoBehaviour
 
     public void CreateCrewSubmit()
     {
-        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer);
+        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum());
     }
 
+    public int[] GetCrewRolesByEnum()
+    {
+        int[] roles = new int[_playersInRoomList.Count];
+
+        for (int i = 0; i < roles.Length; i++)
+        {
+            roles[i] = CrewMemberRoleDropDownList[i].value;
+        }
+        return roles;
+
+    }
 
     // Show Hide MenuUI
     // --------------------
@@ -118,6 +134,7 @@ public class CrewRoomManager : MonoBehaviour
         RoomCrewMenuUI.SetActive(true);
         RefreshCrewUITexts();
     }
+
     public void HideCrewRoomMenu()
     {
         RoomCrewMenuUI.SetActive(false);
@@ -128,7 +145,8 @@ public class CrewRoomManager : MonoBehaviour
     // --------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && !CheckIfAlreadyInList(other.gameObject))
+        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount &&
+            !CheckIfAlreadyInList(other.gameObject))
         {
             // _playersInRoomList.Add(other.gameObject.GetPhotonView());
             _photonView.RPC("AddingToRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
@@ -166,61 +184,61 @@ public class CrewRoomManager : MonoBehaviour
     }
 
     [PunRPC]
-    void CrewCreateSubmit_RPC()
+    void CrewCreateSubmit_RPC(int[] roleIndex)
     {
-        for (int i = 0; i < _playersInRoomList.Count; i++)
-        {
-            // Setting Roles
-            string[] rolesStrings = Enum.GetNames(typeof(Roles));
-            for (int z = 0; z < rolesStrings.Length; z++)
-            {
-                if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
-                {
-                    Roles rolesTemp = new Roles();
-                    _playersInRoomList[i].GetComponent<PlayerData>().UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
-                    _playersInRoomList[i].GetComponent<PlayerData>().CrewIndex = _crewRoomIndex;
-                }
-            }
 
-            // Setting Crew Leader
-            if (CrewLeaderDropDown.GetComponentInChildren<TextMeshProUGUI>().text == _playersInRoomList[i].Owner.NickName)
-            {
-                _playersInRoomList[i].GetComponent<PlayerData>().IsCrewLeader = true;
-            }
-            else
-            {
-                _playersInRoomList[i].GetComponent<PlayerData>().IsCrewLeader = false;
-            }
+        //for (int i = 0; i < _playersInRoomList.Count; i++)
+        //{
+        //    string[] rolesStrings = Enum.GetNames(typeof(Roles));
+        //    PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
+
+        //    for (int z = 0; z < rolesStrings.Length; z++)
+        //    {
+        //        if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
+        //        {
+        //            Roles rolesTemp = new Roles();
+        //            desiredPlayerData.UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
+        //            desiredPlayerData.CrewIndex = _crewRoomIndex;
+        //        }
+        //    }
+        //}
+
+
+        for (int i = 0; i < roleIndex.Length; i++)
+        { 
+            PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
+            desiredPlayerData.UserRole = (Roles)roleIndex[i];
+            desiredPlayerData.CrewIndex = _crewRoomIndex;
         }
 
-
         HideCrewRoomMenu();
+
+
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if (!other.TryGetComponent(out PhotonView possiblePlayer))
+        //    {
+        //        return;
+        //    }
+        //    else if (!_playersInRoomList.Contains(possiblePlayer))
+        //    {
+        //        _playersInRoomList.Add(possiblePlayer);
+        //    }
+        //}
+
+        //private void OnTriggerExit(Collider other)
+        //{
+        //    if (other.TryGetComponent(out PhotonView possiblePlayer))
+        //    {
+        //        if (!_playersInRoomList.Contains(possiblePlayer))
+        //        {
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            _playersInRoomList.Remove(possiblePlayer);
+        //        }
+        //    }
+        //}
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!other.TryGetComponent(out PhotonView possiblePlayer))
-    //    {
-    //        return;
-    //    }
-    //    else if (!_playersInRoomList.Contains(possiblePlayer))
-    //    {
-    //        _playersInRoomList.Add(possiblePlayer);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.TryGetComponent(out PhotonView possiblePlayer))
-    //    {
-    //        if (!_playersInRoomList.Contains(possiblePlayer))
-    //        {
-    //            return;
-    //        }
-    //        else
-    //        {
-    //            _playersInRoomList.Remove(possiblePlayer);
-    //        }
-    //    }
-    //}
 }
