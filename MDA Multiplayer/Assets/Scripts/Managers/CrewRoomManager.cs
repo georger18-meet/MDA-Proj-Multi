@@ -112,7 +112,9 @@ public class CrewRoomManager : MonoBehaviour
 
     public void CreateCrewSubmit()
     {
-        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum());
+        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum(), GetCrewLeaderIndex());
+       //_photonView.RPC("CrewLeaderIsChosen", RpcTarget.AllBufferedViaServer, GetCrewLeader());
+
     }
 
     public int[] GetCrewRolesByEnum()
@@ -126,6 +128,34 @@ public class CrewRoomManager : MonoBehaviour
         return roles;
 
     }
+
+    public int GetCrewLeaderIndex()
+    {
+        int leaderIndex=0;
+
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+            if (CrewLeaderDropDown.GetComponentInChildren<TextMeshProUGUI>().text == _playersInRoomList[i].Owner.NickName)
+            {
+                leaderIndex = i;
+            }
+
+        }
+        return leaderIndex;
+    }
+
+    //public int GetCrewLeader()
+    //{
+    //    int creLeader = _playersInRoomList.Count;
+
+    //    for (int i = 0; i < creLeader; i++)
+    //    {
+    //        creLeader = CrewLeaderDropDown.value;
+    //    }
+    //    return creLeader;
+
+    //}
+
 
     // Show Hide MenuUI
     // --------------------
@@ -184,26 +214,8 @@ public class CrewRoomManager : MonoBehaviour
     }
 
     [PunRPC]
-    void CrewCreateSubmit_RPC(int[] roleIndex)
+    void CrewCreateSubmit_RPC(int[] roleIndex,int leaderIndex)
     {
-
-        //for (int i = 0; i < _playersInRoomList.Count; i++)
-        //{
-        //    string[] rolesStrings = Enum.GetNames(typeof(Roles));
-        //    PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
-
-        //    for (int z = 0; z < rolesStrings.Length; z++)
-        //    {
-        //        if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
-        //        {
-        //            Roles rolesTemp = new Roles();
-        //            desiredPlayerData.UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
-        //            desiredPlayerData.CrewIndex = _crewRoomIndex;
-        //        }
-        //    }
-        //}
-
-
         for (int i = 0; i < roleIndex.Length; i++)
         { 
             PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
@@ -211,34 +223,26 @@ public class CrewRoomManager : MonoBehaviour
             desiredPlayerData.CrewIndex = _crewRoomIndex;
         }
 
+        foreach (PhotonView player in _playersInRoomList)
+        {
+            player.GetComponent<PlayerData>().IsCrewLeader = false;
+        }
+
+        PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
+        leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
-
-
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (!other.TryGetComponent(out PhotonView possiblePlayer))
-        //    {
-        //        return;
-        //    }
-        //    else if (!_playersInRoomList.Contains(possiblePlayer))
-        //    {
-        //        _playersInRoomList.Add(possiblePlayer);
-        //    }
-        //}
-
-        //private void OnTriggerExit(Collider other)
-        //{
-        //    if (other.TryGetComponent(out PhotonView possiblePlayer))
-        //    {
-        //        if (!_playersInRoomList.Contains(possiblePlayer))
-        //        {
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            _playersInRoomList.Remove(possiblePlayer);
-        //        }
-        //    }
-        //}
+        
     }
+
+    //[PunRPC]
+    //void CrewLeaderIsChosen(int[] leaderIndex)
+    //{
+    //    for (int i = 0; i < leaderIndex.Length; i++)
+    //    {
+    //        PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
+    //        CrewLeaderDropDown.value = leaderIndex[i].;
+    //        desiredPlayerData.IsCrewLeader = true;
+    //    }
+
+    //}
 }

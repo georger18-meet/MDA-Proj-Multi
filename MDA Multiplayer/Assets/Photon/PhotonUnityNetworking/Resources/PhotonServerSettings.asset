@@ -62,6 +62,7 @@ MonoBehaviour:
   - AddingToRoonList_RPC
   - AddingToRoomList_RPC
   - CrewCreateSubmit_RPC
+  - CrewLeaderIsChosen
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
