@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83d140e50bd7634dbe3fa7acf7a3576, type: 3}
+  m_Name: PatientData 1
+  m_EditorClassIdentifier: 
+  Name: "\u05D3\u05D5\u05D3\u05D5"
+  SureName: "\u05E4\u05D0\u05E8\u05D5\u05E7"
+  Id: 324658123
+  Age: 25
+  Gender: "\u05D6'"
+  PhoneNumber: 0509020210
+  MedicalCompany: "\u05DE\u05D0\u05D5\u05D7\u05D3\u05EA"
+  AddressLocation: "\u05EA\u05DC \u05D0\u05D1\u05D9\u05D1-\u05D9\u05E4\u05D5, \u05D4\u05E8\u05E6\u05DC
+    5."
+  Complaint: "\u05D0\u05D5\u05DE\u05E8 \u05D4\u05D5\u05D0 \u05D0\u05DC\u05E8\u05D2\u05D9
+    \u05DC\u05D3\u05D1\u05E8\u05D9 \u05EA\u05D5\u05E8\u05D4."
+  HeartRateBPM: 160
+  PainLevel: 10
+  RespiratoryRate: 22
+  CincinnatiLevel: 0
+  BloodSuger: 106
+  BloodPressure: 102
+  OxygenSaturation: 99
+  ETCO2: 50
+  IsConscious: 1
+  FullyClothedMaterial: {fileID: 2100000, guid: a0092f51a5ba5e1488273021b4221811, type: 2}
+  ShirtOnlyMaterial: {fileID: 2100000, guid: 2c342e45a8a425049858d0ba69c32e59, type: 2}
+  PantsOnlyMaterial: {fileID: 2100000, guid: 2fe098b7ce8e9bb4097067f650ffaddc, type: 2}
+  UnderwearOnlyMaterial: {fileID: 2100000, guid: 591367fd8e4846545ad5a453cde69d1e, type: 2}
+  MeasurementName: 
+  ClothingMaterial: []
