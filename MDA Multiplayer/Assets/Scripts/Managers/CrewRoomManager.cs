@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class CrewRoomManager : MonoBehaviour
 {
@@ -17,9 +19,9 @@ public class CrewRoomManager : MonoBehaviour
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
     //public int _crewRoomIndex;
+    private Color nameColor;
 
-
-    public int _crewRoomIndex;
+    public  int _crewRoomIndex;
      public static int _crewRoomIndexStatic;
 
     private PhotonView _photonView;
@@ -122,8 +124,11 @@ public class CrewRoomManager : MonoBehaviour
 
     public void CreateCrewSubmit()
     {
+        var color = Random.ColorHSV();
         _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum(), GetCrewLeaderIndex());
-       //_photonView.RPC("CrewLeaderIsChosen", RpcTarget.AllBufferedViaServer, GetCrewLeader());
+        _photonView.RPC("ChangeCrewColors", RpcTarget.AllBufferedViaServer,new Vector3(color.r, color.g, color.b));
+
+        //_photonView.RPC("CrewLeaderIsChosen", RpcTarget.AllBufferedViaServer, GetCrewLeader());
 
     }
 
@@ -154,17 +159,7 @@ public class CrewRoomManager : MonoBehaviour
         return leaderIndex;
     }
 
-    //public int GetCrewLeader()
-    //{
-    //    int creLeader = _playersInRoomList.Count;
-
-    //    for (int i = 0; i < creLeader; i++)
-    //    {
-    //        creLeader = CrewLeaderDropDown.value;
-    //    }
-    //    return creLeader;
-
-    //}
+ 
 
 
     // Show Hide MenuUI
@@ -241,16 +236,21 @@ public class CrewRoomManager : MonoBehaviour
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
-        ChangeCrewColors();
     }
 
-    void ChangeCrewColors()
+    [PunRPC]
+    void ChangeCrewColors(Vector3 randomColor)
     {
+         nameColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
             NameTagDisplay desiredPlayerName = _playersInRoomList[i].GetComponentInChildren<NameTagDisplay>();
-            desiredPlayerName.text.color = Color.magenta;
+
+            desiredPlayerName.text.color = nameColor;
+
         }
     }
- 
+
+
 }
