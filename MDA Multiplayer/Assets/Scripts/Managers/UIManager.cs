@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     //#endregion
 
     public static UIManager Instance;
+    [SerializeField] private Vector3 _leaderMenuOffset;
+    [SerializeField] private bool _isLeaderMenuOpen;
 
     #region Player UI
     [Header("Player UI Parents")]
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
     public GameObject AmbulanceBar, NatanBar;
     public GameObject AmbulanceNoBagPanel, AmbulanceAmbuPanel, AmbulanceKidsAmbuPanel, AmbulanceMedicPanel, AmbulanceDefibrilationPanel, AmbulanceOxygenPanel, AmbulanceMonitorPanel;
     public GameObject NatanNoBagPanel, NatanAmbuPanel, NatanKidsAmbuPanel, NatanMedicPanel, NatanQuickDrugsPanel, NatanOxygenPanel, NatanMonitorPanel;
+    public GameObject TeamLeaderMenu;
 
     #endregion
 
@@ -144,5 +147,30 @@ public class UIManager : MonoBehaviour
         List<string> roomNames = new List<string>(enumNames);
 
         _dropDown.AddOptions(roomNames);
+    }
+
+    public void PullLeaderMenuDown()
+    {
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
+            if (photonView.IsMine)
+            {
+                Debug.Log("Trying To Pull Leader Menu");
+
+                if (!_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                {
+                    TeamLeaderMenu.transform.position -= _leaderMenuOffset;
+
+                    _isLeaderMenuOpen = true;
+                }
+                else if (_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                {
+                    TeamLeaderMenu.transform.position += _leaderMenuOffset;
+                    _isLeaderMenuOpen = false;
+                }
+            }
+        }
     }
 }

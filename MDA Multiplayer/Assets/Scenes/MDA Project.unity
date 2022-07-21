@@ -43909,6 +43909,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: TeamLeaderMenu
+      value: 
+      objectReference: {fileID: 4134889592247787907}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: ActionLogParent
       value: 
       objectReference: {fileID: 4134889592247787898}
@@ -43957,6 +43961,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceAmbuPanel
+      value: 
+      objectReference: {fileID: 4134889592247787905}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: FollowUnfollowText
       value: 
       objectReference: {fileID: 0}
@@ -43964,6 +43972,26 @@ PrefabInstance:
       propertyPath: NatanKidsAmbuPanel
       value: 
       objectReference: {fileID: 4134889592247787904}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceMedicPanel
+      value: 
+      objectReference: {fileID: 4134889592247787903}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceNoBagPanel
+      value: 
+      objectReference: {fileID: 4134889592247787906}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: _leaderMenuOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: _leaderMenuOffset.y
+      value: 202.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceOxygenPanel
+      value: 
+      objectReference: {fileID: 4134889592247787901}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: NatanActionBarParent
       value: 
@@ -43973,9 +44001,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4134889592247787902}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceMonitorPanel
+      value: 
+      objectReference: {fileID: 4134889592247787900}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: BasicActionMenuParent
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceKidsAmbuPanel
+      value: 
+      objectReference: {fileID: 4134889592247787904}
     - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: PlaceRemovePatientText
       value: 
@@ -43984,6 +44020,14 @@ PrefabInstance:
       propertyPath: AmbulanceActionBarParent
       value: 
       objectReference: {fileID: 3493061901420764859}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: _leaderMenuSmoothingTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025649232623801632, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
+      propertyPath: AmbulanceDefibrilationPanel
+      value: 
+      objectReference: {fileID: 4134889592247787902}
     - target: {fileID: 5025649232623801633, guid: 186276355ffef6746a0eb1d9ae46a4f0, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -44078,7 +44122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714335407
 GameObject:
@@ -88885,6 +88929,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 391200403}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PullLeaderMenuDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7994697899942491362, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7994697900182411125, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -89140,6 +89212,11 @@ GameObject:
 --- !u!1 &4134889592247787906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7994697899590872050, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+  m_PrefabInstance: {fileID: 4134889592247787895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4134889592247787907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7994697898589096566, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
   m_PrefabInstance: {fileID: 4134889592247787895}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5118137908120566047
