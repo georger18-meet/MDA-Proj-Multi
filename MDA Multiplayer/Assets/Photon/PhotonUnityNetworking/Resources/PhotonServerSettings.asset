@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Gambit v0.07.5 Gal
+    AppVersion: Hawkeye v0.8.0 Gal
     UseNameServer: 1
     FixedRegion: eu
     Server: 

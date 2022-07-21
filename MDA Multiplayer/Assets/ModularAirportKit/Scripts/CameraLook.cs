@@ -1,19 +1,22 @@
-using UnityEngine;
-
 using System.Collections;
-
+using UnityEngine;
+using Photon.Pun;
 
 
 public class CameraLook : MonoBehaviour 
-
 {
-
-	//    public Camera  cameraToLookAt;
+	//    public Camera  cameraToLookAt for mirrors;
 	private Transform target;
 
-	void Start () {
-
-		target = GameObject.FindWithTag("MainCamera").transform;
+	void Start ()
+	{
+		foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+		{
+			if (photonView.IsMine)
+			{
+				target = photonView.gameObject.GetComponent<CameraController>()/*.PlayerCamera*/.transform;
+			}
+		}
 	}
 
 	void Update () 

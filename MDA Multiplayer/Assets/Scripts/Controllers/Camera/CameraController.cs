@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     private PhotonView _photonView;
 
     [Header("Camera")]
-    [SerializeField] private Camera _playerCamera;
+    public Camera PlayerCamera;
 
     [Header("Interaction")]
     [SerializeField] private LayerMask _interactableLayer;
@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
     {
         if (!_photonView.IsMine)
         {
-            Destroy(_playerCamera.gameObject);
+            Destroy(PlayerCamera.gameObject);
             Destroy(this);
         }
     }
@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
 
     public RaycastHit Interact()
     {
-        Ray ray = _playerCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = PlayerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, _raycastDistance, _interactableLayer))
         {
             Debug.DrawLine(ray.origin, raycastHit.point, Color.cyan, _raycastDistance);
