@@ -43746,9 +43746,12 @@ MonoBehaviour:
   _patientMalePrefab: {fileID: 5550523932109703408, guid: dabe3131293e32f4787ed5a32f0ea73f, type: 3}
   _patientFemalePrefab: {fileID: 5550523932109703408, guid: 1f04bb736b3e9d74394678ab62fb7e93, type: 3}
   _natanPrefab: {fileID: 4554301809211483259, guid: 6562aefc6eec2554a9099985472aa171, type: 3}
+  _crewRoomColliderPrefab: {fileID: 9121340643068738268, guid: dc0c68beb7d017c45a7e4a90f80dc354, type: 3}
   _patientMalePosTransform: {fileID: 1303862087}
   _patientFemalePosTransform: {fileID: 1992008020}
   _natanPosTransform: {fileID: 1402723829}
+  _crewRoomOneColliderPosTransform: {fileID: 0}
+  _crewRoomTwoColliderPosTransform: {fileID: 0}
   _minX: 83
   _minZ: -397
   _maxX: 72

@@ -18,13 +18,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _natanPrefab;
 
     [Header("GeneralPrefabs")]
-    //[SerializeField] private GameObject _crewRoomColliderPrefab;
+    [SerializeField] private GameObject _crewRoomColliderPrefab;
 
     [Header("Transform Positions In Scene")]
     [SerializeField] private Transform _patientMalePosTransform;
     [SerializeField] private Transform _patientFemalePosTransform;
     [SerializeField] private Transform /*_ambulancePosTransform,*/ _natanPosTransform;
-    //[SerializeField] private Transform _crewRoomOneColliderPosTransform, _crewRoomTwoColliderPosTransform; // crew rooms collider positions in scene
+    [SerializeField] private Transform _crewRoomOneColliderPosTransform, _crewRoomTwoColliderPosTransform; // crew rooms collider positions in scene
 
     public float _minX, _minZ, _maxX, _maxZ;
 
@@ -38,8 +38,8 @@ public class SpawnManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.InstantiateRoomObject(_natanPrefab.name, _natanPosTransform.position, _natanPrefab.transform.rotation);
-            //PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomOneColliderPosTransform.position, _crewRoomOneColliderPosTransform.rotation);
-            //PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomTwoColliderPosTransform.position, _crewRoomTwoColliderPosTransform.rotation);
+            PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomOneColliderPosTransform.position, _crewRoomOneColliderPosTransform.rotation);
+            PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomTwoColliderPosTransform.position, _crewRoomTwoColliderPosTransform.rotation);
         }   
     }
 }
