@@ -5,23 +5,41 @@ using Photon.Pun;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _playerPrefab, _patientPrefab,NatanPrefab,ColliderPrefab;
-    [SerializeField] private Transform _patientSpawner, NatanSpanwner, CrewRoomSpawner1, CrewRoomSpawner2;
+    [Header("PlayerPrefabs")]
+    [SerializeField] private GameObject _playerMalePrefab;
+    //[SerializeField] private GameObject _playerFemalePrefab;
+
+    [Header("PatientPrefabs")]
+    [SerializeField] private GameObject _patientMalePrefab;
+    [SerializeField] private GameObject _patientFemalePrefab;//, _patientMaleOldPrefab, _patientFemaleOldPrefab, _patientKid, _patientToddler;
+
+    [Header("VehiclesPrefabs")]
+    //[SerializeField] private GameObject _ambulancePrefab;
+    [SerializeField] private GameObject _natanPrefab;
+
+    [Header("GeneralPrefabs")]
+    //[SerializeField] private GameObject _crewRoomColliderPrefab;
+
+    [Header("Transform Positions In Scene")]
+    [SerializeField] private Transform _patientMalePosTransform;
+    [SerializeField] private Transform _patientFemalePosTransform;
+    [SerializeField] private Transform /*_ambulancePosTransform,*/ _natanPosTransform;
+    //[SerializeField] private Transform _crewRoomOneColliderPosTransform, _crewRoomTwoColliderPosTransform; // crew rooms collider positions in scene
 
     public float _minX, _minZ, _maxX, _maxZ;
 
     void Start()
     {
         Vector3 randomPos = new Vector3(Random.Range(_minX,_maxX),0.5f,Random.Range(_minZ,_maxZ));
-        PhotonNetwork.Instantiate(_playerPrefab.name, randomPos, Quaternion.identity);
-       // if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.InstantiateRoomObject(_patientPrefab.name, _patientSpawner.position, _patientPrefab.transform.rotation);
+        PhotonNetwork.Instantiate(_playerMalePrefab.name, randomPos, Quaternion.identity);
+        PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);
+        PhotonNetwork.InstantiateRoomObject(_patientFemalePrefab.name, _patientFemalePosTransform.position, _patientFemalePrefab.transform.rotation);
+
         if (PhotonNetwork.IsMasterClient)
         {
-                PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name,  CrewRoomSpawner1.position, CrewRoomSpawner1.rotation);
-                PhotonNetwork.InstantiateRoomObject(ColliderPrefab.name,  CrewRoomSpawner2.position, CrewRoomSpawner2.rotation);
-        }
-        if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.InstantiateRoomObject(NatanPrefab.name, NatanSpanwner.position, NatanPrefab.transform.rotation);
+            PhotonNetwork.InstantiateRoomObject(_natanPrefab.name, _natanPosTransform.position, _natanPrefab.transform.rotation);
+            //PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomOneColliderPosTransform.position, _crewRoomOneColliderPosTransform.rotation);
+            //PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomTwoColliderPosTransform.position, _crewRoomTwoColliderPosTransform.rotation);
+        }   
     }
 }
