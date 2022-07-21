@@ -180,14 +180,21 @@ public class CrewRoomManager : MonoBehaviour
     // --------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount &&
-            !CheckIfAlreadyInList(other.gameObject))
+        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && !CheckIfAlreadyInList(other.gameObject))
         {
-            // _playersInRoomList.Add(other.gameObject.GetPhotonView());
             _photonView.RPC("AddingToRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
     }
 
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && CheckIfAlreadyInList(other.gameObject))
+        {
+            _photonView.RPC("RemovingFromRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
+        }
+
+    }
 
     // PUN RPC Methods
     // --------------------
@@ -196,7 +203,6 @@ public class CrewRoomManager : MonoBehaviour
     {
 
         PhotonView currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PhotonView>();
-        //PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
 
         if (currentPlayerData == null)
         {
@@ -216,6 +222,33 @@ public class CrewRoomManager : MonoBehaviour
         }
         BlockRoomAccess();
        
+    }
+
+    [PunRPC]
+    void RemovingFromRoomList_RPC(string currentPlayer)
+    {
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        {
+            PhotonView myPlayer = ActionsManager.Instance.AllPlayersPhotonViews[i];
+
+            if (myPlayer == null)
+            {
+                return;
+            }
+
+            for (int j = 0; j < 1; j++)
+            {
+                if (!_playersInRoomList.Contains(myPlayer))
+                {
+                    continue;
+                }
+                else
+                {
+                    _playersInRoomList.Remove(myPlayer);
+                }
+            }
+        }
+
     }
 
     [PunRPC]

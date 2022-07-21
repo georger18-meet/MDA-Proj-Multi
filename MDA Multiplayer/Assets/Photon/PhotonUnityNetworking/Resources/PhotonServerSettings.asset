@@ -61,6 +61,7 @@ MonoBehaviour:
   - AddingToRoomList_RPC
   - CrewCreateSubmit_RPC
   - ChangeCrewColors
+  - RemovingFromRoomList_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
