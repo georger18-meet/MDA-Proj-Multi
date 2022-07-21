@@ -43774,23 +43774,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4438bb276d1937544ba2a2c6ab62443f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMalePrefab: {fileID: 8822803002174255568, guid: 8830eeb28e58b914d9f6dc74e6519565, type: 3}
-  _playerFemalePrefab: {fileID: 0}
+  _playerMalePrefab: {fileID: 8822803002174255568, guid: 7c4120f494ccf494d9e23762e5489c15, type: 3}
   _patientMalePrefab: {fileID: 5550523932109703408, guid: dabe3131293e32f4787ed5a32f0ea73f, type: 3}
   _patientFemalePrefab: {fileID: 5550523932109703408, guid: 1f04bb736b3e9d74394678ab62fb7e93, type: 3}
-  _patientMaleOldPrefab: {fileID: 0}
-  _patientFemaleOldPrefab: {fileID: 0}
-  _patientKid: {fileID: 0}
-  _patientToddler: {fileID: 0}
-  _ambulancePrefab: {fileID: 0}
   _natanPrefab: {fileID: 4554301809211483259, guid: 6562aefc6eec2554a9099985472aa171, type: 3}
-  _crewRoomColliderPrefab: {fileID: 0}
   _patientMalePosTransform: {fileID: 1303862087}
   _patientFemalePosTransform: {fileID: 1992008020}
-  _ambulancePosTransform: {fileID: 0}
   _natanPosTransform: {fileID: 1402723829}
-  _crewRoomOneColliderPosTransform: {fileID: 0}
-  _crewRoomTwoColliderPosTransform: {fileID: 0}
   _minX: 83
   _minZ: -397
   _maxX: 72

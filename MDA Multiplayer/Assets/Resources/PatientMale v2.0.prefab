@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: -2103884689139102719}
   - component: {fileID: 8105853596253161680}
   m_Layer: 7
-  m_Name: PatientMale v2
+  m_Name: PatientMale v2.0
   m_TagString: Patient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
