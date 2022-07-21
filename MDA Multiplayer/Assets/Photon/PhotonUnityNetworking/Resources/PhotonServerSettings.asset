@@ -60,6 +60,7 @@ MonoBehaviour:
   - SetMeasurementByIndexRPC
   - AddingToRoomList_RPC
   - CrewCreateSubmit_RPC
+  - ChangeCrewColors
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
