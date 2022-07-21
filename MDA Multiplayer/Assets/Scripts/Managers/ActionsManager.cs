@@ -64,7 +64,6 @@ public class ActionsManager : MonoBehaviour
 
             if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
             {
-                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
                 UIManager.Instance.JoinPatientPopUp.SetActive(true);
             }
             else

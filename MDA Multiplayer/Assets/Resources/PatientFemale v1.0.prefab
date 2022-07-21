@@ -535,10 +535,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhotonView: {fileID: 2801488433122248011}
-  PatientData: {fileID: 11400000, guid: cf7524085c7d9e345b43d3fcefc0a5c3, type: 2}
+  PatientData: {fileID: 11400000, guid: 0a22cfce45ddf3f4788ddd2a7b43e878, type: 2}
   ActionSequences:
-  - {fileID: 11400000, guid: ed7801829bd928440be7d7d597d3f40c, type: 2}
-  PatientRenderer: {fileID: 6409394696358369213}
+  - {fileID: 11400000, guid: b4661d3fd770e0c4fbae082fe675b82a, type: 2}
+  PatientRenderer: {fileID: 0}
   NearbyUsers: []
   TreatingUsers: []
   AllUsersTreatedThisPatient: []
@@ -788,10 +788,5 @@ PrefabInstance:
 --- !u!4 &3186864649660580051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 263741aa33af487449afbec1bef625bc, type: 3}
-  m_PrefabInstance: {fileID: 3148225041925777208}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &6409394696358369213 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8305204487313633413, guid: 263741aa33af487449afbec1bef625bc, type: 3}
   m_PrefabInstance: {fileID: 3148225041925777208}
   m_PrefabAsset: {fileID: 0}
