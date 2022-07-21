@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c5f2425bbf594c82540528d0c737c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCamera: {fileID: 0}
+  _playerCamera: {fileID: 8822803001239547996}
   _interactableLayer:
     serializedVersion: 2
     m_Bits: 128
