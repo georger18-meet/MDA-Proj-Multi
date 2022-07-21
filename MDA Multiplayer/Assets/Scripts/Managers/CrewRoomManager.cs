@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -15,19 +16,28 @@ public class CrewRoomManager : MonoBehaviour
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
+    //public int _crewRoomIndex;
+
+
     public int _crewRoomIndex;
-
-
-
+     public static int _crewRoomIndexStatic;
 
     private PhotonView _photonView;
 
 
     private void Awake()
     {
+        _crewRoomIndexStatic = 0;
         _photonView = GetComponent<PhotonView>();
         PopulateDropdownRoles();
         RoomCrewMenuUI.SetActive(false);
+       
+    }
+
+    private void Start()
+    {
+        _crewRoomIndexStatic++;
+        _crewRoomIndex = _crewRoomIndexStatic;
     }
 
     void Update()
@@ -209,8 +219,8 @@ public class CrewRoomManager : MonoBehaviour
                 _playersInRoomList.Add(currentPlayerData);
             }
         }
-
         BlockRoomAccess();
+       
     }
 
     [PunRPC]
@@ -231,18 +241,16 @@ public class CrewRoomManager : MonoBehaviour
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
-        
+        ChangeCrewColors();
     }
 
-    //[PunRPC]
-    //void CrewLeaderIsChosen(int[] leaderIndex)
-    //{
-    //    for (int i = 0; i < leaderIndex.Length; i++)
-    //    {
-    //        PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
-    //        CrewLeaderDropDown.value = leaderIndex[i].;
-    //        desiredPlayerData.IsCrewLeader = true;
-    //    }
-
-    //}
+    void ChangeCrewColors()
+    {
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+            NameTagDisplay desiredPlayerName = _playersInRoomList[i].GetComponentInChildren<NameTagDisplay>();
+            desiredPlayerName.text.color = Color.magenta;
+        }
+    }
+ 
 }
