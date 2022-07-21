@@ -32,9 +32,9 @@ MonoBehaviour:
   OxygenSaturation: 99
   ETCO2: 50
   IsConscious: 1
-  FullyClothedMaterial: {fileID: 2100000, guid: a0092f51a5ba5e1488273021b4221811, type: 2}
-  ShirtOnlyMaterial: {fileID: 2100000, guid: 2c342e45a8a425049858d0ba69c32e59, type: 2}
-  PantsOnlyMaterial: {fileID: 2100000, guid: 2fe098b7ce8e9bb4097067f650ffaddc, type: 2}
-  UnderwearOnlyMaterial: {fileID: 2100000, guid: 591367fd8e4846545ad5a453cde69d1e, type: 2}
+  FullyClothedMaterial: {fileID: 2100000, guid: c6f7a8bad586457428a700c5b6b6b82b, type: 2}
+  ShirtOnlyMaterial: {fileID: 2100000, guid: b679808b4e664094581537001ef10c58, type: 2}
+  PantsOnlyMaterial: {fileID: 2100000, guid: ef4583040eca60c428504c9b48727fe1, type: 2}
+  UnderwearOnlyMaterial: {fileID: 2100000, guid: b8d9b2b3092ab614b95207d1019f89d4, type: 2}
   MeasurementName: 
   ClothingMaterial: []

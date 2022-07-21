@@ -535,9 +535,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhotonView: {fileID: 2801488433122248011}
-  PatientData: {fileID: 11400000, guid: 0a22cfce45ddf3f4788ddd2a7b43e878, type: 2}
+  PatientData: {fileID: 11400000, guid: cf7524085c7d9e345b43d3fcefc0a5c3, type: 2}
   ActionSequences:
-  - {fileID: 11400000, guid: b4661d3fd770e0c4fbae082fe675b82a, type: 2}
+  - {fileID: 11400000, guid: ed7801829bd928440be7d7d597d3f40c, type: 2}
   PatientRenderer: {fileID: 6409394696358369213}
   NearbyUsers: []
   TreatingUsers: []
