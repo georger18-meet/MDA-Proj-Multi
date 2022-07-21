@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -218,8 +219,8 @@ public class CrewRoomManager : MonoBehaviour
                 _playersInRoomList.Add(currentPlayerData);
             }
         }
-
         BlockRoomAccess();
+       
     }
 
     [PunRPC]
@@ -240,8 +241,16 @@ public class CrewRoomManager : MonoBehaviour
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
-        
+        ChangeCrewColors();
     }
 
+    void ChangeCrewColors()
+    {
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+            NameTagDisplay desiredPlayerName = _playersInRoomList[i].GetComponentInChildren<NameTagDisplay>();
+            desiredPlayerName.text.color = Color.magenta;
+        }
+    }
  
 }
