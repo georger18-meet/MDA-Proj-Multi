@@ -15,19 +15,28 @@ public class CrewRoomManager : MonoBehaviour
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
+    //public int _crewRoomIndex;
+
+
     public int _crewRoomIndex;
-
-
-
+     public static int _crewRoomIndexStatic;
 
     private PhotonView _photonView;
 
 
     private void Awake()
     {
+        _crewRoomIndexStatic = 0;
         _photonView = GetComponent<PhotonView>();
         PopulateDropdownRoles();
         RoomCrewMenuUI.SetActive(false);
+       
+    }
+
+    private void Start()
+    {
+        _crewRoomIndexStatic++;
+        _crewRoomIndex = _crewRoomIndexStatic;
     }
 
     void Update()
@@ -234,15 +243,5 @@ public class CrewRoomManager : MonoBehaviour
         
     }
 
-    //[PunRPC]
-    //void CrewLeaderIsChosen(int[] leaderIndex)
-    //{
-    //    for (int i = 0; i < leaderIndex.Length; i++)
-    //    {
-    //        PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
-    //        CrewLeaderDropDown.value = leaderIndex[i].;
-    //        desiredPlayerData.IsCrewLeader = true;
-    //    }
-
-    //}
+ 
 }
