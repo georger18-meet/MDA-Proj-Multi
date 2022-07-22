@@ -21,26 +21,26 @@ public class ConnectingMonitor : MonoBehaviour
         {
             if (photonView.IsMine)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
                 PatientData currentPatientData = currentPatient.PatientData;
 
-                _player = desiredPlayerData.gameObject;
+                _player = localPlayerData.gameObject;
                 _player.transform.position = currentPatient.ChestPosPlayerTransform.position;
 
                 GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, currentPatient.ChestPosEquipmentTransform.position, currentPatient.ChestPosEquipmentTransform.rotation);
 
-                photonView.RPC("UpdatePatientLogRPC", RpcTarget.AllViaServer, $"Connected Defibrilator to Patient {desiredPlayerData.CurrentPatientNearby.PatientData.Name} {desiredPlayerData.CurrentPatientNearby.PatientData.SureName}");
+                photonView.RPC("UpdatePatientLogRPC", RpcTarget.AllViaServer, $"Connected Defibrilator to Patient {localPlayerData.CurrentPatientNearby.PatientData.Name} {localPlayerData.CurrentPatientNearby.PatientData.SureName}");
 
                 // alert
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Connected Defibrilator to {currentPatientData.Name} {currentPatientData.SureName}");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Connected Defibrilator to {currentPatientData.Name} {currentPatientData.SureName}");
                 }
                 break;
             }

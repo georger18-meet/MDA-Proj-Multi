@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
     [field: SerializeField] public bool IsCrewLeader { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
+    [field: SerializeField] public Color CrewColor { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
 

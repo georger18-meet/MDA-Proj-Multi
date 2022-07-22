@@ -24,23 +24,26 @@ public class CalmPatientDown : MonoBehaviour
 
     public void CalmPatientDownAction()
     {
+        // loops through all players photonViews
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
+            // execute only if this instance if of the local player
             if (photonView.IsMine)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                // Get local PlayerData
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+
+                // check if local player joined with a Patient
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
-                string patientName = currentPatient.PhotonView.Owner.NickName;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
+                PatientData currentPatientData = currentPatient.PatientData;
 
                 _newHeartRate = currentPatient.PatientData.HeartRateBPM - _calmDownHeartRateBy;
                 _newRespiratoryRate = currentPatient.PatientData.HeartRateBPM - _calmDownRespiratoryRateBy;
 
                 currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
-
                 currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
 
                 if (_showAlert)
@@ -50,7 +53,7 @@ public class CalmPatientDown : MonoBehaviour
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {patientName} has calmed down a bit");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Patient's {currentPatientData.Name} has calmed down a bit");
                 }
                 break;
             }

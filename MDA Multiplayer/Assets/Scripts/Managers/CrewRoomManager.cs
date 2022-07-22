@@ -19,7 +19,7 @@ public class CrewRoomManager : MonoBehaviour
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
     //public int _crewRoomIndex;
-    private Color nameColor;
+    private Color crewColor;
 
     public  int _crewRoomIndex;
      public static int _crewRoomIndexStatic;
@@ -254,11 +254,14 @@ public class CrewRoomManager : MonoBehaviour
     [PunRPC]
     void CrewCreateSubmit_RPC(int[] roleIndex,int leaderIndex)
     {
+        int indexInCrewCounter = 0;
         for (int i = 0; i < roleIndex.Length; i++)
         { 
             PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
-            desiredPlayerData.UserRole = (Roles)roleIndex[i];
             desiredPlayerData.CrewIndex = _crewRoomIndex;
+            desiredPlayerData.UserIndexInCrew = indexInCrewCounter;
+            desiredPlayerData.UserRole = (Roles)roleIndex[i];
+            indexInCrewCounter++;
         }
 
         foreach (PhotonView player in _playersInRoomList)
@@ -274,13 +277,15 @@ public class CrewRoomManager : MonoBehaviour
     [PunRPC]
     void ChangeCrewColors(Vector3 randomColor)
     {
-         nameColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+         crewColor = new Color(randomColor.x, randomColor.y, randomColor.z);
 
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
+            PlayerData currentPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
             NameTagDisplay desiredPlayerName = _playersInRoomList[i].GetComponentInChildren<NameTagDisplay>();
 
-            desiredPlayerName.text.color = nameColor;
+            desiredPlayerName.text.color = crewColor;
+            currentPlayerData.CrewColor = crewColor;
 
         }
     }

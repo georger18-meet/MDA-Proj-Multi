@@ -1,16 +1,15 @@
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Photon.Pun;
 
-public class Alert : MonoBehaviour
+public class ActionPlaceHolder : MonoBehaviour
 {
     [Header("Component's Data")]
-    [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
+    [SerializeField] private string _string;
 
-    public void ShowAlert()
+    [Header("Conditions")]
+    [SerializeField] private bool _shouldUpdateLog = true;
+
+    public void DoAction()
     {
         // loops through all players photonViews
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
@@ -25,12 +24,20 @@ public class Alert : MonoBehaviour
                 if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
+                // get Patient & PatientData
                 Patient currentPatient = localPlayerData.CurrentPatientNearby;
                 PatientData currentPatientData = currentPatient.PatientData;
 
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Removed foreign object from {currentPatientData.Name} {currentPatientData.SureName}");
+                // invoke RPC with this action's logic
+                currentPatient.PhotonView.RPC("", RpcTarget.AllBufferedViaServer, _string);
 
+                // will update the log if true
+                if (_shouldUpdateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Text to Log");
+                }
+
+                // if found local player no need for loop to continue
                 break;
             }
         }

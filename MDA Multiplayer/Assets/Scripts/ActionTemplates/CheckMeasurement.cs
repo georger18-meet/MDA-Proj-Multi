@@ -22,15 +22,15 @@ public class CheckMeasurement : MonoBehaviour
 
             if (photonView.IsMine)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
                 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
                 // loops throughout measurementList and catches the first element that is equal to measurementNumber
                 Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
 
-                _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
+                _measurement = localPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
 
                 if (_showAlert)
                 {
@@ -39,7 +39,7 @@ public class CheckMeasurement : MonoBehaviour
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {_alertTitle} is: {_measurement}");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Patient's {_alertTitle} is: {_measurement}");
                 }
                 break;
             }

@@ -21,14 +21,14 @@ public class CheckConciounceness : MonoBehaviour
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
             if (photonView.IsMine)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
 
                 _conciouncnessState = currentPatient.PatientData.IsConscious ? _caseConciouce : _caseNotConciouce;
 
@@ -39,7 +39,7 @@ public class CheckConciounceness : MonoBehaviour
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_alertTitle} {_alertText} {_conciouncnessState}");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_alertTitle} {_alertText} {_conciouncnessState}");
                 }
                 break;
             }

@@ -83,11 +83,10 @@ public class DocumentationLogManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void LogThisText(string senderName, string text)
+    public void LogThisText(int senderCrewIndex, string senderName, string text)
     {
-
         myLog = text;
-        string newString = senderName + ": " + myLog + "\n----------------------------------------\n";
+        string newString = $"[{senderCrewIndex}] <{senderName}> {myLog}";
         Enqueue(newString);
         myLog = string.Empty;
         if (!InfiniteList)

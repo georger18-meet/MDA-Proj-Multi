@@ -31,12 +31,12 @@ public class PatientTreatmentAnimation : MonoBehaviour
         {
             if (photonView.IsMine)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
                 PatientData currentPatientData = currentPatient.PatientData;
                 _patientAnimator = currentPatient.GetComponent<Animator>();
 
@@ -45,7 +45,7 @@ public class PatientTreatmentAnimation : MonoBehaviour
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $" {currentPatientData.Name} is Reciving Heart Massages");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $" {currentPatientData.Name} is Reciving Heart Massages");
                 }
                 break;
             }
