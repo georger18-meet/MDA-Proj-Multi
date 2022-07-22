@@ -18,7 +18,7 @@ public class HeartMassages : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         _playerAnimator.SetBool("Administering Cpr", false);
-        ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_playerName} has finished Administering Heart Massages");
+        //ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_playerName} has finished Administering Heart Massages");
     }
 
     public void DoHeartMassage()

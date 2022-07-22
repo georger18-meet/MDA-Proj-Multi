@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ChangeClothing : MonoBehaviour
+public class ChangeClothing : Action
 {
     [Header("Component's Data")]
     [SerializeField] private Clothing _clothing;
-    [SerializeField] private string _alertTitle, _alertText;
+    [SerializeField] private string _alertTitle, _alertContent;
 
     [Header("Alerts")]
     [SerializeField] private bool _showAlert = false;
@@ -16,27 +16,22 @@ public class ChangeClothing : MonoBehaviour
 
     public void ChangeClothingAction()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            CurrentPatient.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllBufferedViaServer, (int)_clothing);
+
+            TextToLog = $"Patient's {_alertTitle} is: {_alertContent}";
+
+            if (_showAlert)
             {
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertContent);
+            }
 
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                localPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllBufferedViaServer, (int)_clothing);
-
-                if (_showAlert)
-                {
-                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                }
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Patient's {_alertTitle} is: {_alertText}");
-                }
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

@@ -1,44 +1,34 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 
-public class ActionPlaceHolder : MonoBehaviour
+public class ActionPlaceHolder : Action
 {
     [Header("Component's Data")]
-    [SerializeField] private string _string;
+    [SerializeField] private string _someVariable;
+    [SerializeField] private string _alertTitle, _alertContent;
 
-    [Header("Conditions")]
-    [SerializeField] private bool _shouldUpdateLog = true;
+    [Header("Alerts")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
 
     public void DoAction()
     {
-        // loops through all players photonViews
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            // execute only if this instance if of the local player
-            if (photonView.IsMine)
+            // CurrentPatient.PhotonView.RPC("SomeMethodRPC", RpcTarget.AllBufferedViaServer, _someVariable);
+
+            TextToLog = $"Patient's {_alertTitle} is: {_alertContent}";
+
+            if (_showAlert)
             {
-                // Get local PlayerData
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertContent);
+            }
 
-                // check if local player joined with a Patient
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                // get Patient & PatientData
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                PatientData currentPatientData = currentPatient.PatientData;
-
-                // invoke RPC with this action's logic
-                currentPatient.PhotonView.RPC("", RpcTarget.AllBufferedViaServer, _string);
-
-                // will update the log if true
-                if (_shouldUpdateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Text to Log");
-                }
-
-                // if found local player no need for loop to continue
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

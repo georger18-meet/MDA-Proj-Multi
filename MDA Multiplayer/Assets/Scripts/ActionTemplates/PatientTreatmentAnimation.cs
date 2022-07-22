@@ -22,7 +22,7 @@ public class PatientTreatmentAnimation : MonoBehaviour
         yield return new WaitForSeconds(_animationEndTime);
 
         _patientAnimator.SetBool(_animationName, false);
-        ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_patientName} has finished {_animationName}");
+        //ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_patientName} has finished {_animationName}");
     }
 
     public void PlayAnimation()
