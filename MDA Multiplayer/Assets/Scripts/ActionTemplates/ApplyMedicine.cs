@@ -19,27 +19,36 @@ public class ApplyMedicine : MonoBehaviour
 
     public void OnApplyMedicineRPC(int measurementNumber)
     {
-        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        // loops through all players photonViews
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
-
-            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
-                return;
-
-            Patient currentPatient = myPlayerData.CurrentPatientNearby;
-            PatientData currentPatientData = currentPatient.PatientData;
-            currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
-
-            if (_showAlert)
+            // execute only if this instance if of the local player
+            if (photonView.IsMine)
             {
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-            }
+                // Get local PlayerData
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-            if (_updateLog)
-            {
-                ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_alertTitle} {_medicineToApply} on {currentPatientData.Name} {currentPatientData.SureName}");
+                // check if local player joined with a Patient
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
+                    return;
+
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
+                PatientData currentPatientData = currentPatient.PatientData;
+
+                currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
+
+                if (_showAlert)
+                {
+                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
+                }
+
+                if (_updateLog)
+                {
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_alertTitle} {_medicineToApply} on    {currentPatientData.Name} {currentPatientData.SureName}");
+                }
+
+                break;
             }
-            break;
         }
     }
 }

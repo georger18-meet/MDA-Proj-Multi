@@ -33,23 +33,23 @@ public class PlayerTreatingAnimation : MonoBehaviour
         {
             if (photonView.IsMine)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
                 Transform patientColliderTransform = currentPatient.transform.GetChild(1).GetChild(_patientColliderIndex);
-                _playerAnimator = desiredPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
+                _playerAnimator = localPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
 
-                desiredPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
+                localPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
 
                 _playerAnimator.SetBool(_animationName, true);
                 StartCoroutine(WaitToFinishAnimation());
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $" is Administering Heart Massages");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $" is Administering Heart Massages");
                 }
                 break;
             }

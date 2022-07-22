@@ -27,17 +27,17 @@ public class HeartMassages : MonoBehaviour
         {
             if (photonView.IsMine)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
                 Transform patientColliderTransform = currentPatient.transform.GetChild(1).GetChild(0);
 
-                _playerAnimator = desiredPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
+                _playerAnimator = localPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
 
-                desiredPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
+                localPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
 
                 _playerAnimator.SetBool("Administering Cpr", true);
                 currentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
@@ -49,7 +49,7 @@ public class HeartMassages : MonoBehaviour
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $" Administering Heart Massages");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $" Administering Heart Massages");
                 }
                 break;
             }

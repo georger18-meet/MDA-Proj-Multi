@@ -20,12 +20,12 @@ public class ChangeClothing : MonoBehaviour
         {
             if (photonView.IsMine)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
                     return;
 
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllBufferedViaServer, (int)_clothing);
+                localPlayerData.CurrentPatientNearby.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllBufferedViaServer, (int)_clothing);
 
                 if (_showAlert)
                 {
@@ -34,7 +34,7 @@ public class ChangeClothing : MonoBehaviour
 
                 if (_updateLog)
                 {
-                    ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"Patient's {_alertTitle} is: {_alertText}");
+                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Patient's {_alertTitle} is: {_alertText}");
                 }
                 break;
             }

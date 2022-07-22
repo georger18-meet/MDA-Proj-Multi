@@ -38,6 +38,11 @@ public class ActionTemplates : MonoBehaviour
         _alertTimer += Time.deltaTime;
     }
 
+    internal void UpdatePatientLog(int crewIndex, string userName, string v)
+    {
+        throw new NotImplementedException();
+    }
+
     #region Most Basic Tools
     public void OpenCloseDisplayWindow(GameObject window)
     {
@@ -148,9 +153,9 @@ public class ActionTemplates : MonoBehaviour
 
     #region PunRPC
     [PunRPC]
-    public void RPC_UpdatePatientLog(string senderName, string textToLog)
+    public void RPC_UpdatePatientLog(int senderCrewIndex, string senderName, string textToLog)
     {
-        _docLog.LogThisText(senderName, textToLog);
+        _docLog.LogThisText(senderCrewIndex, senderName, textToLog);
     }
     #endregion
 }
