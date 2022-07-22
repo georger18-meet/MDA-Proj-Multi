@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Photon.Pun;
 
 public class Action : MonoBehaviour
@@ -43,5 +43,10 @@ public class Action : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void LogText(string textToLog)
+    {
+        ActionTemplates.Instance.UpdatePatientLog(LocalPlayerCrewIndex, LocalPlayerName, textToLog);
     }
 }
