@@ -38,11 +38,6 @@ public class ActionTemplates : MonoBehaviour
         _alertTimer += Time.deltaTime;
     }
 
-    internal void UpdatePatientLog(int crewIndex, string userName, string v)
-    {
-        throw new NotImplementedException();
-    }
-
     #region Most Basic Tools
     public void OpenCloseDisplayWindow(GameObject window)
     {
@@ -137,9 +132,9 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
-    public void UpdatePatientLog(string senderName, string textToLog)
+    public void UpdatePatientLog(int senderCrewIndex, string senderName, string textToLog)
     {
-        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderName, textToLog);
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderCrewIndex, senderName, textToLog);
     }
     #endregion
 

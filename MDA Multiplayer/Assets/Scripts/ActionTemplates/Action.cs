@@ -45,6 +45,16 @@ public class Action : MonoBehaviour
         }
     }
 
+    public void ShowTextAlert(string title, string content)
+    {
+        ActionTemplates.Instance.ShowAlertWindow(title, content);
+    }
+
+    public void ShowNumAlert(string title, int number)
+    {
+        ActionTemplates.Instance.ShowAlertWindow(title, number);
+    }
+
     public void LogText(string textToLog)
     {
         ActionTemplates.Instance.UpdatePatientLog(LocalPlayerCrewIndex, LocalPlayerName, textToLog);

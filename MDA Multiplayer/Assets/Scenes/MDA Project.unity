@@ -88736,6 +88736,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6793001098076777926, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: _alertContent
+      value: "\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E8\u05D2\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
+      objectReference: {fileID: 0}
     - target: {fileID: 6993325478726008207, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -89548,6 +89552,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1011662884}
+    - target: {fileID: 8827267099607560846, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: _alertContent
+      value: "\u05EA\u05D7\u05EA\u05D5\u05E0\u05D9\u05DD \u05D1\u05DC\u05D1\u05D3"
+      objectReference: {fileID: 0}
     - target: {fileID: 8991403761574259289, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

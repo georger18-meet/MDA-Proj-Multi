@@ -24,7 +24,7 @@ public class PlayerTreatingAnimation : MonoBehaviour
         yield return new WaitForSeconds(_animationEndTime);
 
         _playerAnimator.SetBool(_animationName, false);
-        ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_playerName} has finished {_animationName}");
+        //ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_playerName} has finished {_animationName}");
     }
 
     public void PlayAnimation()

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ApplyMedicine : MonoBehaviour
+public class ApplyMedicine : Action
 {
     [Header("Component's Data")]
     [SerializeField] private string _medicineToApply;
@@ -19,35 +19,22 @@ public class ApplyMedicine : MonoBehaviour
 
     public void OnApplyMedicineRPC(int measurementNumber)
     {
-        // loops through all players photonViews
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            // execute only if this instance if of the local player
-            if (photonView.IsMine)
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
+
+            TextToLog = $"{_alertTitle} {_medicineToApply} on {CurrentPatientData.Name} {CurrentPatientData.SureName}";
+
+            if (_showAlert)
             {
-                // Get local PlayerData
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowNumAlert(_alertTitle, _newMeasurement);
+            }
 
-                // check if local player joined with a Patient
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                PatientData currentPatientData = currentPatient.PatientData;
-
-                currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
-
-                if (_showAlert)
-                {
-                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-                }
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_alertTitle} {_medicineToApply} on    {currentPatientData.Name} {currentPatientData.SureName}");
-                }
-
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

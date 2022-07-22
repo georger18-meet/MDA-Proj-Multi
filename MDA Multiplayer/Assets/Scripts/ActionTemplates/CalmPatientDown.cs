@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class CalmPatientDown : MonoBehaviour
+public class CalmPatientDown : Action
 {
     [Header("Alert Content")]
     [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
+    [SerializeField] private string _alertContent;
 
     [Header("Component's Data")]
     [SerializeField] private int _calmDownHeartRateBy = 0;
@@ -24,39 +24,19 @@ public class CalmPatientDown : MonoBehaviour
 
     public void CalmPatientDownAction()
     {
-        // loops through all players photonViews
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
+        CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
+
+        TextToLog = $"Patient's {_alertTitle} is: {_alertContent}";
+
+        if (_showAlert)
         {
-            // execute only if this instance if of the local player
-            if (photonView.IsMine)
-            {
-                // Get local PlayerData
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+            ShowTextAlert(_alertTitle, _alertContent);
+        }
 
-                // check if local player joined with a Patient
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                PatientData currentPatientData = currentPatient.PatientData;
-
-                _newHeartRate = currentPatient.PatientData.HeartRateBPM - _calmDownHeartRateBy;
-                _newRespiratoryRate = currentPatient.PatientData.HeartRateBPM - _calmDownRespiratoryRateBy;
-
-                currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
-                currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
-
-                if (_showAlert)
-                {
-                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                }
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Patient's {currentPatientData.Name} has calmed down a bit");
-                }
-                break;
-            }
+        if (_updateLog)
+        {
+            LogText(TextToLog);
         }
     }
 }
