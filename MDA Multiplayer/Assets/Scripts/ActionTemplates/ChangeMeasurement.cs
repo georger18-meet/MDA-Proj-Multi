@@ -4,45 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ChangeMeasurement : MonoBehaviour
+public class ChangeMeasurement : Action
 {
     [Header("Component's Data")]
-    [SerializeField] private string _measurementTitle;
     [SerializeField] private int _newMeasurement;
 
-    [Header("Alerts")]
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle, _alertText;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
-    public void ApplyMeasurementAction(int measurementNumber)
+    public void ChangeMeasurementAction(int measurementNumber)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
+
+            TextToLog = $"Patient's {_alertText} was changed";
+
+            if (_showAlert)
             {
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-
-                currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
-                //desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementByIndex(measurementNumber, _newMeasurement);
-
-                if (_showAlert)
-                {
-                    ActionTemplates.Instance.ShowAlertWindow(_measurementTitle, _newMeasurement);
-                }
-                
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Patient's {_measurementTitle} was changed");
-                }
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

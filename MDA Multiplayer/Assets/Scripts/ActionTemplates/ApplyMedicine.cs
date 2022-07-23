@@ -7,11 +7,13 @@ using Photon.Pun;
 public class ApplyMedicine : Action
 {
     [Header("Component's Data")]
-    [SerializeField] private string _medicineToApply;
-    [SerializeField] private string  _measurementTitle;
     [SerializeField] private int _newMeasurement;
 
-    [Header("Alerts")]
+    [Header("Alert")]
+    [SerializeField] private string _medicineToApply;
+    [SerializeField] private string  _measurementTitle;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
@@ -19,6 +21,8 @@ public class ApplyMedicine : Action
 
     public void OnApplyMedicineRPC(int measurementNumber)
     {
+        // need fixing
+
         GetActionData();
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))

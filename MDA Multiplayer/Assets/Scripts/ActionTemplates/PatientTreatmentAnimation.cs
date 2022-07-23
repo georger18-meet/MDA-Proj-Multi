@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PatientTreatmentAnimation : MonoBehaviour
+public class PatientTreatmentAnimation : Action
 {
     [Header("Animation's Data")]
     [SerializeField] private string _animationName;
     [SerializeField] private float _animationEndTime;
 
-    [Header("Alerts")]
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = false;
 
@@ -27,27 +31,26 @@ public class PatientTreatmentAnimation : MonoBehaviour
 
     public void PlayAnimation()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            // need fixing
+            _patientAnimator = CurrentPatient.GetComponent<Animator>();
+
+            _patientAnimator.SetBool(_animationName, true);
+            StartCoroutine(WaitToFinishAnimation());
+
+            TextToLog = $" {CurrentPatientData.Name} is Reciving Heart Massages";
+
+            if (_showAlert)
             {
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                PatientData currentPatientData = currentPatient.PatientData;
-                _patientAnimator = currentPatient.GetComponent<Animator>();
-
-                _patientAnimator.SetBool(_animationName, true);
-                StartCoroutine(WaitToFinishAnimation());
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $" {currentPatientData.Name} is Reciving Heart Massages");
-                }
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

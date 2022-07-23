@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerTreatingAnimation : MonoBehaviour
+public class PlayerTreatingAnimation : Action
 {
     [Header("Data")]
     [SerializeField] private string _animationName;
     [SerializeField] private float _animationEndTime;
+
     // usually 0 /2 /4
     [SerializeField] private int _patientColliderIndex;
 
-    [Header("Alerts")]
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
@@ -24,34 +29,31 @@ public class PlayerTreatingAnimation : MonoBehaviour
         yield return new WaitForSeconds(_animationEndTime);
 
         _playerAnimator.SetBool(_animationName, false);
-        //ActionTemplates.Instance.UpdatePatientLog($"<{PhotonNetwork.NickName}>", $"{_playerName} has finished {_animationName}");
     }
 
     public void PlayAnimation()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            _playerAnimator = LocalPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
+
+            LocalPlayerData.transform.SetPositionAndRotation(PatientChestPosPlayerTransform.position, PatientChestPosPlayerTransform.rotation);
+
+            _playerAnimator.SetBool(_animationName, true);
+            StartCoroutine(WaitToFinishAnimation());
+
+            TextToLog = $" is Administering Heart Massages";
+
+            if (_showAlert)
             {
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                Transform patientColliderTransform = currentPatient.transform.GetChild(1).GetChild(_patientColliderIndex);
-                _playerAnimator = localPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
-
-                localPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
-
-                _playerAnimator.SetBool(_animationName, true);
-                StartCoroutine(WaitToFinishAnimation());
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $" is Administering Heart Massages");
-                }
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

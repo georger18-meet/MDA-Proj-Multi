@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class CalmPatientDown : Action
 {
-    [Header("Alert Content")]
+    [Header("Alert")]
     [SerializeField] private string _alertTitle;
     [SerializeField] private string _alertContent;
 
@@ -14,7 +14,7 @@ public class CalmPatientDown : Action
     [SerializeField] private int _calmDownHeartRateBy = 0;
     [SerializeField] private int _calmDownRespiratoryRateBy;
 
-    [Header("Alerts")]
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
@@ -24,19 +24,24 @@ public class CalmPatientDown : Action
 
     public void CalmPatientDownAction()
     {
-        CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
-        CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
+        GetActionData();
 
-        TextToLog = $"Patient's {_alertTitle} is: {_alertContent}";
-
-        if (_showAlert)
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            ShowTextAlert(_alertTitle, _alertContent);
-        }
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
 
-        if (_updateLog)
-        {
-            LogText(TextToLog);
+            TextToLog = $"Patient's {_alertTitle} is: {_alertContent}";
+
+            if (_showAlert)
+            {
+                ShowTextAlert(_alertTitle, _alertContent);
+            }
+
+            if (_updateLog)
+            {
+                LogText(TextToLog);
+            }
         }
     }
 }

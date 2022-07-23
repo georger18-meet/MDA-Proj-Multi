@@ -4,9 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class HeartMassages : MonoBehaviour
+public class HeartMassages : Action
 {
-    [Header("Alerts")]
+    [Header("Component's Data")]
+    [SerializeField] private ConnectingMonitor _newHeartRate;
+    
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
@@ -23,35 +30,29 @@ public class HeartMassages : MonoBehaviour
 
     public void DoHeartMassage()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            _playerAnimator = LocalPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
+
+            LocalPlayerData.transform.SetPositionAndRotation(PatientChestPosPlayerTransform.position, PatientChestPosPlayerTransform.rotation);
+
+            _playerAnimator.SetBool("Administering Cpr", true);
+            CurrentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, _newHeartRate);
+
+            StartCoroutine(WaitToFinishCPR());
+
+            TextToLog = $" Administering Heart Massages";
+
+            if (_showAlert)
             {
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                Transform patientColliderTransform = currentPatient.transform.GetChild(1).GetChild(0);
-
-                _playerAnimator = localPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
-
-                localPlayerData.transform.SetPositionAndRotation(patientColliderTransform.position, patientColliderTransform.rotation);
-
-                _playerAnimator.SetBool("Administering Cpr", true);
-                currentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, 64);
-
-                // log
-
-                StartCoroutine(WaitToFinishCPR());
-                _playerName = photonView.Owner.NickName;
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $" Administering Heart Massages");
-                }
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

@@ -3,45 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class CheckConciounceness : MonoBehaviour
+public class CheckConciounceness : Action
 {
     [Header("Component's Data")]
-    [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
-    [SerializeField] private string _caseConciouce;
-    [SerializeField] private string _caseNotConciouce;
+    [SerializeField] private string _caseConscious;
+    [SerializeField] private string _caseNotConscious;
 
-    [Header("Alerts")]
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
-    private string _conciouncnessState;
+    private string _consciousnessState;
 
     public void CheckConciouncenessAction()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+            _consciousnessState = CurrentPatientData.IsConscious ? _caseConscious : _caseNotConscious;
 
-            if (photonView.IsMine)
+            TextToLog = $"is {_consciousnessState}";
+
+            if (_showAlert)
             {
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
+                ShowTextAlert(_alertTitle, _consciousnessState);
+            }
 
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-
-                _conciouncnessState = currentPatient.PatientData.IsConscious ? _caseConciouce : _caseNotConciouce;
-
-                if (_showAlert)
-                {
-                    ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _conciouncnessState);
-                }
-
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_alertTitle} {_alertText} {_conciouncnessState}");
-                }
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }
