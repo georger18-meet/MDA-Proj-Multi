@@ -548,6 +548,7 @@ MonoBehaviour:
   ChestPosEquipmentTransform: {fileID: 629437207945255640}
   HeadPosPlayerTransform: {fileID: 629437208365349993}
   HeadPosEquipmentTransform: {fileID: 629437208607401553}
+  LegPosPlayerTrasform: {fileID: 6786317825040480731}
   WorldCanvas: {fileID: 3157934140313861114}
 --- !u!114 &5550523932109703410
 MonoBehaviour:

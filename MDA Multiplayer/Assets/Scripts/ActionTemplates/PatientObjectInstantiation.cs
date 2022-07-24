@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PatientObjectInstantiation : MonoBehaviour
+public class PatientObjectInstantiation : Action
 {
     [Header("Prefab References")]
     [SerializeField] private GameObject _item;
@@ -14,52 +14,52 @@ public class PatientObjectInstantiation : MonoBehaviour
     [SerializeField] private Quaternion _offsetRot;
 
     [Header("Alerts")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
-
-    [Header("Condition")]
     [SerializeField] private bool _useColliders = false;
 
-    private Transform _patientTransform;
     private Transform[] _equipmentColliders;
 
     // 0 = HeadPos, 1 = ChestPos, 2 = Knees
     public void InstantiateOnPatient(int colliderIndex)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            if (_useColliders)
             {
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                _equipmentColliders[0] = PatientHeadPosEquipmentTransform;
+                _equipmentColliders[1] = PatientChestPosEquipmentTransform;
+                //_equipmentColliders[2] = currentPatient.KneesPosEquipmentTransform;
 
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
+                GameObject item = PhotonNetwork.Instantiate(_item.name, _equipmentColliders[colliderIndex].position, _equipmentColliders[colliderIndex].rotation);
 
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                PatientData currentPatientData = currentPatient.PatientData;
-                
-                if (_useColliders)
-                {
-                    _equipmentColliders[0] = currentPatient.HeadPosEquipmentTransform;
-                    _equipmentColliders[1] = currentPatient.ChestPosEquipmentTransform;
-                    //_equipmentColliders[2] = currentPatient.KneesPosEquipmentTransform;
+                item.transform.SetParent(_equipmentColliders[colliderIndex]);
+            }
+            else
+            {
+                Vector3 desiredPosition = CurrentPatient.transform.position + _offsetPos;
+                Quaternion desiredRotation = new Quaternion(CurrentPatient.transform.rotation.x + _offsetRot.y, CurrentPatient.transform.rotation.y + _offsetRot.x, CurrentPatient.transform.rotation.z + _offsetRot.z, CurrentPatient.transform.rotation.w + _offsetRot.w);
 
-                    GameObject item = PhotonNetwork.Instantiate(_item.name, _equipmentColliders[colliderIndex].position, _equipmentColliders[colliderIndex].rotation);
-                    //item.transform.SetParent(_equipmentColliders[colliderIndex]);
-                }
-                else
-                {
-                    _patientTransform = currentPatient.transform;
-                    Quaternion desiredRotation = new Quaternion(currentPatient.transform.rotation.x + _offsetRot.y, currentPatient.transform.rotation.y + _offsetRot.x, currentPatient.transform.rotation.z + _offsetRot.z, currentPatient.transform.rotation.w + _offsetRot.w);
+                GameObject item = PhotonNetwork.Instantiate(_item.name, desiredPosition, desiredRotation);
+                item.transform.SetParent(CurrentPatient.transform);
+            }
 
-                    GameObject item = PhotonNetwork.Instantiate(_item.name, currentPatient.transform.position + _offsetPos, desiredRotation);
-                    //item.transform.SetParent(_patientTransform);
-                }
+            TextToLog = $"Placed {_item.name} on {CurrentPatientData.Name} {CurrentPatientData.SureName}";
 
-                if (_updateLog)
-                {
-                    ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Placed {_item.name} on {currentPatientData.Name} {currentPatientData.SureName}");
-                }
+            if (_showAlert)
+            {
+                ShowTextAlert(_alertTitle, _alertText);
+            }
+
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

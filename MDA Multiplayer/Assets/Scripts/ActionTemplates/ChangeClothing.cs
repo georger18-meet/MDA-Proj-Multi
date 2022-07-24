@@ -8,9 +8,11 @@ public class ChangeClothing : Action
 {
     [Header("Component's Data")]
     [SerializeField] private Clothing _clothing;
-    [SerializeField] private string _alertTitle, _alertContent;
 
     [Header("Alerts")]
+    [SerializeField] private string _alertTitle, _alertContent;
+
+    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 

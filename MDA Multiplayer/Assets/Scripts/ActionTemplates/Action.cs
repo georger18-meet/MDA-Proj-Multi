@@ -10,6 +10,8 @@ public class Action : MonoBehaviour
     [Header("Currently joined Patient's Data")]
     protected Patient CurrentPatient;
     protected PatientData CurrentPatientData;
+    protected Transform PatientChestPosPlayerTransform;
+    protected Transform PatientChestPosEquipmentTransform, PatientHeadPosPlayerTransform, PatientHeadPosEquipmentTransform, PatientLegPosPlayerTrasform;
 
     [Header("Conditions")]
     [SerializeField] protected bool _shouldUpdateLog = true;
@@ -27,9 +29,13 @@ public class Action : MonoBehaviour
             // execute only if this instance if of the local player
             if (photonView.IsMine)
             {
+                // Get local photonView
                 LocalPlayerPhotonView = photonView;
+
                 // Get local PlayerData
                 LocalPlayerData = photonView.GetComponent<PlayerData>();
+                LocalPlayerName = LocalPlayerData.UserName;
+                LocalPlayerCrewIndex = LocalPlayerData.CrewIndex;
 
                 // check if local player joined with a Patient
                 if (!LocalPlayerData.CurrentPatientNearby.IsPlayerJoined(LocalPlayerData))
@@ -38,6 +44,12 @@ public class Action : MonoBehaviour
                 // get Patient & PatientData
                 CurrentPatient = LocalPlayerData.CurrentPatientNearby;
                 CurrentPatientData = CurrentPatient.PatientData;
+
+                PatientChestPosPlayerTransform = CurrentPatient.ChestPosPlayerTransform;
+                PatientChestPosEquipmentTransform = CurrentPatient.ChestPosEquipmentTransform;
+                PatientHeadPosPlayerTransform = CurrentPatient.HeadPosPlayerTransform;
+                PatientHeadPosEquipmentTransform = CurrentPatient.HeadPosEquipmentTransform;
+                PatientLegPosPlayerTrasform = CurrentPatient.LegPosPlayerTrasform;
 
                 // if found local player no need for loop to continue
                 break;
