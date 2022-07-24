@@ -20,18 +20,24 @@ public class UIManager : MonoBehaviour
     //#endregion
 
     public static UIManager Instance;
+    [SerializeField] private Vector3 _leaderMenuOffset;
+    [SerializeField] private bool _isLeaderMenuOpen;
 
     #region Player UI
     [Header("Player UI Parents")]
     public GameObject CurrentActionBarParent;
-    public GameObject AmbulanceActionBarParent, NatanActionBarParent;
     public GameObject MapWindow, ContentPanel;
+    public GameObject AmbulanceBar, NatanBar;
+    public GameObject AmbulanceNoBagPanel, AmbulanceAmbuPanel, AmbulanceKidsAmbuPanel, AmbulanceMedicPanel, AmbulanceDefibrilationPanel, AmbulanceOxygenPanel, AmbulanceMonitorPanel;
+    public GameObject NatanNoBagPanel, NatanAmbuPanel, NatanKidsAmbuPanel, NatanMedicPanel, NatanQuickDrugsPanel, NatanOxygenPanel, NatanMonitorPanel;
+    public GameObject TeamLeaderMenu;
+
     #endregion
 
     #region Patient UI 
     [Header("Patient UI Parents")]
     public GameObject JoinPatientPopUp;
-    public GameObject PatientMenuParent, PatientInfoParent, ActionLogParent;
+    public GameObject PatientInfoParent, ActionLogParent;
 
     [Header("Patient UI Texts")]
     public TextMeshProUGUI SureName;
@@ -46,8 +52,10 @@ public class UIManager : MonoBehaviour
     public GameObject EvacPatientPopUp;
     #endregion
 
-    #region Car UI
+    #region Vehicle UI
+    [Header("Vehicle UI Texts")]
     public GameObject VehicleUI;
+    
     #endregion
 
     private void Awake()
@@ -63,7 +71,7 @@ public class UIManager : MonoBehaviour
         }
 
         //_lastSelectedGameObject = _currentSelectedGameObject;
-        CurrentActionBarParent = AmbulanceActionBarParent;
+        CurrentActionBarParent = AmbulanceBar;
     }
 
     private void Start()
@@ -93,10 +101,37 @@ public class UIManager : MonoBehaviour
     public void CloseAllPatientWindows()
     {
         JoinPatientPopUp.SetActive(false);
-        PatientMenuParent.SetActive(false);
         PatientInfoParent.SetActive(false);
         ActionLogParent.SetActive(false);
         EvacPatientPopUp.SetActive(false);
+    }
+
+    public void CloseAllAmbulanceBags(GameObject currentWindow)
+    {
+        if (!currentWindow.activeInHierarchy)
+        {
+            AmbulanceNoBagPanel.SetActive(false);
+            AmbulanceAmbuPanel.SetActive(false);
+            AmbulanceKidsAmbuPanel.SetActive(false);
+            AmbulanceMedicPanel.SetActive(false);
+            AmbulanceDefibrilationPanel.SetActive(false);
+            AmbulanceOxygenPanel.SetActive(false);
+            AmbulanceMonitorPanel.SetActive(false);
+        }
+    }
+
+    public void CloseAllNatanBags(GameObject currentWindow)
+    {
+        if (!currentWindow.activeInHierarchy)
+        {
+            NatanNoBagPanel.SetActive(false);
+            NatanAmbuPanel.SetActive(false);
+            NatanKidsAmbuPanel.SetActive(false);
+            NatanMedicPanel.SetActive(false);
+            NatanQuickDrugsPanel.SetActive(false);
+            NatanOxygenPanel.SetActive(false);
+            NatanMonitorPanel.SetActive(false);
+        }
     }
 
     public void PauseHomeBtn()
@@ -112,5 +147,30 @@ public class UIManager : MonoBehaviour
         List<string> roomNames = new List<string>(enumNames);
 
         _dropDown.AddOptions(roomNames);
+    }
+
+    public void PullLeaderMenuDown()
+    {
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
+            if (photonView.IsMine)
+            {
+                Debug.Log("Trying To Pull Leader Menu");
+
+                if (!_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                {
+                    TeamLeaderMenu.transform.position -= _leaderMenuOffset;
+
+                    _isLeaderMenuOpen = true;
+                }
+                else if (_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                {
+                    TeamLeaderMenu.transform.position += _leaderMenuOffset;
+                    _isLeaderMenuOpen = false;
+                }
+            }
+        }
     }
 }

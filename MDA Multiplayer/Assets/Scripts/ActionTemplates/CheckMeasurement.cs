@@ -4,36 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class CheckMeasurement : MonoBehaviour
+public class CheckMeasurement : Action
 {
     [Header("Component's Data")]
-    [SerializeField] private string _alertTitle;
-
+    [SerializeField] private string _measurementNameEnglish;
+    [SerializeField] private string _measurementName;
     [SerializeField] private List<Measurements> measurementList;
 
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
     private int _measurement;
 
     public void CheckMeasurementAction(int measurementNumber)
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
+            _measurement = CurrentPatientData.GetMeasurement(measurementNumber);
 
-            if (photonView.IsMine)
+            TextToLog = $"Checked {CurrentPatientData.Name} {CurrentPatientData.SureName}'s {_measurementNameEnglish}, it is {_measurement}";
+
+            if (_showAlert)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-                
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                ShowNumAlert(_measurementName, _measurement);
+            }
 
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = ActionsManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-
-                _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
-
-                Debug.Log($"{_alertTitle} {_measurement}");
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _measurement);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"Patient's {_alertTitle} is: {_measurement}");
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

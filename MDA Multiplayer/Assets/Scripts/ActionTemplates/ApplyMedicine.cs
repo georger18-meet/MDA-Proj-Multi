@@ -4,30 +4,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ApplyMedicine : MonoBehaviour
+public class ApplyMedicine : Action
 {
     [Header("Component's Data")]
+    [SerializeField] private int _newMeasurement;
+
+    [Header("Alert")]
     [SerializeField] private string _medicineToApply;
     [SerializeField] private string  _measurementTitle;
-    [SerializeField] private int _newMeasurement;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
 
     private string _alertTitle = "Applied Medicine:";
 
     public void OnApplyMedicineRPC(int measurementNumber)
     {
-        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        // need fixing
+
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
-            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
-                return;
+            TextToLog = $"{_alertTitle} {_medicineToApply} on {CurrentPatientData.Name} {CurrentPatientData.SureName}";
 
-            Patient currentPatient = myPlayerData.CurrentPatientNearby;
+            if (_showAlert)
+            {
+                ShowNumAlert(_alertTitle, _newMeasurement);
+            }
 
-            currentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
-
-            ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _medicineToApply);
-            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_medicineToApply} on {currentPatient.PatientData.SureName} {currentPatient.PatientData.LastName}");
+            if (_updateLog)
+            {
+                LogText(TextToLog);
+            }
         }
     }
 }

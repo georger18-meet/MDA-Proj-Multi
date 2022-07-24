@@ -3,34 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class CheckConciounceness : MonoBehaviour
+public class CheckConciounceness : Action
 {
     [Header("Component's Data")]
+    [SerializeField] private string _caseConscious;
+    [SerializeField] private string _caseNotConscious;
+
+    [Header("Alert")]
     [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
-    [SerializeField] private string _caseConciouce;
-    [SerializeField] private string _caseNotConciouce;
-    
-    private string _conciouncnessState;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
+    private string _consciousnessState;
 
     public void CheckConciouncenessAction()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            _consciousnessState = CurrentPatientData.IsConscious ? _caseConscious : _caseNotConscious;
 
-            if (photonView.IsMine)
+            TextToLog = $"is {_consciousnessState}";
+
+            if (_showAlert)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                ShowTextAlert(_alertTitle, _consciousnessState);
+            }
 
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
-
-                _conciouncnessState = currentPatient.PatientData.IsConscious ? _caseConciouce : _caseNotConciouce;
-
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _conciouncnessState);
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_alertTitle} {_alertText} {_conciouncnessState}");
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

@@ -7,11 +7,11 @@ public class PatientData : ScriptableObject
 {
     // General Info
     [Header("Patient Informaion")]
+    public string Name;
     public string SureName;
-    public string LastName;
     public int Id, Age;
     public string Gender;
-    public int PhoneNumber;
+    public string PhoneNumber;
     public string MedicalCompany, AddressLocation, Complaint;
 
     // Health Data
@@ -25,6 +25,9 @@ public class PatientData : ScriptableObject
     public Material FullyClothedMaterial;
     public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
 
+    [Header("MonitorGraphTexture")]
+    public Sprite MonitorGraphTexture;
+
     // Catch Measurement Name
     [HideInInspector]
     public List<int> MeasurementName;
@@ -33,7 +36,7 @@ public class PatientData : ScriptableObject
     [HideInInspector]
     public List<Material> ClothingMaterial;
 
-    public int GetMeasurementName(int index)
+    public int GetMeasurement(int index)
     {
         MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 

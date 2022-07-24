@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Gambit v0.07.2 Bunny
+    AppVersion: Hawkeye v0.8.0 Gal
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -58,10 +58,12 @@ MonoBehaviour:
   - ChangeClothingRPC
   - ChangeHeartRateRPC
   - SetMeasurementByIndexRPC
-  - test
-  - AddingToRoonList_RPC
   - AddingToRoomList_RPC
   - CrewCreateSubmit_RPC
+  - ChangeCrewColors
+  - RemovingFromRoomList_RPC
+  - ChangeConciouncenessRPC
+  - SetMonitorGraphRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

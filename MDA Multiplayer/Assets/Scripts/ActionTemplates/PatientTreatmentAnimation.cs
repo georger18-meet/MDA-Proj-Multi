@@ -4,43 +4,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PatientTreatmentAnimation : MonoBehaviour
+public class PatientTreatmentAnimation : Action
 {
+    [Header("Animation's Data")]
     [SerializeField] private string _animationName;
-    [SerializeField] private float _animationWaitTime;
+    [SerializeField] private float _animationEndTime;
+
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = false;
 
     private Animator _patientAnimator;
     private string _patientName;
 
     private IEnumerator WaitToFinishAnimation()
     {
-        yield return new WaitForSeconds(_animationWaitTime);
+        yield return new WaitForSeconds(_animationEndTime);
 
         _patientAnimator.SetBool(_animationName, false);
-        ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_patientName} has finished {_animationName}");
+        //ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{_patientName} has finished {_animationName}");
     }
 
     public void PlayAnimation()
     {
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (photonView.IsMine)
+            // need fixing
+            _patientAnimator = CurrentPatient.GetComponent<Animator>();
+
+            _patientAnimator.SetBool(_animationName, true);
+            StartCoroutine(WaitToFinishAnimation());
+
+            TextToLog = $" {CurrentPatientData.Name} is Reciving Heart Massages";
+
+            if (_showAlert)
             {
-                PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
-
-                Patient currentPatient = desiredPlayerData.CurrentPatientNearby;
-                _patientAnimator = currentPatient.GetComponent<Animator>();
-
-                _patientAnimator.SetBool(_animationName, true);
-                StartCoroutine(WaitToFinishAnimation());
-
-                _patientName = photonView.Owner.NickName;
-                ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{photonView.Owner.NickName} is Administering Heart Massages");
-                Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
-                break;
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

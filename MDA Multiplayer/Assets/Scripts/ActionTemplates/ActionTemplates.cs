@@ -42,16 +42,16 @@ public class ActionTemplates : MonoBehaviour
     public void OpenCloseDisplayWindow(GameObject window)
     {
         Debug.Log($"Attempting to Open/Close {window.name}");
-            if (window.activeInHierarchy)
-            {
-                window.SetActive(false);
-                Debug.Log($"Closed {window.name}");
-            }
-            else
-            {
-                window.SetActive(true);
-                Debug.Log($"Opened {window.name}");
-            }
+        if (window.activeInHierarchy)
+        {
+            window.SetActive(false);
+            Debug.Log($"Closed {window.name}");
+        }
+        else
+        {
+            window.SetActive(true);
+            Debug.Log($"Opened {window.name}");
+        }
     }
 
     public void UpdateDisplayWindow(GameObject window, TextMeshProUGUI text, int newValue)
@@ -132,9 +132,9 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
-    public void UpdatePatientLog(string senderName, string textToLog)
+    public void UpdatePatientLog(int senderCrewIndex, string senderName, string textToLog)
     {
-        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderName, textToLog);
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderCrewIndex, senderName, textToLog);
     }
     #endregion
 
@@ -148,9 +148,9 @@ public class ActionTemplates : MonoBehaviour
 
     #region PunRPC
     [PunRPC]
-    public void RPC_UpdatePatientLog(string senderName, string textToLog)
+    public void RPC_UpdatePatientLog(int senderCrewIndex, string senderName, string textToLog)
     {
-        _docLog.LogThisText(senderName, textToLog);
+        _docLog.LogThisText(senderCrewIndex, senderName, textToLog);
     }
     #endregion
 }

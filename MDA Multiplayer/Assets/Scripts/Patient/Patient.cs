@@ -33,7 +33,7 @@ public class Patient : MonoBehaviour
 
     [Header("Treatment Positions")]
     public Transform ChestPosPlayerTransform;
-    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform;
+    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
 
     [Header("World Canvas")]
     public GameObject WorldCanvas;
@@ -151,8 +151,8 @@ public class Patient : MonoBehaviour
     [PunRPC]
     public void UpdatePatientInfoDisplay()
     {
-        UIManager.Instance.SureName.text = PatientData.SureName;
-        UIManager.Instance.LastName.text = PatientData.LastName;
+        UIManager.Instance.SureName.text = PatientData.Name;
+        UIManager.Instance.LastName.text = PatientData.SureName;
         UIManager.Instance.Gender.text = PatientData.Gender;
         UIManager.Instance.Adress.text = PatientData.AddressLocation;
         UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
@@ -241,6 +241,19 @@ public class Patient : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    [PunRPC]
+    private void ChangeConciouncenessRPC(bool newConsciousnessState)
+    {
+        PatientData.IsConscious = newConsciousnessState;
+    }
+
+    [PunRPC]
+    private void SetMonitorGraphRPC(SpriteRenderer newMonitorGraphRenderer, Sprite newGraph)
+    {
+        PatientData.MonitorGraphTexture = newGraph;
+        newMonitorGraphRenderer.sprite = PatientData.MonitorGraphTexture;
     }
     #endregion
 }

@@ -12,17 +12,27 @@ public class Alert : MonoBehaviour
 
     public void ShowAlert()
     {
-        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        // loops through all players photonViews
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            PlayerData myPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
+            // execute only if this instance if of the local player
+            if (photonView.IsMine)
+            {
+                // Get local PlayerData
+                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
 
-            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
-                return;
+                // check if local player joined with a Patient
+                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
+                    return;
 
-            Patient currentPatient = myPlayerData.CurrentPatientNearby;
+                Patient currentPatient = localPlayerData.CurrentPatientNearby;
+                PatientData currentPatientData = currentPatient.PatientData;
 
-            ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-            ActionTemplates.Instance.UpdatePatientLog(PhotonNetwork.NickName, $"{myPlayerData.UserName} Removed foreign object from {currentPatient.PatientData.SureName} {currentPatient.PatientData.LastName}");
+                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
+                ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Removed foreign object from {currentPatientData.Name} {currentPatientData.SureName}");
+
+                break;
+            }
         }
     }
 }

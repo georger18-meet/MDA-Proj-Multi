@@ -8,14 +8,14 @@ using Photon.Pun;
 public class NameTagDisplay : MonoBehaviour
 {
     [SerializeField] private PhotonView playerPhotonView;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] public TMP_Text text;
 
     private void Start()
     {
-        if (playerPhotonView.IsMine) // if we are the local player we disable the text
-        {
-            gameObject.SetActive(false);
-        }
+        //if (playerPhotonView.IsMine) // if we are the local player we disable the text
+        //{
+        //    gameObject.SetActive(false);
+        //}
 
         text.text = playerPhotonView.Owner.NickName;
         playerPhotonView.GetComponent<PlayerData>().UserName = playerPhotonView.Owner.NickName;

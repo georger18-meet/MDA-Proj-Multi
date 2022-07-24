@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class CrewRoomManager : MonoBehaviour
 {
@@ -15,19 +18,28 @@ public class CrewRoomManager : MonoBehaviour
 
     public List<PhotonView> _playersInRoomList;
     public int _playersMaxCount = 4;
-    public int _crewRoomIndex;
+    //public int _crewRoomIndex;
+    private Color crewColor;
 
-
-
+    public  int _crewRoomIndex;
+     public static int _crewRoomIndexStatic;
 
     private PhotonView _photonView;
 
 
     private void Awake()
     {
+        _crewRoomIndexStatic = 0;
         _photonView = GetComponent<PhotonView>();
         PopulateDropdownRoles();
         RoomCrewMenuUI.SetActive(false);
+       
+    }
+
+    private void Start()
+    {
+        _crewRoomIndexStatic++;
+        _crewRoomIndex = _crewRoomIndexStatic;
     }
 
     void Update()
@@ -112,7 +124,12 @@ public class CrewRoomManager : MonoBehaviour
 
     public void CreateCrewSubmit()
     {
-        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum());
+        var color = Random.ColorHSV();
+        _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum(), GetCrewLeaderIndex());
+        _photonView.RPC("ChangeCrewColors", RpcTarget.AllBufferedViaServer,new Vector3(color.r, color.g, color.b));
+
+        //_photonView.RPC("CrewLeaderIsChosen", RpcTarget.AllBufferedViaServer, GetCrewLeader());
+
     }
 
     public int[] GetCrewRolesByEnum()
@@ -126,6 +143,24 @@ public class CrewRoomManager : MonoBehaviour
         return roles;
 
     }
+
+    public int GetCrewLeaderIndex()
+    {
+        int leaderIndex=0;
+
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+            if (CrewLeaderDropDown.GetComponentInChildren<TextMeshProUGUI>().text == _playersInRoomList[i].Owner.NickName)
+            {
+                leaderIndex = i;
+            }
+
+        }
+        return leaderIndex;
+    }
+
+ 
+
 
     // Show Hide MenuUI
     // --------------------
@@ -145,14 +180,21 @@ public class CrewRoomManager : MonoBehaviour
     // --------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount &&
-            !CheckIfAlreadyInList(other.gameObject))
+        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && !CheckIfAlreadyInList(other.gameObject))
         {
-            // _playersInRoomList.Add(other.gameObject.GetPhotonView());
             _photonView.RPC("AddingToRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
     }
 
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && CheckIfAlreadyInList(other.gameObject))
+        {
+            _photonView.RPC("RemovingFromRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
+        }
+
+    }
 
     // PUN RPC Methods
     // --------------------
@@ -161,7 +203,6 @@ public class CrewRoomManager : MonoBehaviour
     {
 
         PhotonView currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PhotonView>();
-        //PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
 
         if (currentPlayerData == null)
         {
@@ -179,66 +220,75 @@ public class CrewRoomManager : MonoBehaviour
                 _playersInRoomList.Add(currentPlayerData);
             }
         }
-
         BlockRoomAccess();
+       
     }
 
     [PunRPC]
-    void CrewCreateSubmit_RPC(int[] roleIndex)
+    void RemovingFromRoomList_RPC(string currentPlayer)
     {
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        {
+            PhotonView myPlayer = ActionsManager.Instance.AllPlayersPhotonViews[i];
 
-        //for (int i = 0; i < _playersInRoomList.Count; i++)
-        //{
-        //    string[] rolesStrings = Enum.GetNames(typeof(Roles));
-        //    PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
+            if (myPlayer == null)
+            {
+                return;
+            }
 
-        //    for (int z = 0; z < rolesStrings.Length; z++)
-        //    {
-        //        if (rolesStrings[z] == CrewMemberRoleDropDownList[i].GetComponentInChildren<TextMeshProUGUI>().text)
-        //        {
-        //            Roles rolesTemp = new Roles();
-        //            desiredPlayerData.UserRole = (Roles)Enum.GetValues(rolesTemp.GetType()).GetValue(z);
-        //            desiredPlayerData.CrewIndex = _crewRoomIndex;
-        //        }
-        //    }
-        //}
+            for (int j = 0; j < 1; j++)
+            {
+                if (!_playersInRoomList.Contains(myPlayer))
+                {
+                    continue;
+                }
+                else
+                {
+                    _playersInRoomList.Remove(myPlayer);
+                }
+            }
+        }
 
+    }
 
+    [PunRPC]
+    void CrewCreateSubmit_RPC(int[] roleIndex,int leaderIndex)
+    {
+        int indexInCrewCounter = 0;
         for (int i = 0; i < roleIndex.Length; i++)
         { 
             PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
-            desiredPlayerData.UserRole = (Roles)roleIndex[i];
             desiredPlayerData.CrewIndex = _crewRoomIndex;
+            desiredPlayerData.UserIndexInCrew = indexInCrewCounter;
+            desiredPlayerData.UserRole = (Roles)roleIndex[i];
+            indexInCrewCounter++;
         }
 
+        foreach (PhotonView player in _playersInRoomList)
+        {
+            player.GetComponent<PlayerData>().IsCrewLeader = false;
+        }
+
+        PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
+        leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
-
-
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (!other.TryGetComponent(out PhotonView possiblePlayer))
-        //    {
-        //        return;
-        //    }
-        //    else if (!_playersInRoomList.Contains(possiblePlayer))
-        //    {
-        //        _playersInRoomList.Add(possiblePlayer);
-        //    }
-        //}
-
-        //private void OnTriggerExit(Collider other)
-        //{
-        //    if (other.TryGetComponent(out PhotonView possiblePlayer))
-        //    {
-        //        if (!_playersInRoomList.Contains(possiblePlayer))
-        //        {
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            _playersInRoomList.Remove(possiblePlayer);
-        //        }
-        //    }
-        //}
     }
+
+    [PunRPC]
+    void ChangeCrewColors(Vector3 randomColor)
+    {
+         crewColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+            PlayerData currentPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
+            NameTagDisplay desiredPlayerName = _playersInRoomList[i].GetComponentInChildren<NameTagDisplay>();
+
+            desiredPlayerName.text.color = crewColor;
+            currentPlayerData.CrewColor = crewColor;
+
+        }
+    }
+
+
 }
