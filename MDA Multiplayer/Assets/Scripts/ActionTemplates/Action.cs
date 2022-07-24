@@ -29,9 +29,13 @@ public class Action : MonoBehaviour
             // execute only if this instance if of the local player
             if (photonView.IsMine)
             {
+                // Get local photonView
                 LocalPlayerPhotonView = photonView;
+
                 // Get local PlayerData
                 LocalPlayerData = photonView.GetComponent<PlayerData>();
+                LocalPlayerName = LocalPlayerData.UserName;
+                LocalPlayerCrewIndex = LocalPlayerData.CrewIndex;
 
                 // check if local player joined with a Patient
                 if (!LocalPlayerData.CurrentPatientNearby.IsPlayerJoined(LocalPlayerData))

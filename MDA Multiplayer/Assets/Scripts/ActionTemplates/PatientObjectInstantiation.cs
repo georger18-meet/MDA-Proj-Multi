@@ -31,9 +31,6 @@ public class PatientObjectInstantiation : Action
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _heartRateIndex, _newHeartRate);
-            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, _respiratoryRate, _newRespiratoryRate);
-
             if (_useColliders)
             {
                 _equipmentColliders[0] = PatientHeadPosEquipmentTransform;

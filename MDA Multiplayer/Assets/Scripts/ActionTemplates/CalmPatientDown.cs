@@ -6,20 +6,20 @@ using Photon.Pun;
 
 public class CalmPatientDown : Action
 {
-    [Header("Alert")]
-    [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertContent;
-
     [Header("Component's Data")]
     [SerializeField] private int _calmDownHeartRateBy = 0;
     [SerializeField] private int _calmDownRespiratoryRateBy;
+    [SerializeField] private int _newHeartRate, _newRespiratoryRate;
+
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertContent;
 
     [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
     [SerializeField] private bool _updateLog = true;
 
 
-    private int _newHeartRate, _newRespiratoryRate;
     private int _heartRateIndex = 0, _respiratoryRate = 2;
 
     public void CalmPatientDownAction()
