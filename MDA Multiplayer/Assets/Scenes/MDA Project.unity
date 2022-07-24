@@ -88196,6 +88196,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 851170986}
+    - target: {fileID: 58107614341493387, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 58107614341493387, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 58107614341493387, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 110467220924044800, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 110467220924044800, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 110467220924044800, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 110467220924044800, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 161559014862950559, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -88448,6 +88476,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2306026167505704007, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306026167505704007, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 2320873602467653330, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -88494,6 +88530,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2399379543171663815, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399976835450785832, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2443097891444529110, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
@@ -88596,6 +88636,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 764637974}
+    - target: {fileID: 3485091777479781141, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485091777479781141, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485091777479781141, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 245
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745921708382155943, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745921708382155943, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 4134889592247787902, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -88735,6 +88795,14 @@ PrefabInstance:
     - target: {fileID: 5657752809645480228, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784699688506357544, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784699688506357544, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6793001098076777926, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
       propertyPath: _alertContent
@@ -89634,6 +89702,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7994697898589096566, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
   m_PrefabInstance: {fileID: 4134889592247787895}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &4134889592247787908 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4273662431078215767, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+  m_PrefabInstance: {fileID: 4134889592247787895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4134889592247787909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8811183799714577028, guid: 6889ee60049b96548ac5c63995ea654a, type: 3}
+  m_PrefabInstance: {fileID: 4134889592247787895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4134889592247787910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134889592247787909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c3a28e04b1b0744bd98f269d2ef267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerUI: {fileID: 4134889592247787908}
+  _toolTipPrefab: {fileID: 1070663904733326324, guid: 6308538978a242a44a0f01f9bd71df33, type: 3}
+  _toolTipTextMesh: {fileID: 7455909964695424021, guid: cd8a2a3120fd5d34aae6e60f017c7a3d, type: 3}
+  _toolTipContent: Camera
 --- !u!1001 &5118137908120566047
 PrefabInstance:
   m_ObjectHideFlags: 0
