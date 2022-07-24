@@ -173,4 +173,33 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    // need fixing
+    public void ExitVehicle()
+    {
+        // loops through all players photonViews
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            // execute only if this instance if of the local player
+            if (photonView.IsMine)
+            {
+                //PlayerController playerController = photonView.GetComponent<PlayerController>();
+
+                //if (playerController.CurrentCarController.IsSeatOccupied)
+                //{
+                //    Debug.Log("NOT supposed to drive");
+                //    IsSeatOccupied = false;
+                //    CollidingPlayer.transform.position = gameObject.transform.position;
+                //    playerController.IsDriving = false;
+                //
+                //    if (SeatNumber != 0)
+                //    {
+                //        playerController.CurrentCarController = null;
+                //    }
+                //}
+
+                break;
+            }
+        }
+    }
 }
