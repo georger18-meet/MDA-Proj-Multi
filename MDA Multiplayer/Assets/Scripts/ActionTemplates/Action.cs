@@ -6,9 +6,6 @@ public class Action : MonoBehaviour
     [Header("Player Data")]
     protected PhotonView LocalPlayerPhotonView;
     protected PlayerData LocalPlayerData;
-    protected Color CrewColor;
-    protected int LocalPlayerCrewIndex;
-    protected string LocalPlayerName;
 
     [Header("Currently joined Patient's Data")]
     protected Patient CurrentPatient;
@@ -20,7 +17,8 @@ public class Action : MonoBehaviour
     [SerializeField] protected bool _shouldUpdateLog = true;
 
     [Header("Documentaion")]
-
+    protected int LocalPlayerCrewIndex;
+    protected string LocalPlayerName;
     protected string TextToLog;
 
     public void GetActionData()
@@ -38,7 +36,6 @@ public class Action : MonoBehaviour
                 LocalPlayerData = photonView.GetComponent<PlayerData>();
                 LocalPlayerName = LocalPlayerData.UserName;
                 LocalPlayerCrewIndex = LocalPlayerData.CrewIndex;
-                CrewColor = LocalPlayerData.CrewColor;
 
                 // check if local player joined with a Patient
                 if (!LocalPlayerData.CurrentPatientNearby.IsPlayerJoined(LocalPlayerData))

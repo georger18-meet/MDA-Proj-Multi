@@ -11,17 +11,23 @@ public class ActionsManager : MonoBehaviour
 {
     public static ActionsManager Instance;
 
+    public List<Measurements> MeasurementList;
+
+    public List<Clothing> ClothingList;
+
+    //public GameObject GameObject;
+
     [Header("Photon")]
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
 
-    [Header("Patient Data & Scripts")]
+    #region Data References
+    [Header("Data & Scripts")]
     public List<Patient> AllPatients;
+
     private Patient _lastClickedPatient;
     private PatientData _lastClickedPatientData;
-
-    [Header("Crews")]
-    public int NextCrewIndex = 0;
+    #endregion
 
     #region MonoBehaviour Callbacks
     private void Awake()
