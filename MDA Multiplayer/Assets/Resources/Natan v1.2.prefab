@@ -321,7 +321,7 @@ MonoBehaviour:
   SeatNumber: 2
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 7404987398930960486}
-  _carController: {fileID: 0}
+  _carController: {fileID: 1053652051814771453}
 --- !u!95 &6036833699986417243
 Animator:
   serializedVersion: 3
@@ -442,7 +442,7 @@ MonoBehaviour:
   SeatNumber: 3
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 4033201707456724801}
-  _carController: {fileID: 0}
+  _carController: {fileID: 1053652051814771453}
 --- !u!95 &2708850805691882583
 Animator:
   serializedVersion: 3
@@ -611,10 +611,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6163065840050943740}
-  - {fileID: 1677072728816403575}
-  - {fileID: 2205077836432892193}
   - {fileID: 5661114158820435814}
+  - {fileID: 2205077836432892193}
+  - {fileID: 1677072728816403575}
+  - {fileID: 6163065840050943740}
   m_Father: {fileID: 7847155922892525724}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1270,7 +1270,7 @@ MonoBehaviour:
   SeatNumber: 1
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 4315058375109982961}
-  _carController: {fileID: 0}
+  _carController: {fileID: 1053652051814771453}
 --- !u!95 &3908376464204708348
 Animator:
   serializedVersion: 3
@@ -1497,7 +1497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8058441062437273987}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1357546277514730921
 MeshFilter:
@@ -1849,7 +1849,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8058441062437273987}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &620056614853517328
 MeshFilter:
@@ -1967,7 +1967,7 @@ MonoBehaviour:
   SeatNumber: 0
   CollidingPlayer: {fileID: 0}
   SeatPosition: {fileID: 1187848364005952463}
-  _carController: {fileID: 0}
+  _carController: {fileID: 1053652051814771453}
 --- !u!95 &5347058890730912644
 Animator:
   serializedVersion: 3
@@ -2434,21 +2434,20 @@ MonoBehaviour:
   _turningSpeed: 5
   _breakForce: 0
   _centerOfMassOffset: 0
-  frontLeftWheelTransform: {fileID: 0}
-  frontRightWheeTransform: {fileID: 0}
-  rearRightWheelTransform: {fileID: 0}
-  rearLeftWheelTransform: {fileID: 0}
-  CarHeadLights: {fileID: 0}
-  CarCollider: {fileID: 0}
-  CarSiren: {fileID: 0}
-  CarSirenAudioSource: {fileID: 0}
+  frontLeftWheelTransform: {fileID: 5661114158820435814}
+  frontRightWheeTransform: {fileID: 2205077836432892193}
+  rearRightWheelTransform: {fileID: 6163065840050943740}
+  rearLeftWheelTransform: {fileID: 1677072728816403575}
+  CarHeadLights: {fileID: 7404145071012901281}
+  CarCollider: {fileID: 4554301809211483259}
+  CarSiren: {fileID: 5068144415736137261}
+  CarSirenAudioSource: {fileID: 6746743153788721834}
   CarDoorCollisions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CarDashboardUI: {fileID: 0}
-  _transfer: {fileID: 0}
+  - {fileID: 88324836024044015}
+  - {fileID: 8941928875954636869}
+  - {fileID: 3587564334308346677}
+  - {fileID: 6933579756723248161}
+  Transfer: {fileID: 0}
 --- !u!1 &4557548809137663519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2693,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8058441062437273987}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1575986871331045525
 MeshFilter:
@@ -4160,7 +4159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8058441062437273987}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7613328534708063865
 MeshFilter:

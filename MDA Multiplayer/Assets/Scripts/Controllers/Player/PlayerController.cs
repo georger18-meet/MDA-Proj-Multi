@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region Monobehavior Callbacks
     private void Awake()
     {
-        PlayerData = gameObject.AddComponent<PlayerData>();
+        //PlayerData = gameObject.AddComponent<PlayerData>();
         _currentCamera = _playerCamera;
     }
 
