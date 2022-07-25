@@ -36,9 +36,9 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
 
     public List<CarDoorCollision> CarDoorCollisions;
 
-    public GameObject CarDashboardUI;
+    private GameObject CarDashboardUI;
     private PhotonView _photonView;
-     public OwnershipTransfer _transfer;
+    public OwnershipTransfer Transfer;
 
 
      private void Awake()
@@ -47,13 +47,13 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
      }
 
      private void Start()
-    {
-       
-        _carRb = GetComponent<Rigidbody>();
-        _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
-        CarDashboardUI = UIManager.Instance.VehicleUI;
-
-    }
+     {
+        
+         _carRb = GetComponent<Rigidbody>();
+         _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
+         UIManager.Instance.VehicleUI = CarDashboardUI;
+     
+     }
 
     private void Update()
     {
