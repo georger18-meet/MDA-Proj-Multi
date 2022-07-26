@@ -29,8 +29,6 @@ public class Alert : MonoBehaviour
                 PatientData currentPatientData = currentPatient.PatientData;
 
                 ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"Removed foreign object from {currentPatientData.Name} {currentPatientData.SureName}");
-
                 break;
             }
         }

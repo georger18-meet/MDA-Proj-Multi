@@ -36,5 +36,6 @@ MonoBehaviour:
   ShirtOnlyMaterial: {fileID: 2100000, guid: b679808b4e664094581537001ef10c58, type: 2}
   PantsOnlyMaterial: {fileID: 2100000, guid: ef4583040eca60c428504c9b48727fe1, type: 2}
   UnderwearOnlyMaterial: {fileID: 2100000, guid: b8d9b2b3092ab614b95207d1019f89d4, type: 2}
+  MonitorGraphTexture: {fileID: 21300000, guid: 4a37e98f7b702b74a8825bdf737b6461, type: 3}
   MeasurementName: 
   ClothingMaterial: []

@@ -2448,6 +2448,7 @@ MonoBehaviour:
   - {fileID: 3587564334308346677}
   - {fileID: 6933579756723248161}
   Transfer: {fileID: 0}
+  OwnerCrew: 0
 --- !u!1 &4557548809137663519
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class ConnectingMonitor : Action
@@ -11,8 +12,7 @@ public class ConnectingMonitor : Action
 
     [Header("Component's Data")]
     [SerializeField] private GameObject _monitorGraphWindow;
-    [SerializeField] private SpriteRenderer _monitorGraphRenderer;
-    [SerializeField] private Sprite _newMonitorGraphSprite;
+    [SerializeField] private Image _newMonitorGraph;
 
     [Header("Alert")]
     [SerializeField] private string _alertTitle;
@@ -31,15 +31,15 @@ public class ConnectingMonitor : Action
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
             _player = LocalPlayerData.gameObject;
-            _player.transform.position = CurrentPatient.ChestPosPlayerTransform.position;
+            _player.transform.SetPositionAndRotation(CurrentPatient.ChestPosPlayerTransform.position, CurrentPatient.ChestPosPlayerTransform.rotation);
 
             GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, CurrentPatient.ChestPosEquipmentTransform.position, CurrentPatient.ChestPosEquipmentTransform.rotation);
 
             _monitorGraphWindow.SetActive(true);
 
-            if (CurrentPatientData.MonitorGraphTexture = _newMonitorGraphSprite)
+            if (CurrentPatientData.MonitorGraphTexture != _newMonitorGraph.sprite)
             {
-                LocalPlayerPhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer, _monitorGraphRenderer, _newMonitorGraphSprite);
+                CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer,  _newMonitorGraph);
             }
             
 
