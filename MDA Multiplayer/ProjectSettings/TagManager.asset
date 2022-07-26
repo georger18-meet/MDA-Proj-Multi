@@ -10,6 +10,8 @@ TagManager:
   - Equipment Position
   - Natan
   - Vehicle UI
+  - QAGroup
+  - Crew Screen
   layers:
   - Default
   - TransparentFX

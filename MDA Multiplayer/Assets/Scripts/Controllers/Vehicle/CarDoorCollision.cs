@@ -88,7 +88,7 @@ public class CarDoorCollision : MonoBehaviour
                 
                 if (SeatNumber == 0)
                 {
-                    _carController._transfer.CarDriver();
+                    _carController.Transfer.CarDriver();
                     playerController.CurrentCarController = _carController;
                     //playerController.PhotonView.RPC("ChangeCharControllerStateRPC", Photon.Pun.RpcTarget.Others);
                 }

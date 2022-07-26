@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _indicatorIcon;
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
+    private GameObject _tempInteractableRef;
 
     private void Awake()
     {
@@ -44,9 +45,28 @@ public class CameraController : MonoBehaviour
         Ray ray = _playerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, _raycastDistance, _interactableLayer))
         {
+            if (_tempInteractableRef != null && raycastHit.transform.gameObject != _tempInteractableRef)
+            {
+                if (_tempInteractableRef.TryGetComponent(out Outline outlineTe))
+                {
+                    Destroy(outlineTe);
+                }
+            }
+            _tempInteractableRef = raycastHit.transform.gameObject;
+
             Debug.DrawLine(ray.origin, raycastHit.point, Color.cyan, _raycastDistance);
 
             _indicatorIcon.SetActive(true);
+
+            if (raycastHit.transform.gameObject.TryGetComponent(out Outline outline))
+            {
+            }
+            else
+            {
+                Outline tempOutline = _tempInteractableRef.AddComponent<Outline>();
+                tempOutline.OutlineWidth = 15;
+                tempOutline.OutlineMode = Outline.Mode.OutlineVisible;
+            }
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -58,6 +78,13 @@ public class CameraController : MonoBehaviour
         }
         else
         {
+            if (_tempInteractableRef != null)
+            {
+                if (_tempInteractableRef.TryGetComponent(out Outline outlineTe))
+                {
+                    Destroy(outlineTe);
+                }
+            }
             _indicatorIcon.SetActive(false);
         }
 
