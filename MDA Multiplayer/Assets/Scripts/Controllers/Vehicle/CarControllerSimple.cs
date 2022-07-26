@@ -39,7 +39,7 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
     private GameObject CarDashboardUI;
     private PhotonView _photonView;
     public OwnershipTransfer Transfer;
-
+    public int OwnerCrew;
 
      private void Awake()
      {

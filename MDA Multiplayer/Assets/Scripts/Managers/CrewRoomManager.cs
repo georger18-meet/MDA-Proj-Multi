@@ -241,6 +241,7 @@ public class CrewRoomManager : MonoBehaviour
         {
             PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
             desiredPlayerData.CrewIndex = _crewRoomIndex;
+            //desiredPlayerData.CrewIndex = ActionsManager.Instance.NextCrewIndex;
             desiredPlayerData.UserIndexInCrew = indexInCrewCounter;
             desiredPlayerData.UserRole = (Roles)roleIndex[i];
             indexInCrewCounter++;
@@ -257,8 +258,11 @@ public class CrewRoomManager : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.NatanPosTransforms[_crewRoomIndex].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.NatanPosTransforms[_crewRoomIndex].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+            natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
         }
+
+        ActionsManager.Instance.NextCrewIndex++;
     }
 
     [PunRPC]
