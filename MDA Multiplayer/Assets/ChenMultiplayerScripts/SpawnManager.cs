@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.InstantiateRoomObject(_natanPrefab.name, _natanPosTransform.position, _natanPrefab.transform.rotation);
+            // PhotonNetwork.InstantiateRoomObject(_natanPrefab.name, _natanPosTransform.position, _natanPrefab.transform.rotation);
             PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomFourColliderPosTransform.position, _crewRoomFourColliderPosTransform.rotation);
             PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name,  _crewRoomFiveColliderPosTransform.position, _crewRoomFiveColliderPosTransform.rotation);
         }   

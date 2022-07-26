@@ -45,9 +45,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private bool _isGrounded;
     #endregion
 
-
     public GameObject CarCollider;
-
 
     #region State Machine
     private delegate void State();
@@ -63,8 +61,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-    
-
         if (_photonView.IsMine)
         {
             FreeMouse(true);
@@ -72,7 +68,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             _MiniMaCamera.SetActive(true);
             // CarCollider.SetActive(true);
             _characterController.enabled = true;
-
         }
         else
         {
@@ -80,8 +75,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             _MiniMaCamera.SetActive(false);
             //  CarCollider.SetActive(false);
             _characterController.enabled = false;
-
-
         }
     }
 
@@ -98,13 +91,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 _currentCarController.GetInput();
                 _currentCarController.CheckIsMovingBackwards();
             }
-          
         }
         else
         {
-            
            // CarCollider.SetActive(false);
-
         }
     }
 

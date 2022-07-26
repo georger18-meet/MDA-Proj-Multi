@@ -10,6 +10,10 @@ using Random = UnityEngine.Random;
 
 public class CrewRoomManager : MonoBehaviour
 {
+    [Header("VehiclesPrefabs")]
+    //[SerializeField] private GameObject _ambulancePrefab;
+    [SerializeField] private GameObject _natanPrefab;
+
     public GameObject RoomDoorBlocker;
     public GameObject RoomCrewMenuUI;
     public TextMeshProUGUI CrewMemberNameText1, CrewMemberNameText2, CrewMemberNameText3, CrewMemberNameText4;
@@ -17,6 +21,7 @@ public class CrewRoomManager : MonoBehaviour
     public TMP_Dropdown CrewLeaderDropDown;
 
     public List<PhotonView> _playersInRoomList;
+    [SerializeField] private List<Transform> /*_ambulancePosTransforms,*/ _natanPosTransforms;
     public int _playersMaxCount = 4;
     //public int _crewRoomIndex;
     private Color crewColor;
@@ -159,9 +164,6 @@ public class CrewRoomManager : MonoBehaviour
         return leaderIndex;
     }
 
- 
-
-
     // Show Hide MenuUI
     // --------------------
     public void ShowCrewRoomMenu()
@@ -272,6 +274,11 @@ public class CrewRoomManager : MonoBehaviour
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.InstantiateRoomObject(_natanPrefab.name, _natanPosTransforms[_crewRoomIndex].position, _natanPrefab.transform.rotation);
+        }
     }
 
     [PunRPC]
@@ -286,9 +293,6 @@ public class CrewRoomManager : MonoBehaviour
 
             desiredPlayerName.text.color = crewColor;
             currentPlayerData.CrewColor = crewColor;
-
         }
     }
-
-
 }

@@ -14,6 +14,7 @@ public class ActionsManager : MonoBehaviour
     [Header("Photon")]
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
+    public List<PlayerData> AllPlayerData;
 
     [Header("Patient Data & Scripts")]
     public List<Patient> AllPatients;

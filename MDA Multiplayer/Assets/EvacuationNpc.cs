@@ -30,14 +30,11 @@ public class EvacuationNpc : MonoBehaviour
         _evacuationUI.SetActive(true);
     }
 
-
-
     public void EvacPatient()
     {
         _photonView.RPC("EvacPatient_RPC", RpcTarget.AllBufferedViaServer);
         // AllPatientsPhotonViews.PhotonView.RPC("EvacPatient_RPC", RpcTarget.AllBufferedViaServer);
     }
-
 
     [PunRPC]
     public void EvacPatient_RPC()
