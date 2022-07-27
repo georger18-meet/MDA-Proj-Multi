@@ -101,6 +101,20 @@ public class ActionsManager : MonoBehaviour
         }
     }
 
+
+    public PhotonView GetPlayerPhotonViewByNickName(string nickName)
+    {
+        for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
+        {
+            if (AllPlayersPhotonViews[i].Owner.NickName == nickName)
+            {
+                return AllPlayersPhotonViews[i];
+            }
+        }
+
+        return null;
+    }
+
     public void OnPlayerJoinPatientRPC(bool isJoined)
     {
         Debug.Log("attempting to Join Patient");
