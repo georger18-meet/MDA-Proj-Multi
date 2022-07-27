@@ -26,25 +26,24 @@ public class ActionsManager : MonoBehaviour
 
     #region Prefab References
     [Header("Equipment")]
-    [SerializeField] private GameObject _headVice;
-    [SerializeField] private GameObject _hat, _megaphone, _clipboard, _neckBrace, _bloodPressureSleeve, _oxyMask, _respirationBalloon;
-    [SerializeField] private GameObject _armBandage, _armTourniquet, _bicepsBandage, _bicepsTourniquet, _kneeBandage, _kneeTourniquet, _shinBandage, _shinTourniquet;
+    public GameObject Clipboard;
+    public GameObject HeadVice, Megaphone, NeckBrace, Hat, BloodPressureSleeve, OxyMask, RespirationBalloon;
+    public GameObject ArmBandage, ArmTourniquet, BicepsBandage, BicepsTourniquet, KneeBandage, KneeTourniquet, ShinBandage, ShinTourniquet;
 
     [Header("Attachments")]
-    [SerializeField] private GameObject _asherman;
-    [SerializeField] private GameObject _ecgSticker, _throatTube, _inTube, _venflon;
+    public GameObject Asherman;
+    public GameObject EcgSticker, ThroatTube, InTube, Venflon;
 
     [Header("Aids")]
-    [SerializeField] private GameObject _iVPole;
-    [SerializeField] private GameObject _oxyTank;
+    public GameObject OxyTank;
+    public GameObject IVPole;
 
     [Header("Devices")]
-    [SerializeField] private GameObject _bloodPressureDevice;
-    [SerializeField] private GameObject _monitor, _respirator;
+    public GameObject BloodPressureDevice;
+    public GameObject Monitor, Respirator;
 
     [Header("Vests")]
-    [SerializeField] private GameObject _cfrVest;
-    [SerializeField] private GameObject _medicVest, _seniorMedicVest, _paramedicVest, _docVest;
+    public GameObject[] Vests;
     #endregion
 
     #endregion
