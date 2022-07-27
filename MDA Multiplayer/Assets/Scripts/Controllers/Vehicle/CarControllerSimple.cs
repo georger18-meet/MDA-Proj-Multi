@@ -60,8 +60,6 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
         //CheckIfDriveable();
         //GetInput();
         //CheckIsMovingBackwards();
-       
-
     }
 
     private void FixedUpdate()

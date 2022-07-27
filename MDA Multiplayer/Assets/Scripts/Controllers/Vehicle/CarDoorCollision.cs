@@ -19,7 +19,6 @@ public class CarDoorCollision : MonoBehaviour
     {
         _transfer = GetComponent<OwnershipTransfer>();
         _doorAnimator = GetComponent<Animator>();
-
     }
 
     void Update()
