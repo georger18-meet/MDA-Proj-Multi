@@ -736,6 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 6846980335483256472}
   PlayerData: {fileID: 0}
+  PlayerActions: {fileID: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _vehicleCamera: {fileID: 8959073057551848424}
   _MiniMaCamera: {fileID: 666755789287419742}

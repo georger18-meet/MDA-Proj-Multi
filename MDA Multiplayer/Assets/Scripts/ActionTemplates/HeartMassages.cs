@@ -7,6 +7,7 @@ using Photon.Pun;
 public class HeartMassages : Action
 {
     [Header("Component's Data")]
+    [SerializeField] private GameObject _heartMassagesWindow;
     [SerializeField] private int _newHeartRate;
     
     [Header("Alert")]
@@ -41,6 +42,7 @@ public class HeartMassages : Action
             _playerAnimator.SetBool("Administering Cpr", true);
             CurrentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, _newHeartRate);
 
+            _heartMassagesWindow.SetActive(true);
             StartCoroutine(WaitToFinishCPR());
 
             TextToLog = $" Administering Heart Massages";
@@ -55,5 +57,10 @@ public class HeartMassages : Action
                 LogText(TextToLog);
             }
         }
+    }
+
+    public void StopHeartMassages()
+    {
+        _heartMassagesWindow.SetActive(false);
     }
 }
