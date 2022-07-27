@@ -25,7 +25,7 @@ public class CrewRoomManager : MonoBehaviour
     public static int _crewRoomIndexStatic;
 
     private PhotonView _photonView;
-    private Vector3 _vestPos = new Vector3(0f, 0.395000011f, -0.0135000004f);
+    private Vector3 _vestPos = new Vector3(0f, 0.295f, -0.015f);
 
     private void Awake()
     {
@@ -245,11 +245,11 @@ public class CrewRoomManager : MonoBehaviour
             //desiredPlayerData.CrewIndex = ActionsManager.Instance.NextCrewIndex;
             desiredPlayerData.UserIndexInCrew = indexInCrewCounter;
             desiredPlayerData.UserRole = (Roles)roleIndex[i];
-            GameObject vest = PhotonNetwork.Instantiate(ActionsManager.Instance.Vests[i].name, Vector3.zero, Quaternion.identity);
-            vest.transform.SetParent(desiredPlayerData.transform);
-            vest.transform.position = _vestPos;
+            MeshFilter vest = desiredPlayerData.transform.GetChild(5).GetChild(0).GetChild(0).GetComponent<MeshFilter>();
+            vest.gameObject.SetActive(true);
+            vest.mesh = ActionsManager.Instance.Vests[(int)desiredPlayerData.UserRole].mesh;
             indexInCrewCounter++;
-        }
+        }   
 
         foreach (PhotonView player in _playersInRoomList)
         {

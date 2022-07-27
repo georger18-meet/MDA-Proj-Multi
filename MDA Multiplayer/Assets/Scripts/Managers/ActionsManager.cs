@@ -43,7 +43,7 @@ public class ActionsManager : MonoBehaviour
     public GameObject Monitor, Respirator;
 
     [Header("Vests")]
-    public GameObject[] Vests;
+    public MeshFilter[] Vests;
     #endregion
 
     #endregion

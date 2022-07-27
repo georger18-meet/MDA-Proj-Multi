@@ -86865,23 +86865,23 @@ PrefabInstance:
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: Vests.Array.data[0]
       value: 
-      objectReference: {fileID: 5146154091836424300, guid: f991319d6cf101c4d8f3526a69658209, type: 3}
+      objectReference: {fileID: 7332229153094691024, guid: 5fb84d99299e4d245ade3230f78788b6, type: 3}
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: Vests.Array.data[1]
       value: 
-      objectReference: {fileID: 6417012519913898593, guid: aa9e51441fd8d4c42bbfbb047daf7849, type: 3}
+      objectReference: {fileID: 7736205331385535747, guid: 14029e950a0793044be900c8c649bff9, type: 3}
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: Vests.Array.data[2]
       value: 
-      objectReference: {fileID: 2684958075015363520, guid: 23481fdc4edf19841a5f80caf80ac2f9, type: 3}
+      objectReference: {fileID: 7597002613634986701, guid: e017f8b3d02bc7b4c976bb7e3d22259b, type: 3}
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: Vests.Array.data[3]
       value: 
-      objectReference: {fileID: 4563612334507618631, guid: 09a404212bcd560449952aa89c103e0f, type: 3}
+      objectReference: {fileID: 2285276116438388824, guid: 0ab498cede1219544ae60ac2d1a75230, type: 3}
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: Vests.Array.data[4]
       value: 
-      objectReference: {fileID: 7458965671630148300, guid: 97a760c7ef5a60f4cb66cca7feaa85a4, type: 3}
+      objectReference: {fileID: 8159867793750220494, guid: c9a05f1ca2a5511418d7313c9c6e625a, type: 3}
     - target: {fileID: 3236320749043518727, guid: 9b40a7ed2322ce943b22cdb933f3f8fe, type: 3}
       propertyPath: NatanPosTransforms.Array.data[0]
       value: 
