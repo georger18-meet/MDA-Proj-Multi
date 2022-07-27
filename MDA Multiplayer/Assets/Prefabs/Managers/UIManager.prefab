@@ -43,19 +43,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a8dfeefea73694da80d9c20fae745f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmbulanceActionBarParent: {fileID: 7330020394499098860, guid: 317440cc77f2bb246a2cc2731bfacec5, type: 3}
-  NatanActionBarParent: {fileID: 3580799552214393372, guid: e6718cb6ff440794c99fc3753c3186a5, type: 3}
-  BasicActionMenuParent: {fileID: 1855344887582097738, guid: a55f3dd09a9969044b6af325e5ceee97, type: 3}
-  JoinPatientPopUp: {fileID: 7369010317812927585, guid: 7060a19d86c328744bc9d799e5fb7565, type: 3}
-  PatientMenuParent: {fileID: 5363624564927386187, guid: 69546588a91fa6344811b37bde1ae081, type: 3}
-  PatientInfoParent: {fileID: 1384043001154105257, guid: 483431de3088da040b52f072b6e9bd11, type: 3}
-  ActionLogParent: {fileID: 3441687957314798844, guid: e5b96f428d46e104280045d0a998dbe6, type: 3}
-  SureName: {fileID: 8815144587227432880, guid: 8f87f035d461c274cb1b485358f35d65, type: 3}
-  LastName: {fileID: 9067539189955625758, guid: c72bc27cbd8dc604a896b7433651cd48, type: 3}
-  Id: {fileID: 4947759811817183571, guid: 45ba83256eaa0de48a58f98a46809d57, type: 3}
-  Age: {fileID: 7734120696037814261, guid: f6a6ba08e5d0e2142aa0aeb65688a66a, type: 3}
-  Gender: {fileID: 6692727030723802065, guid: cd151fcb0f9ac664dabba67be3b9f361, type: 3}
-  PhoneNumber: {fileID: 1699646929810406671, guid: 578270c203bd8d940b4d732053f94884, type: 3}
-  InsuranceCompany: {fileID: 1857258292251855624, guid: c4a956f3ad773c54896e6310300e479a, type: 3}
-  Adress: {fileID: 2441732157269200188, guid: e5af2ad549035864182d29b28e38c4f4, type: 3}
-  Complaint: {fileID: 7431020894143174932, guid: 7d48082feda552b468c590d04736db59, type: 3}
+  _leaderMenuOffset: {x: 0, y: 202.5, z: 0}
+  _isLeaderMenuOpen: 0
+  CurrentActionBarParent: {fileID: 0}
+  MapWindow: {fileID: 0}
+  ContentPanel: {fileID: 0}
+  AmbulanceBar: {fileID: 0}
+  NatanBar: {fileID: 0}
+  AmbulanceNoBagPanel: {fileID: 0}
+  AmbulanceAmbuPanel: {fileID: 0}
+  AmbulanceKidsAmbuPanel: {fileID: 0}
+  AmbulanceMedicPanel: {fileID: 0}
+  AmbulanceDefibrilationPanel: {fileID: 0}
+  AmbulanceOxygenPanel: {fileID: 0}
+  AmbulanceMonitorPanel: {fileID: 0}
+  NatanNoBagPanel: {fileID: 0}
+  NatanAmbuPanel: {fileID: 0}
+  NatanKidsAmbuPanel: {fileID: 0}
+  NatanMedicPanel: {fileID: 0}
+  NatanQuickDrugsPanel: {fileID: 0}
+  NatanOxygenPanel: {fileID: 0}
+  NatanMonitorPanel: {fileID: 0}
+  TeamLeaderMenu: {fileID: 0}
+  JoinPatientPopUp: {fileID: 0}
+  PatientInfoParent: {fileID: 0}
+  ActionLogParent: {fileID: 0}
+  SureName: {fileID: 0}
+  LastName: {fileID: 0}
+  Id: {fileID: 0}
+  Age: {fileID: 0}
+  Gender: {fileID: 0}
+  PhoneNumber: {fileID: 0}
+  InsuranceCompany: {fileID: 0}
+  Adress: {fileID: 0}
+  Complaint: {fileID: 0}
+  _dropDown: {fileID: 0}
+  EvacPatientPopUp: {fileID: 0}
+  VehicleUI: {fileID: 0}

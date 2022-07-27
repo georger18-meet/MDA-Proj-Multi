@@ -7,7 +7,7 @@ using Photon.Pun;
 public class HeartMassages : Action
 {
     [Header("Component's Data")]
-    [SerializeField] private ConnectingMonitor _newHeartRate;
+    [SerializeField] private int _newHeartRate;
     
     [Header("Alert")]
     [SerializeField] private string _alertTitle;

@@ -10,8 +10,10 @@ using Photon.Realtime;
 
 public class Patient : MonoBehaviour
 {
+    #region Photon
     [Header("Photon")]
     public PhotonView PhotonView;
+    #endregion
 
     #region Script References
     [Header("Data & Scripts")]

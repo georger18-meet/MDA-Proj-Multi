@@ -24,6 +24,29 @@ public class ActionsManager : MonoBehaviour
     //[SerializeField] private GameObject _ambulancePrefab;
     public GameObject NatanPrefab;
 
+    #region Prefab References
+    [Header("Equipment")]
+    [SerializeField] private GameObject _headVice;
+    [SerializeField] private GameObject _hat, _megaphone, _clipboard, _neckBrace, _bloodPressureSleeve, _oxyMask, _respirationBalloon;
+    [SerializeField] private GameObject _armBandage, _armTourniquet, _bicepsBandage, _bicepsTourniquet, _kneeBandage, _kneeTourniquet, _shinBandage, _shinTourniquet;
+
+    [Header("Attachments")]
+    [SerializeField] private GameObject _asherman;
+    [SerializeField] private GameObject _ecgSticker, _throatTube, _inTube, _venflon;
+
+    [Header("Aids")]
+    [SerializeField] private GameObject _iVPole;
+    [SerializeField] private GameObject _oxyTank;
+
+    [Header("Devices")]
+    [SerializeField] private GameObject _bloodPressureDevice;
+    [SerializeField] private GameObject _monitor, _respirator;
+
+    [Header("Vests")]
+    [SerializeField] private GameObject _cfrVest;
+    [SerializeField] private GameObject _medicVest, _seniorMedicVest, _paramedicVest, _docVest;
+    #endregion
+
     #endregion
 
     [Header("Crews")]

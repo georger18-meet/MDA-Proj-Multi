@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb9257a02509434ca7627dc9b6616dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameMenuOpen: 0
-  NearbyPatient: []
 --- !u!114 &5750352305619051129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +77,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 0
+  sceneViewId: 9
   InstantiationId: 0
   isRuntimeInstantiated: 0
