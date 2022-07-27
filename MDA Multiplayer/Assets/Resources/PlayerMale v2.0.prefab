@@ -2840,6 +2840,7 @@ GameObject:
   - component: {fileID: 1154062206}
   - component: {fileID: 6846980335483256472}
   - component: {fileID: 4762676014754726370}
+  - component: {fileID: 6518490309897315663}
   m_Layer: 0
   m_Name: PlayerMale v2.0
   m_TagString: Player
@@ -3001,6 +3002,20 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!136 &6518490309897315663
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822803002174255568}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8822803002723430980
 GameObject:
   m_ObjectHideFlags: 0
