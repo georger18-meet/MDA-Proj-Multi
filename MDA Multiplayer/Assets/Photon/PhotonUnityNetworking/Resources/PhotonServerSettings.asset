@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Hawkeye v0.8.0 Bunny
+    AppVersion: Hawkeye v0.8.5 Gal
     UseNameServer: 1
     FixedRegion: eu
     Server: 
