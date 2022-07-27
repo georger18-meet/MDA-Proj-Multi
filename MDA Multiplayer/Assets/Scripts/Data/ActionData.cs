@@ -20,15 +20,15 @@ public enum Clothing
 
 public struct ActionsData
 {
-    public PlayerActions ActionsManagerAD;
+    //public PlayerActions ActionsManagerAD;
     public Patient Patient;
     public GameObject Player;
     public GameObject Monitor;
     public Roles RolesAD;
 
-    public ActionsData(PlayerActions aom, Patient patient, GameObject player, GameObject monitor, Roles roles)
+    public ActionsData(/*PlayerActions aom,*/ Patient patient, GameObject player, GameObject monitor, Roles roles)
     {
-        ActionsManagerAD = aom;
+        //ActionsManagerAD = aom;
         Patient = patient;
         Player = player;
         Monitor = monitor;
