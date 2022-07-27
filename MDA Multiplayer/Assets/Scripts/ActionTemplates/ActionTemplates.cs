@@ -1,49 +1,57 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System;
+using Photon.Pun;
 
 public class ActionTemplates : MonoBehaviour
 {
     public static ActionTemplates Instance;
 
     [SerializeField] private DocumentationLogManager _docLog;
-    [SerializeField] private GameObject _alertWindow;
-    [SerializeField] private TextMeshProUGUI _alertTitle, _alertText;
+    public DocumentationLogManager DocLog => _docLog;
+
+    [SerializeField] private GameObject _textAlertWindow, _numAlertWindow;
+    [SerializeField] private TextMeshProUGUI _textAlertTitle, _textAlertText;
+    [SerializeField] private TextMeshProUGUI _numAlertTitle, _numAlertText;
     [SerializeField] private float _alertTimer;
+
+    private PhotonView _photonView;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        _photonView = GetComponent<PhotonView>();
+    }
+
+    private void Update()
+    {
+        _alertTimer += Time.deltaTime;
+    }
 
     #region Most Basic Tools
     public void OpenCloseDisplayWindow(GameObject window)
     {
         Debug.Log($"Attempting to Open/Close {window.name}");
-        // if (_photonView.IsMine)
-        // {
-            if (window.activeInHierarchy)
-            {
-                window.SetActive(false);
-                Debug.Log($"Closed {window.name}");
-            }
-            else
-            {
-                window.SetActive(true);
-                Debug.Log($"Opened {window.name}");
-            }
-        // }
-
-        
-    }
-
-    public void CreateDestroyWindow(GameObject window)
-    {
-        // if (_photonView.IsMine)
-        // {
-            if (window.activeInHierarchy)
-                Instantiate(window);
-            else
-                Destroy(window);
-        // }
+        if (window.activeInHierarchy)
+        {
+            window.SetActive(false);
+            Debug.Log($"Closed {window.name}");
+        }
+        else
+        {
+            window.SetActive(true);
+            Debug.Log($"Opened {window.name}");
+        }
     }
 
     public void UpdateDisplayWindow(GameObject window, TextMeshProUGUI text, int newValue)
@@ -57,27 +65,28 @@ public class ActionTemplates : MonoBehaviour
     public void ShowAlertWindow(string measurementTitle, int measurement)
     {
         _alertTimer = 0;
-        _alertWindow.SetActive(true);
+        _numAlertWindow.SetActive(true);
 
-        _alertTitle.text = measurementTitle;
-        _alertText.text = measurement.ToString();
+        _numAlertTitle.text = measurementTitle;
+        _numAlertText.text = measurement.ToString();
 
-        if (_alertTimer > 3)
-            _alertWindow.SetActive(false);
+        //if (_alertTimer > 3)
+        //    _numAlertWindow.SetActive(false);
     }
 
     public void ShowAlertWindow(string AlertTitle, string alertContent)
     {
         _alertTimer = 0;
-        _alertWindow.SetActive(true);
+        _textAlertWindow.SetActive(true);
 
-        _alertTitle.text = AlertTitle;
-        _alertText.text = alertContent.ToString();
+        _textAlertTitle.text = AlertTitle;
+        _textAlertText.text = alertContent.ToString();
 
-        if (_alertTimer > 3)
-            _alertWindow.SetActive(false);
+        //if (_alertTimer > 3)
+        //    _textAlertWindow.SetActive(false);
     }
 
+    // should be RPC
     public void ChangeMeasurement(int oldValue, int newValue)
     {
         oldValue = newValue;
@@ -85,6 +94,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed {oldValue} to {newValue}");
     }
 
+    // should be RPC
     public void SpawnEquipment(GameObject additionalEquipment, Transform desiredPositionTransform)
     {
         Vector3 desiredPos = desiredPositionTransform.position;
@@ -94,6 +104,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Spawned {additionalEquipment.name} at {desiredPos}");
     }
 
+    // should be RPC
     public void MoveCharacter(Transform characterTransform, Transform desiredPositionTransform)
     {
         Vector3 oldPos = characterTransform.position;
@@ -105,6 +116,7 @@ public class ActionTemplates : MonoBehaviour
     }
 
     // need fixing
+    // should be RPC
     public void PlayAnimationOnCharacter(Transform characterTransform, Animation animation)
     {
         animation.Play();
@@ -112,6 +124,7 @@ public class ActionTemplates : MonoBehaviour
         print($"Played animation {animation} on {characterTransform.name}");
     }
 
+    // should be RPC
     public void ChangeCharacterTextrues(Texture currentTexture, Texture newTexture)
     {
         currentTexture = newTexture;
@@ -119,19 +132,13 @@ public class ActionTemplates : MonoBehaviour
         print($"Changed Textures: {newTexture} instead of {currentTexture}");
     }
 
-    public void UpdatePatientLog(string textToLog)
+    public void UpdatePatientLog(int senderCrewIndex, string senderName, string textToLog)
     {
-        _docLog.LogThisText(textToLog);
-    } 
+        _photonView.RPC("RPC_UpdatePatientLog", RpcTarget.AllBufferedViaServer, senderCrewIndex, senderName, textToLog);
+    }
     #endregion
 
-    private void Awake()
-    {
-        //if (_photonView.isMine)
-        //{
-            Instance = this;
-        //}
-    }
+
 
     // not sure about this - patient bool - isConsious vs if is currently conscious
     public void CheckStatus(bool isConscious, bool isPatientConscious)
@@ -139,8 +146,11 @@ public class ActionTemplates : MonoBehaviour
 
     }
 
-    private void Update()
+    #region PunRPC
+    [PunRPC]
+    public void RPC_UpdatePatientLog(int senderCrewIndex, string senderName, string textToLog)
     {
-        _alertTimer += Time.deltaTime;
+        _docLog.LogThisText(senderCrewIndex, senderName, textToLog);
     }
+    #endregion
 }

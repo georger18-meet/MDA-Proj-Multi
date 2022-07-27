@@ -4,31 +4,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class HeartMassages : MonoBehaviour
+public class HeartMassages : Action
 {
-    [Header("Scripts")]
-    [SerializeField] private PlayerActions _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-    [SerializeField] private Animator _playerAnimator;
+    [Header("Component's Data")]
+    [SerializeField] private int _newHeartRate;
+    
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
+    private Animator _playerAnimator;
+    private string _playerName;
+
+    private IEnumerator WaitToFinishCPR()
+    {
+        yield return new WaitForSeconds(4);
+
+        _playerAnimator.SetBool("Administering Cpr", false);
+        //ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_playerName} has finished Administering Heart Massages");
+    }
 
     public void DoHeartMassage()
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            _playerAnimator = LocalPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
 
-            if (photonView.IsMine)
+            LocalPlayerData.transform.SetPositionAndRotation(PatientChestPosPlayerTransform.position, PatientChestPosPlayerTransform.rotation);
+
+            _playerAnimator.SetBool("Administering Cpr", true);
+            CurrentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, _newHeartRate);
+
+            StartCoroutine(WaitToFinishCPR());
+
+            TextToLog = $" Administering Heart Massages";
+
+            if (_showAlert)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                //PlayerData.Instance.transform.position = _actionManager.PlayerTreatingTr.position;
-                //PlayerData.Instance.transform.rotation = _actionManager.PlayerTreatingTr.rotation;
-                //_playerAnimator.Play(,)
-                // change heart rate after x seconds
-
-                _actionTemplates.UpdatePatientLog($"Performed Heart Massages");
-                Debug.Log("Operating Heart Massage On " /*+ _actionData.Patient.name*/);
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

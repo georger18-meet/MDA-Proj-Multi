@@ -4,36 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class CheckMeasurement : MonoBehaviour
+public class CheckMeasurement : Action
 {
-    [Header("Scripts")]
-    [SerializeField] private PlayerActions _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
-    [SerializeField] private string _measurementTitle;
-
+    [SerializeField] private string _measurementNameEnglish;
+    [SerializeField] private string _measurementName;
     [SerializeField] private List<Measurements> measurementList;
 
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
     private int _measurement;
 
     public void CheckMeasurementAction(int measurementNumber)
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            _measurement = CurrentPatientData.GetMeasurement(measurementNumber);
 
-            if (photonView.IsMine)
+            TextToLog = $"Checked {CurrentPatientData.Name} {CurrentPatientData.SureName}'s {_measurementNameEnglish}, it is {_measurement}";
+
+            if (_showAlert)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                ShowNumAlert(_measurementName, _measurement);
+            }
 
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = GameManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                _measurement = desiredPlayerData.CurrentPatientNearby.PatientData.GetMeasurementName(measurementNumber);
-
-                _actionTemplates.ShowAlertWindow(_measurementTitle, _measurement);
-                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} is: {_measurement}");
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

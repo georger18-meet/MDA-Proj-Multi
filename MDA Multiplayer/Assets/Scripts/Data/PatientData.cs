@@ -1,43 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Patient Data",menuName = "Patient Data") ]
 public class PatientData : ScriptableObject
 {
     // General Info
     [Header("Patient Informaion")]
+    public string Name;
     public string SureName;
-    public string LastName;
     public int Id, Age;
     public string Gender;
-    public int PhoneNumber;
+    public string PhoneNumber;
     public string MedicalCompany, AddressLocation, Complaint;
 
     // Health Data
     [Header("Measurments")]
-    public int BPM;
+    public int HeartRateBPM;
     public int PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2;
+    public bool IsConscious;
 
-    // Appearance
-    [Header("Appearance")]
+    // Choose Appearance Material
+    [Header("Appearance Material")]
     public Material FullyClothedMaterial;
     public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
 
+    [Header("MonitorGraphTexture")]
+    public Sprite MonitorGraphTexture;
+
     // Catch Measurement Name
-    private List<int> measurementName;
+    [HideInInspector]
+    public List<int> MeasurementName;
 
-    public int GetMeasurementName(int index)
+    // Catch Clothing Material
+    [HideInInspector]
+    public List<Material> ClothingMaterial;
+
+    public int GetMeasurement(int index)
     {
-        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 
-        return measurementName[index];
+        return MeasurementName[index];
     }
 
-    public void SetMeasurementName(int index, int value)
+    private Material GetClothingMaterial(int index)
     {
-        measurementName = new List<int>() { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
-        measurementName[index] = value;
+        ClothingMaterial = new List<Material>() { FullyClothedMaterial, ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial };
+
+        return ClothingMaterial[index];
+
+    }
+
+    public void SetMeasurementByIndex(int index, int value)
+    {
+        MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        MeasurementName[index] = value;
 
         Measurements measurements = (Measurements)index;
 
@@ -45,35 +63,35 @@ public class PatientData : ScriptableObject
         switch (measurements)
         {
             case Measurements.BPM:
-                BPM = measurementName[index];
+                HeartRateBPM = MeasurementName[index];
                 break;
 
             case Measurements.PainLevel:
-                PainLevel = measurementName[index];
+                PainLevel = MeasurementName[index];
                 break;
 
             case Measurements.RespiratoryRate:
-                RespiratoryRate = measurementName[index];
+                RespiratoryRate = MeasurementName[index];
                 break;
 
             case Measurements.CincinnatiLevel:
-                CincinnatiLevel = measurementName[index];
+                CincinnatiLevel = MeasurementName[index];
                 break;
 
             case Measurements.BloodSuger:
-                BloodSuger = measurementName[index];
+                BloodSuger = MeasurementName[index];
                 break;
 
             case Measurements.BloodPressure:
-                BloodPressure = measurementName[index];
+                BloodPressure = MeasurementName[index];
                 break;
 
             case Measurements.OxygenSaturation:
-                OxygenSaturation = measurementName[index];
+                OxygenSaturation = MeasurementName[index];
                 break;
 
             case Measurements.ETCO2:
-                ETCO2 = measurementName[index];
+                ETCO2 = MeasurementName[index];
                 break;
         }
     }

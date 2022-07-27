@@ -1,23 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class CarControllerSimple : MonoBehaviour
+public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
 {
     private float _verticalInput;
     private float _horizontalInput;
     private float _currentbreakForce;
     private bool _isBreaking;
     private bool _isMovingBackwards;
-    [SerializeField] private bool _isDrivable;
+    [SerializeField] public bool _isDrivable;
 
     [SerializeField] private float _forwardSpeed = 20;
     [SerializeField] private float _reverseSpeed = 15;
     [SerializeField] private float _turningSpeed = 2;
     [SerializeField] private float _breakForce;
     [SerializeField] private float _centerOfMassOffset;
-
-
 
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheeTransform;
@@ -27,6 +27,7 @@ public class CarControllerSimple : MonoBehaviour
     private Rigidbody _carRb;
 
     public GameObject CarHeadLights;
+    public GameObject CarCollider;
     private bool _carHeadLightsOn = false;
 
     public GameObject CarSiren;
@@ -35,29 +36,40 @@ public class CarControllerSimple : MonoBehaviour
 
     public List<CarDoorCollision> CarDoorCollisions;
 
-    public GameObject CarDashboardUI;
+    private GameObject CarDashboardUI;
+    private PhotonView _photonView;
+    public OwnershipTransfer Transfer;
+    public int OwnerCrew;
 
-    private void Start()
-    {
-        _carRb = GetComponent<Rigidbody>();
-        _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
-    }
+     private void Awake()
+     {
+         _photonView = GetComponent<PhotonView>();
+     }
+
+     private void Start()
+     {
+        
+         _carRb = GetComponent<Rigidbody>();
+         _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
+         UIManager.Instance.VehicleUI = CarDashboardUI;
+     
+     }
 
     private void Update()
     {
-        CheckIfDriveable();
-        GetInput();
-        CheckIsMovingBackwards();
+        //CheckIfDriveable();
+        //GetInput();
+        //CheckIsMovingBackwards();
     }
 
     private void FixedUpdate()
     {
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
+        //HandleMotor();
+        //HandleSteering();
+        //UpdateWheels();
     }
 
-    private void GetInput()
+    public void GetInput()
     {
         if (_isDrivable)
         {
@@ -67,9 +79,23 @@ public class CarControllerSimple : MonoBehaviour
         }
     }
 
-    private void HandleMotor()
+    public void HandleMotor()
     {
-        float moveSpeed = _verticalInput *= _verticalInput > 0 ? _forwardSpeed : _reverseSpeed;
+        float moveSpeed;
+
+        if (_verticalInput > 0)
+        {
+            moveSpeed = _forwardSpeed;
+        }
+        else if (_verticalInput < 0)
+        {
+            moveSpeed = -_reverseSpeed;
+        }
+        else
+        {
+            moveSpeed = 0;
+        }
+
         _carRb.AddForce(transform.forward * moveSpeed, ForceMode.Acceleration);
     }
 
@@ -77,7 +103,7 @@ public class CarControllerSimple : MonoBehaviour
     {
     }
 
-    private void HandleSteering()
+    public void HandleSteering()
     {
         float turnSpeed = _horizontalInput * _turningSpeed * Time.deltaTime * _carRb.velocity.magnitude;
         if (_isMovingBackwards)
@@ -87,7 +113,7 @@ public class CarControllerSimple : MonoBehaviour
         transform.Rotate(0, turnSpeed, 0, Space.World);
     }
 
-    private void UpdateWheels()
+    public void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheeTransform);
@@ -107,7 +133,7 @@ public class CarControllerSimple : MonoBehaviour
         }
     }
 
-    private void CheckIsMovingBackwards()
+    public void CheckIsMovingBackwards()
     {
         if (_carRb.angularVelocity.y > 0)
         {
@@ -155,22 +181,34 @@ public class CarControllerSimple : MonoBehaviour
     }
 
 
-    private void CheckIfDriveable()
+    public void CheckIfDriveable()
     {
-        foreach (var item in CarDoorCollisions)
+        foreach (CarDoorCollision item in CarDoorCollisions)
         {
-            if (item.SeatNumber == 1 && item.IsSeatOccupied)
+            if (item.SeatNumber == 0 && item.IsSeatOccupied)
             {
                 _isDrivable = true;
                 _carRb.isKinematic = false;
-                CarDashboardUI.SetActive(true);
+               // CarDashboardUI.SetActive(true);
             }
-            else if (item.SeatNumber == 1 && !item.IsSeatOccupied)
+            else if (item.SeatNumber == 0 && !item.IsSeatOccupied)
             {
                 _isDrivable = false;
                 _carRb.isKinematic = true;
-                CarDashboardUI.SetActive(false);
+               // CarDashboardUI.SetActive(false);
             }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+        }
+        else
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
         }
     }
 }

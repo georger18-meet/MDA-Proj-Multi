@@ -1,53 +1,88 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Photon.Pun;
 using UnityEngine;
 using TMPro;
 
+
 public class EvacuationManager : MonoBehaviour
 {
-    [SerializeField] private string _roomName;
-    [SerializeField] private GameObject _evacuationUI;
-    [SerializeField] private TextMeshProUGUI _destinationName;
+    public static EvacuationManager Instance;
 
-    [SerializeField] private List<GameObject> _patientsEvacuated = new List<GameObject>();
-    private GameObject _currentPatient;
+    [SerializeField] private TMP_Text _destinationName;
+
+    public List<PhotonView> CtRoomList;
+    public List<PhotonView> ShockRoomList;
+    public List<PhotonView> ChildrenRoomList;
+    public List<PhotonView> EmergencyRoomList;
+
+    public GameObject SingleIncidentFeedbackWindow;
+    public GameObject AranFeedbackWindow;
+    public bool IsAranOngoing = false;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
-        _destinationName.text = $"Evacuate Patient To {_roomName}?";
-        _evacuationUI.SetActive(false);
+        ShockRoomList = new List<PhotonView>();
+        CtRoomList = new List<PhotonView>();
+        ChildrenRoomList = new List<PhotonView>();
+        EmergencyRoomList = new List<PhotonView>();
     }
 
-    public void EvacuatePatient(bool choice)
+    public void AddPatientToRooms(PhotonView patient, EvacRoom enumRoom)
     {
-        if (choice)
+        switch (enumRoom)
         {
-            _patientsEvacuated.Add(_currentPatient);
-            _currentPatient.SetActive(false);
-            _evacuationUI.SetActive(false);
-            _currentPatient = null;
+            case EvacRoom.Children_Room:
+                ChildrenRoomList.Add(patient);
+                break;
+
+            case EvacRoom.CT_Room:
+                CtRoomList.Add(patient);
+                break;
+
+            case EvacRoom.Emergency_Room:
+                EmergencyRoomList.Add(patient);
+                break;
+
+            case EvacRoom.Shock_Room:
+                ShockRoomList.Add(patient);
+                break;
+        }
+
+        if (!IsAranOngoing)
+        {
+            SingleIncidentFeedbackWindow.SetActive(true);
         }
         else
         {
-            _evacuationUI.SetActive(false);
+            AranFeedbackWindow.SetActive(true);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void DestroyPatient(PhotonView patient)
     {
-        if (other.CompareTag("Patient"))
-        {
-            _currentPatient = other.gameObject;
-            _evacuationUI.SetActive(true);
-        }
+        patient.gameObject.SetActive(false);
+        
     }
 
-    private void OnTriggerExit(Collider other)
+    public void DropDown_IndexChanged(int index)
     {
-        if (other.CompareTag("Patient"))
-        {
-            _currentPatient = null;
-            _evacuationUI.SetActive(false);
-        }
+        EvacRoom name = (EvacRoom)index;
+        _destinationName.text = name.ToString();
     }
 }

@@ -4,34 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ApplyMedicine : MonoBehaviour
+public class ApplyMedicine : Action
 {
-    [Header("Scripts")]
-    [SerializeField] private PlayerActions _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
-    [SerializeField] private string _medicineToApply;
-    [SerializeField] private string  _measurementTitle, _alertTitle;
     [SerializeField] private int _newMeasurement;
 
-    public void ApplyMedicineAction(int measurementNumber)
+    [Header("Alert")]
+    [SerializeField] private string _medicineToApply;
+    [SerializeField] private string  _measurementTitle;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
+    private string _alertTitle = "Applied Medicine:";
+
+    public void OnApplyMedicineRPC(int measurementNumber)
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        // need fixing
+
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.AllBufferedViaServer, measurementNumber, _newMeasurement);
 
-            if (photonView.IsMine)
+            TextToLog = $"{_alertTitle} {_medicineToApply} on {CurrentPatientData.Name} {CurrentPatientData.SureName}";
+
+            if (_showAlert)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                ShowNumAlert(_alertTitle, _newMeasurement);
+            }
 
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = GameManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
-
-                _actionTemplates.ShowAlertWindow(_alertTitle, _medicineToApply);
-                _actionTemplates.UpdatePatientLog($"Applied {_medicineToApply} on Patient");
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

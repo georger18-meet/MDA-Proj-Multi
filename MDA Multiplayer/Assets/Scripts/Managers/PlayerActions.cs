@@ -7,123 +7,132 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
-public class PlayerActions : MonoBehaviour
+public class ActionsManager : MonoBehaviour
 {
-    #region MonoBehaviour Callbacks
+    public static ActionsManager Instance;
+
+    [Header("Photon")]
+    public List<PhotonView> AllPatientsPhotonViews;
+    public List<PhotonView> AllPlayersPhotonViews;
+    public List<PlayerData> AllPlayerData;
+
+    #region Data References
+    [Header("Data & Scripts")]
+    public List<Patient> AllPatients;
+
+    [Header("VehiclesPrefabs")]
+    //[SerializeField] private GameObject _ambulancePrefab;
+    public GameObject NatanPrefab;
+
+    #region Prefab References
+    [Header("Equipment")]
+    public GameObject Clipboard;
+    public GameObject HeadVice, Megaphone, NeckBrace, Hat, BloodPressureSleeve, OxyMask, RespirationBalloon;
+    public GameObject ArmBandage, ArmTourniquet, BicepsBandage, BicepsTourniquet, KneeBandage, KneeTourniquet, ShinBandage, ShinTourniquet;
+
+    [Header("Attachments")]
+    public GameObject Asherman;
+    public GameObject EcgSticker, ThroatTube, InTube, Venflon;
+
+    [Header("Aids")]
+    public GameObject OxyTank;
+    public GameObject IVPole;
+
+    [Header("Devices")]
+    public GameObject BloodPressureDevice;
+    public GameObject Monitor, Respirator;
+
+    [Header("Vests")]
+    public MeshFilter[] Vests;
+    #endregion
 
     #endregion
 
-    #region Assignment
-    // Triggered upon Clicking on the Patient
+    [Header("Crews")]
+    public int NextCrewIndex = 0;
+    public List<Transform> /*AmbulancePosTransforms,*/ NatanPosTransforms;
+
+    private Patient _lastClickedPatient;
+    private PatientData _lastClickedPatientData;
+
+    #region MonoBehaviour Callbacks
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
+    #region UnityEvents
     public void OnPatientClicked()
     {
         Debug.Log($"Attempting to Click On Patient");
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+
+        for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            //if (!AllPlayersPhotonViews[i].IsMine)
+            //    return;
 
-            if (photonView.IsMine)
+            PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
+            _lastClickedPatient = myPlayerData.CurrentPatientNearby;
+
+            PatientData currentPatientData = myPlayerData.CurrentPatientNearby != null ? myPlayerData.CurrentPatientNearby.PatientData : null;
+            _lastClickedPatientData = currentPatientData;
+
+            Debug.Log($"{myPlayerData.UserName} Clicked on: {myPlayerData.CurrentPatientNearby}");
+
+            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
             {
-                if (desiredPlayerData.CurrentPatientNearby == null)
-                {
-                    return;
-                }
-
-                GameManager.Instance.LastClickedPatient = desiredPlayerData.CurrentPatientNearby;
-
-                PatientData currentPatientData = desiredPlayerData.CurrentPatientNearby != null ? desiredPlayerData.CurrentPatientNearby.PatientData : null;
-                GameManager.Instance.LastClickedPatientData = currentPatientData;
-
-                Debug.Log($"{desiredPlayerData.UserName} Clicked on: {desiredPlayerData.CurrentPatientNearby}");
-
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                {
-                    UIManager.Instance.JoinPatientPopUp.SetActive(true);
-                }
-                else
-                {
-                    SetupPatientInfoDisplay();
-                    UIManager.Instance.PatientMenuParent.SetActive(true);
-                }
+                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+                UIManager.Instance.JoinPatientPopUp.SetActive(true);
+            }
+            else
+            {
+                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+                UIManager.Instance.PatientInfoParent.SetActive(true);
             }
         }
     }
 
-    public void OnJoinPatientRPC(bool isJoined)
+    public void OnPlayerJoinPatientRPC(bool isJoined)
     {
-        Debug.Log("attempting Join Patient");
+        Debug.Log("attempting to Join Patient");
 
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
 
-            if (photonView.IsMine)
+            if (isJoined)
             {
-                desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBuffered, isJoined);
+                myPlayerData.PhotonView.RPC("OnJoinPatient", RpcTarget.AllBufferedViaServer);
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
+                UIManager.Instance.PatientInfoParent.SetActive(true);
+            }
+            else
+            {
+                UIManager.Instance.JoinPatientPopUp.SetActive(false);
             }
         }
     }
 
-    public void LeavePatientRPC()
+    public void OnPlayerLeavePatientRPC()
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        Debug.Log("attempting to Leave Patient");
+
+        for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-            desiredPlayerData.CurrentPatientNearby.PhotonView.RPC("LeavePatient", RpcTarget.AllBuffered);
+            PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
+            myPlayerData.PhotonView.RPC("OnLeavePatient", RpcTarget.AllBufferedViaServer);
+            UIManager.Instance.CloseAllPatientWindows();
         }
     }
-
-    public void SetupPatientInfoDisplay()
-    {
-        UIManager.Instance.SureName.text = GameManager.Instance.LastClickedPatientData.SureName;
-        UIManager.Instance.LastName.text = GameManager.Instance.LastClickedPatientData.LastName;
-        UIManager.Instance.Gender.text = GameManager.Instance.LastClickedPatientData.Gender;
-        UIManager.Instance.Adress.text = GameManager.Instance.LastClickedPatientData.AddressLocation;
-        UIManager.Instance.InsuranceCompany.text = GameManager.Instance.LastClickedPatientData.MedicalCompany;
-        UIManager.Instance.Complaint.text = GameManager.Instance.LastClickedPatientData.Complaint;
-
-        UIManager.Instance.Age.text = GameManager.Instance.LastClickedPatientData.Age.ToString();
-        UIManager.Instance.Id.text = GameManager.Instance.LastClickedPatientData.Id.ToString();
-        UIManager.Instance.PhoneNumber.text = GameManager.Instance.LastClickedPatientData.PhoneNumber.ToString();
-    }
-
-    //private void OnJoinPatient(bool isJoined)
-    //{
-    //    foreach (PhotonView photonView in AllPlayersPhotonViews)
-    //    {
-    //        PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-    //
-    //        if (photonView.IsMine)
-    //        {
-    //            if (isJoined)
-    //            {
-    //                _lastClickedPatient.AddUserToTreatingLists(desiredPlayerData);
-    //
-    //                SetupPatientInfoDisplay();
-    //
-    //                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-    //                UIManager.Instance.PatientMenuParent.SetActive(true);
-    //                UIManager.Instance.PatientInfoParent.SetActive(false);
-    //
-    //            }
-    //            else
-    //            {
-    //                UIManager.Instance.JoinPatientPopUp.SetActive(false);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //private void LeavePatient()
-    //{
-    //    if (PlayerData.Instance.CurrentPatientNearby.PhotonView.IsMine)
-    //    {
-    //      Debug.Log("Attempting leave patient");
-    //
-    //      UIManager.Instance.CloseAllPatientWindows();
-    //      PlayerData.Instance.CurrentPatientNearby.TreatingUsers.Remove(PlayerData.Instance);
-    //      Debug.Log("Left Patient Succesfully");
-    //    }
-    //}
     #endregion
+
 }

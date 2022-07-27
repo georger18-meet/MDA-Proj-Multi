@@ -2,32 +2,57 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
-public class ConnectingMonitor : MonoBehaviour
+public class ConnectingMonitor : Action
 {
-    [Header("Scripts")]
-    [SerializeField] private PlayerActions _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-    [SerializeField] private GameObject _player;
+    [Header("Prefab References")]
     [SerializeField] private GameObject _monitor;
 
+    [Header("Component's Data")]
+    [SerializeField] private GameObject _monitorGraphWindow;
+    [SerializeField] private Image _newMonitorGraph;
+
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle;
+    [SerializeField] private string _alertText;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
+    private GameObject _player;
+    
     public void Defibrillation()
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            _player = LocalPlayerData.gameObject;
+            _player.transform.SetPositionAndRotation(CurrentPatient.ChestPosPlayerTransform.position, CurrentPatient.ChestPosPlayerTransform.rotation);
 
-            if (photonView.IsMine)
+            GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, CurrentPatient.ChestPosEquipmentTransform.position, CurrentPatient.ChestPosEquipmentTransform.rotation);
+
+            _monitorGraphWindow.SetActive(true);
+
+            if (CurrentPatientData.MonitorGraphTexture != _newMonitorGraph.sprite)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer,  _newMonitorGraph);
+            }
+            
 
-                //_player.transform.position = _actionManager.PlayerTreatingTr.position;
-                //MonoBehaviour.Instantiate(_monitor, _actionManager.PatientEquipmentTr.position, Quaternion.identity);
+            TextToLog = $"Connected Defibrilator to {CurrentPatientData.Name} {CurrentPatientData.SureName}";
 
-                _actionTemplates.UpdatePatientLog($"Connected Defibrilator to Patient");
-                Debug.Log("CLEAR!!! Defibrillator On " /*+ _AOM.Patient.name*/);
+            if (_showAlert)
+            {
+                ShowTextAlert(_alertTitle, _alertText);
+            }
+
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

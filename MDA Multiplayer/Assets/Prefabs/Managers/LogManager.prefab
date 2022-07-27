@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIDisplayer: {fileID: 0}
   LogsToDisplayAtOnce: 5
-  InfiniteList: 0
+  InfiniteList: 1
   DisplayAllLog: 0

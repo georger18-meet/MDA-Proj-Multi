@@ -1,18 +1,19 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Patient : MonoBehaviour
 {
+    #region Photon
     [Header("Photon")]
     public PhotonView PhotonView;
-
-    [Header("Data")]
-    private PlayerActions _playerActions;
+    #endregion
 
     #region Script References
     [Header("Data & Scripts")]
@@ -31,30 +32,89 @@ public class Patient : MonoBehaviour
     public List<PlayerData> AllUsersTreatedThisPatient;
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
+
+    [Header("Treatment Positions")]
+    public Transform ChestPosPlayerTransform;
+    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
+
+    [Header("World Canvas")]
+    public GameObject WorldCanvas;
     #endregion
 
-    //public Dictionary<string, int> OperatingUserCrew = new Dictionary<string, int>();
-    //public Animation PatientAnimation;
-
+    #region Monovehavior Callbacks
     private void Awake()
     {
         PatientRenderer.material = PatientData.FullyClothedMaterial;
+        DontDestroyOnLoad(gameObject.transform);
     }
 
     private void Start()
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
-        {
-            _playerActions = photonView != null ? photonView.GetComponent<PlayerActions>() : null;
-        }
+        //players = new List<PlayerController>();
+        ActionsManager.Instance.AllPatients.Add(this);
+        ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
+    }
+    #endregion
 
-        GameManager.Instance.AllPatients.Add(this);
-        GameManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
+    #region Collision & Triggers
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.TryGetComponent(out PlayerData possiblePlayer))
+        {
+            return;
+        }
+        else if (!NearbyUsers.Contains(possiblePlayer))
+        {
+            WorldCanvas.SetActive(true);
+            NearbyUsers.Add(possiblePlayer);
+        }
     }
 
-    public void AddUserToTreatingLists(PlayerData currentPlayerData)
+    private void OnTriggerExit(Collider other)
     {
-        currentPlayerData = currentPlayerData != null ? currentPlayerData : null;
+        if (other.TryGetComponent(out PlayerData possiblePlayer))
+        {
+            if (!NearbyUsers.Contains(possiblePlayer))
+            {
+                return;
+            }
+            else
+            {
+                WorldCanvas.SetActive(false);
+                NearbyUsers.Remove(possiblePlayer);
+            }
+        }
+    }
+    #endregion
+
+    public bool IsPlayerJoined(PlayerData playerData)
+    {
+        Debug.Log("Attempting to check if player is joined");
+
+        if (TreatingUsers.Contains(playerData))
+        {
+            Debug.Log("Checked if player is joined, it is true");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Checked if player is joined, it is false");
+            return false;
+        }
+    }
+
+    public void OnInteracted()
+    {
+        ActionsManager.Instance.OnPatientClicked();
+    }
+
+    #region PunRPC invoke by Patient
+    [PunRPC]
+    public void AddUserToTreatingLists(string currentPlayer)
+    {
+        PlayerData currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PlayerData>();
+        //PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
 
         if (currentPlayerData == null)
         {
@@ -90,103 +150,115 @@ public class Patient : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    [PunRPC]
+    public void UpdatePatientInfoDisplay()
     {
-        PlayerData possiblePlayer = other.GetComponent<PlayerData>();
+        UIManager.Instance.SureName.text = PatientData.Name;
+        UIManager.Instance.LastName.text = PatientData.SureName;
+        UIManager.Instance.Gender.text = PatientData.Gender;
+        UIManager.Instance.Adress.text = PatientData.AddressLocation;
+        UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
+        UIManager.Instance.Complaint.text = PatientData.Complaint;
 
-        if (possiblePlayer == null)
-        {
-            return;
-        }
-        else if (!NearbyUsers.Contains(possiblePlayer))
-        {
-            NearbyUsers.Add(possiblePlayer);
-        }
+        UIManager.Instance.Age.text = PatientData.Age.ToString();
+        UIManager.Instance.Id.text = PatientData.Id.ToString();
+        UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
     }
 
-    private void OnTriggerExit(Collider other)
+    [PunRPC]
+    private void ChangeHeartRateRPC(int newBPM)
     {
-        PlayerData possiblePlayer = other.GetComponent<PlayerData>();
-
-        if (possiblePlayer != null)
-        {
-
-            if (!NearbyUsers.Contains(possiblePlayer))
-            {
-                return;
-            }
-            else
-            {
-                NearbyUsers.Remove(possiblePlayer);
-            }
-        }
+        PatientData.HeartRateBPM = newBPM;
     }
 
-    public bool IsPlayerJoined(PlayerData playerData)
+    [PunRPC]
+    private void SetMeasurementByIndexRPC(int index, int value)
     {
-        Debug.Log("Attempting to check if player is joined");
+        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
+        PatientData.MeasurementName[index] = value;
 
-        if (TreatingUsers.Contains(playerData))
+        Measurements measurements = (Measurements)index;
+
+        // to be replaced
+        switch (measurements)
         {
-            Debug.Log("Checked if player is joined, it is true");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Checked if player is joined, it is false");
-            return false;
+            case Measurements.BPM:
+                PatientData.HeartRateBPM = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.PainLevel:
+                PatientData.PainLevel = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.RespiratoryRate:
+                PatientData.RespiratoryRate = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.CincinnatiLevel:
+                PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.BloodSuger:
+                PatientData.BloodSuger = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.BloodPressure:
+                PatientData.BloodPressure = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.OxygenSaturation:
+                PatientData.OxygenSaturation = PatientData.MeasurementName[index];
+                break;
+
+            case Measurements.ETCO2:
+                PatientData.ETCO2 = PatientData.MeasurementName[index];
+                break;
         }
     }
 
     [PunRPC]
-    private void OnJoinPatient(bool isJoined)
+    private void ChangeClothingRPC(int index)
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        Clothing clothing = (Clothing)index;
+
+        switch (clothing)
         {
-            PlayerData desiredPlayerData = photonView != null ? photonView.GetComponent<PlayerData>() : null;
-            _playerActions = photonView != null ? photonView.GetComponent<PlayerActions>() : null;
+            case Clothing.FullyClothed:
 
-            if (photonView.IsMine)
-            {
-                if (isJoined)
-                {
-                    AddUserToTreatingLists(desiredPlayerData);
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.FullyClothedMaterial;
+                break;
 
-                    _playerActions.SetupPatientInfoDisplay();
+            case Clothing.ShirtOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.ShirtOnlyMaterial;
+                break;
 
-                    UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                    UIManager.Instance.PatientMenuParent.SetActive(true);
-                    UIManager.Instance.PatientInfoParent.SetActive(false);
+            case Clothing.PantsOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.PantsOnlyMaterial;
+                break;
 
-                }
-                else
-                {
-                    UIManager.Instance.JoinPatientPopUp.SetActive(false);
-                }
-            }
+            case Clothing.UnderwearOnly:
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.UnderwearOnlyMaterial;
+                break;
+
+            default:
+                break;
         }
     }
 
     [PunRPC]
-    private void LeavePatient()
+    private void ChangeConciouncenessRPC(bool newConsciousnessState)
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        PatientData.IsConscious = newConsciousnessState;
+    }
+
+    [PunRPC]
+    private void SetMonitorGraphRPC(object newGraph)
+    {
+        if (newGraph is Image)
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
-
-            if (photonView.IsMine)
-            {
-                Debug.Log("Attempting leave patient");
-
-                UIManager.Instance.CloseAllPatientWindows();
-                TreatingUsers.Remove(desiredPlayerData);
-                Debug.Log("Left Patient Succesfully");
-            }
+            PatientData.MonitorGraphTexture = (newGraph as Image).sprite;
+            (newGraph as Image).sprite = PatientData.MonitorGraphTexture;
         }
     }
-
-    public void OnInteracted()
-    {
-        _playerActions.OnPatientClicked();
-    }
+    #endregion
 }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DocumentationLogManager : MonoBehaviour
+public class DocumentationLogManager : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI UIDisplayer;
     public int LogsToDisplayAtOnce = 5;
@@ -15,8 +16,12 @@ public class DocumentationLogManager : MonoBehaviour
     private List<string> _queueList = new List<string>();
     private int _queueIndex = 0;
 
+   // private PhotonView _photonView;
+    
+
     private void Awake()
     {
+       // _photonView = GetComponent<PhotonView>();
         _queueArray = new string[LogsToDisplayAtOnce + 1];
         _queueList.Add("");
     }
@@ -29,6 +34,7 @@ public class DocumentationLogManager : MonoBehaviour
             {
                 Dequeue();
             }
+
             RefreshText();
         }
         else
@@ -52,7 +58,7 @@ public class DocumentationLogManager : MonoBehaviour
         if (DisplayAllLog)
         {
             myLog = logString;
-            string newString = "[" + type + "]: " + myLog + "\n----------------------------------------\n";
+            string newString =$"{PhotonNetwork.LocalPlayer.NickName} :  [{type}]:  {myLog} + \n----------------------------------------\n";
             Enqueue(newString);
             if (type == LogType.Exception)
             {
@@ -77,10 +83,10 @@ public class DocumentationLogManager : MonoBehaviour
         }
     }
 
-    public void LogThisText(string text)
+    public void LogThisText(int senderCrewIndex, string senderName, string text)
     {
         myLog = text;
-        string newString = myLog + "\n----------------------------------------\n";
+        string newString = $"[{senderCrewIndex}] <{senderName}> {myLog} \n";
         Enqueue(newString);
         myLog = string.Empty;
         if (!InfiniteList)
@@ -164,4 +170,6 @@ public class DocumentationLogManager : MonoBehaviour
         }
         _queueIndex--;
     }
+
+
 }

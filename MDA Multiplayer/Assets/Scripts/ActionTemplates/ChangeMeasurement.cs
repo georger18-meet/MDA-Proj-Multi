@@ -4,33 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ChangeMeasurement : MonoBehaviour
+public class ChangeMeasurement : Action
 {
-    [Header("Scripts")]
-    [SerializeField] private PlayerActions _actionManager;
-    [SerializeField] private ActionTemplates _actionTemplates;
-
     [Header("Component's Data")]
-    [SerializeField] private string _measurementTitle;
     [SerializeField] private int _newMeasurement;
 
-    public void ApplyMeasurementAction(int measurementNumber)
+    [Header("Alert")]
+    [SerializeField] private string _alertTitle, _alertText;
+
+    [Header("Conditions")]
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _updateLog = true;
+
+    public void ChangeMeasurementAction(int measurementNumber)
     {
-        foreach (PhotonView photonView in GameManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
 
-            if (photonView.IsMine)
+            TextToLog = $"Patient's {_alertText} was changed";
+
+            if (_showAlert)
             {
-                if (!desiredPlayerData.CurrentPatientNearby.IsPlayerJoined(desiredPlayerData))
-                    return;
+                ShowTextAlert(_alertTitle, _alertText);
+            }
 
-                // loops throughout measurementList and catches the first element that is equal to measurementNumber
-                Measurements measurements = GameManager.Instance.MeasurementList.FirstOrDefault(item => item == (Measurements)measurementNumber);
-                desiredPlayerData.CurrentPatientNearby.PatientData.SetMeasurementName(measurementNumber, _newMeasurement);
-
-                _actionTemplates.ShowAlertWindow(_measurementTitle, _newMeasurement);
-                _actionTemplates.UpdatePatientLog($"Patient's {_measurementTitle} was changed");
+            if (_updateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

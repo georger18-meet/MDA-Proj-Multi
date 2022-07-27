@@ -5,27 +5,13 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using System;
+using System.Xml;
+
+public enum EvacRoom { CT_Room, Emergency_Room, Children_Room, Shock_Room, }
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
-
-    #region Player UI
-    [Header("Player UI Parents")]
-    public GameObject CurrentActionBarParent;
-    public GameObject AmbulanceActionBarParent, NatanActionBarParent, BasicActionMenuParent;
-    #endregion
-
-    #region Patient UI 
-    [Header("Patient UI Parents")]
-    public GameObject JoinPatientPopUp;
-    public GameObject PatientMenuParent, PatientInfoParent, ActionLogParent;
-
-    [Header("Patient UI Texts")]
-    public TextMeshProUGUI SureName;
-    public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint; /*IncidentAdress*/
-    #endregion
-
     //#region EventSystem
     //[Header("EventSystem")]
     //[SerializeField] private EventSystem _eventSystem;
@@ -33,33 +19,64 @@ public class UIManager : MonoBehaviour
     //private GameObject _currentSelectedGameObject;
     //#endregion
 
+    public static UIManager Instance;
+    [SerializeField] private Vector3 _leaderMenuOffset;
+    [SerializeField] private bool _isLeaderMenuOpen;
+
+    #region Player UI
+    [Header("Player UI Parents")]
+    public GameObject CurrentActionBarParent;
+    public GameObject MapWindow, ContentPanel;
+    public GameObject AmbulanceBar, NatanBar;
+    public GameObject AmbulanceNoBagPanel, AmbulanceAmbuPanel, AmbulanceKidsAmbuPanel, AmbulanceMedicPanel, AmbulanceDefibrilationPanel, AmbulanceOxygenPanel, AmbulanceMonitorPanel;
+    public GameObject NatanNoBagPanel, NatanAmbuPanel, NatanKidsAmbuPanel, NatanMedicPanel, NatanQuickDrugsPanel, NatanOxygenPanel, NatanMonitorPanel;
+    public GameObject TeamLeaderMenu;
+
+    #endregion
+
+    #region Patient UI 
+    [Header("Patient UI Parents")]
+    public GameObject JoinPatientPopUp;
+    public GameObject PatientInfoParent, ActionLogParent;
+
+    [Header("Patient UI Texts")]
+    public TextMeshProUGUI SureName;
+    public TextMeshProUGUI LastName, Id, Age, Gender, PhoneNumber, InsuranceCompany, Adress, Complaint;
+    #endregion
+
+    #region Evacuation UI
+
+    [Header("Evacuation UI Drop Down")]
+    public TMP_Dropdown _dropDown;
+
+    public GameObject EvacPatientPopUp;
+    #endregion
+
+    #region Vehicle UI
+    [Header("Vehicle UI Texts")]
+    public GameObject VehicleUI;
+    
+    #endregion
+
     private void Awake()
     {
-        // Error null reference
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
 
         //_lastSelectedGameObject = _currentSelectedGameObject;
+        CurrentActionBarParent = AmbulanceBar;
     }
 
     private void Start()
     {
-        CurrentActionBarParent = AmbulanceActionBarParent;
-    }
-
-    public void CloseAllPatientWindows()
-    {
-        JoinPatientPopUp.SetActive(false);
-        PatientMenuParent.SetActive(false);
-        PatientInfoParent.SetActive(false);
-        ActionLogParent.SetActive(false);
+        AddRoomToList();
     }
 
     // catch last gameObject to fire an event
@@ -80,4 +97,109 @@ public class UIManager : MonoBehaviour
     //        return null;
     //    }
     //}
+
+    public void CloseAllPatientWindows()
+    {
+        JoinPatientPopUp.SetActive(false);
+        PatientInfoParent.SetActive(false);
+        ActionLogParent.SetActive(false);
+        EvacPatientPopUp.SetActive(false);
+    }
+
+    public void CloseAllAmbulanceBags(GameObject currentWindow)
+    {
+        if (!currentWindow.activeInHierarchy)
+        {
+            AmbulanceNoBagPanel.SetActive(false);
+            AmbulanceAmbuPanel.SetActive(false);
+            AmbulanceKidsAmbuPanel.SetActive(false);
+            AmbulanceMedicPanel.SetActive(false);
+            AmbulanceDefibrilationPanel.SetActive(false);
+            AmbulanceOxygenPanel.SetActive(false);
+            AmbulanceMonitorPanel.SetActive(false);
+        }
+    }
+
+    public void CloseAllNatanBags(GameObject currentWindow)
+    {
+        if (!currentWindow.activeInHierarchy)
+        {
+            NatanNoBagPanel.SetActive(false);
+            NatanAmbuPanel.SetActive(false);
+            NatanKidsAmbuPanel.SetActive(false);
+            NatanMedicPanel.SetActive(false);
+            NatanQuickDrugsPanel.SetActive(false);
+            NatanOxygenPanel.SetActive(false);
+            NatanMonitorPanel.SetActive(false);
+        }
+    }
+
+    public void PauseHomeBtn()
+    {
+        MapWindow.SetActive(false);
+        ContentPanel.SetActive(true);
+    }
+
+    //Evacuation DropDown in UI 
+    void AddRoomToList()
+    {
+        string[] enumNames = Enum.GetNames(typeof(EvacRoom));
+        List<string> roomNames = new List<string>(enumNames);
+
+        _dropDown.AddOptions(roomNames);
+    }
+
+    public void PullLeaderMenuDown()
+    {
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData desiredPlayerData = photonView.GetComponent<PlayerData>();
+
+            if (photonView.IsMine)
+            {
+                Debug.Log("Trying To Pull Leader Menu");
+
+                if (!_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                {
+                    TeamLeaderMenu.transform.position -= _leaderMenuOffset;
+
+                    _isLeaderMenuOpen = true;
+                }
+                else if (_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                {
+                    TeamLeaderMenu.transform.position += _leaderMenuOffset;
+                    _isLeaderMenuOpen = false;
+                }
+            }
+        }
+    }
+
+    // need fixing
+    public void ExitVehicle()
+    {
+        // loops through all players photonViews
+        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            // execute only if this instance if of the local player
+            if (photonView.IsMine)
+            {
+                //PlayerController playerController = photonView.GetComponent<PlayerController>();
+
+                //if (playerController.CurrentCarController.IsSeatOccupied)
+                //{
+                //    Debug.Log("NOT supposed to drive");
+                //    IsSeatOccupied = false;
+                //    CollidingPlayer.transform.position = gameObject.transform.position;
+                //    playerController.IsDriving = false;
+                //
+                //    if (SeatNumber != 0)
+                //    {
+                //        playerController.CurrentCarController = null;
+                //    }
+                //}
+
+                break;
+            }
+        }
+    }
 }

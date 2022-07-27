@@ -10,17 +10,20 @@ public class CarDoorCollision : MonoBehaviour
     public int SeatNumber;
     public GameObject CollidingPlayer;
     public Transform SeatPosition;
+    private OwnershipTransfer _transfer;
 
+    [SerializeField] private CarControllerSimple _carController;
     private Animator _doorAnimator;
 
     void Start()
     {
+        _transfer = GetComponent<OwnershipTransfer>();
         _doorAnimator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        GetComponent<Collider>().enabled = IsDoorOpen;
+        //GetComponent<Collider>().enabled = IsDoorOpen;
         EnterExitVehicle();
     }
 
@@ -30,9 +33,9 @@ public class CarDoorCollision : MonoBehaviour
         {
             UIManager.Instance.CurrentActionBarParent = number switch
             {
-                0 => UIManager.Instance.AmbulanceActionBarParent,
-                1 => UIManager.Instance.NatanActionBarParent,
-                _ => UIManager.Instance.AmbulanceActionBarParent,
+                0 => UIManager.Instance.AmbulanceBar,
+                1 => UIManager.Instance.NatanBar,
+                _ => UIManager.Instance.AmbulanceBar,
             };
 
             IsDoorOpen = false;
@@ -42,9 +45,9 @@ public class CarDoorCollision : MonoBehaviour
         {
             UIManager.Instance.CurrentActionBarParent = number switch
             {
-                0 => UIManager.Instance.AmbulanceActionBarParent,
-                1 => UIManager.Instance.NatanActionBarParent,
-                _ => UIManager.Instance.AmbulanceActionBarParent,
+                0 => UIManager.Instance.AmbulanceBar,
+                1 => UIManager.Instance.NatanBar,
+                _ => UIManager.Instance.AmbulanceBar,
             };
 
             IsDoorOpen = true;
@@ -71,17 +74,37 @@ public class CarDoorCollision : MonoBehaviour
     {
         if (IsDoorOpen && CollidingPlayer != null)
         {
+            PlayerController playerController = CollidingPlayer.GetComponent<PlayerController>();
+
             if (!IsSeatOccupied)
             {
-                PlayerController playerController = CollidingPlayer.GetComponent<PlayerController>();
+                
+                Debug.Log("supposed to drive");
+
                 OpenCloseDoorToggle(number);
                 IsSeatOccupied = true;
+                playerController.IsDriving = true;
+                
+                if (SeatNumber == 0)
+                {
+                    _carController.Transfer.CarDriver();
+                    playerController.CurrentCarController = _carController;
+                    //playerController.PhotonView.RPC("ChangeCharControllerStateRPC", Photon.Pun.RpcTarget.Others);
+                }
                 // use player driving state
             }
             else if (IsSeatOccupied)
             {
+                Debug.Log("NOT supposed to drive");
                 IsSeatOccupied = false;
                 CollidingPlayer.transform.position = gameObject.transform.position;
+                playerController.IsDriving = false;
+
+                if (SeatNumber != 0)
+                {
+                    playerController.CurrentCarController = null;
+                    //playerController.PhotonView.RPC("ChangeCharControllerStateRPC", Photon.Pun.RpcTarget.Others);
+                }
                 // use player driving state
             }
         }
@@ -92,6 +115,7 @@ public class CarDoorCollision : MonoBehaviour
         if (other.CompareTag("Player") && !IsSeatOccupied)
         {
             CollidingPlayer = other.gameObject;
+
         }
     }
 

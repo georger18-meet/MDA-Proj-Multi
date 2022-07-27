@@ -28,6 +28,6 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("MDA Project");
+        PhotonNetwork.LoadLevel(1);
     }
 }

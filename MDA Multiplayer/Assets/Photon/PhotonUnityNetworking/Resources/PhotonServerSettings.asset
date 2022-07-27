@@ -17,9 +17,9 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 
+    AppVersion: Hawkeye v0.8.0 Gal
     UseNameServer: 1
-    FixedRegion: 
+    FixedRegion: eu
     Server: 
     Port: 0
     ProxyServer: 
@@ -45,6 +45,25 @@ MonoBehaviour:
   - LeavePatient
   - OnJoinPatient
   - UpdateTreatingUsersListOverNetwork
+  - UpdatePatientInfoDisplay
+  - OnLeavePatient
+  - OnApplyMedicine
+  - EvacPatient_RPC
+  - ChangeCharControllerStateRPC
+  - SetThisActive
+  - SetThisInactive
+  - PutOnBed
+  - RemoveFromBed
+  - RPC_UpdatePatientLog
+  - ChangeClothingRPC
+  - ChangeHeartRateRPC
+  - SetMeasurementByIndexRPC
+  - AddingToRoomList_RPC
+  - CrewCreateSubmit_RPC
+  - ChangeCrewColors
+  - RemovingFromRoomList_RPC
+  - ChangeConciouncenessRPC
+  - SetMonitorGraphRPC
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1
