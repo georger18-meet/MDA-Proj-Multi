@@ -21,11 +21,10 @@ public class CrewRoomManager : MonoBehaviour
     //public int _crewRoomIndex;
     private Color crewColor;
 
-    public  int _crewRoomIndex;
-     public static int _crewRoomIndexStatic;
+    public int _crewRoomIndex;
+    public static int _crewRoomIndexStatic;
 
     private PhotonView _photonView;
-
 
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class CrewRoomManager : MonoBehaviour
         _photonView = GetComponent<PhotonView>();
         PopulateDropdownRoles();
         RoomCrewMenuUI.SetActive(false);
-       
     }
 
     private void Start()
@@ -41,12 +39,6 @@ public class CrewRoomManager : MonoBehaviour
         _crewRoomIndexStatic++;
         _crewRoomIndex = _crewRoomIndexStatic;
     }
-
-    void Update()
-    {
-
-    }
-
 
     private void BlockRoomAccess()
     {
@@ -72,7 +64,6 @@ public class CrewRoomManager : MonoBehaviour
             }
         }
 
-        ;
         return playerFound;
     }
 
@@ -126,10 +117,9 @@ public class CrewRoomManager : MonoBehaviour
     {
         var color = Random.ColorHSV();
         _photonView.RPC("CrewCreateSubmit_RPC", RpcTarget.AllBufferedViaServer, GetCrewRolesByEnum(), GetCrewLeaderIndex());
-        _photonView.RPC("ChangeCrewColors", RpcTarget.AllBufferedViaServer,new Vector3(color.r, color.g, color.b));
+        _photonView.RPC("ChangeCrewColors", RpcTarget.AllBufferedViaServer, new Vector3(color.r, color.g, color.b));
 
         //_photonView.RPC("CrewLeaderIsChosen", RpcTarget.AllBufferedViaServer, GetCrewLeader());
-
     }
 
     public int[] GetCrewRolesByEnum()
@@ -141,12 +131,11 @@ public class CrewRoomManager : MonoBehaviour
             roles[i] = CrewMemberRoleDropDownList[i].value;
         }
         return roles;
-
     }
 
     public int GetCrewLeaderIndex()
     {
-        int leaderIndex=0;
+        int leaderIndex = 0;
 
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
@@ -158,9 +147,6 @@ public class CrewRoomManager : MonoBehaviour
         }
         return leaderIndex;
     }
-
- 
-
 
     // Show Hide MenuUI
     // --------------------
@@ -193,7 +179,6 @@ public class CrewRoomManager : MonoBehaviour
         {
             _photonView.RPC("RemovingFromRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
-
     }
 
     // PUN RPC Methods
@@ -201,7 +186,6 @@ public class CrewRoomManager : MonoBehaviour
     [PunRPC]
     void AddingToRoomList_RPC(string currentPlayer)
     {
-
         PhotonView currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PhotonView>();
 
         if (currentPlayerData == null)
@@ -221,7 +205,6 @@ public class CrewRoomManager : MonoBehaviour
             }
         }
         BlockRoomAccess();
-       
     }
 
     [PunRPC]
@@ -248,17 +231,17 @@ public class CrewRoomManager : MonoBehaviour
                 }
             }
         }
-
     }
 
     [PunRPC]
-    void CrewCreateSubmit_RPC(int[] roleIndex,int leaderIndex)
+    void CrewCreateSubmit_RPC(int[] roleIndex, int leaderIndex)
     {
         int indexInCrewCounter = 0;
         for (int i = 0; i < roleIndex.Length; i++)
-        { 
+        {
             PlayerData desiredPlayerData = _playersInRoomList[i].GetComponent<PlayerData>();
             desiredPlayerData.CrewIndex = _crewRoomIndex;
+            //desiredPlayerData.CrewIndex = ActionsManager.Instance.NextCrewIndex;
             desiredPlayerData.UserIndexInCrew = indexInCrewCounter;
             desiredPlayerData.UserRole = (Roles)roleIndex[i];
             indexInCrewCounter++;
@@ -272,12 +255,20 @@ public class CrewRoomManager : MonoBehaviour
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
         HideCrewRoomMenu();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.NatanPosTransforms[_crewRoomIndex].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+            natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
+        }
+
+        ActionsManager.Instance.NextCrewIndex++;
     }
 
     [PunRPC]
     void ChangeCrewColors(Vector3 randomColor)
     {
-         crewColor = new Color(randomColor.x, randomColor.y, randomColor.z);
+        crewColor = new Color(randomColor.x, randomColor.y, randomColor.z);
 
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
@@ -286,9 +277,6 @@ public class CrewRoomManager : MonoBehaviour
 
             desiredPlayerName.text.color = crewColor;
             currentPlayerData.CrewColor = crewColor;
-
         }
     }
-
-
 }

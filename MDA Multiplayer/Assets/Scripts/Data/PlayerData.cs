@@ -7,13 +7,14 @@ using Photon.Pun;
 public class PlayerData : MonoBehaviour
 {
     public PhotonView PhotonView => gameObject.GetPhotonView();
+    public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
 
     [field: SerializeField] public string UserName { get; set; }
     [field: SerializeField] public string CrewName { get; set; }
     [field: SerializeField] public int UserIndexInCrew { get; set; }
     [field: SerializeField] public int CrewIndex { get; set; }
-    [field: SerializeField] public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
     [field: SerializeField] public bool IsCrewLeader { get; set; }
+    [field: SerializeField] public bool IsInstructor { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public Color CrewColor { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
@@ -27,6 +28,23 @@ public class PlayerData : MonoBehaviour
     private void Start()
     {
         ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
+    }
+
+    private void Update()
+    {
+        if (IsInstructor)
+        {
+            gameObject.AddComponent<Instructor>();
+            ActionsManager.Instance.AllPlayerData.Add(this);
+        }
+        else if (TryGetComponent(out Instructor instructor))
+        {
+            if (instructor)
+            {
+                ActionsManager.Instance.AllPlayerData.Remove(this);
+                Destroy(instructor);
+            }
+        }
     }
 
     #region PunRPC invoked by Player

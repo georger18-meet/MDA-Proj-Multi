@@ -11,28 +11,32 @@ public class ActionsManager : MonoBehaviour
 {
     public static ActionsManager Instance;
 
-    public List<Measurements> MeasurementList;
-
-    public List<Clothing> ClothingList;
-
-    //public GameObject GameObject;
-
     [Header("Photon")]
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
+    public List<PlayerData> AllPlayerData;
 
     #region Data References
     [Header("Data & Scripts")]
     public List<Patient> AllPatients;
 
+    [Header("VehiclesPrefabs")]
+    //[SerializeField] private GameObject _ambulancePrefab;
+    public GameObject NatanPrefab;
+
+    #endregion
+
+    [Header("Crews")]
+    public int NextCrewIndex = 0;
+    public List<Transform> /*AmbulancePosTransforms,*/ NatanPosTransforms;
+
     private Patient _lastClickedPatient;
     private PatientData _lastClickedPatientData;
-    #endregion
 
     #region MonoBehaviour Callbacks
     private void Awake()
     {
-        if (Instance == null) 
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);

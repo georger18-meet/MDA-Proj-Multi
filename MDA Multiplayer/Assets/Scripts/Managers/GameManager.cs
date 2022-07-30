@@ -6,14 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //public GameObject GameMenuCanvas;
-    public bool GameMenuOpen = false;
-
-    public List<PlayerData> NearbyPatient;
-
     public static GameManager Instance;
 
-    public GameObject _playerLog;
     private void Awake()
     {
         if (Instance == null)
@@ -51,8 +45,6 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
-
 
     public void ExitGame()
     {
