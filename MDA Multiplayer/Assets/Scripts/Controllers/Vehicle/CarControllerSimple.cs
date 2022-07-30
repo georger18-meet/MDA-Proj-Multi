@@ -209,4 +209,10 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
             transform.position = (Vector3)stream.ReceiveNext();
         }
     }
+
+
+    public void ExitVehicle()
+    {
+
+    }
 }

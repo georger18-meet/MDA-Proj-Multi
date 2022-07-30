@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarDoorCollision : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CarDoorCollision : MonoBehaviour
     public GameObject CollidingPlayer;
     public Transform SeatPosition;
     private OwnershipTransfer _transfer;
+    private Button _exitVehicleBtn;
 
     [SerializeField] private CarControllerSimple _carController;
     private Animator _doorAnimator;
@@ -19,6 +21,7 @@ public class CarDoorCollision : MonoBehaviour
     {
         _transfer = GetComponent<OwnershipTransfer>();
         _doorAnimator = GetComponent<Animator>();
+        _exitVehicleBtn = UIManager.Instance.VehicleUI.transform.GetChild(1).GetComponent<Button>();
     }
 
     void Update()
@@ -78,9 +81,8 @@ public class CarDoorCollision : MonoBehaviour
 
             if (!IsSeatOccupied)
             {
-                
                 Debug.Log("supposed to drive");
-
+                _exitVehicleBtn.onClick.AddListener(delegate { EnterExitToggle(number); });
                 OpenCloseDoorToggle(number);
                 IsSeatOccupied = true;
                 playerController.IsDriving = true;
