@@ -2917,9 +2917,7 @@ MonoBehaviour:
   _walkingSpeed: 1.8
   _runningSpeed: 11
   _flyingSpeed: 16
-  _jumpForce: 3
   _flyUpwardsSpeed: 9
-  _maxFlyingHeight: 100
   _groundLayer:
     serializedVersion: 2
     m_Bits: 520
