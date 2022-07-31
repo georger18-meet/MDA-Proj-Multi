@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [SerializeField] private Vector2 _mouseSensitivity = new Vector2(60f, 40f);
     [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 6f, _runningSpeed = 11f, _flyingSpeed = 16f;
-    [SerializeField] private float _jumpForce = 3f, _flyUpwardsSpeed = 9f, _maxFlyingHeight = 100f;
+    [SerializeField] private float _flyUpwardsSpeed = 9f;
     private float _stateSpeed;
     private bool _isDriving;
     public bool IsDriving { get => _isDriving; set => _isDriving = value; }
@@ -86,7 +86,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (_currentCarController != null)
             {
                 //CarCollider = _currentCarController.gameObject.transform.GetChild(2).GetChild(0).gameObject;
-              //  CarCollider.SetActive(true);
+                //  CarCollider.SetActive(true);
+                _isGrounded = _characterController.isGrounded;
                 _currentCarController.CheckIfDriveable();
                 _currentCarController.GetInput();
                 _currentCarController.CheckIsMovingBackwards();

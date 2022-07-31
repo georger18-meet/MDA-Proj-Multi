@@ -230,7 +230,7 @@ public class CrewRoomManager : MonoBehaviour
                 _playersInRoomList.Add(currentPlayerData);
             }
         }
-        BlockRoomAccess();
+        //BlockRoomAccess();
         Debug.LogError("Added to room");
        
     }
@@ -277,7 +277,7 @@ public class CrewRoomManager : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
-            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.NatanPosTransforms[_crewRoomIndex].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.NatanPosTransforms[_crewRoomIndex -1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
             natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
         }
 

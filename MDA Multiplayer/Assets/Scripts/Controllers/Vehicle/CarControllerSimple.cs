@@ -36,7 +36,7 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
 
     public List<CarDoorCollision> CarDoorCollisions;
 
-    private GameObject CarDashboardUI;
+    private GameObject _carDashboardUI;
     private PhotonView _photonView;
     public OwnershipTransfer Transfer;
     public int OwnerCrew;
@@ -47,12 +47,10 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
      }
 
      private void Start()
-     {
-        
+     {  
          _carRb = GetComponent<Rigidbody>();
          _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
-         UIManager.Instance.VehicleUI = CarDashboardUI;
-     
+        _carDashboardUI = UIManager.Instance.VehicleUI;
      }
 
     private void Update()
@@ -189,13 +187,13 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
             {
                 _isDrivable = true;
                 _carRb.isKinematic = false;
-               // CarDashboardUI.SetActive(true);
+                _carDashboardUI.SetActive(true);
             }
             else if (item.SeatNumber == 0 && !item.IsSeatOccupied)
             {
                 _isDrivable = false;
                 _carRb.isKinematic = true;
-               // CarDashboardUI.SetActive(false);
+                _carDashboardUI.SetActive(false);
             }
         }
     }
@@ -210,5 +208,11 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
         {
             transform.position = (Vector3)stream.ReceiveNext();
         }
+    }
+
+
+    public void ExitVehicle()
+    {
+
     }
 }

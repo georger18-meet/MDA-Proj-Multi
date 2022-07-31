@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
     private GameObject _tempInteractableRef;
+    //private Vector3 _cameraOriginalPos, _cameraCurrentPos;
+    //private Quaternion _cameraOriginalRot, _cameraCurrentRot;
 
     private void Awake()
     {
@@ -30,14 +32,28 @@ public class CameraController : MonoBehaviour
             Destroy(_playerCamera.gameObject);
             Destroy(this);
         }
+        else
+        {
+            //_cameraOriginalPos = _playerCamera.transform.position;
+            //_cameraOriginalRot = _playerCamera.transform.rotation;
+        }
     }
 
     private void Update()
     {
         if (_photonView.IsMine)
         {
+            //SmoothCamera();
             Interact();
         }
+    }
+
+    private void SmoothCamera()
+    {
+        //_cameraCurrentPos = _playerCamera.transform.position;
+        //_cameraCurrentRot = _playerCamera.transform.rotation;
+
+        //Vector3.Lerp();
     }
 
     public RaycastHit Interact()
