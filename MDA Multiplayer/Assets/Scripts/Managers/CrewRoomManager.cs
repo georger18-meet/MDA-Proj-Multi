@@ -28,6 +28,8 @@ public class CrewRoomManager : MonoBehaviour
     private PhotonView _photonView;
     private Vector3 _vestPos = new Vector3(0f, 0.295f, -0.015f);
 
+    [SerializeField] GameObject _patientMale, _patientFemale;
+
     private void Awake()
     {
         _crewRoomIndexStatic = 0;
@@ -161,6 +163,26 @@ public class CrewRoomManager : MonoBehaviour
     public void HideCrewRoomMenu()
     {
         RoomCrewMenuUI.SetActive(false);
+    }
+
+    public void SpawnPatient()
+    {
+        if (_crewRoomIndex < 2)
+        {
+            switch (_crewRoomIndex)
+            {
+                case 0:
+                    PhotonNetwork.Instantiate(_patientMale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
+                    break;
+
+                case 1:
+                    PhotonNetwork.Instantiate(_patientFemale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 
 

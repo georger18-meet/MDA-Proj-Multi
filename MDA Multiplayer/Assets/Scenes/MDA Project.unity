@@ -773,9 +773,6 @@ MonoBehaviour:
   ShockRoomList: []
   ChildrenRoomList: []
   EmergencyRoomList: []
-  SingleIncidentFeedbackWindow: {fileID: 0}
-  AranFeedbackWindow: {fileID: 0}
-  IsAranOngoing: 0
 --- !u!4 &41689329
 Transform:
   m_ObjectHideFlags: 0
@@ -12646,6 +12643,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: IncidentPatientSpawns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: IncidentPatientSpawns.Array.data[0]
+      value: 
+      objectReference: {fileID: 4129369799044991484}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: IncidentPatientSpawns.Array.data[1]
+      value: 
+      objectReference: {fileID: 4098720587907448024}
     - target: {fileID: 5756260545111399082, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
       propertyPath: sceneViewId
       value: 8
