@@ -18,9 +18,9 @@ public class EvacuationManager : MonoBehaviour
     public List<PhotonView> ChildrenRoomList;
     public List<PhotonView> EmergencyRoomList;
 
-    public GameObject SingleIncidentFeedbackWindow;
-    public GameObject AranFeedbackWindow;
-    public bool IsAranOngoing = false;
+    //public GameObject SingleIncidentFeedbackWindow;
+    //public GameObject AranFeedbackWindow;
+    //public bool IsAranOngoing = false;
 
     private void Awake()
     {
@@ -64,14 +64,14 @@ public class EvacuationManager : MonoBehaviour
                 break;
         }
 
-        if (!IsAranOngoing)
-        {
-            SingleIncidentFeedbackWindow.SetActive(true);
-        }
-        else
-        {
-            AranFeedbackWindow.SetActive(true);
-        }
+        //if (!IsAranOngoing)
+        //{
+        //    SingleIncidentFeedbackWindow.SetActive(true);
+        //}
+        //else
+        //{
+        //    AranFeedbackWindow.SetActive(true);
+        //}
     }
 
     public void DestroyPatient(PhotonView patient)

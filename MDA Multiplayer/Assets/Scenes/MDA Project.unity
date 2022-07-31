@@ -74601,8 +74601,8 @@ GameObject:
   - component: {fileID: 2067582419}
   - component: {fileID: 2067582424}
   - component: {fileID: 2067582423}
-  - component: {fileID: 2067582422}
   - component: {fileID: 2067582421}
+  - component: {fileID: 2067582422}
   m_Layer: 7
   m_Name: Evacuation Door
   m_TagString: Untagged
@@ -74683,6 +74683,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2067582417}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84850bad09a379e41be32e754e768155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _evacuationUI: {fileID: 5394520291862044350}
+--- !u!114 &2067582422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067582417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -74693,10 +74706,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 17
+  sceneViewId: 10
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2067582422
+--- !u!114 &2067582423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74711,7 +74724,7 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067582423}
+      - m_Target: {fileID: 2067582421}
         m_TargetAssemblyTypeName: EvacuationNpc, Assembly-CSharp
         m_MethodName: OnEvacuateNPCClicked
         m_Mode: 1
@@ -74723,19 +74736,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2067582423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067582417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84850bad09a379e41be32e754e768155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _evacuationUI: {fileID: 5394520291862044350}
 --- !u!65 &2067582424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76689,7 +76689,7 @@ PrefabInstance:
     - target: {fileID: 6804129437732540109, guid: be7afd9e2ad53ed4dae274bc90a8cb96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2067582421}
     - target: {fileID: 6804129437732540109, guid: be7afd9e2ad53ed4dae274bc90a8cb96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
