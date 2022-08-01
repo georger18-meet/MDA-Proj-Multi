@@ -1,5 +1,11 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+
+public enum PlayerTreatingPosition { Head = 0, Chest = 1, Leg = 2}
+public enum EquipmentPosition { Head = 0, Chest = 1}
 
 public class Action : MonoBehaviour
 {
@@ -16,12 +22,25 @@ public class Action : MonoBehaviour
     protected Transform PatientChestPosPlayerTransform;
     protected Transform PatientChestPosEquipmentTransform, PatientHeadPosPlayerTransform, PatientHeadPosEquipmentTransform, PatientLegPosPlayerTrasform;
 
+    protected List<Transform> PlayerTreatingPositions;
+    protected List<Transform> EquipmentPositions;
+
     [Header("Conditions")]
     [SerializeField] protected bool _shouldUpdateLog = true;
 
     [Header("Documentaion")]
 
     protected string TextToLog;
+
+    private void Start()
+    {
+        PlayerTreatingPositions.Add(PatientHeadPosPlayerTransform);
+        PlayerTreatingPositions.Add(PatientChestPosPlayerTransform);
+        PlayerTreatingPositions.Add(PatientLegPosPlayerTrasform);
+
+        EquipmentPositions.Add(PatientHeadPosEquipmentTransform);
+        EquipmentPositions.Add(PatientChestPosEquipmentTransform);
+    }
 
     public void GetActionData()
     {

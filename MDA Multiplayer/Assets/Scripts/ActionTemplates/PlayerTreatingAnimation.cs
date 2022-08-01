@@ -10,8 +10,8 @@ public class PlayerTreatingAnimation : Action
     [SerializeField] private string _animationName;
     [SerializeField] private float _animationEndTime;
 
-    // usually 0 /2 /4
-    [SerializeField] private int _patientColliderIndex;
+    [Header("Player Position")]
+    PlayerTreatingPosition _playerTreatingPos;
 
     [Header("Alert")]
     [SerializeField] private string _alertTitle;
@@ -24,13 +24,6 @@ public class PlayerTreatingAnimation : Action
     private Animator _playerAnimator;
     private string _playerName;
 
-    private IEnumerator WaitToFinishAnimation()
-    {
-        yield return new WaitForSeconds(_animationEndTime);
-
-        _playerAnimator.SetBool(_animationName, false);
-    }
-
     public void PlayAnimation()
     {
         GetActionData();
@@ -39,10 +32,10 @@ public class PlayerTreatingAnimation : Action
         {
             _playerAnimator = LocalPlayerData.gameObject.transform.GetChild(5).GetComponent<Animator>();
 
-            LocalPlayerData.transform.SetPositionAndRotation(PatientChestPosPlayerTransform.position, PatientChestPosPlayerTransform.rotation);
+            int playerTreatingPos = (int)_playerTreatingPos;
+            LocalPlayerData.transform.SetPositionAndRotation(PlayerTreatingPositions[playerTreatingPos].position, PlayerTreatingPositions[playerTreatingPos].rotation);
 
             _playerAnimator.SetBool(_animationName, true);
-            StartCoroutine(WaitToFinishAnimation());
 
             TextToLog = $" is Administering Heart Massages";
 

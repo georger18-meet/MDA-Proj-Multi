@@ -9,55 +9,28 @@ public class PatientObjectInstantiation : Action
     [Header("Prefab References")]
     [SerializeField] private GameObject _item;
 
+    [Header("Item Name")]
+    [SerializeField] private string _itemName;
+
     [Header("Item Offsets")]
     [SerializeField] private Vector3 _offsetPos;
     [SerializeField] private Quaternion _offsetRot;
 
-    [Header("Alerts")]
-    [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
-
-    [Header("Conditions")]
-    [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
-    [SerializeField] private bool _useColliders = false;
-
-    private Transform[] _equipmentColliders;
-
-    // 0 = HeadPos, 1 = ChestPos, 2 = Knees
     public void InstantiateOnPatient(int colliderIndex)
     {
         GetActionData();
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            if (_useColliders)
-            {
-                _equipmentColliders[0] = PatientHeadPosEquipmentTransform;
-                _equipmentColliders[1] = PatientChestPosEquipmentTransform;
-                //_equipmentColliders[2] = currentPatient.KneesPosEquipmentTransform;
+            Vector3 desiredPosition = CurrentPatient.transform.position + _offsetPos;
+            Quaternion desiredRotation = new Quaternion(CurrentPatient.transform.rotation.x + _offsetRot.y, CurrentPatient.transform.rotation.y + _offsetRot.x, CurrentPatient.transform.rotation.z + _offsetRot.z, CurrentPatient.transform.rotation.w + _offsetRot.w);
 
-                GameObject item = PhotonNetwork.Instantiate(_item.name, _equipmentColliders[colliderIndex].position, _equipmentColliders[colliderIndex].rotation);
+            GameObject item = PhotonNetwork.Instantiate(_item.name, desiredPosition, desiredRotation);
+            item.transform.SetParent(CurrentPatient.transform);
 
-                item.transform.SetParent(_equipmentColliders[colliderIndex]);
-            }
-            else
-            {
-                Vector3 desiredPosition = CurrentPatient.transform.position + _offsetPos;
-                Quaternion desiredRotation = new Quaternion(CurrentPatient.transform.rotation.x + _offsetRot.y, CurrentPatient.transform.rotation.y + _offsetRot.x, CurrentPatient.transform.rotation.z + _offsetRot.z, CurrentPatient.transform.rotation.w + _offsetRot.w);
+            TextToLog = $"Used {_itemName}";
 
-                GameObject item = PhotonNetwork.Instantiate(_item.name, desiredPosition, desiredRotation);
-                item.transform.SetParent(CurrentPatient.transform);
-            }
-
-            TextToLog = $"Placed {_item.name} on {CurrentPatientData.Name} {CurrentPatientData.SureName}";
-
-            if (_showAlert)
-            {
-                ShowTextAlert(_alertTitle, _alertText);
-            }
-
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }
@@ -67,6 +40,6 @@ public class PatientObjectInstantiation : Action
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(transform.position, _offsetPos);
+        Gizmos.DrawWireCube(_offsetPos, _item.transform.localScale);
     }
 }
