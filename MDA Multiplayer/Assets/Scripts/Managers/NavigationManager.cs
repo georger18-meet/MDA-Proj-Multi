@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 public class NavigationManager : MonoBehaviour
 {
+    private PhotonView _playerPhotonView;
     private NavMeshAgent _agent;
     private LineRenderer _lineRenderer;
     private bool _reachedDestination;
@@ -19,10 +21,23 @@ public class NavigationManager : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = 0;
+
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        {
+            if (ActionsManager.Instance.AllPlayersPhotonViews[i].IsMine)
+            {
+                _playerPhotonView = ActionsManager.Instance.AllPlayersPhotonViews[i];
+                break;
+            }
+        }
     }
 
     void Update()
     {
+        if (_playerPhotonView)
+        {
+            transform.position = _playerPhotonView.transform.position;
+        }
         StopGPSNav();
     }
 
