@@ -4347,6 +4347,12 @@ MonoBehaviour:
   _takeReturnText: {fileID: 4825805795839380891}
   _followUnfollowText: {fileID: 6882587086787270367}
   _placeRemovePatientText: {fileID: 795900751228114914}
+  _takeText: "\u05D4\u05D5\u05E6\u05D0\u05D4"
+  _returnText: "\u05D4\u05D7\u05D6\u05E8\u05D4"
+  _followText: "\u05D2\u05E8\u05D9\u05E8\u05D4"
+  _unfollowText: "\u05E2\u05D6\u05D9\u05D1\u05D4"
+  _placeText: "\u05D4\u05E0\u05D7\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC"
+  _removeText: "\u05D4\u05D5\u05E8\u05D3\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC"
   _playerHoldPos: {fileID: 6427549772342072432}
   _patientPosOnBed: {fileID: 7678035613532437853}
   _patientPosOffBed: {fileID: 1685656052544437644}

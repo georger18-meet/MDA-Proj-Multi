@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Transform[] IncidentPatientSpawns;
+    public List<Transform> CurrentIncidentsTransforms;
 
     private void Awake()
     {

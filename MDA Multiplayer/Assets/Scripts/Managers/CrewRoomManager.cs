@@ -174,6 +174,7 @@ public class CrewRoomManager : MonoBehaviour
             {
                 case 1:
                     PhotonNetwork.Instantiate(_patientMale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
+                    GameManager.Instance.CurrentIncidentsTransforms.Add(GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex]);
                     break;
 
                 case 2:
@@ -263,12 +264,12 @@ public class CrewRoomManager : MonoBehaviour
     {
         PhotonView myPlayer = ActionsManager.Instance.GetPlayerPhotonViewByNickName(currentPlayer);
 
-            if (_playersInRoomList.Contains(myPlayer))
-            {
-                _playersInRoomList.Remove(myPlayer);
-            }
+        if (_playersInRoomList.Contains(myPlayer))
+        {
+            _playersInRoomList.Remove(myPlayer);
+        }
 
-            Debug.LogError("Remove from room");
+        Debug.LogError("Remove from room");
 
     }
 

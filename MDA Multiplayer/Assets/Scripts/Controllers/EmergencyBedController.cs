@@ -20,6 +20,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
     [SerializeField] private GameObject _emergencyBedUI;
     [SerializeField] private TextMeshProUGUI _takeReturnText;
     [SerializeField] private TextMeshProUGUI _followUnfollowText, _placeRemovePatientText;
+    [SerializeField] private string _takeText, _returnText, _followText, _unfollowText, _placeText, _removeText;
 
     [Header("Positions")]
     [SerializeField] private Transform _playerHoldPos;
@@ -86,11 +87,13 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         if (_emergencyBedUI.activeInHierarchy)
         {
             _emergencyBedUI.SetActive(false);
+            UIManager.Instance.CurrentActionBarParent.SetActive(true);
         }
         else
         {
             _transfer.BedPickUp();
             _emergencyBedUI.SetActive(true);
+            UIManager.Instance.CurrentActionBarParent.SetActive(false);
         }
     }
     
@@ -143,17 +146,16 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         {
             if (_isFollowingPlayer)
             {
-                
                 _player.transform.position = _playerHoldPos.position;
                 _player.transform.LookAt(transform.position);
                 gameObject.transform.SetParent(_player.transform);
-                _followUnfollowText.text = "Detach \n Bed";
+                _followUnfollowText.text = _followText;
             }
             else if (!_isFollowingPlayer)
             {
                 //_isFacingTrolley = false;
                 gameObject.transform.SetParent(null);
-                _followUnfollowText.text = "Attach \n Bed";
+                _followUnfollowText.text = _unfollowText;
             }
         }
     }
@@ -196,10 +198,11 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
             transform.position = _emergencyBedPositionInsideVehicle.position;
             transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
             transform.SetParent(_emergencyBedPositionInsideVehicle);
+            _takeReturnText.text = _takeText;
         }
         else if (_inCar && _takeOutBed)
         {
-            _takeReturnText.text = "Return";
+            _takeReturnText.text = _returnText;
         }
     }
     
@@ -294,7 +297,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         _patient.GetComponent<BoxCollider>().enabled = false;
         _patient.transform.SetPositionAndRotation(_patientPosOnBed.position, _patientPosOnBed.rotation); // parent
         _patient.transform.SetParent(this.transform);// parent
-        _placeRemovePatientText.text = "Drop \n Patient";
+        _placeRemovePatientText.text = _removeText;
         _emergencyBedUI.SetActive(false);
     }
 
@@ -305,7 +308,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         _patient.GetComponent<BoxCollider>().enabled = true;
         _patient.transform.position = _patientPosOffBed.position;// parent
         _patient.transform.SetParent(null);// parent
-        _placeRemovePatientText.text = "Place \n Patient";
+        _placeRemovePatientText.text = _placeText;
         _emergencyBedUI.SetActive(false);
     }
 

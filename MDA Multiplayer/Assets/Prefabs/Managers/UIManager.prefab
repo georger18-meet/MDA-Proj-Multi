@@ -65,6 +65,7 @@ MonoBehaviour:
   NatanOxygenPanel: {fileID: 0}
   NatanMonitorPanel: {fileID: 0}
   TeamLeaderMenu: {fileID: 0}
+  TeamLeaderNavigationBtn: {fileID: 0}
   JoinPatientPopUp: {fileID: 0}
   PatientInfoParent: {fileID: 0}
   ActionLogParent: {fileID: 0}

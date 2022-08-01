@@ -26,7 +26,7 @@ public class NavigationManager : MonoBehaviour
         StopGPSNav();
     }
 
-    public void StartGPSNav()
+    public void StartEvacuationGPSNav()
     {
         Debug.Log(UIManager.Instance._dropDown.value); // Gives me the Enum value
 
@@ -45,6 +45,20 @@ public class NavigationManager : MonoBehaviour
                 _reachedDestination = false;
             }
         }
+    }
+
+    // need fixing - navigation always will go to last incident currently playing
+    public void StartIncidentGPSNav()
+    {
+        int _incidentsCount = 0;
+        _incidentsCount = GameManager.Instance.CurrentIncidentsTransforms.Count;
+
+        _destinationMarkerPrefab.transform.position =
+         GameManager.Instance.CurrentIncidentsTransforms[_incidentsCount -1].position;
+        _agent.SetDestination(GameManager.Instance.CurrentIncidentsTransforms[_incidentsCount -1].position);
+        _agent.isStopped = true;
+        _reachedDestination = false;
+        DrawPath();
     }
 
     public void StopGPSNav()
