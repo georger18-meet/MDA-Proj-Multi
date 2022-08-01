@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: 1444448096334868184
     second: UI Leader Menu_2
+  - first:
+      213: 823996395692317324
+    second: UI Leader Menu_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,8 +142,8 @@ TextureImporter:
       name: UI Leader Menu_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1844
+        x: 144
+        y: 570
         width: 736
         height: 204
       alignment: 0
@@ -160,8 +163,8 @@ TextureImporter:
       name: UI Leader Menu_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1773
+        x: 144
+        y: 499
         width: 62
         height: 21
       alignment: 0
@@ -181,8 +184,8 @@ TextureImporter:
       name: UI Leader Menu_2
       rect:
         serializedVersion: 2
-        x: 131
-        y: 1772
+        x: 275
+        y: 498
         width: 62
         height: 21
       alignment: 0
@@ -198,10 +201,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI Leader Menu_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 250
+        width: 736
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8a517d2b5c6f6b00800000000000000
+      internalID: 823996395692317324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ecfe6e181d906c34a8290dabc53ae7d3
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

@@ -54,6 +54,15 @@ public class ActionTemplates : MonoBehaviour
         }
     }
 
+    public void CloseDisplayWindow(GameObject window)
+    {
+        Debug.Log($"Attempting to Close {window.name}");
+
+        window.SetActive(false);
+
+        Debug.Log($"Closed {window.name}");
+    }
+
     public void UpdateDisplayWindow(GameObject window, TextMeshProUGUI text, int newValue)
     {
         TextMeshProUGUI oldText = text;

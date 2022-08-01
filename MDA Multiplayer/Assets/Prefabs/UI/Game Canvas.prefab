@@ -646,7 +646,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 170, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &860974655
 CanvasRenderer:
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.92156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4829,8 +4829,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 354651383081076605}
   m_HandleRect: {fileID: 354651383081076482}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.13333334
+  m_Value: 1.0000001
+  m_Size: 0.136
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4867,7 +4867,7 @@ RectTransform:
   m_Father: {fileID: 354651383517923807}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8666667}
+  m_AnchorMin: {x: 0, y: 0.86399996}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -4948,7 +4948,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 200}
+  m_SizeDelta: {x: 600, y: 204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &354651383086615465
 CanvasRenderer:
@@ -5035,8 +5035,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -650}
-  m_SizeDelta: {x: 400, y: 1500}
+  m_AnchoredPosition: {x: 0, y: -648.0001}
+  m_SizeDelta: {x: 600, y: 1500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &354651383171868399
 MonoBehaviour:
@@ -5058,7 +5058,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 350, y: 15}
+  m_CellSize: {x: 560, y: 15}
   m_Spacing: {x: 0, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -5136,7 +5136,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 200}
+  m_SizeDelta: {x: 600, y: 204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &354651383817164131
 CanvasRenderer:
@@ -5166,7 +5166,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 538909124222137501, guid: 54488055c7cd73044bce8f086352dc03, type: 3}
+  m_Sprite: {fileID: 823996395692317324, guid: 18cde922002f9e7479022013bd073edc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9463,8 +9463,6 @@ MonoBehaviour:
   _newHeartRate: 64
   _alertTitle: 
   _alertText: 
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &1005429748863936935
 GameObject:
   m_ObjectHideFlags: 0
@@ -11335,8 +11333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05D1\u05D5\u05D6'\u05D9 \u05E7\u05D8\u05D8\u05E8"
   _alertText: "\u05D1\u05D5\u05D6'\u05D9 \u05E7\u05D8\u05D8\u05E8"
+  _textToLog: 
 --- !u!1 &1270513322452796024
 GameObject:
   m_ObjectHideFlags: 0
@@ -18161,10 +18162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _clothing: 2
-  _alertTitle: 
-  _alertContent: 
-  _showAlert: 0
-  _updateLog: 0
+  _textToLog: 
 --- !u!114 &9039891351987955206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21351,8 +21349,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 625.25, y: -435.75}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: 500, y: -434.75}
+  m_SizeDelta: {x: 600, y: 204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100554712457123944
 CanvasRenderer:
@@ -55359,9 +55357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05E0\u05D9\u05EA\u05D5\u05D1 \u05D0\u05D5\u05D9\u05E8"
   _alertText: "\u05E0\u05D9\u05EA\u05D5\u05D1 \u05D0\u05D5\u05D9\u05E8 \u05D1\u05D5\u05E6\u05E2
     \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
+  _textToLog: 
 --- !u!1 &3179379576430321430
 GameObject:
   m_ObjectHideFlags: 0
@@ -57490,6 +57491,7 @@ GameObject:
   - component: {fileID: 967197506548977752}
   - component: {fileID: 1875765844265291591}
   - component: {fileID: 6793001098076777926}
+  - component: {fileID: 4134889592247787913}
   m_Layer: 5
   m_Name: CalmPatientDown Btn
   m_TagString: Untagged
@@ -57624,14 +57626,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _calmDownHeartRateBy: 20
-  _calmDownRespiratoryRateBy: 8
-  _newHeartRate: 0
-  _newRespiratoryRate: 0
+  _newHeartRate: 78
+  _newRespiratoryRate: 14
+--- !u!114 &4134889592247787913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3501845042389721129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 0
+  _isAlertNum: 0
   _alertTitle: "\u05D4\u05E8\u05D2\u05E2\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC"
-  _alertContent: "\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E8\u05D2\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
-  _showAlert: 1
-  _updateLog: 1
+  _alertText: "\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E8\u05D2\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
+  _textToLog: 
 --- !u!1 &3531103080041707126
 GameObject:
   m_ObjectHideFlags: 0
@@ -57778,8 +57791,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05E9\u05E1\u05EA\u05D5\u05DD PEEP"
   _alertText: "\u05E9\u05E1\u05EA\u05D5\u05DD PEEP"
+  _textToLog: 
 --- !u!1 &3543031516526031414
 GameObject:
   m_ObjectHideFlags: 0
@@ -65817,10 +65833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _clothing: 0
-  _alertTitle: 
-  _alertContent: 
-  _showAlert: 0
-  _updateLog: 1
+  _textToLog: 
 --- !u!1 &4623974497304730598
 GameObject:
   m_ObjectHideFlags: 0
@@ -68976,14 +68989,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _calmDownHeartRateBy: 20
-  _calmDownRespiratoryRateBy: 8
   _newHeartRate: 0
   _newRespiratoryRate: 0
-  _alertTitle: 
-  _alertContent: 
-  _showAlert: 0
-  _updateLog: 1
 --- !u!114 &8853152832562612079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79489,7 +79496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -188.75, y: 89.75}
+  m_AnchoredPosition: {x: -288.75, y: 89.75}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &679428617855216380
@@ -80643,8 +80650,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05D4\u05D5\u05E6\u05D0\u05EA \u05D2\u05D5\u05E3 \u05D6\u05E8"
   _alertText: "\u05D2\u05D5\u05E3 \u05D6\u05E8 \u05D4\u05D5\u05E6\u05D0 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
+  _textToLog: Removed foreign object from patinet
 --- !u!1 &5940239231333832675
 GameObject:
   m_ObjectHideFlags: 0
@@ -82716,8 +82726,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 205, y: -25}
-  m_SizeDelta: {x: 350, y: 15}
+  m_AnchoredPosition: {x: 310, y: -25}
+  m_SizeDelta: {x: 560, y: 15}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7901501065080812817
 CanvasRenderer:
@@ -85612,8 +85622,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05D5\u05D5\u05D9\u05D3\u05D5\u05D0 \u05D1\u05D8\u05D9\u05D7\u05D5\u05EA"
   _alertText: "\u05D4\u05DE\u05D8\u05D5\u05E4\u05DC \u05D1\u05D8\u05D5\u05D7"
+  _textToLog: Patient is secured
 --- !u!1 &6792226158126542185
 GameObject:
   m_ObjectHideFlags: 0
@@ -86020,8 +86033,6 @@ MonoBehaviour:
   _newHeartRate: 0
   _alertTitle: 
   _alertText: 
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &6849467291866825800
 GameObject:
   m_ObjectHideFlags: 0
@@ -86035,6 +86046,7 @@ GameObject:
   - component: {fileID: 7223577598861933563}
   - component: {fileID: 4530160467635946745}
   - component: {fileID: 8827267099607560846}
+  - component: {fileID: 4134889592247787910}
   m_Layer: 5
   m_Name: StripPatient Btn
   m_TagString: Untagged
@@ -86170,10 +86182,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _clothing: 3
-  _alertTitle: "\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E4\u05E9\u05D8"
-  _alertContent: "\u05EA\u05D7\u05EA\u05D5\u05E0\u05D9\u05DD \u05D1\u05DC\u05D1\u05D3"
-  _showAlert: 1
-  _updateLog: 1
+  _textToLog: Underwear Only
+--- !u!114 &4134889592247787910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849467291866825800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 0
+  _isAlertNum: 0
+  _alertTitle: "\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E4\u05E9\u05D8:"
+  _alertText: "\u05EA\u05D7\u05EA\u05D5\u05E0\u05D9\u05DD \u05D1\u05DC\u05D1\u05D3"
+  _textToLog: 
 --- !u!1 &6874206642111824863
 GameObject:
   m_ObjectHideFlags: 0
@@ -113049,8 +113075,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05E1\u05E7\u05E9\u05DF"
   _alertText: "\u05D1\u05D5\u05E6\u05E2 \u05E1\u05E7\u05E9\u05DF."
+  _textToLog: 
 --- !u!1 &8096556725628013319
 GameObject:
   m_ObjectHideFlags: 0
@@ -115848,9 +115877,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05E0\u05D9\u05EA\u05D5\u05D1 \u05D0\u05D5\u05D9\u05E8"
   _alertText: "\u05E0\u05D9\u05EA\u05D5\u05D1 \u05D0\u05D5\u05D9\u05E8 \u05D1\u05D5\u05E6\u05E2
     \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
+  _textToLog: 
 --- !u!1 &8573164680712678383
 GameObject:
   m_ObjectHideFlags: 0
@@ -118039,8 +118071,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05E2\u05E8\u05DB\u05EA \u05D6\u05D5\u05E0\u05D3\u05D4"
   _alertText: "\u05E2\u05E8\u05DB\u05EA \u05D6\u05D5\u05E0\u05D3\u05D4"
+  _textToLog: 
 --- !u!1 &8895647721885854006
 GameObject:
   m_ObjectHideFlags: 0
@@ -118563,9 +118598,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76372bfb26f2ea48900ae7b8b2b14d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _isAlertNum: 0
   _alertTitle: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05D0\u05D9\u05E9\u05D5\u05E0\u05D9\u05DD"
   _alertText: "\u05EA\u05E9\u05D5\u05D1\u05D4 \u05DE\u05DE\u05E2\u05E8\u05DB\u05EA
     \u05D4\u05E4\u05D9\u05D3\u05D1\u05E7"
+  _textToLog: 
 --- !u!1 &9006737585920140383
 GameObject:
   m_ObjectHideFlags: 0

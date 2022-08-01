@@ -38,7 +38,7 @@ public class HeartMassages : Action
             CurrentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, _newHeartRate);
 
             _heartMassagesWindow.SetActive(true);
-            StartCoroutine(WaitToFinishCPR());
+            //StartCoroutine(WaitToFinishCPR());
 
             TextToLog = $"Started Administering Heart Massages";
 
