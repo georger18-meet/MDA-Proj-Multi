@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public GameObject AmbulanceNoBagPanel, AmbulanceAmbuPanel, AmbulanceKidsAmbuPanel, AmbulanceMedicPanel, AmbulanceDefibrilationPanel, AmbulanceOxygenPanel, AmbulanceMonitorPanel;
     public GameObject NatanNoBagPanel, NatanAmbuPanel, NatanKidsAmbuPanel, NatanMedicPanel, NatanQuickDrugsPanel, NatanOxygenPanel, NatanMonitorPanel;
     public GameObject TeamLeaderMenu;
+    public GameObject TeamLeaderNavigationBtn;
 
     #endregion
 

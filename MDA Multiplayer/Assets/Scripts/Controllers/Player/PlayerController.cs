@@ -498,7 +498,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 return;
             }
             PlayerData.CurrentPatientNearby = possiblePatient;
-            UIManager.Instance.CurrentActionBarParent.SetActive(true);
         }
     }
 
@@ -511,9 +510,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 return;
             }
             PlayerData.CurrentPatientNearby = null;
-            UIManager.Instance.CurrentActionBarParent.SetActive(false);
         }
-        
     }
     #endregion
 

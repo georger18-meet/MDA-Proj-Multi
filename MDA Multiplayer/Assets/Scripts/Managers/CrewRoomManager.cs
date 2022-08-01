@@ -28,7 +28,8 @@ public class CrewRoomManager : MonoBehaviour
     private PhotonView _photonView;
     private Vector3 _vestPos = new Vector3(0f, 0.295f, -0.015f);
 
-    [SerializeField] GameObject _patientMale, _patientFemale;
+    [SerializeField] private GameObject _patientMale, _patientFemale;
+    //[SerializeField] private GameObject _crewRoomDoor;
 
     private void Awake()
     {
@@ -171,11 +172,11 @@ public class CrewRoomManager : MonoBehaviour
         {
             switch (_crewRoomIndex)
             {
-                case 0:
+                case 1:
                     PhotonNetwork.Instantiate(_patientMale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
                     break;
 
-                case 1:
+                case 2:
                     PhotonNetwork.Instantiate(_patientFemale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
                     break;
 

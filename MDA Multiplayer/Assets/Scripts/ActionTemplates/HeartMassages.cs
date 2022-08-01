@@ -14,10 +14,6 @@ public class HeartMassages : Action
     [SerializeField] private string _alertTitle;
     [SerializeField] private string _alertText;
 
-    [Header("Conditions")]
-    [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
-
     private Animator _playerAnimator;
     private string _playerName;
 
@@ -26,7 +22,6 @@ public class HeartMassages : Action
         yield return new WaitForSeconds(4);
 
         _playerAnimator.SetBool("Administering Cpr", false);
-        //ActionTemplates.Instance.UpdatePatientLog(localPlayerData.CrewIndex, localPlayerData.UserName, $"{_playerName} has finished Administering Heart Massages");
     }
 
     public void DoHeartMassage()
@@ -45,14 +40,9 @@ public class HeartMassages : Action
             _heartMassagesWindow.SetActive(true);
             StartCoroutine(WaitToFinishCPR());
 
-            TextToLog = $" Administering Heart Massages";
+            TextToLog = $"Started Administering Heart Massages";
 
-            if (_showAlert)
-            {
-                ShowTextAlert(_alertTitle, _alertText);
-            }
-
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }
@@ -61,6 +51,13 @@ public class HeartMassages : Action
 
     public void StopHeartMassages()
     {
+        TextToLog = $"Stopped Administering Heart Massages";
+        _playerAnimator.SetBool("Administering Cpr", false);
         _heartMassagesWindow.SetActive(false);
+
+        if (_shouldUpdateLog)
+        {
+            LogText(TextToLog);
+        }
     }
 }

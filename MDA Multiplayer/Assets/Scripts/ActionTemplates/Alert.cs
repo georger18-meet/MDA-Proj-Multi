@@ -4,32 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Alert : MonoBehaviour
+public class Alert : Action
 {
-    [Header("Component's Data")]
+    [SerializeField] private bool _isAlertNum = false;
+
+    [Header("Alert's Content")]
     [SerializeField] private string _alertTitle;
     [SerializeField] private string _alertText;
 
+    [Header("Log's Content")]
+    [SerializeField] private string _textToLog;
+
     public void ShowAlert()
     {
-        // loops through all players photonViews
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        GetActionData();
+
+        TextToLog = _textToLog;
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            // execute only if this instance if of the local player
-            if (photonView.IsMine)
+            if (!_isAlertNum)
             {
-                // Get local PlayerData
-                PlayerData localPlayerData = photonView.GetComponent<PlayerData>();
+                ShowTextAlert(_alertTitle, _alertText);
+            }
+            else
+            {
+                ShowNumAlert(_alertTitle, int.Parse(_alertText));
+            }
 
-                // check if local player joined with a Patient
-                if (!localPlayerData.CurrentPatientNearby.IsPlayerJoined(localPlayerData))
-                    return;
-
-                Patient currentPatient = localPlayerData.CurrentPatientNearby;
-                PatientData currentPatientData = currentPatient.PatientData;
-
-                ActionTemplates.Instance.ShowAlertWindow(_alertTitle, _alertText);
-                break;
+            if (_shouldUpdateLog)
+            {
+                LogText(TextToLog);
             }
         }
     }

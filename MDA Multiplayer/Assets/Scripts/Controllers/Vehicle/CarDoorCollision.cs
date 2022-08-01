@@ -41,6 +41,8 @@ public class CarDoorCollision : MonoBehaviour
                 _ => UIManager.Instance.AmbulanceBar,
             };
 
+            UIManager.Instance.CurrentActionBarParent.SetActive(true);
+
             IsDoorOpen = false;
             _doorAnimator.SetBool("IsDoorOpen", false);
         }
@@ -53,8 +55,11 @@ public class CarDoorCollision : MonoBehaviour
                 _ => UIManager.Instance.AmbulanceBar,
             };
 
+            UIManager.Instance.CurrentActionBarParent.SetActive(true);
+
             IsDoorOpen = true;
             _doorAnimator.SetBool("IsDoorOpen", true);
+
             if (IsSeatOccupied)
             {
                 EnterExitToggle(number);
