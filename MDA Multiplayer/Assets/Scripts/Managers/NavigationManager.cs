@@ -7,6 +7,7 @@ using Photon.Pun;
 public class NavigationManager : MonoBehaviour
 {
     private PhotonView _playerPhotonView;
+    private PlayerController _playerController;
     private NavMeshAgent _agent;
     private LineRenderer _lineRenderer;
     private bool _reachedDestination;
@@ -21,22 +22,32 @@ public class NavigationManager : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = 0;
-
-        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
-        {
-            if (ActionsManager.Instance.AllPlayersPhotonViews[i].IsMine)
-            {
-                _playerPhotonView = ActionsManager.Instance.AllPlayersPhotonViews[i];
-                break;
-            }
-        }
     }
 
     void Update()
     {
-        if (_playerPhotonView)
+        if (!_playerPhotonView)
         {
-            transform.position = _playerPhotonView.transform.position;
+            for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+            {
+                if (ActionsManager.Instance.AllPlayersPhotonViews[i].IsMine)
+                {
+                    _playerPhotonView = ActionsManager.Instance.AllPlayersPhotonViews[i];
+                    _playerController = _playerPhotonView.GetComponent<PlayerController>();
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (_playerController.CurrentCarController)
+            {
+                transform.position = _playerController.CurrentCarController.transform.position;
+            }
+            else
+            {
+                transform.position = _playerPhotonView.transform.position + (_playerPhotonView.transform.forward * 2);
+            }
         }
         StopGPSNav();
     }

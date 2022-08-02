@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [Header("Camera")]
     private Camera _currentCamera;
+    public Camera CurrentCamera => _currentCamera;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Camera _vehicleCamera;
     [SerializeField] private GameObject _MiniMaCamera;
