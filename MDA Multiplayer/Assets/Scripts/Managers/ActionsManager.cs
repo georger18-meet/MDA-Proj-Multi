@@ -50,7 +50,8 @@ public class ActionsManager : MonoBehaviour
 
     [Header("Crews")]
     public int NextCrewIndex = 0;
-    public List<Transform> /*AmbulancePosTransforms,*/ NatanPosTransforms;
+    public List<Transform> /*AmbulancePosTransforms,*/ VehiclePosTransforms;
+    public List<bool> /*AmbulancePosTransforms,*/ VehiclePosOccupiedList;
 
     private Patient _lastClickedPatient;
     private PatientData _lastClickedPatientData;
@@ -148,5 +149,4 @@ public class ActionsManager : MonoBehaviour
         }
     }
     #endregion
-
 }

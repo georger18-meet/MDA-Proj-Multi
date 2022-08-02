@@ -28,6 +28,8 @@ public class CrewRoomManager : MonoBehaviour
     private PhotonView _photonView;
     private Vector3 _vestPos = new Vector3(0f, 0.295f, -0.015f);
 
+    [SerializeField] private string _prefixName;
+
     [SerializeField] private GameObject _patientMale, _patientFemale;
     //[SerializeField] private GameObject _crewRoomDoor;
 
@@ -80,16 +82,16 @@ public class CrewRoomManager : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    CrewMemberNameText1.text = _playersInRoomList[i].Owner.NickName;
+                    CrewMemberNameText1.text = _prefixName + "1" + _playersInRoomList[i].Owner.NickName;
                     break;
                 case 1:
-                    CrewMemberNameText2.text = _playersInRoomList[i].Owner.NickName;
+                    CrewMemberNameText2.text = _prefixName + "2" + _playersInRoomList[i].Owner.NickName;
                     break;
                 case 2:
-                    CrewMemberNameText3.text = _playersInRoomList[i].Owner.NickName;
+                    CrewMemberNameText3.text = _prefixName + "3" + _playersInRoomList[i].Owner.NickName;
                     break;
                 case 3:
-                    CrewMemberNameText4.text = _playersInRoomList[i].Owner.NickName;
+                    CrewMemberNameText4.text = _prefixName + "4" + _playersInRoomList[i].Owner.NickName;
                     break;
                 default:
                     break;
@@ -183,6 +185,19 @@ public class CrewRoomManager : MonoBehaviour
 
                 default:
                     break;
+            }
+        }
+    }
+
+    public void SpawnVehicle()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            VehicleChecker currentPosVehicleChecker = ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].GetComponent<VehicleChecker>();
+            if (!currentPosVehicleChecker.IsPosOccupied)
+            {
+                GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+                natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
             }
         }
     }
@@ -297,13 +312,8 @@ public class CrewRoomManager : MonoBehaviour
 
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
-        HideCrewRoomMenu();
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.NatanPosTransforms[_crewRoomIndex -1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
-            natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
-        }
+        //SpawnVehicle();
 
         ActionsManager.Instance.NextCrewIndex++;
     }
