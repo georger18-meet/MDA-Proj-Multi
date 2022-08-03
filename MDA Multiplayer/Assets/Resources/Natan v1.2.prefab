@@ -2215,8 +2215,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 2, z: 3}
+  m_Center: {x: -0.5, y: 0, z: 0}
 --- !u!114 &88324836024044015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,7 +3582,6 @@ GameObject:
   - component: {fileID: 1187848364005952463}
   - component: {fileID: 6793695811982868759}
   - component: {fileID: 8610486403865073336}
-  - component: {fileID: 4432087268691983637}
   m_Layer: 7
   m_Name: SeatPos
   m_TagString: Untagged
@@ -3633,33 +3632,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.625, z: 0.5}
   m_Center: {x: 0, y: 0.25, z: 0}
---- !u!114 &4432087268691983637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950297224911391236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventToCall:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 88324836024044015}
-        m_TargetAssemblyTypeName: CarDoorCollision, Assembly-CSharp
-        m_MethodName: EnterExitToggle
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6086338615569541535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,7 +3834,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3587564334308346677}
         m_TargetAssemblyTypeName: CarDoorCollision, Assembly-CSharp
-        m_MethodName: EnterExitToggle
+        m_MethodName: OpenCloseDoorToggle
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -45,6 +45,7 @@ public class CarDoorCollision : MonoBehaviour
 
             IsDoorOpen = false;
             _doorAnimator.SetBool("IsDoorOpen", false);
+
         }
         else if (!IsDoorOpen)
         {
@@ -60,11 +61,18 @@ public class CarDoorCollision : MonoBehaviour
             IsDoorOpen = true;
             _doorAnimator.SetBool("IsDoorOpen", true);
 
-            if (IsSeatOccupied)
-            {
-                EnterExitToggle(number);
-            }
+            //if (IsSeatOccupied)
+            //{
+            //    EnterExitToggle();
+            //}
         }
+
+        EnterExitToggle();
+    }
+
+    private void CloseDoor()
+    {
+        _doorAnimator.SetBool("IsDoorOpen", false);
     }
 
     private void EnterExitVehicle()
@@ -78,7 +86,7 @@ public class CarDoorCollision : MonoBehaviour
         }
     }
 
-    public void EnterExitToggle(int number)
+    public void EnterExitToggle()
     {
         if (IsDoorOpen && CollidingPlayer != null)
         {
@@ -87,11 +95,11 @@ public class CarDoorCollision : MonoBehaviour
             if (!IsSeatOccupied)
             {
                 Debug.Log("supposed to drive");
-                _exitVehicleBtn.onClick.AddListener(delegate { EnterExitToggle(number); });
-                OpenCloseDoorToggle(number);
+                _exitVehicleBtn.onClick.AddListener(delegate { EnterExitToggle(); });
                 IsSeatOccupied = true;
                 playerController.IsDriving = true;
-                
+                _doorAnimator.SetBool("IsDoorOpen", false);
+
                 if (SeatNumber == 0)
                 {
                     _carController.Transfer.CarDriver();
@@ -106,6 +114,7 @@ public class CarDoorCollision : MonoBehaviour
                 IsSeatOccupied = false;
                 CollidingPlayer.transform.position = gameObject.transform.position;
                 playerController.IsDriving = false;
+                
 
                 if (SeatNumber != 0)
                 {
@@ -122,7 +131,6 @@ public class CarDoorCollision : MonoBehaviour
         if (other.CompareTag("Player") && !IsSeatOccupied)
         {
             CollidingPlayer = other.gameObject;
-
         }
     }
 
