@@ -191,14 +191,12 @@ public class CrewRoomManager : MonoBehaviour
 
     public void SpawnVehicle()
     {
-        if (PhotonNetwork.IsMasterClient)
+        VehicleChecker currentPosVehicleChecker = ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].GetComponent<VehicleChecker>();
+
+        if (!currentPosVehicleChecker.IsPosOccupied)
         {
-            VehicleChecker currentPosVehicleChecker = ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].GetComponent<VehicleChecker>();
-            if (!currentPosVehicleChecker.IsPosOccupied)
-            {
-                GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
-                natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
-            }
+            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+            natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
         }
     }
 

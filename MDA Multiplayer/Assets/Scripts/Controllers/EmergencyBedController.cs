@@ -149,13 +149,13 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
                 _player.transform.position = _playerHoldPos.position;
                 _player.transform.LookAt(transform.position);
                 gameObject.transform.SetParent(_player.transform);
-                _followUnfollowText.text = _followText;
+                _followUnfollowText.text = _unfollowText;
             }
             else if (!_isFollowingPlayer)
             {
                 //_isFacingTrolley = false;
                 gameObject.transform.SetParent(null);
-                _followUnfollowText.text = _unfollowText;
+                _followUnfollowText.text = _followText;
             }
         }
     }
