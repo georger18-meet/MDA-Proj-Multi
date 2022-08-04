@@ -12,6 +12,7 @@ TagManager:
   - Vehicle UI
   - QAGroup
   - Crew Screen
+  - test
   layers:
   - Default
   - TransparentFX
