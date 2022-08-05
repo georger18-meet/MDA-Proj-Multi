@@ -3853,7 +3853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 352, y: 0}
+  m_AnchoredPosition: {x: 342, y: 10}
   m_SizeDelta: {x: 175, y: 75}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6019910571549192228
@@ -16141,8 +16141,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _item: {fileID: 334469467259357876, guid: b02bf5e7805e7aa4896aa26becf4f940, type: 3}
   _itemName: Adult BIG
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetPos: {x: -0.1, y: 0.065, z: 0.5}
+  _offsetRot: {x: 0, y: -0.5, z: 0, w: -0.8660254}
 --- !u!114 &155681379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62513,7 +62513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 162, y: 0}
+  m_AnchoredPosition: {x: 152, y: 10}
   m_SizeDelta: {x: 175, y: 75}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &4134889593532345398
@@ -95935,7 +95935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 629.5}
+  m_AnchoredPosition: {x: 40, y: 609.5}
   m_SizeDelta: {x: 736, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7994697898589893368

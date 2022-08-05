@@ -11,7 +11,7 @@ public class PlayerTreatingAnimation : Action
     [SerializeField] private float _animationEndTime;
 
     [Header("Player Position")]
-    PlayerTreatingPosition _playerTreatingPos;
+    [SerializeField] PlayerTreatingPosition _playerTreatingPos;
 
     [Header("Alert")]
     [SerializeField] private string _alertTitle;
@@ -23,6 +23,16 @@ public class PlayerTreatingAnimation : Action
 
     private Animator _playerAnimator;
     private string _playerName;
+
+    private void Start()
+    {
+        PlayerTreatingPositions.Add(PatientHeadPosPlayerTransform);
+        PlayerTreatingPositions.Add(PatientChestPosPlayerTransform);
+        PlayerTreatingPositions.Add(PatientLegPosPlayerTrasform);
+
+        EquipmentPositions.Add(PatientHeadPosEquipmentTransform);
+        EquipmentPositions.Add(PatientChestPosEquipmentTransform);
+    }
 
     public void PlayAnimation()
     {

@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
         Vector3 randomPos = new Vector3(Random.Range(_minX,_maxX), 1.3f, Random.Range(_minZ,_maxZ));
         PhotonNetwork.Instantiate(_playerMalePrefab.name, randomPos, Quaternion.identity);
 
-        //PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);
+        PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);
         //PhotonNetwork.InstantiateRoomObject(_patientFemalePrefab.name, _patientFemalePosTransform.position, _patientFemalePrefab.transform.rotation);
 
         if (PhotonNetwork.IsMasterClient)
