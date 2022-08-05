@@ -210,18 +210,18 @@ public class CrewRoomManager : MonoBehaviour
         //    _photonView.RPC("AddingToRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         //}
 
-        if (other.CompareTag("Player") && !_playersInRoomList.Contains(other.GetComponent<PhotonView>()))
+        if (other.CompareTag("test") && !_playersInRoomList.Contains(other.GetComponentInParent<PhotonView>()))
         {
-            _playersInRoomList.Add(other.GetComponent<PhotonView>());
+            _playersInRoomList.Add(other.GetComponentInParent<PhotonView>());
         }
 
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && !_playersInRoomList.Contains(other.GetComponent<PhotonView>()))
+        if (other.CompareTag("test") && !_playersInRoomList.Contains(other.GetComponentInParent<PhotonView>()))
         {
-            _playersInRoomList.Add(other.GetComponent<PhotonView>());
+            _playersInRoomList.Add(other.GetComponentInParent<PhotonView>());
         }
         //if (other.CompareTag("Player") && _playersInRoomList.Count < _playersMaxCount && !CheckIfAlreadyInList(other.gameObject))
         //{
@@ -235,9 +235,9 @@ public class CrewRoomManager : MonoBehaviour
         //{
         //    _photonView.RPC("RemovingFromRoomList_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         //}
-        if (other.CompareTag("Player") && _playersInRoomList.Contains(other.GetComponent<PhotonView>()))
+        if (other.CompareTag("test") && _playersInRoomList.Contains(other.GetComponentInParent<PhotonView>()))
         {
-            _playersInRoomList.Remove(other.GetComponent<PhotonView>());
+            _playersInRoomList.Remove(other.GetComponentInParent<PhotonView>());
         }
     }
 
