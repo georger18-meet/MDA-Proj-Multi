@@ -8,13 +8,7 @@ public class ChangeMeasurement : Action
 {
     [Header("Component's Data")]
     [SerializeField] private int _newMeasurement;
-
-    [Header("Alert")]
-    [SerializeField] private string _alertTitle, _alertText;
-
-    [Header("Conditions")]
-    [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
+    [SerializeField] private Measurements _measurement; // will make thing easier in editor
 
     public void ChangeMeasurementAction(int measurementNumber)
     {
@@ -22,16 +16,12 @@ public class ChangeMeasurement : Action
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
+            int measurementNum = (int)_measurement; // will make thing easier in editor
             CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
 
-            TextToLog = $"Patient's {_alertText} was changed";
+            TextToLog = $"Patient's {_newMeasurement} was changed";
 
-            if (_showAlert)
-            {
-                ShowTextAlert(_alertTitle, _alertText);
-            }
-
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }

@@ -16,7 +16,7 @@ public class PatientObjectInstantiation : Action
     [SerializeField] private Vector3 _offsetPos;
     [SerializeField] private Quaternion _offsetRot;
 
-    public void InstantiateOnPatient(int colliderIndex)
+    public void InstantiateOnPatient()
     {
         GetActionData();
 

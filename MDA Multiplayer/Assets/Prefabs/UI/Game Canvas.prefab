@@ -3026,9 +3026,9 @@ GameObject:
   - component: {fileID: 3207163729059750075}
   - component: {fileID: 5497790667487302126}
   - component: {fileID: 8405163717525069705}
-  - component: {fileID: 6361372623281601715}
   - component: {fileID: 8245608212606185977}
   - component: {fileID: 2163187210081373566}
+  - component: {fileID: 6361372623281601715}
   m_Layer: 5
   m_Name: CPAP Btn
   m_TagString: Untagged
@@ -3153,7 +3153,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8245608212606185977}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3174,6 +3174,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8245608212606185977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173898106225518881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _item: {fileID: 6658054613961404604, guid: a3b33ac868e81334381ba0b0f1d73f3f, type: 3}
+  _itemName: OxygenMask
+  _offsetPos: {x: 0, y: 0.15, z: 1.6}
+  _offsetRot: {x: 0.70710677, y: -0.00000003090862, z: 0.70710677, w: -0.00000003090862}
+--- !u!114 &2163187210081373566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173898106225518881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _newMeasurement: 97
+  _measurement: 0
 --- !u!114 &6361372623281601715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3191,41 +3223,6 @@ MonoBehaviour:
   _animationEndTime: 0
   _playerTreatingPos: 0
   _logText: 
---- !u!114 &8245608212606185977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173898106225518881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 6658054613961404604, guid: a3b33ac868e81334381ba0b0f1d73f3f, type: 3}
-  _itemName: OxygenMask
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2163187210081373566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173898106225518881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 97
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &207059708267173185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,9 +3611,8 @@ GameObject:
   - component: {fileID: 7984238370158362615}
   - component: {fileID: 1387019470466876841}
   - component: {fileID: 1353260934680514702}
-  - component: {fileID: 8267955096426660038}
   - component: {fileID: 1886051247299936444}
-  - component: {fileID: 4809477103211889755}
+  - component: {fileID: 8267955096426660038}
   m_Layer: 5
   m_Name: LMA Btn
   m_TagString: Untagged
@@ -3741,7 +3737,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1886051247299936444}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3750,35 +3746,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4809477103211889755}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8267955096426660038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287020668943783405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _animationName: 
-  _animationEndTime: 0
-  _playerTreatingPos: 0
-  _logText: 
 --- !u!114 &1886051247299936444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3796,7 +3763,7 @@ MonoBehaviour:
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
   _offsetRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4809477103211889755
+--- !u!114 &8267955096426660038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3805,14 +3772,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 287020668943783405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
+  m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _animationName: 
+  _animationEndTime: 0
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!1 &303785466215122164
 GameObject:
   m_ObjectHideFlags: 0
@@ -12399,10 +12366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _newMeasurement: 75
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
 --- !u!1 &1363194052549558809
 GameObject:
   m_ObjectHideFlags: 0
@@ -15983,8 +15947,8 @@ GameObject:
   - component: {fileID: 9153248277568961455}
   - component: {fileID: 3678755074780730378}
   - component: {fileID: 3333189964899033528}
-  - component: {fileID: 155681379}
   - component: {fileID: 5687967563255195987}
+  - component: {fileID: 155681379}
   m_Layer: 5
   m_Name: AdultBIG Btn
   m_TagString: Untagged
@@ -16097,7 +16061,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3333189964899033528}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16135,23 +16099,6 @@ MonoBehaviour:
   _itemName: Adult BIG
   _offsetPos: {x: -0.1, y: 0.065, z: 0.5}
   _offsetRot: {x: 0, y: -0.5, z: 0, w: -0.8660254}
---- !u!114 &155681379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955769989461451325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _animationName: 
-  _animationEndTime: 0
-  _playerTreatingPos: 2
-  _logText: 
 --- !u!114 &5687967563255195987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16169,6 +16116,23 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 GIB \u05DE\u05D1\u05D5\u05D2\u05E8\u05D9\u05DD"
   _alertText: "\u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4"
   _textToLog: 
+--- !u!114 &155681379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955769989461451325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _animationName: 
+  _animationEndTime: 0
+  _playerTreatingPos: 2
+  _logText: 
 --- !u!1 &2008742198568994394
 GameObject:
   m_ObjectHideFlags: 0
@@ -58964,10 +58928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _newMeasurement: 75
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
 --- !u!1 &3687791556234966251
 GameObject:
   m_ObjectHideFlags: 0
@@ -93227,10 +93188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _newMeasurement: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
 --- !u!1 &7888099120700190145
 GameObject:
   m_ObjectHideFlags: 0
