@@ -3189,10 +3189,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 PAPC"
-  _alertText: "\u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4"
-  _showAlert: 0
-  _updateLog: 0
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &8245608212606185977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3779,10 +3777,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &1886051247299936444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13471,10 +13467,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 0
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &5459984554227557933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13921,10 +13915,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &97943673310555151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16158,10 +16150,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 2
+  _logText: 
 --- !u!114 &5687967563255195987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18229,10 +18219,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: Administering Cpr
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &2104454659210299074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51903,10 +51891,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &1116868800121609106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61381,10 +61367,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &3437284668233751503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65197,10 +65181,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &5598641085305028865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69081,10 +69063,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: Lift
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &2601882992659872623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92825,10 +92805,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _animationName: 
   _animationEndTime: 0
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 0
+  _playerTreatingPos: 0
+  _logText: 
 --- !u!114 &4495241435631855750
 MonoBehaviour:
   m_ObjectHideFlags: 0

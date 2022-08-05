@@ -13,13 +13,8 @@ public class PlayerTreatingAnimation : Action
     [Header("Player Position")]
     [SerializeField] PlayerTreatingPosition _playerTreatingPos;
 
-    [Header("Alert")]
-    [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
-
-    [Header("Conditions")]
-    [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
+    [Header("Log")]
+    [SerializeField] private string _logText;
 
     private Animator _playerAnimator;
     private string _playerName;
@@ -47,14 +42,9 @@ public class PlayerTreatingAnimation : Action
 
             _playerAnimator.SetBool(_animationName, true);
 
-            TextToLog = $" is Administering Heart Massages";
+            TextToLog = _logText;
 
-            if (_showAlert)
-            {
-                ShowTextAlert(_alertTitle, _alertText);
-            }
-
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }
