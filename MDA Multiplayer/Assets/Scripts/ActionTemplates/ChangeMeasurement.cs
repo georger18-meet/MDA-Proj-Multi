@@ -6,20 +6,30 @@ using Photon.Pun;
 
 public class ChangeMeasurement : Action
 {
+    [SerializeField] private bool _useMedicineLog;
+
     [Header("Component's Data")]
     [SerializeField] private int _newMeasurement;
-    [SerializeField] private Measurements _measurement; // will make thing easier in editor
+    [SerializeField] private string _treatmentName;
+    [SerializeField] private Measurements _measurement;
 
-    public void ChangeMeasurementAction(int measurementNumber)
+    public void ChangeMeasurementAction()
     {
         GetActionData();
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            int measurementNum = (int)_measurement; // will make thing easier in editor
-            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNumber, _newMeasurement);
+            int measurementNum = (int)_measurement;
+            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNum, _newMeasurement);
 
-            TextToLog = $"Patient's {_newMeasurement} was changed";
+            if (_useMedicineLog)
+            {
+                TextToLog = $"Patient's took & applied {_treatmentName}";
+            }
+            else
+            {
+                TextToLog = $"did {_treatmentName} on Patient";
+            }
 
             if (_shouldUpdateLog)
             {

@@ -6,32 +6,32 @@ using Photon.Pun;
 
 public class CheckMeasurement : Action
 {
-    [Header("Component's Data")]
-    [SerializeField] private string _measurementNameEnglish;
-    [SerializeField] private string _measurementName;
-    [SerializeField] private List<Measurements> measurementList;
-
-    [Header("Conditions")]
     [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
-    private int _measurement;
+    
+    [Header("Component's Data")]
+    [SerializeField] private Measurements _measurement;
+    [SerializeField] private string _measurementName, _measurementNameForAlert;
 
-    public void CheckMeasurementAction(int measurementNumber)
+
+    private int _currentMeasurement;
+
+    public void CheckMeasurementAction()
     {
         GetActionData();
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            _measurement = CurrentPatientData.GetMeasurement(measurementNumber);
+            int measurementNum = (int)_measurement;
+            _currentMeasurement = CurrentPatientData.GetMeasurement(measurementNum);
 
-            TextToLog = $"Checked {CurrentPatientData.Name} {CurrentPatientData.SureName}'s {_measurementNameEnglish}, it is {_measurement}";
+            TextToLog = $"Checked Patient's {_measurementName}, it is {_currentMeasurement}";
 
             if (_showAlert)
             {
-                ShowNumAlert(_measurementName, _measurement);
+                ShowNumAlert(_measurementNameForAlert, _currentMeasurement);
             }
 
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }

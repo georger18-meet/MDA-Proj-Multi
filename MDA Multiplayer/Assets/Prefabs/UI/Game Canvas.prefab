@@ -6204,11 +6204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &564344378500337819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7882,11 +7881,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &723560841735512527
 GameObject:
   m_ObjectHideFlags: 0
@@ -9246,11 +9244,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &922055291182419007
 GameObject:
   m_ObjectHideFlags: 0
@@ -9655,8 +9652,6 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _heartMassagesWindow: {fileID: 1260926443}
   _newHeartRate: 64
-  _alertTitle: 
-  _alertText: 
 --- !u!1 &1005429748863936935
 GameObject:
   m_ObjectHideFlags: 0
@@ -9925,11 +9920,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &1023499486821305526
 GameObject:
   m_ObjectHideFlags: 0
@@ -19292,7 +19286,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6706284933455525171}
         m_TargetAssemblyTypeName: CheckMeasurement, Assembly-CSharp
         m_MethodName: CheckMeasurementAction
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19314,11 +19308,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 7
+  _measurementName: ETCO2
+  _measurementNameForAlert: 
 --- !u!1 &2348199478597434016
 GameObject:
   m_ObjectHideFlags: 0
@@ -56373,11 +56366,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 1
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &3353432102994674994
 GameObject:
   m_ObjectHideFlags: 0
@@ -60808,11 +60800,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 1
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &3903165900219684497
 GameObject:
   m_ObjectHideFlags: 0
@@ -66809,11 +66800,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &4656467003884286169
 GameObject:
   m_ObjectHideFlags: 0
@@ -87059,8 +87049,6 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _heartMassagesWindow: {fileID: 0}
   _newHeartRate: 0
-  _alertTitle: 
-  _alertText: 
 --- !u!1 &6849467291866825800
 GameObject:
   m_ObjectHideFlags: 0
@@ -87483,11 +87471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 0
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &6895854621571916695
 GameObject:
   m_ObjectHideFlags: 0
@@ -101302,7 +101289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7994697898989439186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -118408,11 +118395,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 1
-  _updateLog: 1
+  _measurement: 0
+  _measurementName: 
+  _measurementNameForAlert: 
 --- !u!1 &8715615062001259757
 GameObject:
   m_ObjectHideFlags: 0
@@ -119190,7 +119176,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 855335541337511260}
   m_OnClick:
     m_PersistentCalls:
@@ -119198,7 +119184,7 @@ MonoBehaviour:
       - m_Target: {fileID: 583952470932431687}
         m_TargetAssemblyTypeName: CheckMeasurement, Assembly-CSharp
         m_MethodName: CheckMeasurementAction
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -119220,11 +119206,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _measurementNameEnglish: 
-  _measurementName: 
-  measurementList: 0000000001000000020000000300000004000000050000000600000007000000
   _showAlert: 1
-  _updateLog: 1
+  _measurement: 2
+  _measurementName: Respiratory Rate
+  _measurementNameForAlert: "\u05E7\u05E6\u05D1 \u05E0\u05E9\u05D9\u05DE\u05D4"
 --- !u!1 &8854972267910334351
 GameObject:
   m_ObjectHideFlags: 0

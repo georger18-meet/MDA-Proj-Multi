@@ -9,13 +9,8 @@ public class HeartMassages : Action
     [Header("Component's Data")]
     [SerializeField] private GameObject _heartMassagesWindow;
     [SerializeField] private int _newHeartRate;
-    
-    [Header("Alert")]
-    [SerializeField] private string _alertTitle;
-    [SerializeField] private string _alertText;
 
     private Animator _playerAnimator;
-    private string _playerName;
 
     private IEnumerator WaitToFinishCPR()
     {
