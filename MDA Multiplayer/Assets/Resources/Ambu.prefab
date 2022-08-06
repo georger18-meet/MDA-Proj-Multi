@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8880361489109792470}
   - component: {fileID: -1328696160014230980}
   m_Layer: 0
-  m_Name: RespirationBalloon
+  m_Name: Ambu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

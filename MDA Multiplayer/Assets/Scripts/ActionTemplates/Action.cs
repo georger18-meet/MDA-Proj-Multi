@@ -29,7 +29,6 @@ public class Action : MonoBehaviour
     [SerializeField] protected bool _shouldUpdateLog = true;
 
     [Header("Documentaion")]
-
     protected string TextToLog;
 
     private void Start()
