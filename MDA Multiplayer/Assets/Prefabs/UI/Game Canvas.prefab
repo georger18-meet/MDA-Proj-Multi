@@ -3165,7 +3165,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2163187210081373566}
         m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
         m_MethodName: ChangeMeasurementAction
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3204,7 +3204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _useMedicineLog: 0
   _newMeasurement: 97
+  _treatmentName: 
   _measurement: 0
 --- !u!114 &6361372623281601715
 MonoBehaviour:
@@ -8812,7 +8814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 177106478986760187}
         m_TargetAssemblyTypeName: ConnectingMonitor, Assembly-CSharp
-        m_MethodName: Defibrillation
+        m_MethodName: ConnectingDevice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8835,7 +8837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _monitor: {fileID: 1147925305141470002, guid: f725c2ac6c511a0478d82c3d74e786b1, type: 3}
+  _monitor: {fileID: 1147925305141470002, guid: c85fcccd24f3bb34b8da44cb469f4911, type: 3}
   _monitorGraphWindow: {fileID: 1745487884}
   _newMonitorGraph: {fileID: 714506122}
   _alertTitle: 
@@ -12547,9 +12549,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1243131385512850712}
-        m_TargetAssemblyTypeName: ApplyMeasurement, Assembly-CSharp
-        m_MethodName: ApplyMeasurementAction
-        m_Mode: 3
+        m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
+        m_MethodName: ChangeMeasurementAction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12571,7 +12573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _useMedicineLog: 0
   _newMeasurement: 75
+  _treatmentName: 
   _measurement: 0
 --- !u!1 &1363194052549558809
 GameObject:
@@ -12959,7 +12963,6 @@ GameObject:
   - component: {fileID: 4780103354848954588}
   - component: {fileID: 4016207726764437557}
   - component: {fileID: 7019677578377161033}
-  - component: {fileID: 316498469470903695}
   m_Layer: 5
   m_Name: ApplyMedicine Btn
   m_TagString: Untagged
@@ -13069,7 +13072,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 316498469470903695}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
         m_MethodName: OnApplyMedicineRPC
         m_Mode: 3
@@ -13081,24 +13084,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &316498469470903695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408259165991940499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 3
-  _medicineToApply: Painkiller
-  _measurementTitle: Pain Level
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &1423252314180230298
 GameObject:
   m_ObjectHideFlags: 0
@@ -13613,7 +13598,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5459984554227557933}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13652,7 +13637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
+  _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
   _offsetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -16351,7 +16336,6 @@ GameObject:
   - component: {fileID: 8594374618161904266}
   - component: {fileID: 1791869085514695689}
   - component: {fileID: 6616397869470442260}
-  - component: {fileID: 7583685562135954228}
   m_Layer: 5
   m_Name: Tourniquet Btn
   m_TagString: Untagged
@@ -16461,7 +16445,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7583685562135954228}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
         m_MethodName: OnApplyMedicineRPC
         m_Mode: 3
@@ -16473,24 +16457,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7583685562135954228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008742198568994394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 3
-  _medicineToApply: Painkiller
-  _measurementTitle: Pain Level
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &2025961808639255437
 GameObject:
   m_ObjectHideFlags: 0
@@ -18058,7 +18024,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6000990730024554405}
         m_TargetAssemblyTypeName: ConnectingMonitor, Assembly-CSharp
-        m_MethodName: Defibrillation
+        m_MethodName: ConnectingDevice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18081,7 +18047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _monitor: {fileID: 7904817049621424509, guid: f1b53a3898a47c3498c784e25158dd49, type: 3}
+  _monitor: {fileID: 7904817049621424509, guid: d1cc124bb43f6a048a10705757f02a34, type: 3}
   _monitorGraphWindow: {fileID: 0}
   _newMonitorGraph: {fileID: 0}
   _alertTitle: 
@@ -18237,7 +18203,6 @@ GameObject:
   - component: {fileID: 751897186237546636}
   - component: {fileID: 9039891351987955206}
   - component: {fileID: 2104454659210299074}
-  - component: {fileID: 2667667245416589871}
   m_Layer: 5
   m_Name: Asherman Btn
   m_TagString: Untagged
@@ -18347,9 +18312,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2667667245416589871}
+      - m_Target: {fileID: 2241605463368747113}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: OnApplyMedicineRPC
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18404,28 +18369,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _item: {fileID: 0}
+  _item: {fileID: 3763157064038063447, guid: 59b7652abfe66c6489e26aa66c5d38e9, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
   _offsetRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2667667245416589871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241605463368747113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 12
-  _medicineToApply: "\u05D0\u05E9\u05E8\u05DE\u05DF"
-  _measurementTitle: Respiratory Rate
-  _showAlert: 1
-  _updateLog: 1
 --- !u!1 &2258838982304221869
 GameObject:
   m_ObjectHideFlags: 0
@@ -55811,7 +55758,6 @@ GameObject:
   - component: {fileID: 3492342626885311473}
   - component: {fileID: 1651632616249462259}
   - component: {fileID: 1466487457334438011}
-  - component: {fileID: 5901905149325297836}
   m_Layer: 5
   m_Name: Aspirin Btn
   m_TagString: Untagged
@@ -55921,7 +55867,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5901905149325297836}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
         m_MethodName: OnApplyMedicineRPC
         m_Mode: 3
@@ -55933,24 +55879,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5901905149325297836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3186836422113859626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 3
-  _medicineToApply: "\u05D0\u05E1\u05E4\u05D9\u05E8\u05D9\u05DF"
-  _measurementTitle: Pain Level
-  _showAlert: 1
-  _updateLog: 1
 --- !u!1 &3251840300635756692
 GameObject:
   m_ObjectHideFlags: 0
@@ -56344,7 +56272,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5158506341761079104}
         m_TargetAssemblyTypeName: CheckMeasurement, Assembly-CSharp
         m_MethodName: CheckMeasurementAction
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -56367,7 +56295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _showAlert: 1
-  _measurement: 0
+  _measurement: 4
   _measurementName: 
   _measurementNameForAlert: 
 --- !u!1 &3353432102994674994
@@ -58485,7 +58413,6 @@ GameObject:
   - component: {fileID: 6692861474809093173}
   - component: {fileID: 8493964158701675826}
   - component: {fileID: 57151137200920734}
-  - component: {fileID: 1300570914272752563}
   m_Layer: 5
   m_Name: ApplyMedicine Btn
   m_TagString: Untagged
@@ -58595,7 +58522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1300570914272752563}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
         m_MethodName: OnApplyMedicineRPC
         m_Mode: 3
@@ -58607,24 +58534,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1300570914272752563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3571822320845693178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 3
-  _medicineToApply: Painkiller
-  _measurementTitle: Pain Level
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &3592779797730448589
 GameObject:
   m_ObjectHideFlags: 0
@@ -58922,7 +58831,6 @@ GameObject:
   - component: {fileID: 5767303435899701439}
   - component: {fileID: 8520337689928512801}
   - component: {fileID: 7099335269414469583}
-  - component: {fileID: 5687191844782961816}
   m_Layer: 5
   m_Name: Tourniquet Btn
   m_TagString: Untagged
@@ -59032,7 +58940,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5687191844782961816}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
         m_MethodName: OnApplyMedicineRPC
         m_Mode: 3
@@ -59044,24 +58952,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5687191844782961816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615916125147376028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 3
-  _medicineToApply: Painkiller
-  _measurementTitle: Pain Level
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &3622803194852738057
 GameObject:
   m_ObjectHideFlags: 0
@@ -59209,7 +59099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _useMedicineLog: 0
   _newMeasurement: 75
+  _treatmentName: 
   _measurement: 0
 --- !u!1 &3687791556234966251
 GameObject:
@@ -60636,6 +60528,7 @@ GameObject:
   - component: {fileID: 8451659671671505866}
   - component: {fileID: 1331769989180442310}
   - component: {fileID: 6726075745089340797}
+  - component: {fileID: 3647551274945721051}
   - component: {fileID: 6725213621741617087}
   m_Layer: 5
   m_Name: AnalogBloodPressure Btn
@@ -60749,7 +60642,19 @@ MonoBehaviour:
       - m_Target: {fileID: 6726075745089340797}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3647551274945721051}
+        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
+        m_MethodName: InstantiateOnPatient
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -60761,11 +60666,11 @@ MonoBehaviour:
       - m_Target: {fileID: 6725213621741617087}
         m_TargetAssemblyTypeName: CheckMeasurement, Assembly-CSharp
         m_MethodName: CheckMeasurementAction
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -60783,7 +60688,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _item: {fileID: 6198605158783632762, guid: 8de6cbb74cd0c404ba867cbb589ffea8, type: 3}
+  _item: {fileID: 7712631654234265585, guid: 8494d92e222328845af8b8429fd45a7a, type: 3}
+  _itemName: 
+  _offsetPos: {x: 0, y: 0, z: 0}
+  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3647551274945721051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901983300485249610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _item: {fileID: 6198605158783632762, guid: 26d9a0a0c5093954e8f776d2b9b874a2, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
   _offsetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -61582,7 +61504,6 @@ GameObject:
   - component: {fileID: 4018560924608015227}
   - component: {fileID: 6714946908231042563}
   - component: {fileID: 3437284668233751503}
-  - component: {fileID: 7409020666363816909}
   m_Layer: 5
   m_Name: AdultQTKit Btn
   m_TagString: Untagged
@@ -61707,7 +61628,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3437284668233751503}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -61716,7 +61637,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7409020666363816909}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
         m_Mode: 3
@@ -61759,23 +61680,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7409020666363816909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000385737900575079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
   _offsetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -65663,7 +65567,6 @@ GameObject:
   - component: {fileID: 1420173528027807888}
   - component: {fileID: 5062109224389914508}
   - component: {fileID: 5598641085305028865}
-  - component: {fileID: 4451838797349765814}
   m_Layer: 5
   m_Name: IntubationKit Btn
   m_TagString: Untagged
@@ -65788,19 +65691,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5598641085305028865}
         m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
         m_MethodName: InstantiateOnPatient
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4451838797349765814}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -65840,23 +65731,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4451838797349765814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4526097673080476612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
   _offsetRot: {x: 0, y: 0, z: 0, w: 0}
@@ -82022,7 +81896,6 @@ GameObject:
   - component: {fileID: 8469117697832722786}
   - component: {fileID: 5217149957530038366}
   - component: {fileID: 1294741028572150646}
-  - component: {fileID: 9001699735804849844}
   m_Layer: 5
   m_Name: Glucogel Btn
   m_TagString: Untagged
@@ -82132,7 +82005,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9001699735804849844}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
         m_MethodName: OnApplyMedicineRPC
         m_Mode: 3
@@ -82144,24 +82017,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &9001699735804849844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5989542761052888187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed03d602e7cd14090024a922832780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newMeasurement: 80
-  _medicineToApply: "\u05D2\u05DC\u05D5\u05E7\u05D5\u05D2'\u05DC"
-  _measurementTitle: Blood Sugar
-  _showAlert: 1
-  _updateLog: 1
 --- !u!1 &5990177798159731588
 GameObject:
   m_ObjectHideFlags: 0
@@ -94439,7 +94294,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _useMedicineLog: 0
   _newMeasurement: 0
+  _treatmentName: 
   _measurement: 0
 --- !u!1 &7888099120700190145
 GameObject:

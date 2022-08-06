@@ -24,7 +24,7 @@ public class ConnectingMonitor : Action
 
     private GameObject _player;
     
-    public void Defibrillation()
+    public void ConnectingDevice()
     {
         GetActionData();
 
