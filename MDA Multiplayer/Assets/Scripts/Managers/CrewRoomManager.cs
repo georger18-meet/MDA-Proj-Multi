@@ -188,16 +188,10 @@ public class CrewRoomManager : MonoBehaviour
             }
         }
     }
-
+    
     public void SpawnVehicle()
     {
-        VehicleChecker currentPosVehicleChecker = ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].GetComponent<VehicleChecker>();
-
-        if (!currentPosVehicleChecker.IsPosOccupied)
-        {
-            GameObject natan = PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
-            natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
-        }
+        _photonView.RPC("SpawnVehicle_RPC",RpcTarget.AllBufferedViaServer);
     }
 
 
@@ -328,6 +322,19 @@ public class CrewRoomManager : MonoBehaviour
 
             desiredPlayerName.text.color = crewColor;
             currentPlayerData.CrewColor = crewColor;
+        }
+    }
+
+
+    [PunRPC]
+    void SpawnVehicle_RPC()
+    {
+        VehicleChecker currentPosVehicleChecker = ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].GetComponent<VehicleChecker>();
+
+        if (!currentPosVehicleChecker.IsPosOccupied)
+        {
+           /* GameObject natan = */PhotonNetwork.InstantiateRoomObject(ActionsManager.Instance.NatanPrefab.name, ActionsManager.Instance.VehiclePosTransforms[_crewRoomIndex - 1].position, ActionsManager.Instance.NatanPrefab.transform.rotation);
+           // natan.GetComponent<CarControllerSimple>().OwnerCrew = _crewRoomIndex;
         }
     }
 }
