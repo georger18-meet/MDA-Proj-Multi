@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum MonitorSprites { Monitor, ACG }
+
 [CreateAssetMenu(fileName = "New Patient Data",menuName = "Patient Data") ]
 public class PatientData : ScriptableObject
 {
@@ -27,7 +29,7 @@ public class PatientData : ScriptableObject
     public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
 
     [Header("MonitorGraphTexture")]
-    public Sprite MonitorGraphTexture;
+    public List<Sprite> MonitorSpriteList;
 
     // Catch Measurement Name
     [HideInInspector]

@@ -37,7 +37,7 @@ public class ConnectingMonitor : Action
 
             _monitorGraphWindow.SetActive(true);
 
-            if (CurrentPatientData.MonitorGraphTexture != _newMonitorGraph.sprite)
+            if (!CurrentPatientData.MonitorSpriteList.Contains(_newMonitorGraph.sprite))
             {
                 CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer,  _newMonitorGraph);
             }

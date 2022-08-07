@@ -252,12 +252,11 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
-    private void SetMonitorGraphRPC(object newGraph)
+    private void SetMonitorGraphRPC(object newGraph, int MonitorSpriteNum)
     {
         if (newGraph is Image)
         {
-            PatientData.MonitorGraphTexture = (newGraph as Image).sprite;
-            (newGraph as Image).sprite = PatientData.MonitorGraphTexture;
+            (newGraph as Image).sprite = PatientData.MonitorSpriteList[MonitorSpriteNum];
         }
     }
     #endregion
