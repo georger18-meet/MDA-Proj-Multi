@@ -65,7 +65,7 @@ public class CrewRoomManager : MonoBehaviour
         return playerFound;
     }
 
-    private void RefreshCrewUITexts()
+    private void SetCrewUITexts()
     {
         // Crew Roles UI
         for (int i = 0; i < _playersInRoomList.Count; i++)
@@ -183,7 +183,7 @@ public class CrewRoomManager : MonoBehaviour
         if (other.CompareTag("test") && !_playersInRoomList.Contains(playerView))
         {
             _playersInRoomList.Add(playerView);
-            _photonView.RPC("AddtoUi_RPC", RpcTarget.AllBufferedViaServer);
+            _photonView.RPC("SetToUi_RPC", RpcTarget.AllBufferedViaServer);
         }
     }
 
@@ -203,19 +203,19 @@ public class CrewRoomManager : MonoBehaviour
         
         if (other.CompareTag("test") && _playersInRoomList.Contains(playerView))
         {
-            TestingRemove();
+            UpdateUiNameOnExit();
             _playersInRoomList.Remove(playerView);
             // _photonView.RPC("RemoveFromUi_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
     }
 
-    void TestingRemove()
+    void UpdateUiNameOnExit()
     {
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
             if (listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
             {
-                listOfUiNamesTMP[i].text = "please work";
+                listOfUiNamesTMP[i].text = $"Crew Member #{i++}";
                 Debug.Log("Test4");
             }
             Debug.Log("Test5");
@@ -336,9 +336,9 @@ public class CrewRoomManager : MonoBehaviour
     }
 
     [PunRPC]
-    void AddtoUi_RPC()
+    void SetToUi_RPC()
     {
-        RefreshCrewUITexts();
+        SetCrewUITexts();
     }
 
     [PunRPC]
@@ -346,15 +346,11 @@ public class CrewRoomManager : MonoBehaviour
     {
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
-            if (listOfUiNamesTMP[i].text.Contains(currentPlayer))
+            if (currentPlayer == PhotonNetwork.NickName && listOfUiNamesTMP[i].text.Contains(currentPlayer))
             {
                 listOfUiNamesTMP[i].text.Remove(currentPlayer[i]);
-                Debug.Log("Test1");
             }
-            Debug.Log("Test2");
         }
-        Debug.Log("Test3");
-
     }
 
     [PunRPC]

@@ -4730,6 +4730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660bc57f3af0d7a4fa34014bf4c4f412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crewRoomIndex: 0
+  _playersMaxCount: 4
   RoomCrewMenuUI: {fileID: 6573222877332472005}
   listOfUiNamesTMP:
   - {fileID: 7927027257177044632}
@@ -4743,8 +4745,6 @@ MonoBehaviour:
   - {fileID: 3491763143054543402}
   CrewLeaderDropDown: {fileID: 4170358468363740142}
   _playersInRoomList: []
-  _playersMaxCount: 4
-  _crewRoomIndex: 0
   _patientMale: {fileID: 5550523932109703408, guid: dabe3131293e32f4787ed5a32f0ea73f, type: 3}
   _patientFemale: {fileID: 5550523932109703408, guid: 1f04bb736b3e9d74394678ab62fb7e93, type: 3}
   isUsed: 0
