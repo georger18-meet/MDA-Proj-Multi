@@ -32,6 +32,7 @@ public class CrewRoomManager : MonoBehaviour
     private Vector3 _vestPos = new Vector3(0f, 0.295f, -0.015f);
 
     [SerializeField] private GameObject _patientMale, _patientFemale;
+    [SerializeField] private string _waitMemberText;
     [SerializeField] private bool isUsed;
 
     //[SerializeField] private GameObject _crewRoomDoor;
@@ -205,7 +206,6 @@ public class CrewRoomManager : MonoBehaviour
         {
             _photonView.RPC("UpdateUiNameOnExit", RpcTarget.AllBufferedViaServer, playerView.Owner.NickName);
             _playersInRoomList.Remove(playerView);
-            // _photonView.RPC("RemoveFromUi_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
     }
 
@@ -326,29 +326,14 @@ public class CrewRoomManager : MonoBehaviour
     [PunRPC]
     void UpdateUiNameOnExit(string playerNickName)
     {
-        foreach ( TextMeshProUGUI memberName in listOfUiNamesTMP)
+        foreach (TextMeshProUGUI memberName in listOfUiNamesTMP)
         {
             if (playerNickName == memberName.text)
             {
-                for (int i = 0; i < _playersInRoomList.Count; i++)
-                {
-                    if (playerNickName == _playersInRoomList[i].Owner.NickName)
-                    {
-                        memberName.text = $"Crew Member #{i + 1}";
-                        break;
-                    }
-                }
+                memberName.text = _waitMemberText;
                 break;
-                //memberName.text = $"Crew Member #0";
             }
         }
-        //for (int i = 0; i < _playersInRoomList.Count; i++)
-        //{
-        //    if (listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
-        //    {
-        //        listOfUiNamesTMP[i].text = $"Crew Member #{i + 1}";
-        //    }
-        //}
     }
 
     [PunRPC]
