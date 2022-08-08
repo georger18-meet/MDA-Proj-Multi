@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Iron-man v0.9.1 Gal
+    AppVersion: Iron-Man v0.9.2 Gal
     UseNameServer: 1
     FixedRegion: eu
     Server: 
