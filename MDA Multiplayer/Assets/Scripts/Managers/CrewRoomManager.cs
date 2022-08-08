@@ -203,7 +203,7 @@ public class CrewRoomManager : MonoBehaviour
 
         if (other.CompareTag("test") && _playersInRoomList.Contains(playerView))
         {
-            _photonView.RPC("UpdateUiNameOnExit", RpcTarget.AllBufferedViaServer);
+            _photonView.RPC("UpdateUiNameOnExit", RpcTarget.AllBufferedViaServer, playerView.Owner.NickName);
             _playersInRoomList.Remove(playerView);
             // _photonView.RPC("RemoveFromUi_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
@@ -324,15 +324,31 @@ public class CrewRoomManager : MonoBehaviour
     }
 
     [PunRPC]
-    void UpdateUiNameOnExit()
+    void UpdateUiNameOnExit(string playerNickName)
     {
-        for (int i = 0; i < _playersInRoomList.Count; i++)
+        foreach ( TextMeshProUGUI memberName in listOfUiNamesTMP)
         {
-            if (listOfUiNamesTMP[i].text != _playersInRoomList[i].Owner.NickName)
+            if (playerNickName == memberName.text)
             {
-                listOfUiNamesTMP[i].text = $"Crew Member #{i++}";
+                for (int i = 0; i < _playersInRoomList.Count; i++)
+                {
+                    if (playerNickName == _playersInRoomList[i].Owner.NickName)
+                    {
+                        memberName.text = $"Crew Member #{i + 1}";
+                        break;
+                    }
+                }
+                break;
+                //memberName.text = $"Crew Member #0";
             }
         }
+        //for (int i = 0; i < _playersInRoomList.Count; i++)
+        //{
+        //    if (listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
+        //    {
+        //        listOfUiNamesTMP[i].text = $"Crew Member #{i + 1}";
+        //    }
+        //}
     }
 
     [PunRPC]

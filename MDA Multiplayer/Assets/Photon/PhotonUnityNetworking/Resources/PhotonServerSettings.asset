@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Iron-Man v0.9.2 Gal
+    AppVersion: Iron-Man v0.9.3 Gal
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -69,6 +69,8 @@ MonoBehaviour:
   - ShowCrewUI_RPC
   - AddtoUi_RPC
   - RemoveFromUi_RPC
+  - SetToUi_RPC
+  - UpdateUiNameOnExit
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
