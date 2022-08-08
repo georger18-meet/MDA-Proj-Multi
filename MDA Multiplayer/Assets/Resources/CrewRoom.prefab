@@ -3104,6 +3104,7 @@ GameObject:
   - component: {fileID: 6573222877332472005}
   - component: {fileID: 3950993415988193731}
   - component: {fileID: 71185481948305315}
+  - component: {fileID: 7118211440160640093}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3118,19 +3119,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2832601180764524747}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_Children:
   - {fileID: 7820371457041700059}
   m_Father: {fileID: 8022504952866325596}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.87, y: 1.27}
+  m_SizeDelta: {x: 2000, y: 900}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6573222877332472005
 Canvas:
   m_ObjectHideFlags: 0
@@ -3140,7 +3141,7 @@ Canvas:
   m_GameObject: {fileID: 2832601180764524747}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -3174,7 +3175,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &71185481948305315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3192,6 +3193,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &7118211440160640093
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832601180764524747}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2929176686832450295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,11 +4731,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomDoorBlocker: {fileID: 0}
-  RoomCrewMenuUI: {fileID: 507414437341835181}
+  RoomCrewMenuUI: {fileID: 6573222877332472005}
   CrewMemberNameText1: {fileID: 7927027257177044632}
   CrewMemberNameText2: {fileID: 8964696262127151381}
   CrewMemberNameText3: {fileID: 4065061326337329288}
   CrewMemberNameText4: {fileID: 6023313425601400209}
+  listOfUiNames:
+  - {fileID: 7927027257177044632}
+  - {fileID: 8964696262127151381}
+  - {fileID: 4065061326337329288}
+  - {fileID: 6023313425601400209}
   CrewMemberRoleDropDownList:
   - {fileID: 3088123977219002846}
   - {fileID: 4047815132717529800}
@@ -4735,6 +4753,7 @@ MonoBehaviour:
   _prefixName: " :\u05EA\u05D5\u05D5\u05E6 \u05E8\u05D1\u05D7"
   _patientMale: {fileID: 5550523932109703408, guid: dabe3131293e32f4787ed5a32f0ea73f, type: 3}
   _patientFemale: {fileID: 5550523932109703408, guid: 1f04bb736b3e9d74394678ab62fb7e93, type: 3}
+  isUsed: 0
 --- !u!114 &6340234360517652064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4754,6 +4773,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 5138764310284169353}
   - {fileID: 5766170080069667474}
   sceneViewId: 0
   InstantiationId: 0
