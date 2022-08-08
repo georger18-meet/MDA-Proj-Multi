@@ -3202,8 +3202,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _item: {fileID: 6658054613961404604, guid: a3b33ac868e81334381ba0b0f1d73f3f, type: 3}
   _itemName: OxygenMask
-  _offsetPos: {x: 0, y: 0.15, z: 1.6}
-  _offsetRot: {x: 0.70710677, y: -0.00000003090862, z: 0.70710677, w: -0.00000003090862}
+  _offsetPos: {x: 0, y: 0.14, z: 1.595}
+  _offsetRot: {x: 0, y: -90, z: -59}
 --- !u!114 &2163187210081373566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3914,6 +3914,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4134889592247787930}
+        m_TargetAssemblyTypeName: Alert, Assembly-CSharp
+        m_MethodName: ShowAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8267955096426660038}
         m_TargetAssemblyTypeName: PlayerTreatingAnimation, Assembly-CSharp
         m_MethodName: PlayAnimation
@@ -3941,8 +3953,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
   _itemName: Tube
-  _offsetPos: {x: 0, y: 0.125, z: 1.55}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetPos: {x: 0, y: 0.121, z: 1.555}
+  _offsetRot: {x: 0, y: 180, z: 180}
 --- !u!114 &4260043488670541954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3958,8 +3970,8 @@ MonoBehaviour:
   _shouldUpdateLog: 0
   _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
   _itemName: Ambu
-  _offsetPos: {x: 0, y: 0.125, z: 1.55}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetPos: {x: 0, y: 0.17, z: 1.46}
+  _offsetRot: {x: 0, y: 180, z: 90}
 --- !u!114 &8267955096426660038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8915,13 +8927,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _showAlert: 0
+  _useGraph: 0
   _monitor: {fileID: 1147925305141470002, guid: c85fcccd24f3bb34b8da44cb469f4911, type: 3}
   _monitorGraphWindow: {fileID: 1745487884}
   _newMonitorGraph: {fileID: 714506122}
+  _monitorSprites: 0
   _alertTitle: 
   _alertText: 
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &816221346558172514
 GameObject:
   m_ObjectHideFlags: 0
@@ -13714,7 +13727,7 @@ MonoBehaviour:
   _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
   _itemName: Ambu
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &3964249766228563631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14196,7 +14209,7 @@ MonoBehaviour:
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &812055412375509345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14213,7 +14226,7 @@ MonoBehaviour:
   _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!1 &1609633195285295876
 GameObject:
   m_ObjectHideFlags: 0
@@ -16437,7 +16450,7 @@ MonoBehaviour:
   _item: {fileID: 334469467259357876, guid: b02bf5e7805e7aa4896aa26becf4f940, type: 3}
   _itemName: Adult BIG
   _offsetPos: {x: -0.1, y: 0.065, z: 0.5}
-  _offsetRot: {x: 0, y: -0.5, z: 0, w: -0.8660254}
+  _offsetRot: {x: 0, y: 0, z: -1}
 --- !u!114 &5687967563255195987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18061,6 +18074,7 @@ GameObject:
   - component: {fileID: 8791924470783848810}
   - component: {fileID: 1433957064029418771}
   - component: {fileID: 6000990730024554405}
+  - component: {fileID: 4134889592247787909}
   m_Layer: 5
   m_Name: Respirator Btn
   m_TagString: Untagged
@@ -18194,14 +18208,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b39daf3c96d674f8bd3269cae2d5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
+  _showAlert: 1
+  _useGraph: 0
   _monitor: {fileID: 7904817049621424509, guid: d1cc124bb43f6a048a10705757f02a34, type: 3}
   _monitorGraphWindow: {fileID: 0}
   _newMonitorGraph: {fileID: 0}
-  _alertTitle: 
-  _alertText: 
-  _showAlert: 0
-  _updateLog: 1
+  _monitorSprites: 0
+  _alertTitle: "\u05DE\u05E0\u05E9\u05DD"
+  _alertText: "\u05E0\u05E9\u05D9\u05DE\u05D4 \u05D4\u05EA\u05D9\u05D9\u05E6\u05D1\u05D4"
+--- !u!114 &4134889592247787909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220552773791193260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _useMedicineLog: 0
+  _newMeasurement: 13
+  _treatmentName: Manshem
+  _measurement: 2
 --- !u!1 &2221869241803498218
 GameObject:
   m_ObjectHideFlags: 0
@@ -18552,8 +18584,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _item: {fileID: 3763157064038063447, guid: 59b7652abfe66c6489e26aa66c5d38e9, type: 3}
   _itemName: Asherman
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetPos: {x: 0, y: 0.111, z: 1.3}
+  _offsetRot: {x: -1, y: 0, z: 0}
 --- !u!114 &9039891351987955206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52335,7 +52367,7 @@ MonoBehaviour:
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &391278057061914222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52352,7 +52384,7 @@ MonoBehaviour:
   _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!1 &2987312271668554952
 GameObject:
   m_ObjectHideFlags: 0
@@ -60983,8 +61015,8 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _item: {fileID: 7712631654234265585, guid: 8494d92e222328845af8b8429fd45a7a, type: 3}
   _itemName: Blood Pressure Device & Sleeve
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetPos: {x: 0.5, y: 0, z: 0.75}
+  _offsetRot: {x: 0, y: -0.5, z: 0}
 --- !u!114 &3647551274945721051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61000,8 +61032,8 @@ MonoBehaviour:
   _shouldUpdateLog: 0
   _item: {fileID: 6198605158783632762, guid: 26d9a0a0c5093954e8f776d2b9b874a2, type: 3}
   _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetPos: {x: 0.05, y: -0.58, z: 1.35}
+  _offsetRot: {x: -15, y: 180, z: 0}
 --- !u!114 &6725213621741617087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61989,7 +62021,7 @@ MonoBehaviour:
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &5403388584041204301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62006,7 +62038,7 @@ MonoBehaviour:
   _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &6714946908231042563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66104,7 +66136,7 @@ MonoBehaviour:
   _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &4134889592247787924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68203,13 +68235,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _showAlert: 0
+  _useGraph: 0
   _monitor: {fileID: 1147925305141470002, guid: f725c2ac6c511a0478d82c3d74e786b1, type: 3}
   _monitorGraphWindow: {fileID: 0}
   _newMonitorGraph: {fileID: 0}
+  _monitorSprites: 0
   _alertTitle: 
   _alertText: 
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &4826250925303524341
 GameObject:
   m_ObjectHideFlags: 0
@@ -78994,7 +79027,7 @@ GameObject:
   - component: {fileID: 3119277479082925391}
   - component: {fileID: 1418464196575122408}
   - component: {fileID: 4134889592247787942}
-  - component: {fileID: 4134889592247787909}
+  - component: {fileID: 7722255384191909683}
   m_Layer: 5
   m_Name: Camera Btn
   m_TagString: Untagged
@@ -79142,7 +79175,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4134889592247787909
+--- !u!114 &7722255384191909683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90249,7 +90282,7 @@ MonoBehaviour:
   _item: {fileID: 334469467259357876, guid: f0c5d0cb291190c4b937a25b98d4acbd, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!1 &7243029896425174183
 GameObject:
   m_ObjectHideFlags: 0
@@ -94280,7 +94313,7 @@ MonoBehaviour:
   _item: {fileID: 7126309234378175540, guid: 7ca0e949db9c0ac4ebb1272d99804544, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!1 &7819660915759692311
 GameObject:
   m_ObjectHideFlags: 0
@@ -118627,7 +118660,7 @@ MonoBehaviour:
   _item: {fileID: 6198605158783632762, guid: 8de6cbb74cd0c404ba867cbb589ffea8, type: 3}
   _itemName: 
   _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0, w: 0}
+  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &1260434451020583875
 MonoBehaviour:
   m_ObjectHideFlags: 0

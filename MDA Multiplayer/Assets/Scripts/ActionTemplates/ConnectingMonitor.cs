@@ -7,6 +7,9 @@ using Photon.Pun;
 
 public class ConnectingMonitor : Action
 {
+    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _useGraph = false;
+
     [Header("Prefab References")]
     [SerializeField] private GameObject _monitor;
 
@@ -18,10 +21,6 @@ public class ConnectingMonitor : Action
     [Header("Alert")]
     [SerializeField] private string _alertTitle;
     [SerializeField] private string _alertText;
-
-    [Header("Conditions")]
-    [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
 
     private GameObject _player;
     
@@ -36,23 +35,25 @@ public class ConnectingMonitor : Action
 
             GameObject monitor = PhotonNetwork.Instantiate(_monitor.name, CurrentPatient.ChestPosEquipmentTransform.position, CurrentPatient.ChestPosEquipmentTransform.rotation);
 
-            _monitorGraphWindow.SetActive(true);
-
-            if (!CurrentPatientData.MonitorSpriteList.Contains(_newMonitorGraph.sprite))
+            if (_useGraph)
             {
-                int monitorSpritesNum = (int)_monitorSprites;
-                CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer,  _newMonitorGraph, monitorSpritesNum);
-            }
-            
+                _monitorGraphWindow.SetActive(true);
 
-            TextToLog = $"Connected Defibrilator to {CurrentPatientData.Name} {CurrentPatientData.SureName}";
+                if (!CurrentPatientData.MonitorSpriteList.Contains(_newMonitorGraph.sprite))
+                {
+                    int monitorSpritesNum = (int)_monitorSprites;
+                    CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer, _newMonitorGraph, monitorSpritesNum);
+                }
+            }
+
+            TextToLog = $"Used {monitor.name} on Patient";
 
             if (_showAlert)
             {
                 ShowTextAlert(_alertTitle, _alertText);
             }
 
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }
