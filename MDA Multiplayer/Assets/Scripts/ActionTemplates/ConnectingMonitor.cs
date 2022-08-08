@@ -13,6 +13,7 @@ public class ConnectingMonitor : Action
     [Header("Component's Data")]
     [SerializeField] private GameObject _monitorGraphWindow;
     [SerializeField] private Image _newMonitorGraph;
+    [SerializeField] private MonitorSprites _monitorSprites;
 
     [Header("Alert")]
     [SerializeField] private string _alertTitle;
@@ -39,7 +40,8 @@ public class ConnectingMonitor : Action
 
             if (!CurrentPatientData.MonitorSpriteList.Contains(_newMonitorGraph.sprite))
             {
-                CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer,  _newMonitorGraph);
+                int monitorSpritesNum = (int)_monitorSprites;
+                CurrentPatient.PhotonView.RPC("SetMonitorGraphRPC", RpcTarget.AllViaServer,  _newMonitorGraph, monitorSpritesNum);
             }
             
 

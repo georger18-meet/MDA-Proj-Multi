@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum MonitorSprites { Monitor, ACG }
+public enum MonitorSprites { HeartMonitor, ECG }
 
 [CreateAssetMenu(fileName = "New Patient Data",menuName = "Patient Data") ]
 public class PatientData : ScriptableObject

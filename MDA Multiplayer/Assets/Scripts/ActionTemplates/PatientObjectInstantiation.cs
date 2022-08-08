@@ -14,7 +14,7 @@ public class PatientObjectInstantiation : Action
 
     [Header("Item Offsets")]
     [SerializeField] private Vector3 _offsetPos;
-    [SerializeField] private Quaternion _offsetRot;
+    [SerializeField] private Vector3 _offsetRot;
 
     public void InstantiateOnPatient()
     {
@@ -23,7 +23,7 @@ public class PatientObjectInstantiation : Action
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
             Vector3 desiredPosition = CurrentPatient.transform.position + _offsetPos;
-            Quaternion desiredRotation = new Quaternion(CurrentPatient.transform.rotation.x + _offsetRot.y, CurrentPatient.transform.rotation.y + _offsetRot.x, CurrentPatient.transform.rotation.z + _offsetRot.z, CurrentPatient.transform.rotation.w + _offsetRot.w);
+            Quaternion desiredRotation = new Quaternion(_offsetRot.x, _offsetRot.y, _offsetRot.z, Quaternion.identity.w);
 
             GameObject item = PhotonNetwork.Instantiate(_item.name, desiredPosition, desiredRotation);
             item.transform.SetParent(CurrentPatient.transform);
