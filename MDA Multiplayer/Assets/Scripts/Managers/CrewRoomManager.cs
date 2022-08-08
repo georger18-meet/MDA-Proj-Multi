@@ -33,7 +33,7 @@ public class CrewRoomManager : MonoBehaviour
 
     [SerializeField] private GameObject _patientMale, _patientFemale;
     [SerializeField] private bool isUsed;
-    
+
     //[SerializeField] private GameObject _crewRoomDoor;
 
     private void Awake()
@@ -167,10 +167,10 @@ public class CrewRoomManager : MonoBehaviour
             }
         }
     }
-    
+
     public void SpawnVehicle()
     {
-        _photonView.RPC("SpawnVehicle_RPC",RpcTarget.AllBufferedViaServer);
+        _photonView.RPC("SpawnVehicle_RPC", RpcTarget.AllBufferedViaServer);
     }
 
 
@@ -200,7 +200,7 @@ public class CrewRoomManager : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         PhotonView playerView = other.GetComponentInParent<PhotonView>();
-        
+
         if (other.CompareTag("test") && _playersInRoomList.Contains(playerView))
         {
             _photonView.RPC("UpdateUiNameOnExit", RpcTarget.AllBufferedViaServer);
@@ -295,8 +295,6 @@ public class CrewRoomManager : MonoBehaviour
         PlayerData leaderToBe = _playersInRoomList[leaderIndex].GetComponent<PlayerData>();
         leaderToBe.IsCrewLeader = true;
 
-        //SpawnVehicle();
-
         ActionsManager.Instance.NextCrewIndex++;
     }
 
@@ -317,7 +315,6 @@ public class CrewRoomManager : MonoBehaviour
     void ShowCrewUI_RPC()
     {
         RoomCrewMenuUI.gameObject.SetActive(true);
-
     }
 
     [PunRPC]
@@ -331,7 +328,7 @@ public class CrewRoomManager : MonoBehaviour
     {
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
-            if (PhotonNetwork.NickName == _playersInRoomList[i].Owner.NickName && listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
+            if (_photonView.Owner.NickName == _playersInRoomList[i].Owner.NickName && listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
             {
                 listOfUiNamesTMP[i].text = $"Crew Member #{i++}";
             }
