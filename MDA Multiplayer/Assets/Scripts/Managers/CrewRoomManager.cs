@@ -328,7 +328,7 @@ public class CrewRoomManager : MonoBehaviour
     {
         for (int i = 0; i < _playersInRoomList.Count; i++)
         {
-            if (_photonView.Owner.NickName == _playersInRoomList[i].Owner.NickName && listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
+            if (listOfUiNamesTMP[i].text != _playersInRoomList[i].Owner.NickName)
             {
                 listOfUiNamesTMP[i].text = $"Crew Member #{i++}";
             }
