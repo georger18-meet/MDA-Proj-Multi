@@ -203,30 +203,15 @@ public class CrewRoomManager : MonoBehaviour
         
         if (other.CompareTag("test") && _playersInRoomList.Contains(playerView))
         {
-            UpdateUiNameOnExit();
+            _photonView.RPC("UpdateUiNameOnExit", RpcTarget.AllBufferedViaServer);
             _playersInRoomList.Remove(playerView);
             // _photonView.RPC("RemoveFromUi_RPC", RpcTarget.AllBufferedViaServer, PhotonNetwork.NickName);
         }
     }
 
-    void UpdateUiNameOnExit()
-    {
-        for (int i = 0; i < _playersInRoomList.Count; i++)
-        {
-            if (listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
-            {
-                listOfUiNamesTMP[i].text = $"Crew Member #{i++}";
-                Debug.Log("Test4");
-            }
-            Debug.Log("Test5");
-        }
-        Debug.Log("Test6");
-
-    }
-    
-
     // PUN RPC Methods
     // --------------------
+
     [PunRPC]
     void AddingToRoomList_RPC(string currentPlayer)
     {
@@ -339,6 +324,18 @@ public class CrewRoomManager : MonoBehaviour
     void SetToUi_RPC()
     {
         SetCrewUITexts();
+    }
+
+    [PunRPC]
+    void UpdateUiNameOnExit()
+    {
+        for (int i = 0; i < _playersInRoomList.Count; i++)
+        {
+            if (PhotonNetwork.NickName == _playersInRoomList[i].Owner.NickName && listOfUiNamesTMP[i].text.Contains(_playersInRoomList[i].Owner.NickName))
+            {
+                listOfUiNamesTMP[i].text = $"Crew Member #{i++}";
+            }
+        }
     }
 
     [PunRPC]
