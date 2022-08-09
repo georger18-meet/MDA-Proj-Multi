@@ -393,14 +393,25 @@ public class CrewRoomManager : MonoBehaviour,IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+
         if (stream.IsWriting)
         {
-           // stream.SendNext(isUsed);
+            stream.SendNext(CrewLeaderDropDown.value);
 
+            foreach (var dropdown in CrewMemberRoleDropDownList)
+            {
+                stream.SendNext(dropdown.value);
+            }
         }
         else
         {
-           // isUsed = (bool)stream.ReceiveNext();
+            CrewLeaderDropDown.value = (int)stream.ReceiveNext();
+
+            foreach (var dropdown in CrewMemberRoleDropDownList)
+            {
+                dropdown.value = (int)stream.ReceiveNext();
+            }
+
 
         }
     }
