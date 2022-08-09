@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class CarControllerSimple : MonoBehaviourPunCallbacks,IPunObservable
+public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 {
     private float _verticalInput;
     private float _horizontalInput;

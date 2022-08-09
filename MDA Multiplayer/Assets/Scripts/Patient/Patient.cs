@@ -113,6 +113,7 @@ public class Patient : MonoBehaviour
     [PunRPC]
     public void AddUserToTreatingLists(string currentPlayer)
     {
+        // recieve crew index as int/ string no need for PatientData
         PlayerData currentPlayerData = GameObject.Find(currentPlayer).GetComponent<PlayerData>();
         //PlayerData currentPlayerData = currentPlayer != null ? currentPlayer as PlayerData : null;
 
