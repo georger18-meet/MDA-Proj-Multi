@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private LayerMask _interactableLayer;
+    [SerializeField] private LayerMask _selectableLayer;
     [SerializeField] private GameObject _indicatorIcon;
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
@@ -68,33 +69,39 @@ public class CameraController : MonoBehaviour
     {
         Ray ray = _playerCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, _raycastDistance, _interactableLayer))
+        // need to try other layer before ----
+
+        //if (Physics.Raycast(ray, out RaycastHit selectableRaycastHit, _raycastDistance, _selectableLayer))
+        //{
+        //}
+
+        if (Physics.Raycast(ray, out RaycastHit interactableRaycastHit, _raycastDistance, _interactableLayer))
         {
-            if (_currentInteractable != null && raycastHit.transform.gameObject != _currentInteractable) // true if raycast hit new interactable, destroy old current outline
+            if (_currentInteractable != null && interactableRaycastHit.transform.gameObject != _currentInteractable) // true if raycast hit new interactable, destroy old current outline
             {
                 _currentInteractable.OutlineWidth = 0;
             }
 
-            _currentInteractable = raycastHit.transform.GetComponent<Outline>();
+            _currentInteractable = interactableRaycastHit.transform.GetComponent<Outline>();
 
             if (!_currentInteractable) // if current is null => add outline to interactrable
             {
-                _currentInteractable = raycastHit.transform.gameObject.AddComponent<Outline>();
+                _currentInteractable = interactableRaycastHit.transform.gameObject.AddComponent<Outline>();
             }
 
             _currentInteractable.OutlineWidth = 15;
             _currentInteractable.OutlineMode = _outlineMode;
 
-            Debug.DrawLine(ray.origin, raycastHit.point, Color.cyan, 1f);
+            Debug.DrawLine(ray.origin, interactableRaycastHit.point, Color.cyan, 1f);
 
             //_indicatorIcon.SetActive(true);
 
             if (Input.GetMouseButtonDown(0))
             {
                 _indicatorSound.Play();
-                raycastHit.transform.GetComponent<MakeItAButton>().EventToCall.Invoke();
+                interactableRaycastHit.transform.GetComponent<MakeItAButton>().EventToCall.Invoke();
 
-                Debug.Log($"Interacted with {raycastHit.transform.name}");
+                Debug.Log($"Interacted with {interactableRaycastHit.transform.name}");
             }
         }
         else
@@ -106,6 +113,6 @@ public class CameraController : MonoBehaviour
             //_indicatorIcon.SetActive(false);
         }
 
-        return raycastHit;
+        return interactableRaycastHit;
     }
 }
