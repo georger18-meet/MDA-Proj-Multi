@@ -117545,9 +117545,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7005663827506023311}
-        m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 3
+        m_TargetAssemblyTypeName: Alert, Assembly-CSharp
+        m_MethodName: ShowAlert
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
