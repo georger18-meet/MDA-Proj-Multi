@@ -16497,6 +16497,7 @@ GameObject:
   - component: {fileID: 8594374618161904266}
   - component: {fileID: 1791869085514695689}
   - component: {fileID: 6616397869470442260}
+  - component: {fileID: 4134889592247787909}
   m_Layer: 5
   m_Name: Tourniquet Btn
   m_TagString: Untagged
@@ -16601,15 +16602,15 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1791869085514695689}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: OnApplyMedicineRPC
-        m_Mode: 3
+      - m_Target: {fileID: 4134889592247787909}
+        m_TargetAssemblyTypeName: PlaceBandage, Assembly-CSharp
+        m_MethodName: PlaceBandageAction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16618,6 +16619,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4134889592247787909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008742198568994394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce152dda329912345af84cb48e8945cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _useTourniquetInstead: 1
 --- !u!1 &2025961808639255437
 GameObject:
   m_ObjectHideFlags: 0
@@ -18074,7 +18089,7 @@ GameObject:
   - component: {fileID: 8791924470783848810}
   - component: {fileID: 1433957064029418771}
   - component: {fileID: 6000990730024554405}
-  - component: {fileID: 4134889592247787909}
+  - component: {fileID: 1090147889897622895}
   m_Layer: 5
   m_Name: Respirator Btn
   m_TagString: Untagged
@@ -18217,7 +18232,7 @@ MonoBehaviour:
   _monitorSprites: 0
   _alertTitle: "\u05DE\u05E0\u05E9\u05DD"
   _alertText: "\u05E0\u05E9\u05D9\u05DE\u05D4 \u05D4\u05EA\u05D9\u05D9\u05E6\u05D1\u05D4"
---- !u!114 &4134889592247787909
+--- !u!114 &1090147889897622895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92678,6 +92693,7 @@ GameObject:
   - component: {fileID: 7786351582815260403}
   - component: {fileID: 1213493267009567838}
   - component: {fileID: 8400672134750654523}
+  - component: {fileID: 1906017986}
   m_Layer: 5
   m_Name: BandaidS Btn
   m_TagString: Untagged
@@ -92782,15 +92798,15 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1213493267009567838}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: OnApplyMedicineRPC
-        m_Mode: 3
+      - m_Target: {fileID: 1906017986}
+        m_TargetAssemblyTypeName: PlaceBandage, Assembly-CSharp
+        m_MethodName: PlaceBandageAction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -92799,6 +92815,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1906017986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7625977240840665875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce152dda329912345af84cb48e8945cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _useTourniquetInstead: 0
 --- !u!1 &7636841557943472335
 GameObject:
   m_ObjectHideFlags: 0
