@@ -16,7 +16,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _indicatorIcon;
     [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
-    private GameObject _tempInteractableRef;
+    [SerializeField] private Outline.Mode _outlineMode;
+    private Outline _currentInteractable;
+    private bool _sendInteractRaycast;
+    public bool SetSendIteractRaycast { set => _sendInteractRaycast = value; }
     //private Vector3 _cameraOriginalPos, _cameraCurrentPos;
     //private Quaternion _cameraOriginalRot, _cameraCurrentRot;
 
@@ -34,17 +37,21 @@ public class CameraController : MonoBehaviour
         }
         else
         {
+            _sendInteractRaycast = true;
             //_cameraOriginalPos = _playerCamera.transform.position;
             //_cameraOriginalRot = _playerCamera.transform.rotation;
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_photonView.IsMine)
         {
             //SmoothCamera();
-            Interact();
+            if (_sendInteractRaycast)
+            {
+                Interact();
+            }
         }
     }
 
@@ -56,33 +63,31 @@ public class CameraController : MonoBehaviour
         //Vector3.Lerp();
     }
 
+
     public RaycastHit Interact()
     {
         Ray ray = _playerCamera.ScreenPointToRay(Input.mousePosition);
+
         if (Physics.Raycast(ray, out RaycastHit raycastHit, _raycastDistance, _interactableLayer))
         {
-            if (_tempInteractableRef != null && raycastHit.transform.gameObject != _tempInteractableRef)
+            if (_currentInteractable != null && raycastHit.transform.gameObject != _currentInteractable) // true if raycast hit new interactable, destroy old current outline
             {
-                if (_tempInteractableRef.TryGetComponent(out Outline outlineTe))
-                {
-                    Destroy(outlineTe);
-                }
+                _currentInteractable.OutlineWidth = 0;
             }
-            _tempInteractableRef = raycastHit.transform.gameObject;
 
-            Debug.DrawLine(ray.origin, raycastHit.point, Color.cyan, _raycastDistance);
+            _currentInteractable = raycastHit.transform.GetComponent<Outline>();
 
-            _indicatorIcon.SetActive(true);
-
-            if (raycastHit.transform.gameObject.TryGetComponent(out Outline outline))
+            if (!_currentInteractable) // if current is null => add outline to interactrable
             {
+                _currentInteractable = raycastHit.transform.gameObject.AddComponent<Outline>();
             }
-            else
-            {
-                Outline tempOutline = _tempInteractableRef.AddComponent<Outline>();
-                tempOutline.OutlineWidth = 15;
-                tempOutline.OutlineMode = Outline.Mode.OutlineVisible;
-            }
+
+            _currentInteractable.OutlineWidth = 15;
+            _currentInteractable.OutlineMode = _outlineMode;
+
+            Debug.DrawLine(ray.origin, raycastHit.point, Color.cyan, 1f);
+
+            //_indicatorIcon.SetActive(true);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -94,14 +99,11 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            if (_tempInteractableRef != null)
+            if (_currentInteractable != null)
             {
-                if (_tempInteractableRef.TryGetComponent(out Outline outlineTe))
-                {
-                    Destroy(outlineTe);
-                }
+                _currentInteractable.OutlineWidth = 0;
             }
-            _indicatorIcon.SetActive(false);
+            //_indicatorIcon.SetActive(false);
         }
 
         return raycastHit;

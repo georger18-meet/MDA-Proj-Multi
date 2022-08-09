@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         PlayerData = gameObject.AddComponent<PlayerData>();
         _currentCamera = _playerCamera;
+        _playerCamera.tag = "MainCamera";
     }
 
     private void Start()
@@ -442,14 +443,18 @@ public class PlayerController : MonoBehaviourPunCallbacks
             Debug.Log("Current State: Driving");
 
             _playerCamera.enabled = false;
+            _playerCamera.tag = "Untagged";
             _vehicleCamera.enabled = true;
+            _vehicleCamera.tag = "MainCamera";
             _currentCamera = _vehicleCamera;
             _characterController.enabled = false;
 
             if (!_isDriving)
             {
                 _vehicleCamera.enabled = false;
+                _vehicleCamera.tag = "Untagged";
                 _playerCamera.enabled = true;
+                _playerCamera.tag = "MainCamera";
                 _currentCamera = _playerCamera;
                 _characterController.enabled = true;
                 _stateAction = UseTankIdleState;

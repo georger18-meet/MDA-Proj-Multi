@@ -19,11 +19,11 @@ public class ChangeClothing : Action
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
             CurrentPatient.PhotonView.RPC("ChangeClothingRPC", RpcTarget.AllBufferedViaServer, (int)_clothing);
-        }
 
-        if (_shouldUpdateLog)
-        {
-            LogText(TextToLog);
+            if (_shouldUpdateLog)
+            {
+                LogText(TextToLog);
+            }
         }
     }
 }

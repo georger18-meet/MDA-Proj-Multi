@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4957644151391252538}
   - component: {fileID: 5725044972737637427}
   - component: {fileID: 8126908019265194589}
+  - component: {fileID: 5902959180615209914}
   - component: {fileID: 3240528611189879737}
   m_Layer: 7
   m_Name: KneeBandageRight
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,6 +98,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4413538673922515126, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &5902959180615209914
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315888162658834418}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &3240528611189879737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,13 +129,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 315888162658834418}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -392,6 +409,7 @@ GameObject:
   - component: {fileID: 2054391725244919562}
   - component: {fileID: 5138343705637141589}
   - component: {fileID: 717688977780624867}
+  - component: {fileID: 3091153103587096987}
   - component: {fileID: 7672088952911474869}
   m_Layer: 7
   m_Name: ShinBandageRight
@@ -421,7 +439,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2973905083726358012}
-  m_Mesh: {fileID: -3854768104192242647, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  m_Mesh: {fileID: 8155415170309317013, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
 --- !u!23 &5138343705637141589
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -441,7 +459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -477,6 +495,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3854768104192242647, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &3091153103587096987
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973905083726358012}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7672088952911474869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,13 +526,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 2973905083726358012}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -691,6 +725,7 @@ GameObject:
   - component: {fileID: 8132081094902539009}
   - component: {fileID: 493531864672290071}
   - component: {fileID: 1912949687452854607}
+  - component: {fileID: 2307035295538858671}
   - component: {fileID: 7248270822760849005}
   m_Layer: 7
   m_Name: ForeArmBandageRight
@@ -720,7 +755,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616511221322959957}
-  m_Mesh: {fileID: 5076904102779260114, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 36202332d25a3f3498700b561f3d0445, type: 3}
 --- !u!23 &493531864672290071
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -740,7 +775,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -776,6 +811,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5076904102779260114, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &2307035295538858671
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616511221322959957}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7248270822760849005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,13 +842,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 4616511221322959957}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -916,6 +967,26 @@ MonoBehaviour:
   AllUsersTreatedThisPatient: []
   TreatingCrews: 
   AllCrewTreatedThisPatient: 
+  UseTourniquet: 0
+  _bandageMeshList:
+  - {fileID: 8155415170309317013, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  - {fileID: 4413538673922515126, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  - {fileID: -2638647726212555922, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  - {fileID: -2061921415014785553, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  _tourniquetMeshList:
+  - {fileID: -3854768104192242647, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  - {fileID: 1899937694965813863, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  - {fileID: 5076904102779260114, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  - {fileID: -5680955622122188109, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  _unusedBandagesOnPatient:
+  - {fileID: 8538159602492610231}
+  - {fileID: 7863875556838234707}
+  - {fileID: 2973905083726358012}
+  - {fileID: 315888162658834418}
+  - {fileID: 8088527349528296053}
+  - {fileID: 5765741776633872584}
+  - {fileID: 4616511221322959957}
+  - {fileID: 8064756861214715658}
   ChestPosPlayerTransform: {fileID: 629437207851787677}
   ChestPosEquipmentTransform: {fileID: 629437207945255640}
   HeadPosPlayerTransform: {fileID: 629437208365349993}
@@ -1065,6 +1136,7 @@ GameObject:
   - component: {fileID: 200029270804285215}
   - component: {fileID: 4332962551253641122}
   - component: {fileID: 2869780217633896162}
+  - component: {fileID: 8373572526692684902}
   - component: {fileID: 7098085945983577053}
   m_Layer: 7
   m_Name: BicepBandageLeft
@@ -1094,7 +1166,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5765741776633872584}
-  m_Mesh: {fileID: -5680955622122188109, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  m_Mesh: {fileID: -2061921415014785553, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
 --- !u!23 &4332962551253641122
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1114,7 +1186,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1150,6 +1222,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5680955622122188109, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &8373572526692684902
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5765741776633872584}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7098085945983577053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,13 +1253,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 5765741776633872584}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1233,6 +1321,7 @@ GameObject:
   - component: {fileID: 4271558963942432711}
   - component: {fileID: 5923905118230466199}
   - component: {fileID: 2548495136238743163}
+  - component: {fileID: 7197306626995690020}
   - component: {fileID: 6497765048736064913}
   m_Layer: 7
   m_Name: KneeBandageLeft
@@ -1262,7 +1351,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7863875556838234707}
-  m_Mesh: {fileID: 1899937694965813863, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  m_Mesh: {fileID: 4413538673922515126, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
 --- !u!23 &5923905118230466199
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1282,7 +1371,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1318,6 +1407,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1899937694965813863, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &7197306626995690020
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7863875556838234707}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &6497765048736064913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,13 +1438,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 7863875556838234707}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1357,6 +1462,7 @@ GameObject:
   - component: {fileID: 5979781420262045294}
   - component: {fileID: 4032530655444302020}
   - component: {fileID: 4194272007226972265}
+  - component: {fileID: 1853501749836635824}
   - component: {fileID: 7145292460714244057}
   m_Layer: 7
   m_Name: BicepBandageRight
@@ -1406,7 +1512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1442,6 +1548,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2061921415014785553, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &1853501749836635824
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064756861214715658}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7145292460714244057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1457,13 +1579,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8064756861214715658}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8064756861214715658}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1481,6 +1603,7 @@ GameObject:
   - component: {fileID: 1925422960878997771}
   - component: {fileID: 2990554796886923027}
   - component: {fileID: 3328268373165416067}
+  - component: {fileID: 8757645752615992738}
   - component: {fileID: 9062182543646570775}
   m_Layer: 7
   m_Name: ForeArmBandageLeft
@@ -1510,7 +1633,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8088527349528296053}
-  m_Mesh: {fileID: -2638647726212555922, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 36202332d25a3f3498700b561f3d0445, type: 3}
 --- !u!23 &2990554796886923027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1530,7 +1653,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1566,6 +1689,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2638647726212555922, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &8757645752615992738
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8088527349528296053}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &9062182543646570775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,13 +1720,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 8088527349528296053}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1605,6 +1744,7 @@ GameObject:
   - component: {fileID: 7898412842650596235}
   - component: {fileID: 5185338789221128846}
   - component: {fileID: 7980818942715197041}
+  - component: {fileID: 2661893857154816667}
   - component: {fileID: 157203173254059095}
   m_Layer: 7
   m_Name: ShinBandageLeft
@@ -1634,7 +1774,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8538159602492610231}
-  m_Mesh: {fileID: -3854768104192242647, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+  m_Mesh: {fileID: 8155415170309317013, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
 --- !u!23 &5185338789221128846
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1654,7 +1794,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0799564edb4d0404c85ad1b5a39aa266, type: 2}
+  - {fileID: 2100000, guid: b4a93e3367dc2744c825e45dad97f451, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1690,6 +1830,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3854768104192242647, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
+--- !u!54 &2661893857154816667
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538159602492610231}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &157203173254059095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,13 +1861,13 @@ MonoBehaviour:
   EventToCall:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5550523932109703413}
+        m_TargetAssemblyTypeName: Patient, Assembly-CSharp
+        m_MethodName: EnableBandage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 8538159602492610231}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1778,6 +1934,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+--- !u!4 &340585011488841370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2559285840627121667, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7212182465135786284 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4384050727176021579, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4972752942005901572 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7078722787440015773, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &336985210962384177 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2563496969622287784, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4900138701693765188 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2072040086291044643, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4749372088492187232 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1812909498023395591, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &479670731272151149 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -6803169544883306252, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
+  m_PrefabInstance: {fileID: 2827812699161321625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3409042131178473189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608321761475470972, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
@@ -1791,40 +1982,5 @@ Transform:
 --- !u!4 &2356739229027141490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4749372088492187232 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -1812909498023395591, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &7212182465135786284 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -4384050727176021579, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &340585011488841370 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2559285840627121667, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &336985210962384177 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2563496969622287784, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4972752942005901572 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7078722787440015773, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &479670731272151149 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -6803169544883306252, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
-  m_PrefabInstance: {fileID: 2827812699161321625}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4900138701693765188 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -2072040086291044643, guid: 267ac88c20322074282ae58d9d9b6a8c, type: 3}
   m_PrefabInstance: {fileID: 2827812699161321625}
   m_PrefabAsset: {fileID: 0}

@@ -33,6 +33,11 @@ public class Patient : MonoBehaviour
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
 
+    [Header("Bandages")]
+    public bool UseTourniquet = false;
+    [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
+    [SerializeField] private List<GameObject> _unusedBandagesOnPatient;
+
     [Header("Treatment Positions")]
     public Transform ChestPosPlayerTransform;
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
@@ -87,6 +92,31 @@ public class Patient : MonoBehaviour
         }
     }
     #endregion
+
+    public void SetUnusedBandages(bool enableBandage)
+    {
+        foreach (GameObject bandage in _unusedBandagesOnPatient)
+        {
+            bandage.SetActive(enableBandage);
+        }
+    }
+
+    public void EnableBandage(GameObject bandage)
+    {
+        int bandageIndex = 0;
+
+        // loops through unused bandages list and find current bandage index => insert index as argument for RPC method (GameObjects are not passable arguments in RPC)
+        for (int i = 0; i < _unusedBandagesOnPatient.Count; i++) 
+        {
+            if (_unusedBandagesOnPatient[i].name == bandage.name)
+            {
+                bandageIndex = i;
+                PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
+            }
+        }
+        //_unUsedBandagesOnPatient.Remove(bandage);
+        SetUnusedBandages(false);
+    }
 
     public bool IsPlayerJoined(PlayerData playerData)
     {
@@ -259,6 +289,51 @@ public class Patient : MonoBehaviour
         {
             (newGraph as Image).sprite = PatientData.MonitorSpriteList[MonitorSpriteNum];
         }
+    }
+
+    [PunRPC]
+    private void RemoveBandageFromUnusedListRPC(int BandageIndex)
+    {
+        if (UseTourniquet)
+        {
+            if (BandageIndex == 0 || BandageIndex == 2) // Shin
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[0];
+            }
+            else if (BandageIndex == 1 || BandageIndex == 3) // Knee
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[1];
+            }
+            else if (BandageIndex == 4 || BandageIndex == 6) // ForeArm
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[2];
+            }
+            else if (BandageIndex == 5 || BandageIndex == 7) // Bicep
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[3];
+            }
+        }
+        else
+        {
+            if (BandageIndex == 0 || BandageIndex == 2) // Shin
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[0];
+            }
+            else if (BandageIndex == 1 || BandageIndex == 3) // Knee
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[1];
+            }
+            else if (BandageIndex == 4 || BandageIndex == 6) // ForeArm
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[2];
+            }
+            else if (BandageIndex == 5 || BandageIndex == 7) // Bicep
+            {
+                _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[3];
+            }
+        }
+
+        _unusedBandagesOnPatient.RemoveAt(BandageIndex);
     }
     #endregion
 }
