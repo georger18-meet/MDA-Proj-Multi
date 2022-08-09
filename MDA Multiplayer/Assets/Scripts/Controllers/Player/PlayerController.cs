@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private float _stateSpeed;
     private bool _isDriving;
     public bool IsDriving { get => _isDriving; set => _isDriving = value; }
+
     private Vector2 _input;
 
     [Header("Physics")]
