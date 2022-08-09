@@ -7,9 +7,10 @@ using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
-public class CrewRoomManager : MonoBehaviour
+public class CrewRoomManager : MonoBehaviour,IPunObservable
 {
     //public GameObject RoomDoorBlocker;
     //public TextMeshProUGUI CrewMemberNameText1, CrewMemberNameText2, CrewMemberNameText3, CrewMemberNameText4;
@@ -35,10 +36,13 @@ public class CrewRoomManager : MonoBehaviour
     [SerializeField] private string _waitMemberText;
     [SerializeField] private bool isUsed;
 
+
+    private OwnershipTransfer _transfer;
     //[SerializeField] private GameObject _crewRoomDoor;
 
     private void Awake()
     {
+        _transfer = GetComponent<OwnershipTransfer>();
         _crewRoomIndexStatic = 0;
         _photonView = GetComponent<PhotonView>();
         PopulateDropdownRoles();
@@ -49,6 +53,19 @@ public class CrewRoomManager : MonoBehaviour
     {
         _crewRoomIndexStatic++;
         _crewRoomIndex = _crewRoomIndexStatic;
+    }
+
+    private void Update()
+    {
+        if (_photonView.IsMine)
+        {
+            InteractUICrew();
+        }
+        else
+        {
+            RoomCrewMenuUI.GetComponent<CanvasGroup>().interactable = false;
+
+        }
     }
 
     private bool CheckIfAlreadyInList(GameObject player)
@@ -65,6 +82,22 @@ public class CrewRoomManager : MonoBehaviour
 
         return playerFound;
     }
+
+    private void InteractUICrew()
+    {
+
+       // PhotonView currentPlayerView = ActionsManager.Instance.GetPlayerPhotonViewByNickName(currentPlayer);
+
+
+        if (isUsed)
+        {
+            RoomCrewMenuUI.GetComponent<CanvasGroup>().interactable = true;
+
+        }
+      
+
+    }
+
 
     private void SetCrewUITexts()
     {
@@ -135,6 +168,7 @@ public class CrewRoomManager : MonoBehaviour
     // --------------------
     public void ShowCrewRoomMenu()
     {
+        _transfer.CrewUI();
         _photonView.RPC("ShowCrewUI_RPC", RpcTarget.AllBufferedViaServer);
 
         // RoomCrewMenuUI.gameObject.SetActive(true);
@@ -315,6 +349,8 @@ public class CrewRoomManager : MonoBehaviour
     void ShowCrewUI_RPC()
     {
         RoomCrewMenuUI.gameObject.SetActive(true);
+        isUsed = true;
+        
     }
 
     [PunRPC]
@@ -351,6 +387,21 @@ public class CrewRoomManager : MonoBehaviour
     [PunRPC]
     void CloseCrewUI_RPC()
     {
+        isUsed = false;
         RoomCrewMenuUI.gameObject.SetActive(false);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+           // stream.SendNext(isUsed);
+
+        }
+        else
+        {
+           // isUsed = (bool)stream.ReceiveNext();
+
+        }
     }
 }

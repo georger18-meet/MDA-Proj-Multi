@@ -42,6 +42,11 @@ public class OwnershipTransfer : MonoBehaviourPun,IPunOwnershipCallbacks
         base.photonView.RequestOwnership();
     }
 
+    public void CrewUI()
+    {
+        base.photonView.RequestOwnership();
+    }
+
     public void TvOwner()
     {
         base.photonView.RequestOwnership();
