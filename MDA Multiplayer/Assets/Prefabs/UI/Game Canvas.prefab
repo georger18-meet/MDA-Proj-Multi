@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 563258777}
   - component: {fileID: 563258776}
   m_Layer: 5
-  m_Name: ClosePatientInfo Btn
+  m_Name: CloseMonitor Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
         m_MethodName: OpenCloseDisplayWindow
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7994697899320426587}
+          m_ObjectArgument: {fileID: 1745487884}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8928,9 +8928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _showAlert: 0
-  _useGraph: 0
+  _useGraph: 1
   _monitor: {fileID: 1147925305141470002, guid: c85fcccd24f3bb34b8da44cb469f4911, type: 3}
-  _monitorGraphWindow: {fileID: 1745487884}
   _newMonitorGraph: {fileID: 714506122}
   _monitorSprites: 0
   _alertTitle: 
@@ -18227,7 +18226,6 @@ MonoBehaviour:
   _showAlert: 1
   _useGraph: 0
   _monitor: {fileID: 7904817049621424509, guid: d1cc124bb43f6a048a10705757f02a34, type: 3}
-  _monitorGraphWindow: {fileID: 0}
   _newMonitorGraph: {fileID: 0}
   _monitorSprites: 0
   _alertTitle: "\u05DE\u05E0\u05E9\u05DD"
@@ -68253,7 +68251,6 @@ MonoBehaviour:
   _showAlert: 0
   _useGraph: 0
   _monitor: {fileID: 1147925305141470002, guid: f725c2ac6c511a0478d82c3d74e786b1, type: 3}
-  _monitorGraphWindow: {fileID: 0}
   _newMonitorGraph: {fileID: 0}
   _monitorSprites: 0
   _alertTitle: 

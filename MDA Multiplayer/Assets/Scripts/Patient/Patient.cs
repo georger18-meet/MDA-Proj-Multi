@@ -33,6 +33,9 @@ public class Patient : MonoBehaviour
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
 
+    [Header("UI")]
+    public Image MonitorWindow;
+
     [Header("Bandages")]
     public bool UseTourniquet = false;
     [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
@@ -58,6 +61,7 @@ public class Patient : MonoBehaviour
         //players = new List<PlayerController>();
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
+        MonitorWindow = UIManager.Instance.MonitorParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
     }
     #endregion
 
@@ -283,12 +287,9 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
-    private void SetMonitorGraphRPC(object newGraph, int MonitorSpriteNum)
+    private void SetMonitorGraphRPC(int MonitorSpriteNum)
     {
-        if (newGraph is Image)
-        {
-            (newGraph as Image).sprite = PatientData.MonitorSpriteList[MonitorSpriteNum];
-        }
+        MonitorWindow.sprite = PatientData.MonitorSpriteList[MonitorSpriteNum];
     }
 
     [PunRPC]

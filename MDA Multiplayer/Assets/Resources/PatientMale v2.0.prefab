@@ -967,6 +967,7 @@ MonoBehaviour:
   AllUsersTreatedThisPatient: []
   TreatingCrews: 
   AllCrewTreatedThisPatient: 
+  MonitorWindow: {fileID: 0}
   UseTourniquet: 0
   _bandageMeshList:
   - {fileID: 8155415170309317013, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
