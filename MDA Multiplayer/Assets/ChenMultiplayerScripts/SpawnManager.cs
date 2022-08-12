@@ -19,10 +19,12 @@ public class SpawnManager : MonoBehaviour
 
     [Header("GeneralPrefabs")]
     [SerializeField] private GameObject _crewRoomColliderPrefab;
+    [SerializeField] private GameObject _eranRoomPrefab;
 
     [Header("Transform Positions In Scene")]
     [SerializeField] private Transform _patientMalePosTransform;
     [SerializeField] private Transform _patientFemalePosTransform;
+    [SerializeField] private Transform _eranRoomPosTransform;
     [SerializeField] private Transform /*_ambulancePosTransform,*/ _natanPosTransform;
     [SerializeField] private Transform[] _crewRoomPosTransforms; // crew rooms collider positions in scene
 
@@ -36,8 +38,11 @@ public class SpawnManager : MonoBehaviour
         PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);
         //PhotonNetwork.InstantiateRoomObject(_patientFemalePrefab.name, _patientFemalePosTransform.position, _patientFemalePrefab.transform.rotation);
 
+
         if (PhotonNetwork.IsMasterClient)
         {
+            PhotonNetwork.InstantiateRoomObject(_eranRoomPrefab.name, _eranRoomPosTransform.position,_eranRoomPosTransform.rotation);
+
             foreach (Transform crewRoomPosTr in _crewRoomPosTransforms)
             {
                 PhotonNetwork.InstantiateRoomObject(_crewRoomColliderPrefab.name, crewRoomPosTr.position, crewRoomPosTr.rotation);
