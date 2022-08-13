@@ -72,6 +72,8 @@ MonoBehaviour:
   - SetToUi_RPC
   - UpdateUiNameOnExit
   - RemoveBandageFromUnusedListRPC
+  - GiveRoles
+  - DropdownPlayersNickNames
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

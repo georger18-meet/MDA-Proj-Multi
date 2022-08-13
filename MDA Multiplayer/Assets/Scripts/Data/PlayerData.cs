@@ -15,6 +15,9 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public int CrewIndex { get; set; }
     [field: SerializeField] public bool IsCrewLeader { get; set; }
     [field: SerializeField] public bool IsInstructor { get; set; }
+    [field: SerializeField] public bool IsRefua10 { get; set; }
+    [field: SerializeField] public bool IsHenyon10 { get; set; }
+    [field: SerializeField] public bool IsPinoye10 { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public Color CrewColor { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }

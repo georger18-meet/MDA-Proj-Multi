@@ -2728,7 +2728,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 2
+  OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5766170080069667474}
@@ -2764,10 +2764,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomEranMenuUI: {fileID: 6573222877332472005}
+  DropDown: {fileID: 4454679758302278743}
   CrewMemberDropDownList:
   - {fileID: 4868526862382515002}
   - {fileID: 7563585049529045471}
   - {fileID: 1446081634275172100}
+  PlayerListDropDown1: {fileID: 4868526862382515002}
+  PlayerListDropDown2: {fileID: 7563585049529045471}
+  PlayerListDropDown3: {fileID: 1446081634275172100}
 --- !u!1 &3620633191598118944
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4017,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4425761512099310650}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5514061808527128308}
+        m_TargetAssemblyTypeName: EranCrew, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5455988694543500523
 GameObject:
   m_ObjectHideFlags: 0
