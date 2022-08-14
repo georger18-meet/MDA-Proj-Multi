@@ -74,6 +74,9 @@ MonoBehaviour:
   - RemoveBandageFromUnusedListRPC
   - GiveRoles
   - DropdownPlayersNickNames
+  - GiveHenyonRole
+  - GivePinoyeRole
+  - GiveRefuaRole
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

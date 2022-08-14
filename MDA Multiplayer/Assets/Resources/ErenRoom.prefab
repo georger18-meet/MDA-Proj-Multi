@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 7131226403904344150}
   - component: {fileID: 3230768384509093485}
   m_Layer: 5
-  m_Name: StartIncidecnt Btn
+  m_Name: Give Pinoye Role Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,7 +619,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7131226403904344150}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5514061808527128308}
+        m_TargetAssemblyTypeName: EranCrew, Assembly-CSharp
+        m_MethodName: GiveIsPinoyeRoleClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &683904529677392998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,7 +1676,7 @@ GameObject:
   - component: {fileID: 3160105121942338262}
   - component: {fileID: 1432799596391988538}
   m_Layer: 5
-  m_Name: SpawnVehicle Btn
+  m_Name: Give Refua Role Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1771,7 +1783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3160105121942338262}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5514061808527128308}
+        m_TargetAssemblyTypeName: EranCrew, Assembly-CSharp
+        m_MethodName: GiveIsRefuaRoleClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2503960900179459916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,11 +2788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomEranMenuUI: {fileID: 6573222877332472005}
-  DropDown: {fileID: 4454679758302278743}
-  CrewMemberDropDownList:
-  - {fileID: 4868526862382515002}
-  - {fileID: 7563585049529045471}
-  - {fileID: 1446081634275172100}
+  DropDown1: {fileID: 3393472901197867583}
+  DropDown2: {fileID: 5795598872242720840}
+  DropDown3: {fileID: 4454679758302278743}
   PlayerListDropDown1: {fileID: 4868526862382515002}
   PlayerListDropDown2: {fileID: 7563585049529045471}
   PlayerListDropDown3: {fileID: 1446081634275172100}
@@ -3910,7 +3932,7 @@ GameObject:
   - component: {fileID: 4425761512099310650}
   - component: {fileID: 4752445278687850209}
   m_Layer: 5
-  m_Name: CreateCrew Btn
+  m_Name: Give Henyon Role Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4020,7 +4042,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5514061808527128308}
         m_TargetAssemblyTypeName: EranCrew, Assembly-CSharp
-        m_MethodName: Click
+        m_MethodName: GiveHenyonRoleClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
