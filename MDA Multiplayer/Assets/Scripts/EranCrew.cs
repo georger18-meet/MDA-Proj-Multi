@@ -18,28 +18,14 @@ public class EranCrew : MonoBehaviour
     public TMP_Dropdown PlayerListDropDown2;
     public TMP_Dropdown PlayerListDropDown3;
 
-
+    
 
     void Start()
     {
         _photonView = GetComponent<PhotonView>();
-        //StartCoroutine(HandleDropDownUpdates(.3f));
-        DropdownPlayersNickNames();
-    }
-
-
-    void Update()
-    {
-
-        // PopulateDropdownRoles();
-        if (Input.GetKey(KeyCode.L))
-        {
-           // Debug.Log("ActionsManager.Instance.AllPlayersPhotonViews   " + ActionsManager.Instance.AllPlayersPhotonViews.Count);
-            //DropdownPlayersNickNames();
-           // Debug.Log("PhotonNetwork.PlayerList   " + PhotonNetwork.PlayerList.Length);
-        }
 
     }
+
 
     //Maybe In corutine?
     [PunRPC]
@@ -54,7 +40,7 @@ public class EranCrew : MonoBehaviour
         //    {
         //        value.Add(ActionsManager.Instance.AllPlayersPhotonViews[i].Owner.NickName);
         //    }
-            
+
         //}
 
         //foreach (var dropdown in CrewMemberDropDownList)
@@ -63,16 +49,26 @@ public class EranCrew : MonoBehaviour
         //    dropdown.AddOptions(value);
         //}
 
-
         List<string> value = new List<string>();
         foreach (var player in PhotonNetwork.PlayerList)
         {
             value.Add(player.NickName);
         }
 
-       // PlayerListDropDown3.ClearOptions();
-        PlayerListDropDown3.AddOptions(value);
 
+        PlayerListDropDown3.ClearOptions();
+        PlayerListDropDown3.AddOptions(value);
+        
+        //foreach (var playername in value)
+        //{
+        //   // PlayerListDropDown3.options.Add(new TMP_Dropdown.OptionData() { text = playername });
+        //    if (!PlayerListDropDown3.options.Contains(new TMP_Dropdown.OptionData() { text = playername }))
+        //    {
+        //    }
+        //}
+
+
+        Debug.Log(PlayerListDropDown3.options.Count);
     }
 
     public void Click()
@@ -99,12 +95,17 @@ public class EranCrew : MonoBehaviour
 
     IEnumerator HandleDropDownUpdates(float nextUpdate)
     {
-        yield return new WaitForSeconds(nextUpdate);
+        while (true)
+        {
+            if (PhotonNetwork.PlayerList.Length!=PlayerListDropDown3.options.Count)
+            {
+                _photonView.RPC("DropdownPlayersNickNames", RpcTarget.AllBufferedViaServer);
 
-        _photonView.RPC("DropdownPlayersNickNames", RpcTarget.AllBufferedViaServer);
+            }
+            yield return new WaitForSeconds(nextUpdate);
+        }
 
-
-        StartCoroutine(HandleDropDownUpdates(nextUpdate));
+        // StartCoroutine(HandleDropDownUpdates(nextUpdate));
     }
 
     [PunRPC]
@@ -119,13 +120,17 @@ public class EranCrew : MonoBehaviour
         roleIndex.IsHenyon10 = true;
     }
 
+    private Coroutine updatePlayerListCoroutine;
+    //opened By clicking on Sign
     public void ShowEranRoomMenu()
     {
         RoomEranMenuUI.gameObject.SetActive(true);
+        updatePlayerListCoroutine = StartCoroutine(HandleDropDownUpdates(0.5f));
     }
 
     public void CloseEranRoomMenu()
     {
+        StopCoroutine(updatePlayerListCoroutine);
         RoomEranMenuUI.gameObject.SetActive(false);
     }
 }

@@ -16,6 +16,8 @@ public class Lobby : MonoBehaviourPunCallbacks
     private bool isConnecting;
     private byte maxPlayersPerRoom = 50;
 
+    public System.Action OnPlayerListChange;
+
     private void Awake()
     {
         // This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
@@ -60,17 +62,24 @@ public class Lobby : MonoBehaviourPunCallbacks
           isConnecting = false;
       }
     }
+
     public override void OnJoinedRoom()
     {
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
-            {
-                PhotonNetwork.LoadLevel(1);
-            }
+            PhotonNetwork.LoadLevel(1);
+        }
+        else
+        {
+            OnPlayerListChange?.Invoke();
         }
 
+    }
+
+    public override void OnLeftRoom()
+    {
+        OnPlayerListChange?.Invoke();
     }
 
 
