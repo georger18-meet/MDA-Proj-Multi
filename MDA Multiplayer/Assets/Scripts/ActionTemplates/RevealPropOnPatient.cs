@@ -12,7 +12,7 @@ public class RevealPropOnPatient : Action
     [Header("Item Name")]
     [SerializeField] private string _itemName;
 
-    public void InstantiateOnPatient()
+    public void RevealOnPatient()
     {
         GetActionData();
 

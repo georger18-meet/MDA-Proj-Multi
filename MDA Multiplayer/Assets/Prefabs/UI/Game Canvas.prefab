@@ -3026,10 +3026,10 @@ GameObject:
   - component: {fileID: 3207163729059750075}
   - component: {fileID: 5497790667487302126}
   - component: {fileID: 8405163717525069705}
-  - component: {fileID: 8245608212606185977}
   - component: {fileID: 2163187210081373566}
   - component: {fileID: 6361372623281601715}
   - component: {fileID: 4134889592247787931}
+  - component: {fileID: 8841309218626410401}
   m_Layer: 5
   m_Name: CPAP Btn
   m_TagString: Untagged
@@ -3139,9 +3139,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8245608212606185977}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 8841309218626410401}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3187,23 +3187,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8245608212606185977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173898106225518881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 6658054613961404604, guid: a3b33ac868e81334381ba0b0f1d73f3f, type: 3}
-  _itemName: OxygenMask
-  _offsetPos: {x: 0, y: 0.14, z: 1.595}
-  _offsetRot: {x: 0, y: -90, z: -59}
 --- !u!114 &2163187210081373566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3255,6 +3238,21 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 PAPC"
   _alertText: "PAPC \u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4"
   _textToLog: 
+--- !u!114 &8841309218626410401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173898106225518881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 4
+  _itemName: Oxygen Mask
 --- !u!1 &207059708267173185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3777,10 +3775,10 @@ GameObject:
   - component: {fileID: 7984238370158362615}
   - component: {fileID: 1387019470466876841}
   - component: {fileID: 1353260934680514702}
-  - component: {fileID: 1886051247299936444}
-  - component: {fileID: 4260043488670541954}
   - component: {fileID: 8267955096426660038}
   - component: {fileID: 4134889592247787930}
+  - component: {fileID: 4214777161246238080}
+  - component: {fileID: 2324070815346588065}
   m_Layer: 5
   m_Name: LMA Btn
   m_TagString: Untagged
@@ -3890,9 +3888,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1886051247299936444}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 4214777161246238080}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3902,9 +3900,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4260043488670541954}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 2324070815346588065}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3938,40 +3936,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1886051247299936444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287020668943783405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
-  _itemName: Tube
-  _offsetPos: {x: 0, y: 0.121, z: 1.555}
-  _offsetRot: {x: 0, y: 180, z: 180}
---- !u!114 &4260043488670541954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287020668943783405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 0
-  _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
-  _itemName: Ambu
-  _offsetPos: {x: 0, y: 0.17, z: 1.46}
-  _offsetRot: {x: 0, y: 180, z: 90}
 --- !u!114 &8267955096426660038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4006,6 +3970,36 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 AML"
   _alertText: "AML \u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4"
   _textToLog: 
+--- !u!114 &4214777161246238080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287020668943783405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 5
+  _itemName: LMA
+--- !u!114 &2324070815346588065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287020668943783405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 0
+  _prop: 2
+  _itemName: 
 --- !u!1 &303785466215122164
 GameObject:
   m_ObjectHideFlags: 0
@@ -6002,19 +5996,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4560047453215538195}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: OnApplyMedicineRPC
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &480834871384525898
 GameObject:
   m_ObjectHideFlags: 0
@@ -13562,9 +13544,9 @@ GameObject:
   - component: {fileID: 5338423520241480554}
   - component: {fileID: 3276130459652831096}
   - component: {fileID: 8655370501879447511}
-  - component: {fileID: 5459984554227557933}
   - component: {fileID: 3964249766228563631}
   - component: {fileID: 4134889592247787926}
+  - component: {fileID: 9121691843001869541}
   m_Layer: 5
   m_Name: Ambu Btn
   m_TagString: Untagged
@@ -13674,9 +13656,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5459984554227557933}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 9121691843001869541}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13710,23 +13692,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5459984554227557933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513833536132483923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
-  _itemName: Ambu
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &3964249766228563631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13761,6 +13726,21 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 \u05D0\u05DE\u05D1\u05D5"
   _alertText: "\u05D0\u05DE\u05D1\u05D5 \u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
   _textToLog: 
+--- !u!114 &9121691843001869541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513833536132483923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 2
+  _itemName: Ambu
 --- !u!1 &1532484047226391118
 GameObject:
   m_ObjectHideFlags: 0
@@ -16258,9 +16238,9 @@ GameObject:
   - component: {fileID: 9153248277568961455}
   - component: {fileID: 3678755074780730378}
   - component: {fileID: 4075168427436674974}
-  - component: {fileID: 3333189964899033528}
   - component: {fileID: 5687967563255195987}
   - component: {fileID: 155681379}
+  - component: {fileID: 627669799553688893}
   m_Layer: 5
   m_Name: AdultBIG Btn
   m_TagString: Untagged
@@ -16382,9 +16362,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3333189964899033528}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 627669799553688893}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16433,23 +16413,6 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _clothing: 1
   _textToLog: Patient pants were removed
---- !u!114 &3333189964899033528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955769989461451325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 334469467259357876, guid: b02bf5e7805e7aa4896aa26becf4f940, type: 3}
-  _itemName: Adult BIG
-  _offsetPos: {x: -0.1, y: 0.065, z: 0.5}
-  _offsetRot: {x: 0, y: 0, z: -1}
 --- !u!114 &5687967563255195987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16484,6 +16447,21 @@ MonoBehaviour:
   _animationEndTime: 0
   _playerTreatingPos: 2
   _logText: 
+--- !u!114 &627669799553688893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955769989461451325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 0
+  _itemName: Adult Big
 --- !u!1 &2008742198568994394
 GameObject:
   m_ObjectHideFlags: 0
@@ -18394,10 +18372,10 @@ GameObject:
   - component: {fileID: 258943710858226947}
   - component: {fileID: 332332367785098610}
   - component: {fileID: 751897186237546636}
-  - component: {fileID: 2104454659210299074}
   - component: {fileID: 9039891351987955206}
   - component: {fileID: 198606231626580939}
   - component: {fileID: 4134889592247787929}
+  - component: {fileID: 6377654263538454}
   m_Layer: 5
   m_Name: Asherman Btn
   m_TagString: Untagged
@@ -18519,9 +18497,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2104454659210299074}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 6377654263538454}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18579,26 +18557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225e366e83c2e3f4699bb9c5a90ffa06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _clothing: 2
   _textToLog: 
---- !u!114 &2104454659210299074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241605463368747113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 3763157064038063447, guid: 59b7652abfe66c6489e26aa66c5d38e9, type: 3}
-  _itemName: Asherman
-  _offsetPos: {x: 0, y: 0.111, z: 1.3}
-  _offsetRot: {x: -1, y: 0, z: 0}
 --- !u!114 &9039891351987955206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18611,9 +18572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: Administering Cpr
-  _animationEndTime: 0
+  _animationEndTime: 1
   _playerTreatingPos: 0
   _logText: 
 --- !u!114 &198606231626580939
@@ -18628,7 +18589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _useMedicineLog: 0
   _newMeasurement: 16
   _treatmentName: 
@@ -18650,6 +18611,21 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 \u05D0\u05E9\u05E8\u05DE\u05DF"
   _alertText: "\u05D0\u05E8\u05E9\u05DE\u05DF \u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
   _textToLog: 
+--- !u!114 &6377654263538454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241605463368747113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 8
+  _itemName: Asherman
 --- !u!1 &2258838982304221869
 GameObject:
   m_ObjectHideFlags: 0
@@ -61857,10 +61833,10 @@ GameObject:
   - component: {fileID: 5813833202897635453}
   - component: {fileID: 6536006836051408569}
   - component: {fileID: 4018560924608015227}
-  - component: {fileID: 3437284668233751503}
-  - component: {fileID: 5403388584041204301}
   - component: {fileID: 6714946908231042563}
   - component: {fileID: 4134889592247787925}
+  - component: {fileID: 3554484847637670989}
+  - component: {fileID: 2791895380714460528}
   m_Layer: 5
   m_Name: AdultQTKit Btn
   m_TagString: Untagged
@@ -61970,9 +61946,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3437284668233751503}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 3554484847637670989}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -61982,9 +61958,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5403388584041204301}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 2791895380714460528}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -62018,40 +61994,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3437284668233751503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000385737900575079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0}
---- !u!114 &5403388584041204301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000385737900575079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 7126309234378175540, guid: 8f0c7ca230786a746bb14c1034f3a7a4, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &6714946908231042563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62086,6 +62028,36 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D9\u05E6\u05D5\u05E2 TQ"
   _alertText: "TQ \u05D1\u05D5\u05E6\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4"
   _textToLog: 
+--- !u!114 &3554484847637670989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000385737900575079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 5
+  _itemName: Adult QT Kit
+--- !u!114 &2791895380714460528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000385737900575079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 0
+  _prop: 2
+  _itemName: 
 --- !u!1 &4020600659097306328
 GameObject:
   m_ObjectHideFlags: 0
@@ -65969,8 +65941,8 @@ GameObject:
   - component: {fileID: 6261736777695658048}
   - component: {fileID: 1420173528027807888}
   - component: {fileID: 5062109224389914508}
-  - component: {fileID: 5598641085305028865}
   - component: {fileID: 4134889592247787924}
+  - component: {fileID: 1172863771725831907}
   m_Layer: 5
   m_Name: IntubationKit Btn
   m_TagString: Untagged
@@ -66080,9 +66052,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5598641085305028865}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 1172863771725831907}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -66133,23 +66105,6 @@ MonoBehaviour:
   _animationEndTime: 0
   _playerTreatingPos: 0
   _logText: 
---- !u!114 &5598641085305028865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4526097673080476612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _item: {fileID: 8418897998401888532, guid: 482422cc2e4d8ba448c666c92a415169, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0, y: 0, z: 0}
-  _offsetRot: {x: 0, y: 0, z: 0}
 --- !u!114 &4134889592247787924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66168,6 +66123,21 @@ MonoBehaviour:
   _alertText: "\u05D0\u05D9\u05E0\u05D8\u05D5\u05D1\u05E6\u05D9\u05D4 \u05D1\u05D5\u05E6\u05E2\u05D4
     \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
   _textToLog: 
+--- !u!114 &1172863771725831907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526097673080476612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _prop: 5
+  _itemName: Intubation Kit
 --- !u!1 &4528461003784479711
 GameObject:
   m_ObjectHideFlags: 0
@@ -88589,19 +88559,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1726052310726934246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7022854752320412518
 GameObject:
   m_ObjectHideFlags: 0
@@ -116097,19 +116055,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4984787223400618253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ApplyMedicine, Assembly-CSharp
-        m_MethodName: OnApplyMedicineRPC
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8326601151421335825
 GameObject:
   m_ObjectHideFlags: 0

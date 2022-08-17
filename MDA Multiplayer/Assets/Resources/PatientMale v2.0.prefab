@@ -1111,6 +1111,7 @@ MonoBehaviour:
   - {fileID: 8054827165345170419}
   - {fileID: 8645145479612655624}
   - {fileID: 9082269557857093288}
+  - {fileID: 2097972929147161313}
   ChestPosPlayerTransform: {fileID: 629437207851787677}
   ChestPosEquipmentTransform: {fileID: 629437207945255640}
   HeadPosPlayerTransform: {fileID: 629437208365349993}
