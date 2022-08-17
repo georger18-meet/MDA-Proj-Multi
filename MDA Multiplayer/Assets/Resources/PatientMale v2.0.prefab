@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8126908019265194589}
   - component: {fileID: 5902959180615209914}
   - component: {fileID: 3240528611189879737}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: KneeBandageRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 717688977780624867}
   - component: {fileID: 3091153103587096987}
   - component: {fileID: 7672088952911474869}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: ShinBandageRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 1912949687452854607}
   - component: {fileID: 2307035295538858671}
   - component: {fileID: 7248270822760849005}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: ForeArmBandageRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616511221322959957}
-  m_Mesh: {fileID: 4300000, guid: 36202332d25a3f3498700b561f3d0445, type: 3}
+  m_Mesh: {fileID: -2638647726212555922, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
 --- !u!23 &493531864672290071
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1263,7 +1263,7 @@ GameObject:
   - component: {fileID: 2869780217633896162}
   - component: {fileID: 8373572526692684902}
   - component: {fileID: 7098085945983577053}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: BicepBandageLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 2548495136238743163}
   - component: {fileID: 7197306626995690020}
   - component: {fileID: 6497765048736064913}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: KneeBandageLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: 4194272007226972265}
   - component: {fileID: 1853501749836635824}
   - component: {fileID: 7145292460714244057}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: BicepBandageRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,7 +1730,7 @@ GameObject:
   - component: {fileID: 3328268373165416067}
   - component: {fileID: 8757645752615992738}
   - component: {fileID: 9062182543646570775}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: ForeArmBandageLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1758,7 +1758,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8088527349528296053}
-  m_Mesh: {fileID: 4300000, guid: 36202332d25a3f3498700b561f3d0445, type: 3}
+  m_Mesh: {fileID: -2638647726212555922, guid: 2f5cf877ffbc99e4c97ad15edc015449, type: 3}
 --- !u!23 &2990554796886923027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1871,7 +1871,7 @@ GameObject:
   - component: {fileID: 7980818942715197041}
   - component: {fileID: 2661893857154816667}
   - component: {fileID: 157203173254059095}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: ShinBandageLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

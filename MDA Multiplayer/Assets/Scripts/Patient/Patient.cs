@@ -120,7 +120,8 @@ public class Patient : MonoBehaviour
             if (_unusedBandagesOnPatient[i].name == bandage.name)
             {
                 bandageIndex = i;
-                PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
+                //PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
+                StartCoroutine(PauseBeforeBandage(bandageIndex));
             }
         }
         //_unUsedBandagesOnPatient.Remove(bandage);
@@ -300,6 +301,8 @@ public class Patient : MonoBehaviour
     [PunRPC]
     private void RemoveBandageFromUnusedListRPC(int BandageIndex)
     {
+        // fix Meshes u twat
+
         if (UseTourniquet)
         {
             if (BandageIndex == 0 || BandageIndex == 2) // Shin
@@ -339,7 +342,16 @@ public class Patient : MonoBehaviour
             }
         }
 
+        _unusedBandagesOnPatient[BandageIndex].SetActive(true);
         _unusedBandagesOnPatient.RemoveAt(BandageIndex);
+    }
+    #endregion
+
+    #region Enumerators
+    private IEnumerator PauseBeforeBandage(int bandageIndex)
+    {
+        yield return new WaitForSeconds(0.1f);
+        PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
     }
     #endregion
 }

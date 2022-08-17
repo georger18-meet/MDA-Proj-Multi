@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Camera _playerCamera;
+    public Camera PlayerCamera => _playerCamera;
 
     [Header("Interaction")]
     [SerializeField] private LayerMask _interactableLayer;
@@ -71,10 +72,6 @@ public class CameraController : MonoBehaviour
 
         // need to try other layer before ----
 
-        //if (Physics.Raycast(ray, out RaycastHit selectableRaycastHit, _raycastDistance, _selectableLayer))
-        //{
-        //}
-
         if (Physics.Raycast(ray, out RaycastHit interactableRaycastHit, _raycastDistance, _interactableLayer))
         {
             if (_currentInteractable != null && interactableRaycastHit.transform.gameObject != _currentInteractable) // true if raycast hit new interactable, destroy old current outline
@@ -114,5 +111,10 @@ public class CameraController : MonoBehaviour
         }
 
         return interactableRaycastHit;
+    }
+
+    public void ToggleInteractRaycast(bool sendRaycast)
+    {
+        _sendInteractRaycast = sendRaycast;
     }
 }
