@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
-public enum Props { }
+public enum Props { Venflon, BloodPressureSleeve, Ambu, HeadVice, OxygenMask, Tube, NeckBrace, ThroatTube, Asherman }
 
 public class Patient : MonoBehaviour
 {
