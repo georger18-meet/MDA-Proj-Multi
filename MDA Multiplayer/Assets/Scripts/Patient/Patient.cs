@@ -41,6 +41,9 @@ public class Patient : MonoBehaviour
     [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
     [SerializeField] private List<GameObject> _unusedBandagesOnPatient;
 
+    [Header("Props")]
+    public List<GameObject> PropList;
+
     [Header("Treatment Positions")]
     public Transform ChestPosPlayerTransform;
     public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
