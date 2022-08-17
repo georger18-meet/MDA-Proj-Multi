@@ -72,9 +72,9 @@ public class Patient : MonoBehaviour
     #endregion
 
     [ContextMenu("Test Measurements")]
-    public void TestMeasurement()
+    public void TestMeasurements()
     {
-        PatientData.SetMeasurementValues(new string[] { "", "", "", "26", "", "", "", "12"});
+        PatientData.SetMeasurementValues(new string[] { "", "", "", "fourth", "", "", "", "last" });
     }
 
     #region Collision & Triggers
@@ -157,6 +157,13 @@ public class Patient : MonoBehaviour
     }
 
     #region PunRPC invoke by Patient
+
+    [PunRPC]
+    public void SetMeasurementsValuesRPC(string[] newMeasurements)
+    {
+        PatientData.SetMeasurementValues(newMeasurements);
+    }
+
     [PunRPC]
     public void AddUserToTreatingLists(string currentPlayer)
     {
