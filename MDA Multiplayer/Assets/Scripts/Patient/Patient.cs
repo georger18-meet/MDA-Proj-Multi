@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
+public enum Props { }
+
 public class Patient : MonoBehaviour
 {
     #region Photon

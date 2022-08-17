@@ -1,18 +1,45 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class RevealPropOnPatient : MonoBehaviour
+public class RevealPropOnPatient : Action
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Prefab References")]
+    [SerializeField] private GameObject _item;
+
+    [Header("Item Name")]
+    [SerializeField] private string _itemName;
+
+    [Header("Item Offsets")]
+    [SerializeField] private Vector3 _offsetPos;
+    [SerializeField] private Vector3 _offsetRot;
+
+    public void InstantiateOnPatient()
     {
-        
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
+        {
+            Vector3 desiredPosition = CurrentPatient.transform.position + _offsetPos;
+            Quaternion desiredRotation = new Quaternion(_offsetRot.x, _offsetRot.y, _offsetRot.z, Quaternion.identity.w);
+
+            GameObject item = PhotonNetwork.Instantiate(_item.name, desiredPosition, desiredRotation);
+            item.transform.SetParent(CurrentPatient.transform);
+
+            TextToLog = $"Used {_itemName}";
+
+            if (_shouldUpdateLog)
+            {
+                LogText(TextToLog);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(_offsetPos, _item.transform.localScale);
     }
 }
