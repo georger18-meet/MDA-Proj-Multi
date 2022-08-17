@@ -64,11 +64,18 @@ public class Patient : MonoBehaviour
     private void Start()
     {
         //players = new List<PlayerController>();
+        PatientData.InitMeasurements();
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
         MonitorWindow = UIManager.Instance.MonitorParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
     }
     #endregion
+
+    [ContextMenu("Test Measurements")]
+    public void TestMeasurement()
+    {
+        PatientData.SetMeasurementValues(new string[] { "", "", "", "26", "", "", "", "12"});
+    }
 
     #region Collision & Triggers
 
@@ -255,6 +262,50 @@ public class Patient : MonoBehaviour
                 PatientData.ETCO2 = PatientData.MeasurementName[index];
                 break;
         }
+    }
+
+    [PunRPC]
+    private void GiveMedicineRPC(string[] newMeasurements)
+    {
+        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
+
+        //Measurements measurements = (Measurements)index;
+
+        // to be replaced
+        //switch (measurements)
+        //{
+        //    case Measurements.BPM:
+        //        PatientData.HeartRateBPM = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.PainLevel:
+        //        PatientData.PainLevel = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.RespiratoryRate:
+        //        PatientData.RespiratoryRate = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.CincinnatiLevel:
+        //        PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.BloodSuger:
+        //        PatientData.BloodSuger = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.BloodPressure:
+        //        PatientData.BloodPressure = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.OxygenSaturation:
+        //        PatientData.OxygenSaturation = PatientData.MeasurementName[index];
+        //        break;
+        //
+        //    case Measurements.ETCO2:
+        //        PatientData.ETCO2 = PatientData.MeasurementName[index];
+        //        break;
+        //}
     }
 
     [PunRPC]

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +25,8 @@ public class PatientData : ScriptableObject
     public int PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2;
     public bool IsConscious;
 
+    public string[] MeasurementValues;
+
     // Choose Appearance Material
     [Header("Appearance Material")]
     public Material FullyClothedMaterial;
@@ -38,6 +42,22 @@ public class PatientData : ScriptableObject
     // Catch Clothing Material
     [HideInInspector]
     public List<Material> ClothingMaterial;
+
+    public void InitMeasurements()
+    {
+        MeasurementValues = new string[] { HeartRateBPM.ToString(), PainLevel.ToString(), RespiratoryRate.ToString(), CincinnatiLevel.ToString(), BloodSuger.ToString(), BloodPressure.ToString(), OxygenSaturation.ToString(), ETCO2.ToString() };
+    }
+
+    public void SetMeasurementValues(string[] newValues)
+    {
+        for (int i = 0; i < MeasurementValues.Length; i++)
+        {
+            if (newValues[i] != null && newValues[i] != "")
+            {
+                MeasurementValues[i] = newValues[i];
+            }
+        }
+    }
 
     public int GetMeasurement(int index)
     {
