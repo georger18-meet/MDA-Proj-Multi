@@ -8,8 +8,6 @@ public class HeartMassages : Action
 {
     [Header("Component's Data")]
     [SerializeField] private GameObject _heartMassagesWindow;
-    [SerializeField] private int _newHeartRate;
-
     private Animator _playerAnimator;
 
     public void DoHeartMassage()
@@ -23,7 +21,6 @@ public class HeartMassages : Action
             LocalPlayerData.transform.SetPositionAndRotation(PatientChestPosPlayerTransform.position, PatientChestPosPlayerTransform.rotation);
 
             _playerAnimator.SetBool("Administering Cpr", true);
-            CurrentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, _newHeartRate);
 
             _heartMassagesWindow.SetActive(true);
 

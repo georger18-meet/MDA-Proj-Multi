@@ -3201,9 +3201,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
-  _newMeasurement: 97
-  _treatmentName: 
-  _measurement: 6
+  _treatmentName: CPAP
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 22
+    - 
 --- !u!114 &6361372623281601715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3948,7 +3956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: 
   _animationEndTime: 0
   _playerTreatingPos: 0
@@ -9590,6 +9598,7 @@ GameObject:
   - component: {fileID: 2913911393938663320}
   - component: {fileID: 5934606874586323429}
   - component: {fileID: 3997597025452593838}
+  - component: {fileID: 4134889592247787915}
   m_Layer: 5
   m_Name: HeartMassages Btn
   m_TagString: Untagged
@@ -9711,6 +9720,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4134889592247787915}
+        m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
+        m_MethodName: ChangeMeasurementAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3997597025452593838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9725,7 +9746,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _heartMassagesWindow: {fileID: 1260926443}
-  _newHeartRate: 64
+--- !u!114 &4134889592247787915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991240572768618858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 0
+  _useMedicineLog: 0
+  _treatmentName: 
+  _patientMeasurements:
+    MeasurementValues:
+    - 64
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &1005429748863936935
 GameObject:
   m_ObjectHideFlags: 0
@@ -12646,9 +12691,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
-  _newMeasurement: 75
   _treatmentName: 
-  _measurement: 0
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &1363194052549558809
 GameObject:
   m_ObjectHideFlags: 0
@@ -13704,7 +13757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: 
   _animationEndTime: 0
   _playerTreatingPos: 0
@@ -16442,7 +16495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: 
   _animationEndTime: 0
   _playerTreatingPos: 2
@@ -16610,6 +16663,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useTourniquetInstead: 1
+  _bandageLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &2025961808639255437
 GameObject:
   m_ObjectHideFlags: 0
@@ -18188,6 +18244,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1090147889897622895}
+        m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
+        m_MethodName: ChangeMeasurementAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6000990730024554405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18222,9 +18290,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
-  _newMeasurement: 13
-  _treatmentName: Manshem
-  _measurement: 2
+  _treatmentName: Respirator
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 15
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &2221869241803498218
 GameObject:
   m_ObjectHideFlags: 0
@@ -18591,9 +18667,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
-  _newMeasurement: 16
   _treatmentName: 
-  _measurement: 2
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 14
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!114 &4134889592247787929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19478,7 +19562,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 6814996814975262402}
   m_OnClick:
     m_PersistentCalls:
@@ -25034,7 +25118,7 @@ GameObject:
   - component: {fileID: 5888870949255371196}
   - component: {fileID: 2815151138455516732}
   - component: {fileID: 8944015722433474849}
-  - component: {fileID: 4134889592247787919}
+  - component: {fileID: 4699809432395236847}
   m_Layer: 5
   m_Name: TagMiun Parent
   m_TagString: Untagged
@@ -25118,7 +25202,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2815151138455516730}
   m_CullTransparentMesh: 1
---- !u!114 &4134889592247787919
+--- !u!114 &4699809432395236847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56147,9 +56231,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
-  _newMeasurement: 3
   _treatmentName: Aspirin
-  _measurement: 1
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &3251840300635756692
 GameObject:
   m_ObjectHideFlags: 0
@@ -56430,8 +56522,8 @@ GameObject:
   - component: {fileID: 848395133252962874}
   - component: {fileID: 2497855761243634528}
   - component: {fileID: 2214896047407061647}
-  - component: {fileID: 104775894039257301}
   - component: {fileID: 4134889592247787928}
+  - component: {fileID: 4134889592247787920}
   m_Layer: 5
   m_Name: Glucometer Btn
   m_TagString: Untagged
@@ -56541,9 +56633,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 104775894039257301}
-        m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
-        m_MethodName: ChangeMeasurementAction
+      - m_Target: {fileID: 4134889592247787920}
+        m_TargetAssemblyTypeName: CheckMeasurement, Assembly-CSharp
+        m_MethodName: CheckMeasurementAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -56565,23 +56657,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &104775894039257301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3305002503850481706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _useMedicineLog: 0
-  _newMeasurement: 80
-  _treatmentName: 
-  _measurement: 4
 --- !u!114 &4134889592247787928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56599,6 +56674,23 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05E1\u05D5\u05DB\u05E8 \u05D1\u05D3\u05DD"
   _alertText: "\u05D4\u05D1\u05D3\u05D9\u05E7\u05D4 \u05D4\u05E1\u05EA\u05D9\u05D9\u05DE\u05D4"
   _textToLog: 
+--- !u!114 &4134889592247787920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305002503850481706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f92e1db60d1f44cbab9b2cf984124d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _showAlert: 0
+  _measurement: 4
+  _measurementName: Blood Sugar
+  _measurementNameForAlert: 
 --- !u!1 &3353432102994674994
 GameObject:
   m_ObjectHideFlags: 0
@@ -58033,8 +58125,8 @@ GameObject:
   - component: {fileID: 188203125640057516}
   - component: {fileID: 967197506548977752}
   - component: {fileID: 1875765844265291591}
-  - component: {fileID: 6793001098076777926}
   - component: {fileID: 4134889592247787913}
+  - component: {fileID: 6965106685454206645}
   m_Layer: 5
   m_Name: CalmPatientDown Btn
   m_TagString: Untagged
@@ -58144,9 +58236,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6793001098076777926}
-        m_TargetAssemblyTypeName: CalmPatientDown, Assembly-CSharp
-        m_MethodName: CalmPatientDownAction
+      - m_Target: {fileID: 6965106685454206645}
+        m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
+        m_MethodName: ChangeMeasurementAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -58156,21 +58248,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6793001098076777926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3501845042389721129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74e3dbcce5f3f8c48ae0cc8225d14639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newHeartRate: 78
-  _newRespiratoryRate: 14
 --- !u!114 &4134889592247787913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58188,6 +58265,31 @@ MonoBehaviour:
   _alertTitle: "\u05D4\u05E8\u05D2\u05E2\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC"
   _alertText: "\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E8\u05D2\u05E2 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4!"
   _textToLog: 
+--- !u!114 &6965106685454206645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3501845042389721129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _useMedicineLog: 0
+  _treatmentName: Calm Patient down
+  _patientMeasurements:
+    MeasurementValues:
+    - 64
+    - 
+    - 12
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &3531103080041707126
 GameObject:
   m_ObjectHideFlags: 0
@@ -59115,11 +59217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _showAlert: 0
   _caseConscious: 
   _caseNotConscious: 
   _alertTitle: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05D4\u05DB\u05E8\u05D4"
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &3615916125147376028
 GameObject:
   m_ObjectHideFlags: 0
@@ -59401,9 +59502,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
-  _newMeasurement: 75
   _treatmentName: 
-  _measurement: 0
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &3687791556234966251
 GameObject:
   m_ObjectHideFlags: 0
@@ -60829,9 +60938,9 @@ GameObject:
   - component: {fileID: 8451659671671505866}
   - component: {fileID: 1331769989180442310}
   - component: {fileID: 6726075745089340797}
-  - component: {fileID: 3647551274945721051}
   - component: {fileID: 6725213621741617087}
   - component: {fileID: 4134889592247787927}
+  - component: {fileID: 4134889592247787919}
   m_Layer: 5
   m_Name: AnalogBloodPressure Btn
   m_TagString: Untagged
@@ -60953,9 +61062,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3647551274945721051}
-        m_TargetAssemblyTypeName: PatientObjectInstantiation, Assembly-CSharp
-        m_MethodName: InstantiateOnPatient
+      - m_Target: {fileID: 4134889592247787919}
+        m_TargetAssemblyTypeName: RevealPropOnPatient, Assembly-CSharp
+        m_MethodName: RevealOnPatient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -61006,23 +61115,6 @@ MonoBehaviour:
   _itemName: Blood Pressure Device & Sleeve
   _offsetPos: {x: 0.5, y: 0, z: 0.75}
   _offsetRot: {x: 0, y: -0.5, z: 0}
---- !u!114 &3647551274945721051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3901983300485249610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3bd2e0d8e84a4b87f39bc38898218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 0
-  _item: {fileID: 6198605158783632762, guid: 26d9a0a0c5093954e8f776d2b9b874a2, type: 3}
-  _itemName: 
-  _offsetPos: {x: 0.05, y: -0.58, z: 1.35}
-  _offsetRot: {x: -15, y: 180, z: 0}
 --- !u!114 &6725213621741617087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61036,9 +61128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showAlert: 1
+  _showAlert: 0
   _measurement: 5
-  _measurementName: 
+  _measurementName: Blood Pressure
   _measurementNameForAlert: 
 --- !u!114 &4134889592247787927
 MonoBehaviour:
@@ -61057,6 +61149,21 @@ MonoBehaviour:
   _alertTitle: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05D3\u05D5\u05E4\u05E7"
   _alertText: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05D3\u05D5\u05E4\u05E7 \u05D4\u05E1\u05EA\u05D9\u05D9\u05DE\u05D4"
   _textToLog: 
+--- !u!114 &4134889592247787919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901983300485249610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf9ab72d8e5aad4f88b7509d79d8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 0
+  _prop: 1
+  _itemName: Blood Pressure
 --- !u!1 &3903165900219684497
 GameObject:
   m_ObjectHideFlags: 0
@@ -62006,7 +62113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: 
   _animationEndTime: 0
   _playerTreatingPos: 0
@@ -66100,7 +66207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: 
   _animationEndTime: 0
   _playerTreatingPos: 0
@@ -69805,9 +69912,9 @@ GameObject:
   - component: {fileID: 2806025087272244451}
   - component: {fileID: 317205475448755057}
   - component: {fileID: 3077926151970926974}
-  - component: {fileID: 2795671068567229109}
   - component: {fileID: 8853152832562612079}
   - component: {fileID: 2601882992659872623}
+  - component: {fileID: 4134889592247787916}
   m_Layer: 5
   m_Name: ElevateLegs Btn
   m_TagString: Untagged
@@ -69912,11 +70019,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 317205475448755057}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4134889592247787916}
+        m_TargetAssemblyTypeName: ChangeMeasurement, Assembly-CSharp
+        m_MethodName: ChangeMeasurementAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8853152832562612079}
         m_TargetAssemblyTypeName: PlayerTreatingAnimation, Assembly-CSharp
         m_MethodName: PlayAnimation
@@ -69941,33 +70060,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2795671068567229109}
-        m_TargetAssemblyTypeName: CalmPatientDown, Assembly-CSharp
-        m_MethodName: CalmPatientDownAction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2795671068567229109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5096327372853913814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74e3dbcce5f3f8c48ae0cc8225d14639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
-  _newHeartRate: 0
-  _newRespiratoryRate: 0
 --- !u!114 &8853152832562612079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69980,7 +70072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79c2f2de7b4e95468a0de76645b3f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: Lift
   _animationEndTime: 0
   _playerTreatingPos: 0
@@ -69997,13 +70089,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205f56583eb0d8e418c0b8cb6e30d44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldUpdateLog: 1
+  _shouldUpdateLog: 0
   _animationName: Legs Up
   _animationEndTime: 0
   _alertTitle: 
   _alertText: 
-  _showAlert: 1
+  _showAlert: 0
   _updateLog: 0
+--- !u!114 &4134889592247787916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096327372853913814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df38b2ee9b76e144cb51afda3d505640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldUpdateLog: 1
+  _useMedicineLog: 0
+  _treatmentName: Elevate Legs
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &5112644035440119706
 GameObject:
   m_ObjectHideFlags: 0
@@ -70272,11 +70389,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
+  _showAlert: 0
   _caseConscious: 
   _caseNotConscious: 
   _alertTitle: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05D4\u05DB\u05E8\u05D4"
-  _showAlert: 0
-  _updateLog: 1
 --- !u!1 &5122829911297670263
 GameObject:
   m_ObjectHideFlags: 0
@@ -87307,7 +87423,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _heartMassagesWindow: {fileID: 0}
-  _newHeartRate: 0
 --- !u!1 &6849467291866825800
 GameObject:
   m_ObjectHideFlags: 0
@@ -92784,6 +92899,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useTourniquetInstead: 0
+  _bandageLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &7636841557943472335
 GameObject:
   m_ObjectHideFlags: 0
@@ -94702,9 +94820,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
-  _newMeasurement: 0
   _treatmentName: 
-  _measurement: 0
+  _patientMeasurements:
+    MeasurementValues:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 --- !u!1 &7888099120700190145
 GameObject:
   m_ObjectHideFlags: 0
@@ -114006,7 +114132,7 @@ GameObject:
   - component: {fileID: 7994697900483409451}
   - component: {fileID: 7994697900483409454}
   - component: {fileID: 7994697900483409453}
-  - component: {fileID: 4134889592247787916}
+  - component: {fileID: 5947342968201684474}
   m_Layer: 5
   m_Name: DrugActions Panel
   m_TagString: Untagged
@@ -114074,7 +114200,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4134889592247787916
+--- !u!114 &5947342968201684474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122024,7 +122150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8231440785055992188}
-  - component: {fileID: 4134889592247787915}
+  - component: {fileID: 8766463929842686481}
   m_Layer: 3
   m_Name: Evacuation UI
   m_TagString: Untagged
@@ -122052,7 +122178,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 175}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4134889592247787915
+--- !u!114 &8766463929842686481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class CheckMeasurement : Action
 {
-    [SerializeField] private bool _showAlert = false;
+    [SerializeField] private bool _showAlert;
     
     [Header("Component's Data")]
     [SerializeField] private Measurements _measurement;

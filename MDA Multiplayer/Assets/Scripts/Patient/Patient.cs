@@ -284,7 +284,7 @@ public class Patient : MonoBehaviour
                 PatientData.CincinnatiLevel = PatientData.Measurements[index];
                 break;
 
-            case Measurements.BloodSuger:
+            case Measurements.BloodSugar:
                 PatientData.BloodSuger = PatientData.Measurements[index];
                 break;
 

@@ -10,7 +10,7 @@ public enum Roles
 public enum Measurements
 {
    BPM, PainLevel, RespiratoryRate, CincinnatiLevel,
-   BloodSuger, BloodPressure, OxygenSaturation, ETCO2
+   BloodSugar, BloodPressure, OxygenSaturation, ETCO2
 }
 
 public enum Clothing

@@ -5,16 +5,14 @@ using Photon.Pun;
 
 public class CheckConciounceness : Action
 {
+    [SerializeField] private bool _showAlert;
+
     [Header("Component's Data")]
     [SerializeField] private string _caseConscious;
     [SerializeField] private string _caseNotConscious;
 
     [Header("Alert")]
     [SerializeField] private string _alertTitle;
-
-    [Header("Conditions")]
-    [SerializeField] private bool _showAlert = false;
-    [SerializeField] private bool _updateLog = true;
 
     private string _consciousnessState;
 
@@ -33,7 +31,7 @@ public class CheckConciounceness : Action
                 ShowTextAlert(_alertTitle, _consciousnessState);
             }
 
-            if (_updateLog)
+            if (_shouldUpdateLog)
             {
                 LogText(TextToLog);
             }
