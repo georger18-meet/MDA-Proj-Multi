@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
+public enum Props { Venflon, BloodPressureSleeve, Ambu, HeadVice, OxygenMask, Tube, NeckBrace, ThroatTube, Asherman, ECG }
+
 public class Patient : MonoBehaviour
 {
     #region Photon
@@ -21,35 +23,42 @@ public class Patient : MonoBehaviour
     public List<ActionSequence> ActionSequences;
     #endregion
 
-    #region Material References
-    public Renderer PatientRenderer;
+    #region UI
+    [Header("UI - by UI Manager")]
+    public Image MonitorWindow;
+
+    [Header("World Canvas")]
+    public GameObject WorldCanvas;
     #endregion
 
-    #region Public fields
-    [Header("Joined Crews & Players Lists")]
+    #region GameObjects
+    [Header("Props")]
+    public List<GameObject> PropList;
+
+    [Header("Bandages")]
+    public bool UseTourniquet = false;
+    [SerializeField] private List<GameObject> _unusedBandagesOnPatient;
+    [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
+    #endregion
+
+    #region Transforms
+    [Header("Treatment Positions")]
+    public Transform ChestPosPlayerTransform;
+    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
+    #endregion
+
+    #region Joined Player & Crews Lists
+    [Header("Joined Players & Crews Lists")]
     public List<PlayerData> NearbyUsers;
     public List<PlayerData> TreatingUsers;
     public List<PlayerData> AllUsersTreatedThisPatient;
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
+    #endregion
 
-    [Header("UI")]
-    public Image MonitorWindow;
-
-    [Header("Bandages")]
-    public bool UseTourniquet = false;
-    [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
-    [SerializeField] private List<GameObject> _unusedBandagesOnPatient;
-
-    [Header("Props")]
-    public List<GameObject> PropList;
-
-    [Header("Treatment Positions")]
-    public Transform ChestPosPlayerTransform;
-    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
-
-    [Header("World Canvas")]
-    public GameObject WorldCanvas;
+    #region Material Related
+    [Header("Material Related")]
+    public Renderer PatientRenderer;
     #endregion
 
     #region Monovehavior Callbacks
@@ -62,6 +71,9 @@ public class Patient : MonoBehaviour
     private void Start()
     {
         //players = new List<PlayerController>();
+        PatientData.InitializeMeasurements();
+        //int[] measurementsArray = (int[])Enum.GetValues(typeof(Measurements));
+        //PatientData.Measurements = measurementsArray.ToList();
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
         MonitorWindow = UIManager.Instance.MonitorParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
@@ -69,7 +81,6 @@ public class Patient : MonoBehaviour
     #endregion
 
     #region Collision & Triggers
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
@@ -100,31 +111,23 @@ public class Patient : MonoBehaviour
     }
     #endregion
 
-    public void SetUnusedBandages(bool enableBandage)
+    #region Tests
+    [ContextMenu("Test Measurements")]
+    public void TestMeasurements()
     {
-        foreach (GameObject bandage in _unusedBandagesOnPatient)
-        {
-            bandage.SetActive(enableBandage);
-        }
+        PatientData.SetMeasurementValues(new string[] { "", "", "", "fourth", "", "", "", "last" });
     }
+    #endregion
 
-    public void EnableBandage(GameObject bandage)
+    #region Enumerators
+    private IEnumerator PauseBeforeBandage(int bandageIndex)
     {
-        int bandageIndex = 0;
-
-        // loops through unused bandages list and find current bandage index => insert index as argument for RPC method (GameObjects are not passable arguments in RPC)
-        for (int i = 0; i < _unusedBandagesOnPatient.Count; i++) 
-        {
-            if (_unusedBandagesOnPatient[i].name == bandage.name)
-            {
-                bandageIndex = i;
-                PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
-            }
-        }
-        //_unUsedBandagesOnPatient.Remove(bandage);
-        SetUnusedBandages(false);
+        yield return new WaitForSeconds(0.1f);
+        PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
     }
+    #endregion
 
+    #region Public Methods
     public bool IsPlayerJoined(PlayerData playerData)
     {
         Debug.Log("Attempting to check if player is joined");
@@ -145,6 +148,33 @@ public class Patient : MonoBehaviour
     {
         ActionsManager.Instance.OnPatientClicked();
     }
+
+    public void SetUnusedBandages(bool enableBandage)
+    {
+        foreach (GameObject bandage in _unusedBandagesOnPatient)
+        {
+            bandage.SetActive(enableBandage);
+        }
+    }
+
+    public void EnableBandage(GameObject bandage)
+    {
+        int bandageIndex = 0;
+
+        // loops through unused bandages list and find current bandage index => insert index as argument for RPC method (GameObjects are not passable arguments in RPC)
+        for (int i = 0; i < _unusedBandagesOnPatient.Count; i++) 
+        {
+            if (_unusedBandagesOnPatient[i].name == bandage.name)
+            {
+                bandageIndex = i;
+                //PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
+                StartCoroutine(PauseBeforeBandage(bandageIndex));
+            }
+        }
+        //_unUsedBandagesOnPatient.Remove(bandage);
+        SetUnusedBandages(false);
+    }
+    #endregion
 
     #region PunRPC invoke by Patient
     [PunRPC]
@@ -197,10 +227,15 @@ public class Patient : MonoBehaviour
         UIManager.Instance.Adress.text = PatientData.AddressLocation;
         UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
         UIManager.Instance.Complaint.text = PatientData.Complaint;
-
         UIManager.Instance.Age.text = PatientData.Age.ToString();
         UIManager.Instance.Id.text = PatientData.Id.ToString();
         UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
+    }
+
+    [PunRPC]
+    public void SetMeasurementsValuesRPC(string[] newMeasurements)
+    {
+        PatientData.SetMeasurementValues(newMeasurements);
     }
 
     [PunRPC]
@@ -209,47 +244,46 @@ public class Patient : MonoBehaviour
         PatientData.HeartRateBPM = newBPM;
     }
 
-    [PunRPC]
-    private void SetMeasurementByIndexRPC(int index, int value)
+    [PunRPC] 
+    private void SetMeasurementByIndexRPC(int index, int value) // can do better without the new List
     {
-        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
-        PatientData.MeasurementName[index] = value;
+        PatientData.Measurements = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
+        PatientData.Measurements[index] = value;
 
         Measurements measurements = (Measurements)index;
 
-        // to be replaced
         switch (measurements)
         {
             case Measurements.BPM:
-                PatientData.HeartRateBPM = PatientData.MeasurementName[index];
+                PatientData.HeartRateBPM = PatientData.Measurements[index];
                 break;
 
             case Measurements.PainLevel:
-                PatientData.PainLevel = PatientData.MeasurementName[index];
+                PatientData.PainLevel = PatientData.Measurements[index];
                 break;
 
             case Measurements.RespiratoryRate:
-                PatientData.RespiratoryRate = PatientData.MeasurementName[index];
+                PatientData.RespiratoryRate = PatientData.Measurements[index];
                 break;
 
             case Measurements.CincinnatiLevel:
-                PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
+                PatientData.CincinnatiLevel = PatientData.Measurements[index];
                 break;
 
             case Measurements.BloodSuger:
-                PatientData.BloodSuger = PatientData.MeasurementName[index];
+                PatientData.BloodSuger = PatientData.Measurements[index];
                 break;
 
             case Measurements.BloodPressure:
-                PatientData.BloodPressure = PatientData.MeasurementName[index];
+                PatientData.BloodPressure = PatientData.Measurements[index];
                 break;
 
             case Measurements.OxygenSaturation:
-                PatientData.OxygenSaturation = PatientData.MeasurementName[index];
+                PatientData.OxygenSaturation = PatientData.Measurements[index];
                 break;
 
             case Measurements.ETCO2:
-                PatientData.ETCO2 = PatientData.MeasurementName[index];
+                PatientData.ETCO2 = PatientData.Measurements[index];
                 break;
         }
     }
@@ -262,7 +296,6 @@ public class Patient : MonoBehaviour
         switch (clothing)
         {
             case Clothing.FullyClothed:
-
                 transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.FullyClothedMaterial;
                 break;
 
@@ -296,7 +329,7 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
-    private void RemoveBandageFromUnusedListRPC(int BandageIndex)
+    private void RemoveBandageFromUnusedListRPC(int BandageIndex) // need fixing, meshes are just fine
     {
         if (UseTourniquet)
         {
@@ -337,6 +370,7 @@ public class Patient : MonoBehaviour
             }
         }
 
+        _unusedBandagesOnPatient[BandageIndex].SetActive(true);
         _unusedBandagesOnPatient.RemoveAt(BandageIndex);
     }
     #endregion

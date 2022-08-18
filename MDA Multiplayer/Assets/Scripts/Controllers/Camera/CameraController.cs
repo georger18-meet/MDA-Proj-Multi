@@ -5,25 +5,34 @@ using Photon.Pun;
 
 public class CameraController : MonoBehaviour
 {
+    #region Photon
     [Header("Photon")]
     private PhotonView _photonView;
+    #endregion
 
-    [Header("Camera")]
+    #region Cameras
+    [Header("Player Camera")]
     [SerializeField] private Camera _playerCamera;
+    public Camera PlayerCamera => _playerCamera;
+    #endregion
 
+    #region Interactions & Indicators
     [Header("Interaction")]
     [SerializeField] private LayerMask _interactableLayer;
     [SerializeField] private LayerMask _selectableLayer;
-    [SerializeField] private GameObject _indicatorIcon;
-    [SerializeField] private AudioSource _indicatorSound;
     [SerializeField] private float _raycastDistance = 10f;
-    [SerializeField] private Outline.Mode _outlineMode;
-    private Outline _currentInteractable;
+
     private bool _sendInteractRaycast;
     public bool SetSendIteractRaycast { set => _sendInteractRaycast = value; }
-    //private Vector3 _cameraOriginalPos, _cameraCurrentPos;
-    //private Quaternion _cameraOriginalRot, _cameraCurrentRot;
 
+    [Header("Indications")]
+    [SerializeField] private GameObject _indicatorIcon;
+    [SerializeField] private AudioSource _indicatorSound;
+    [SerializeField] private Outline.Mode _outlineMode;
+    private Outline _currentOutline;
+    #endregion
+
+    #region MonobehaviourCallbacks
     private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
@@ -39,8 +48,6 @@ public class CameraController : MonoBehaviour
         else
         {
             _sendInteractRaycast = true;
-            //_cameraOriginalPos = _playerCamera.transform.position;
-            //_cameraOriginalRot = _playerCamera.transform.rotation;
         }
     }
 
@@ -48,22 +55,19 @@ public class CameraController : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
-            //SmoothCamera();
             if (_sendInteractRaycast)
             {
                 Interact();
             }
         }
     }
+    #endregion
 
-    private void SmoothCamera()
+    #region Public Methods
+    public void ToggleInteractRaycast(bool sendRaycast)
     {
-        //_cameraCurrentPos = _playerCamera.transform.position;
-        //_cameraCurrentRot = _playerCamera.transform.rotation;
-
-        //Vector3.Lerp();
+        _sendInteractRaycast = sendRaycast;
     }
-
 
     public RaycastHit Interact()
     {
@@ -71,30 +75,26 @@ public class CameraController : MonoBehaviour
 
         // need to try other layer before ----
 
-        //if (Physics.Raycast(ray, out RaycastHit selectableRaycastHit, _raycastDistance, _selectableLayer))
-        //{
-        //}
-
         if (Physics.Raycast(ray, out RaycastHit interactableRaycastHit, _raycastDistance, _interactableLayer))
         {
-            if (_currentInteractable != null && interactableRaycastHit.transform.gameObject != _currentInteractable) // true if raycast hit new interactable, destroy old current outline
+            if (_currentOutline != null && interactableRaycastHit.transform.gameObject != _currentOutline) // true if raycast hit new interactable, destroy old current outline
             {
-                _currentInteractable.OutlineWidth = 0;
+                _currentOutline.OutlineWidth = 0;
             }
 
-            _currentInteractable = interactableRaycastHit.transform.GetComponent<Outline>();
+            _currentOutline = interactableRaycastHit.transform.GetComponent<Outline>();
 
-            if (!_currentInteractable) // if current is null => add outline to interactrable
+            if (!_currentOutline) // if current is null => add outline to interactrable
             {
-                _currentInteractable = interactableRaycastHit.transform.gameObject.AddComponent<Outline>();
+                _currentOutline = interactableRaycastHit.transform.gameObject.AddComponent<Outline>();
             }
 
-            _currentInteractable.OutlineWidth = 15;
-            _currentInteractable.OutlineMode = _outlineMode;
+            _currentOutline.OutlineWidth = 15;
+            _currentOutline.OutlineMode = _outlineMode;
+            //_indicatorIcon.SetActive(true);
 
             Debug.DrawLine(ray.origin, interactableRaycastHit.point, Color.cyan, 1f);
 
-            //_indicatorIcon.SetActive(true);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -106,13 +106,14 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            if (_currentInteractable != null)
+            if (_currentOutline != null)
             {
-                _currentInteractable.OutlineWidth = 0;
+                _currentOutline.OutlineWidth = 0;
             }
             //_indicatorIcon.SetActive(false);
         }
 
         return interactableRaycastHit;
     }
+    #endregion
 }

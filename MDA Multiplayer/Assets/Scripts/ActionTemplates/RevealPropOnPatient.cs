@@ -1,18 +1,32 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class RevealPropOnPatient : MonoBehaviour
+public class RevealPropOnPatient : Action
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Prefab References")]
+    [SerializeField] private Props _prop;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Item Name")]
+    [SerializeField] private string _itemName;
+
+    public void RevealOnPatient()
     {
-        
+        GetActionData();
+
+        if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
+        {
+            int propIndex = (int)_prop;
+            CurrentPatient.PropList[propIndex].SetActive(true);
+
+            TextToLog = $"Used {_itemName}";
+
+            if (_shouldUpdateLog)
+            {
+                LogText(TextToLog);
+            }
+        }
     }
 }
