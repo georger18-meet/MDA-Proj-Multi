@@ -50,6 +50,13 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public void DisconnectButton()
+    {
+        ActionsManager.Instance.AllPlayersPhotonViews.Remove(PhotonView);
+
+        GameManager.Instance.DisconnectPlayer();
+    }
+
     #region PunRPC invoked by Player
     [PunRPC]
     private void OnJoinPatient()

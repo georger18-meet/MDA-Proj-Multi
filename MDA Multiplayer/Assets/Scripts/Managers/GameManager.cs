@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -57,6 +58,22 @@ public class GameManager : MonoBehaviour
         //#else
         //         Application.Quit();
         //#endif
+    }
+
+    public void DisconnectPlayer()
+    {
+        StartCoroutine(DisconnectAndLoad());
+    }
+
+    IEnumerator DisconnectAndLoad()
+    {
+        PhotonNetwork.Disconnect(); // disconnected from the master client
+        while (PhotonNetwork.IsConnected)
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(0);
     }
 }
 
