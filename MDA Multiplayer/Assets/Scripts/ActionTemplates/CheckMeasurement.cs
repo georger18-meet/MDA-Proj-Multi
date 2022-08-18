@@ -13,7 +13,7 @@ public class CheckMeasurement : Action
     [SerializeField] private string _measurementName, _measurementNameForAlert;
 
 
-    private int _currentMeasurement;
+    private string _currentMeasurement;
 
     public void CheckMeasurementAction()
     {
@@ -21,14 +21,13 @@ public class CheckMeasurement : Action
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            int measurementNum = (int)_measurement;
-            _currentMeasurement = CurrentPatientData.GetMeasurement(measurementNum);
+            _currentMeasurement = CurrentPatientData.GetMeasurement((int)_measurement);
 
             TextToLog = $"Checked Patient's {_measurementName}, it is {_currentMeasurement}";
 
             if (_showAlert)
             {
-                ShowNumAlert(_measurementNameForAlert, _currentMeasurement);
+                ShowTextAlert(_measurementNameForAlert, _currentMeasurement);
             }
 
             if (_shouldUpdateLog)

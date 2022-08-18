@@ -182,23 +182,30 @@ public class CrewRoomManager : MonoBehaviour,IPunObservable
         // RoomCrewMenuUI.gameObject.SetActive(false);
     }
 
-    public void SpawnPatient()
+    public void SpawnPatient(PatientDataSO patientScriptableObject)
     {
         if (_crewRoomIndex < 2)
         {
+            Patient patient = null;
             switch (_crewRoomIndex)
             {
                 case 1:
-                    PhotonNetwork.Instantiate(_patientMale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
+                    patient = PhotonNetwork.Instantiate(_patientMale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation).GetComponent<Patient>();
                     GameManager.Instance.CurrentIncidentsTransforms.Add(GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex]);
                     break;
 
                 case 2:
-                    PhotonNetwork.Instantiate(_patientFemale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation);
+                    patient = PhotonNetwork.Instantiate(_patientFemale.name, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].position, GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex].rotation).GetComponent<Patient>();
+                    GameManager.Instance.CurrentIncidentsTransforms.Add(GameManager.Instance.IncidentPatientSpawns[_crewRoomIndex]);
                     break;
 
                 default:
                     break;
+            }
+
+            if (patient)
+            {
+                patient.InitializePatientData(patientScriptableObject._patientData);
             }
         }
     }

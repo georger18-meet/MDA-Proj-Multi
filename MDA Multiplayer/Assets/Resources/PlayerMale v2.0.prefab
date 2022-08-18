@@ -2989,9 +2989,9 @@ MonoBehaviour:
   _selectableLayer:
     serializedVersion: 2
     m_Bits: 0
+  _raycastDistance: 10
   _indicatorIcon: {fileID: 8774286273773846890, guid: 98382ce2162216d4bb2ca6711a8675f7, type: 3}
   _indicatorSound: {fileID: 1667097624735805022, guid: 6a4dd2558288bae49a843774015a1963, type: 3}
-  _raycastDistance: 10
   _outlineMode: 0
 --- !u!114 &6846980335483256472
 MonoBehaviour:

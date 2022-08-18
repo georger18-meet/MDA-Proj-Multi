@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcdbd604b3f1aa43a409ac61712c9c6, type: 3}
+  m_Name: Patient Data SO
+  m_EditorClassIdentifier: 
+  _patientData:
+    Name: "\u05D9\u05D5\u05E1\u05E3"
+    SureName: "\u05D0\u05D4\u05E8\u05D5\u05E0\u05D9"
+    Id: 254498622
+    Age: 22
+    Gender: "\u05D6'"
+    PhoneNumber: 051-8016400
+    MedicalCompany: "\u05DE\u05D0\u05D5\u05D7\u05D3\u05EA"
+    AddressLocation: "\u05E8\u05D0\u05E9 \u05D4\u05E2\u05D9\u05DF"
+    Complaint: "\u05DB\u05D0\u05D1 \u05D1\u05D8\u05DF"
+    _patientMeasurement:
+      MeasurementValues:
+      - 64
+      - 8
+      - 16
+      - 2
+      - 80
+      - 66/108
+      - 1
+      - 25
+    MonitorSpriteList:
+    - {fileID: 21300000, guid: aa323584db86b6b4a82b61d77a486b33, type: 3}
+    - {fileID: 21300000, guid: fdf3449aa37e2394a894bcc4e9b67bc2, type: 3}
+    _isConscious: 1

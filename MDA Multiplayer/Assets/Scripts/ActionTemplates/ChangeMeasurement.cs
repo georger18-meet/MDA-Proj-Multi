@@ -12,15 +12,16 @@ public class ChangeMeasurement : Action
     [SerializeField] private int _newMeasurement;
     [SerializeField] private string _treatmentName;
     [SerializeField] private Measurements _measurement;
-
+    [SerializeField] private PatientMeasurements _patientMeasurements;
     public void ChangeMeasurementAction()
     {
         GetActionData();
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            int measurementNum = (int)_measurement;
-            CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNum, _newMeasurement);
+            //int measurementNum = (int)_measurement;
+            CurrentPatient.PhotonView.RPC("SetMeasurementsRPC", RpcTarget.All, _patientMeasurements.MeasurementValues);
+            //CurrentPatient.PhotonView.RPC("SetMeasurementByIndexRPC", RpcTarget.All, measurementNum, _newMeasurement);
 
             if (_useMedicineLog)
             {

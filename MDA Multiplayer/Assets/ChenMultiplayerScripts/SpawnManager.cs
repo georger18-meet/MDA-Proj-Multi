@@ -30,12 +30,13 @@ public class SpawnManager : MonoBehaviour
 
     public float _minX, _minZ, _maxX, _maxZ;
 
-    void Start()
+    private void Start()
     {
         Vector3 randomPos = new Vector3(Random.Range(_minX,_maxX), 1.3f, Random.Range(_minZ,_maxZ));
         PhotonNetwork.Instantiate(_playerMalePrefab.name, randomPos, Quaternion.identity);
 
-        PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);
+        PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation).GetComponent<Patient>();
+
         //PhotonNetwork.InstantiateRoomObject(_patientFemalePrefab.name, _patientFemalePosTransform.position, _patientFemalePrefab.transform.rotation);
 
 
@@ -49,4 +50,16 @@ public class SpawnManager : MonoBehaviour
             }
         }   
     }
+
+    //public void SpawnTestPatient(PatientDataSO patientScriptableObject)
+    //{
+    //    Patient patient;
+    //
+    //    patient = PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, //_patientMalePrefab.transform.rotation).GetComponent<Patient>();
+    //
+    //    if (patient)
+    //    {
+    //        patient.InitializePatientData(patientScriptableObject._patientData);
+    //    }
+    //}
 }
