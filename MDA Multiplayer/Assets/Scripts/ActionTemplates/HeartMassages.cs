@@ -12,13 +12,6 @@ public class HeartMassages : Action
 
     private Animator _playerAnimator;
 
-    private IEnumerator WaitToFinishCPR()
-    {
-        yield return new WaitForSeconds(4);
-
-        _playerAnimator.SetBool("Administering Cpr", false);
-    }
-
     public void DoHeartMassage()
     {
         GetActionData();
@@ -33,7 +26,6 @@ public class HeartMassages : Action
             CurrentPatient.PhotonView.RPC("ChangeHeartRateRPC", RpcTarget.All, _newHeartRate);
 
             _heartMassagesWindow.SetActive(true);
-            //StartCoroutine(WaitToFinishCPR());
 
             TextToLog = $"Started Administering Heart Massages";
 

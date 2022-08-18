@@ -23,35 +23,42 @@ public class Patient : MonoBehaviour
     public List<ActionSequence> ActionSequences;
     #endregion
 
-    #region Material References
-    public Renderer PatientRenderer;
+    #region UI
+    [Header("UI - by UI Manager")]
+    public Image MonitorWindow;
+
+    [Header("World Canvas")]
+    public GameObject WorldCanvas;
     #endregion
 
-    #region Public fields
-    [Header("Joined Crews & Players Lists")]
+    #region GameObjects
+    [Header("Props")]
+    public List<GameObject> PropList;
+
+    [Header("Bandages")]
+    public bool UseTourniquet = false;
+    [SerializeField] private List<GameObject> _unusedBandagesOnPatient;
+    [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
+    #endregion
+
+    #region Transforms
+    [Header("Treatment Positions")]
+    public Transform ChestPosPlayerTransform;
+    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
+    #endregion
+
+    #region Joined Player & Crews Lists
+    [Header("Joined Players & Crews Lists")]
     public List<PlayerData> NearbyUsers;
     public List<PlayerData> TreatingUsers;
     public List<PlayerData> AllUsersTreatedThisPatient;
     public List<int> TreatingCrews;
     public List<int> AllCrewTreatedThisPatient;
+    #endregion
 
-    [Header("UI")]
-    public Image MonitorWindow;
-
-    [Header("Bandages")]
-    public bool UseTourniquet = false;
-    [SerializeField] private List<Mesh> _bandageMeshList, _tourniquetMeshList;
-    [SerializeField] private List<GameObject> _unusedBandagesOnPatient;
-
-    [Header("Props")]
-    public List<GameObject> PropList;
-
-    [Header("Treatment Positions")]
-    public Transform ChestPosPlayerTransform;
-    public Transform ChestPosEquipmentTransform, HeadPosPlayerTransform, HeadPosEquipmentTransform, LegPosPlayerTrasform;
-
-    [Header("World Canvas")]
-    public GameObject WorldCanvas;
+    #region Material Related
+    [Header("Material Related")]
+    public Renderer PatientRenderer;
     #endregion
 
     #region Monovehavior Callbacks
@@ -64,21 +71,16 @@ public class Patient : MonoBehaviour
     private void Start()
     {
         //players = new List<PlayerController>();
-        PatientData.InitMeasurements();
+        PatientData.InitializeMeasurements();
+        //int[] measurementsArray = (int[])Enum.GetValues(typeof(Measurements));
+        //PatientData.Measurements = measurementsArray.ToList();
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
         MonitorWindow = UIManager.Instance.MonitorParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
     }
     #endregion
 
-    [ContextMenu("Test Measurements")]
-    public void TestMeasurements()
-    {
-        PatientData.SetMeasurementValues(new string[] { "", "", "", "fourth", "", "", "", "last" });
-    }
-
     #region Collision & Triggers
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent(out PlayerData possiblePlayer))
@@ -109,6 +111,44 @@ public class Patient : MonoBehaviour
     }
     #endregion
 
+    #region Tests
+    [ContextMenu("Test Measurements")]
+    public void TestMeasurements()
+    {
+        PatientData.SetMeasurementValues(new string[] { "", "", "", "fourth", "", "", "", "last" });
+    }
+    #endregion
+
+    #region Enumerators
+    private IEnumerator PauseBeforeBandage(int bandageIndex)
+    {
+        yield return new WaitForSeconds(0.1f);
+        PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
+    }
+    #endregion
+
+    #region Public Methods
+    public bool IsPlayerJoined(PlayerData playerData)
+    {
+        Debug.Log("Attempting to check if player is joined");
+
+        if (TreatingUsers.Contains(playerData))
+        {
+            Debug.Log("Checked if player is joined, it is true");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Checked if player is joined, it is false");
+            return false;
+        }
+    }
+
+    public void OnInteracted()
+    {
+        ActionsManager.Instance.OnPatientClicked();
+    }
+
     public void SetUnusedBandages(bool enableBandage)
     {
         foreach (GameObject bandage in _unusedBandagesOnPatient)
@@ -134,36 +174,9 @@ public class Patient : MonoBehaviour
         //_unUsedBandagesOnPatient.Remove(bandage);
         SetUnusedBandages(false);
     }
-
-    public bool IsPlayerJoined(PlayerData playerData)
-    {
-        Debug.Log("Attempting to check if player is joined");
-
-        if (TreatingUsers.Contains(playerData))
-        {
-            Debug.Log("Checked if player is joined, it is true");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Checked if player is joined, it is false");
-            return false;
-        }
-    }
-
-    public void OnInteracted()
-    {
-        ActionsManager.Instance.OnPatientClicked();
-    }
+    #endregion
 
     #region PunRPC invoke by Patient
-
-    [PunRPC]
-    public void SetMeasurementsValuesRPC(string[] newMeasurements)
-    {
-        PatientData.SetMeasurementValues(newMeasurements);
-    }
-
     [PunRPC]
     public void AddUserToTreatingLists(string currentPlayer)
     {
@@ -214,10 +227,15 @@ public class Patient : MonoBehaviour
         UIManager.Instance.Adress.text = PatientData.AddressLocation;
         UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
         UIManager.Instance.Complaint.text = PatientData.Complaint;
-
         UIManager.Instance.Age.text = PatientData.Age.ToString();
         UIManager.Instance.Id.text = PatientData.Id.ToString();
         UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
+    }
+
+    [PunRPC]
+    public void SetMeasurementsValuesRPC(string[] newMeasurements)
+    {
+        PatientData.SetMeasurementValues(newMeasurements);
     }
 
     [PunRPC]
@@ -226,93 +244,48 @@ public class Patient : MonoBehaviour
         PatientData.HeartRateBPM = newBPM;
     }
 
-    [PunRPC]
-    private void SetMeasurementByIndexRPC(int index, int value)
+    [PunRPC] 
+    private void SetMeasurementByIndexRPC(int index, int value) // can do better without the new List
     {
-        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
-        PatientData.MeasurementName[index] = value;
+        PatientData.Measurements = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
+        PatientData.Measurements[index] = value;
 
         Measurements measurements = (Measurements)index;
 
-        // to be replaced
         switch (measurements)
         {
             case Measurements.BPM:
-                PatientData.HeartRateBPM = PatientData.MeasurementName[index];
+                PatientData.HeartRateBPM = PatientData.Measurements[index];
                 break;
 
             case Measurements.PainLevel:
-                PatientData.PainLevel = PatientData.MeasurementName[index];
+                PatientData.PainLevel = PatientData.Measurements[index];
                 break;
 
             case Measurements.RespiratoryRate:
-                PatientData.RespiratoryRate = PatientData.MeasurementName[index];
+                PatientData.RespiratoryRate = PatientData.Measurements[index];
                 break;
 
             case Measurements.CincinnatiLevel:
-                PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
+                PatientData.CincinnatiLevel = PatientData.Measurements[index];
                 break;
 
             case Measurements.BloodSuger:
-                PatientData.BloodSuger = PatientData.MeasurementName[index];
+                PatientData.BloodSuger = PatientData.Measurements[index];
                 break;
 
             case Measurements.BloodPressure:
-                PatientData.BloodPressure = PatientData.MeasurementName[index];
+                PatientData.BloodPressure = PatientData.Measurements[index];
                 break;
 
             case Measurements.OxygenSaturation:
-                PatientData.OxygenSaturation = PatientData.MeasurementName[index];
+                PatientData.OxygenSaturation = PatientData.Measurements[index];
                 break;
 
             case Measurements.ETCO2:
-                PatientData.ETCO2 = PatientData.MeasurementName[index];
+                PatientData.ETCO2 = PatientData.Measurements[index];
                 break;
         }
-    }
-
-    [PunRPC]
-    private void GiveMedicineRPC(string[] newMeasurements)
-    {
-        PatientData.MeasurementName = new List<int>() { PatientData.HeartRateBPM, PatientData.PainLevel, PatientData.RespiratoryRate, PatientData.CincinnatiLevel, PatientData.BloodSuger, PatientData.BloodPressure, PatientData.OxygenSaturation, PatientData.ETCO2 };
-
-        //Measurements measurements = (Measurements)index;
-
-        // to be replaced
-        //switch (measurements)
-        //{
-        //    case Measurements.BPM:
-        //        PatientData.HeartRateBPM = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.PainLevel:
-        //        PatientData.PainLevel = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.RespiratoryRate:
-        //        PatientData.RespiratoryRate = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.CincinnatiLevel:
-        //        PatientData.CincinnatiLevel = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.BloodSuger:
-        //        PatientData.BloodSuger = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.BloodPressure:
-        //        PatientData.BloodPressure = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.OxygenSaturation:
-        //        PatientData.OxygenSaturation = PatientData.MeasurementName[index];
-        //        break;
-        //
-        //    case Measurements.ETCO2:
-        //        PatientData.ETCO2 = PatientData.MeasurementName[index];
-        //        break;
-        //}
     }
 
     [PunRPC]
@@ -323,7 +296,6 @@ public class Patient : MonoBehaviour
         switch (clothing)
         {
             case Clothing.FullyClothed:
-
                 transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.FullyClothedMaterial;
                 break;
 
@@ -357,10 +329,8 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
-    private void RemoveBandageFromUnusedListRPC(int BandageIndex)
+    private void RemoveBandageFromUnusedListRPC(int BandageIndex) // need fixing, meshes are just fine
     {
-        // fix Meshes u twat
-
         if (UseTourniquet)
         {
             if (BandageIndex == 0 || BandageIndex == 2) // Shin
@@ -402,14 +372,6 @@ public class Patient : MonoBehaviour
 
         _unusedBandagesOnPatient[BandageIndex].SetActive(true);
         _unusedBandagesOnPatient.RemoveAt(BandageIndex);
-    }
-    #endregion
-
-    #region Enumerators
-    private IEnumerator PauseBeforeBandage(int bandageIndex)
-    {
-        yield return new WaitForSeconds(0.1f);
-        PhotonView.RPC("RemoveBandageFromUnusedListRPC", RpcTarget.AllBufferedViaServer, bandageIndex);
     }
     #endregion
 }

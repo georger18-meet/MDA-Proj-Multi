@@ -78,6 +78,7 @@ MonoBehaviour:
   - GivePinoyeRole
   - GiveRefuaRole
   - GiveMedicineRPC
+  - SetMeasurementsValuesRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

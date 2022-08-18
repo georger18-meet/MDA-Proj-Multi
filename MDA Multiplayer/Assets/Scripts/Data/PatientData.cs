@@ -37,13 +37,13 @@ public class PatientData : ScriptableObject
 
     // Catch Measurement Name
     [HideInInspector]
-    public List<int> MeasurementName;
+    public List<int> Measurements;
 
     // Catch Clothing Material
     [HideInInspector]
     public List<Material> ClothingMaterial;
 
-    public void InitMeasurements()
+    public void InitializeMeasurements()
     {
         MeasurementValues = new string[] { HeartRateBPM.ToString(), PainLevel.ToString(), RespiratoryRate.ToString(), CincinnatiLevel.ToString(), BloodSuger.ToString(), BloodPressure.ToString(), OxygenSaturation.ToString(), ETCO2.ToString() };
     }
@@ -59,62 +59,63 @@ public class PatientData : ScriptableObject
         }
     }
 
+    // can do better, used by CheckMeasurement
     public int GetMeasurement(int index)
     {
-        MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
+        Measurements = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
 
-        return MeasurementName[index];
+        return Measurements[index];
     }
 
-    private Material GetClothingMaterial(int index)
-    {
-        ClothingMaterial = new List<Material>() { FullyClothedMaterial, ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial };
+    //private Material GetClothingMaterial(int index)
+    //{
+    //    ClothingMaterial = new List<Material>() { FullyClothedMaterial, ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial };
+    //
+    //    return ClothingMaterial[index];
+    //
+    //}
 
-        return ClothingMaterial[index];
-
-    }
-
-    public void SetMeasurementByIndex(int index, int value)
-    {
-        MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, OxygenSaturation, ETCO2 };
-        MeasurementName[index] = value;
-
-        Measurements measurements = (Measurements)index;
-
-        // to be replaced
-        switch (measurements)
-        {
-            case Measurements.BPM:
-                HeartRateBPM = MeasurementName[index];
-                break;
-
-            case Measurements.PainLevel:
-                PainLevel = MeasurementName[index];
-                break;
-
-            case Measurements.RespiratoryRate:
-                RespiratoryRate = MeasurementName[index];
-                break;
-
-            case Measurements.CincinnatiLevel:
-                CincinnatiLevel = MeasurementName[index];
-                break;
-
-            case Measurements.BloodSuger:
-                BloodSuger = MeasurementName[index];
-                break;
-
-            case Measurements.BloodPressure:
-                BloodPressure = MeasurementName[index];
-                break;
-
-            case Measurements.OxygenSaturation:
-                OxygenSaturation = MeasurementName[index];
-                break;
-
-            case Measurements.ETCO2:
-                ETCO2 = MeasurementName[index];
-                break;
-        }
-    }
+    //public void SetMeasurementByIndex(int index, int value)
+    //{
+    //    MeasurementName = new List<int>() { HeartRateBPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSuger, BloodPressure, //OxygenSaturation, ETCO2 };
+    //    MeasurementName[index] = value;
+    //
+    //    Measurements measurements = (Measurements)index;
+    //
+    //    // to be replaced
+    //    switch (measurements)
+    //    {
+    //        case Measurements.BPM:
+    //            HeartRateBPM = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.PainLevel:
+    //            PainLevel = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.RespiratoryRate:
+    //            RespiratoryRate = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.CincinnatiLevel:
+    //            CincinnatiLevel = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.BloodSuger:
+    //            BloodSuger = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.BloodPressure:
+    //            BloodPressure = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.OxygenSaturation:
+    //            OxygenSaturation = MeasurementName[index];
+    //            break;
+    //
+    //        case Measurements.ETCO2:
+    //            ETCO2 = MeasurementName[index];
+    //            break;
+    //    }
+    //}
 }

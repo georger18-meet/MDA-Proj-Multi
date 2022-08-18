@@ -7,26 +7,34 @@ using Photon.Realtime;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
-    #region Fields
+    #region Photon
     [Header("Photon")]
-    [SerializeField] public PhotonView _photonView;
+    [SerializeField] public PhotonView _photonView; // should be private
     [SerializeField] public PhotonView PhotonView => _photonView;
+    #endregion
 
+    #region Data
     [Header("Data")]
     public PlayerData PlayerData;
+    #endregion
 
-    [Header("Camera")]
+    #region Cameras
+    [Header("Cameras")]
     private Camera _currentCamera;
     public Camera CurrentCamera => _currentCamera;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Camera _vehicleCamera;
     [SerializeField] private GameObject _MiniMaCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
+    #endregion
 
+    #region Animations
     [Header("Animation")]
     [SerializeField] private Animator _playerAnimator;
+    #endregion
 
-    [Header("Momvement")]
+    #region Controllers Behaviours
+    [Header("Controllers")]
     [SerializeField] private CharacterController _characterController;
     private CarControllerSimple _currentCarController;
     public CarControllerSimple CurrentCarController { get => _currentCarController; set => _currentCarController = value; }
@@ -47,14 +55,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private bool _isGrounded;
     #endregion
 
+    #region Colliders
+    [Header("Colliders")]
     public GameObject CarCollider;
+    #endregion
 
     #region State Machine
     private delegate void State();
     private State _stateAction;
     #endregion
 
-    #region Monobehavior Callbacks
+    #region Monobehaviour Callbacks
     private void Awake()
     {
         PlayerData = gameObject.AddComponent<PlayerData>();
@@ -113,94 +124,32 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region Private Methods
-    private void GetInputAxis()
+    #region Collisions & Triggers
+    private void OnTriggerEnter(Collider other)
     {
-        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    }
-
-    private void UseTankMovement()
-    {
-        Vector3 moveDirerction;
-        float actualSpeed = Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed;
-        moveDirerction = actualSpeed * _input.y * transform.forward;
-
-        if (_input.y > 0)
+        if (_photonView.IsMine)
         {
-            _playerAnimator.SetFloat("Movement Speed", actualSpeed == _walkingSpeed ? 0.5f : 1f, 0.1f, Time.deltaTime);
-        }
-        else
-        {
-            _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
-        }
-
-        // moves the character in diagonal direction
-        _characterController.Move(moveDirerction * Time.deltaTime - Vector3.up * 0.1f);
-    }
-
-    private void UseFlyingMovement()
-    {
-        float yPosition = transform.position.y;
-        Vector3 moveDirerction;
-        moveDirerction = (Input.GetKey(KeyCode.LeftShift) ? _flyingSpeed * 2 : _flyingSpeed) * _input.y * transform.forward;
-
-        // moves the character in diagonal direction
-        _characterController.Move(moveDirerction * Time.deltaTime - Vector3.up * 0.1f);
-        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
-    }
-
-    private void UseTankRotate()
-    {
-        _playerAnimator.SetFloat("Rotatation Speed", _input.x, 0.1f, Time.deltaTime);
-        transform.Rotate(0, _input.x * _turnSpeed * Time.deltaTime, 0);
-    }
-
-    private void UseFirstPersonMovement()
-    {
-        float actualSpeed = Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed;
-        _characterController.Move(actualSpeed * _input.x * Time.deltaTime * transform.right + actualSpeed * _input.y * Time.deltaTime * transform.forward);
-    }
-
-    private void UseFirstPersonRotate()
-    {
-        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
-
-        transform.Rotate(_mouseSensitivity.x * mouseInput.x * Time.deltaTime * Vector3.up);
-        _currentCamera.transform.Rotate(_mouseSensitivity.y * mouseInput.y * Time.deltaTime * Vector3.right);
-    }
-
-    private void SetFirstPersonCamera(bool value)
-    {
-        _currentCamera.transform.position = value ? _firstPersonCameraTransform.position : _thirdPersonCameraTransform.position;
-        _currentCamera.transform.rotation = value ? _firstPersonCameraTransform.rotation : _thirdPersonCameraTransform.rotation;
-    }
-
-    private void FreeMouse(bool value)
-    {
-        Cursor.visible = value;
-        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
-    }
-
-    private void RotateBodyWithMouse()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
-
-            transform.Rotate(Vector3.up * mouseInput.x * _mouseSensitivity.x * Time.deltaTime);
-            _currentCamera.transform.Rotate(Vector3.right * mouseInput.y * _mouseSensitivity.y * Time.deltaTime);
+            if (!other.gameObject.TryGetComponent(out Patient possiblePatient))
+            {
+                return;
+            }
+            PlayerData.CurrentPatientNearby = possiblePatient;
         }
     }
 
-    private void FreeMouseWithAlt()
+    private void OnTriggerExit(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (_photonView.IsMine)
         {
-            FreeMouse(!Cursor.visible);
+            if (!other.gameObject.TryGetComponent(out Patient possiblePatient))
+            {
+                return;
+            }
+            PlayerData.CurrentPatientNearby = null;
         }
     }
     #endregion
-
+    
     #region States
     private void UseTankIdleState()
     {
@@ -461,7 +410,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
         }
     }
-
     private void UseTreatingState()
     {
         if (_photonView.IsMine)
@@ -470,15 +418,94 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
     #endregion
+    
+    #region Private Methods
+    private void GetInputAxis()
+    {
+        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    }
 
-    //[PunRPC]
-    //private void RPC_AddUserToTreatingLists(int currentPlayer)
-    //{
-    //    Player currentPlayerData = PhotonNetwork.LocalPlayer.Get(currentPlayer);
-    //    Debug.Log("currentPlayerData ID" + " " + currentPlayerData);
-    //
-    //    GetComponent<PlayerData>().CurrentPatientNearby.TreatingUsersTest.Add(currentPlayerData.ActorNumber);
-    //}
+    private void UseTankMovement()
+    {
+        Vector3 moveDirerction;
+        float actualSpeed = Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed;
+        moveDirerction = actualSpeed * _input.y * transform.forward;
+
+        if (_input.y > 0)
+        {
+            _playerAnimator.SetFloat("Movement Speed", actualSpeed == _walkingSpeed ? 0.5f : 1f, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
+        }
+
+        // moves the character in diagonal direction
+        _characterController.Move(moveDirerction * Time.deltaTime - Vector3.up * 0.1f);
+    }
+
+    private void UseFlyingMovement()
+    {
+        float yPosition = transform.position.y;
+        Vector3 moveDirerction;
+        moveDirerction = (Input.GetKey(KeyCode.LeftShift) ? _flyingSpeed * 2 : _flyingSpeed) * _input.y * transform.forward;
+
+        // moves the character in diagonal direction
+        _characterController.Move(moveDirerction * Time.deltaTime - Vector3.up * 0.1f);
+        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+    }
+
+    private void UseTankRotate()
+    {
+        _playerAnimator.SetFloat("Rotatation Speed", _input.x, 0.1f, Time.deltaTime);
+        transform.Rotate(0, _input.x * _turnSpeed * Time.deltaTime, 0);
+    }
+
+    private void UseFirstPersonMovement()
+    {
+        float actualSpeed = Input.GetKey(KeyCode.LeftShift) ? _runningSpeed : _walkingSpeed;
+        _characterController.Move(actualSpeed * _input.x * Time.deltaTime * transform.right + actualSpeed * _input.y * Time.deltaTime * transform.forward);
+    }
+
+    private void UseFirstPersonRotate()
+    {
+        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
+
+        transform.Rotate(_mouseSensitivity.x * mouseInput.x * Time.deltaTime * Vector3.up);
+        _currentCamera.transform.Rotate(_mouseSensitivity.y * mouseInput.y * Time.deltaTime * Vector3.right);
+    }
+
+    private void SetFirstPersonCamera(bool value)
+    {
+        _currentCamera.transform.position = value ? _firstPersonCameraTransform.position : _thirdPersonCameraTransform.position;
+        _currentCamera.transform.rotation = value ? _firstPersonCameraTransform.rotation : _thirdPersonCameraTransform.rotation;
+    }
+
+    private void FreeMouse(bool value)
+    {
+        Cursor.visible = value;
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+    private void RotateBodyWithMouse()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
+
+            transform.Rotate(Vector3.up * mouseInput.x * _mouseSensitivity.x * Time.deltaTime);
+            _currentCamera.transform.Rotate(Vector3.right * mouseInput.y * _mouseSensitivity.y * Time.deltaTime);
+        }
+    }
+
+    private void FreeMouseWithAlt()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            FreeMouse(!Cursor.visible);
+        }
+    }
+    #endregion
 
     #region PunRPC
     [PunRPC]
@@ -491,32 +518,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         else
         {
             _characterController.enabled = true;
-        }
-    }
-    #endregion
-
-    #region Collisions & Triggers
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_photonView.IsMine)
-        {
-            if (!other.gameObject.TryGetComponent(out Patient possiblePatient))
-            {
-                return;
-            }
-            PlayerData.CurrentPatientNearby = possiblePatient;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (_photonView.IsMine)
-        {
-            if (!other.gameObject.TryGetComponent(out Patient possiblePatient))
-            {
-                return;
-            }
-            PlayerData.CurrentPatientNearby = null;
         }
     }
     #endregion
@@ -537,6 +538,4 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
     #endregion
-
- 
 }
