@@ -349,6 +349,8 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 1 || BandageIndex == 3) // Knee
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[1];
+
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = ShirtOnlyMaterial;
             }
             else if (BandageIndex == 4 || BandageIndex == 6) // ForeArm
             {
@@ -357,6 +359,8 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 5 || BandageIndex == 7) // Bicep
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[3];
+
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PantsOnlyMaterial;
             }
         }
         else
@@ -368,6 +372,8 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 1 || BandageIndex == 3) // Knee
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[1];
+
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = ShirtOnlyMaterial;
             }
             else if (BandageIndex == 4 || BandageIndex == 6) // ForeArm
             {
@@ -376,6 +382,8 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 5 || BandageIndex == 7) // Bicep
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[3];
+
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PantsOnlyMaterial;
             }
         }
 
