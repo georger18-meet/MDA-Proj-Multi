@@ -332,12 +332,6 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
-    private void ChangeConciouncenessRPC(bool newConsciousnessState)
-    {
-        NewPatientData.IsConscious = newConsciousnessState;
-    }
-
-    [PunRPC]
     private void SetMonitorGraphRPC(int MonitorSpriteNum)
     {
         MonitorWindow.sprite = NewPatientData.MonitorSpriteList[MonitorSpriteNum];

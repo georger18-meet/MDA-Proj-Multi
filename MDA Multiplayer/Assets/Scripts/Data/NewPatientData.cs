@@ -21,10 +21,6 @@ public class NewPatientData
     [Header("MonitorGraphTexture")]
     public List<Sprite> MonitorSpriteList;
 
-    [Header("Status")]
-    [SerializeField] private bool _isConscious = true;
-    public bool IsConscious { get => _isConscious; set => value = _isConscious; }
-
     public NewPatientData()
     {
 
@@ -41,7 +37,6 @@ public class NewPatientData
         AddressLocation = newPatientDataFromSO.AddressLocation;
         Complaint = newPatientDataFromSO.Complaint;
         _patientMeasurement = newPatientDataFromSO._patientMeasurement;
-        _isConscious = newPatientDataFromSO._isConscious;
         MonitorSpriteList = newPatientDataFromSO.MonitorSpriteList;
     }
 
