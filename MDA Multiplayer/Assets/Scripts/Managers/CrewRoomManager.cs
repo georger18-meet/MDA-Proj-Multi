@@ -258,7 +258,7 @@ public class CrewRoomManager : MonoBehaviour,IPunObservable
     {
         PhotonView currentPlayerView = ActionsManager.Instance.GetPlayerPhotonViewByNickName(currentPlayer);
 
-
+ 
         if (currentPlayerView == null)
         {
             Debug.LogError("CurrentPlayer is Null");

@@ -29,6 +29,24 @@ public class EranCrew : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(ActionsManager.Instance.AllPlayersPhotonViews.Count);
+
+            foreach (var x in ActionsManager.Instance.AllPlayersPhotonViews)
+            {
+                    Debug.Log(x.ToString());
+
+            }
+
+            foreach (var y in PhotonNetwork.PlayerList)
+            {
+                Debug.Log(y.NickName);
+            }
+        }
+    }
 
     //Maybe In corutine?
     [PunRPC]
@@ -156,21 +174,23 @@ public class EranCrew : MonoBehaviour
     {
         foreach (var player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            player.GetComponent<PlayerData>().IsHenyon10 = false;
+                player.GetComponent<PlayerData>().IsHenyon10 = false;
         }
-
         PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
         roleIndex.IsHenyon10 = true;
+
+
     }
+
     [PunRPC]
     public void GiveRefuaRole(int index)
     {
         foreach (var player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            player.GetComponent<PlayerData>().IsRefua10 = false;
+                player.GetComponent<PlayerData>().IsRefua10 = false;
         }
 
-        PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>(); 
         roleIndex.IsRefua10 = true;
     }
     [PunRPC]
@@ -182,7 +202,7 @@ public class EranCrew : MonoBehaviour
         }
 
         PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
-        roleIndex.IsPinoye10 = true;
+            roleIndex.IsPinoye10 = true;
     }
     private Coroutine updatePlayerListCoroutine;
     //opened By clicking on Sign

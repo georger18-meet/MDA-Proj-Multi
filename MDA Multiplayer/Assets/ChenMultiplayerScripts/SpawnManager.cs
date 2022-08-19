@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+
+    public static SpawnManager Instance;
+
     [Header("PlayerPrefabs")]
-    [SerializeField] private GameObject _playerMalePrefab;
+    [SerializeField] public GameObject _playerMalePrefab;
     //[SerializeField] private GameObject _playerFemalePrefab;
 
     [Header("PatientPrefabs")]
@@ -30,13 +35,30 @@ public class SpawnManager : MonoBehaviour
 
     public float _minX, _minZ, _maxX, _maxZ;
 
-    private void Start()
+    private void Awake()
     {
-        Vector3 randomPos = new Vector3(Random.Range(_minX,_maxX), 1.3f, Random.Range(_minZ,_maxZ));
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            Instance = this;
+
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+        
+    }
+
+    void Start()
+    {
+        Vector3 randomPos = new Vector3(Random.Range(_minX, _maxX), 1.3f, Random.Range(_minZ, _maxZ));
         PhotonNetwork.Instantiate(_playerMalePrefab.name, randomPos, Quaternion.identity);
 
-        PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation).GetComponent<Patient>();
-
+        PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);
         //PhotonNetwork.InstantiateRoomObject(_patientFemalePrefab.name, _patientFemalePosTransform.position, _patientFemalePrefab.transform.rotation);
 
 
@@ -50,16 +72,4 @@ public class SpawnManager : MonoBehaviour
             }
         }   
     }
-
-    //public void SpawnTestPatient(PatientDataSO patientScriptableObject)
-    //{
-    //    Patient patient;
-    //
-    //    patient = PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, //_patientMalePrefab.transform.rotation).GetComponent<Patient>();
-    //
-    //    if (patient)
-    //    {
-    //        patient.InitializePatientData(patientScriptableObject._patientData);
-    //    }
-    //}
 }
