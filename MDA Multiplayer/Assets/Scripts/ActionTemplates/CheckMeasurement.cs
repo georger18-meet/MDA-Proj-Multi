@@ -6,8 +6,9 @@ using Photon.Pun;
 
 public class CheckMeasurement : Action
 {
-    [SerializeField] private bool _showAlert;
-    
+    [SerializeField] private bool _showTextAlert;
+    [SerializeField] private bool _showNumAlert;
+
     [Header("Component's Data")]
     [SerializeField] private Measurements _measurement;
     [SerializeField] private string _measurementName, _measurementNameForAlert;
@@ -25,9 +26,14 @@ public class CheckMeasurement : Action
 
             TextToLog = $"Checked Patient's {_measurementName}, it is {_currentMeasurement}";
 
-            if (_showAlert)
+            if (_showTextAlert)
             {
                 ShowTextAlert(_measurementNameForAlert, _currentMeasurement);
+            }
+
+            if (_showNumAlert)
+            {
+                ShowNumAlert(_measurementNameForAlert, int.Parse(_currentMeasurement));
             }
 
             if (_shouldUpdateLog)

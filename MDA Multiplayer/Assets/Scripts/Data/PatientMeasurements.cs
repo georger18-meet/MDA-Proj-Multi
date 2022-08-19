@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Measurements { BPM, PainLevel, RespiratoryRate, CincinnatiLevel, BloodSugar,
+    BloodPressure, OxygenSaturation, ETCO2, AdditionalMuscles}
+
 [System.Serializable]
 public class PatientMeasurements
 {

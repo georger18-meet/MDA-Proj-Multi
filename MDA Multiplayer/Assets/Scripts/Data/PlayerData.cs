@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+public enum Roles { CFR, Medic, SeniorMedic, Paramedic, Doctor }
+public enum AranRoles { HeadMokdan, Mokdan, Refua10, Henyon10, Pinoye10 }
+
 public class PlayerData : MonoBehaviour
 {
     public PhotonView PhotonView => gameObject.GetPhotonView();
