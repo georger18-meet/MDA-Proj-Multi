@@ -11,7 +11,7 @@ public enum AranRoles { HeadMokdan, Mokdan, Refua10, Henyon10, Pinoye10 }
 public class PlayerData : MonoBehaviour
 {
     public PhotonView PhotonView => gameObject.GetPhotonView();
-    public bool IsJoinedNearbyPatient { get => CurrentPatientNearby.IsPlayerJoined(this); }
+    public bool IsJoinedNearbyPatient => CurrentPatientNearby.IsPlayerJoined(this);
 
     [field: SerializeField] public string UserName { get; set; }
     [field: SerializeField] public string CrewName { get; set; }
@@ -27,23 +27,18 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
 
+    #region MonobehaviourCallbacks
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
     }
-
-    private void OnDestroy()
-    {
-        ActionsManager.Instance.AllPlayersPhotonViews.Remove(PhotonView);
-    }
-
     private void Start()
     {
 
-        ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
+        if (PhotonNetwork.IsMasterClient)
+            PhotonView.RPC("AddingPlayerToAllPlayersList", RpcTarget.AllBufferedViaServer);
 
     }
-
     private void Update()
     {
         if (IsInstructor)
@@ -60,6 +55,11 @@ public class PlayerData : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        ActionsManager.Instance.AllPlayersPhotonViews.Remove(PhotonView);
+    }
+    #endregion
 
     //public void DisconnectButton()
     //{
@@ -69,6 +69,13 @@ public class PlayerData : MonoBehaviour
     //}
 
     #region PunRPC invoked by Player
+    [PunRPC]
+    void AddingPlayerToAllPlayersList()
+    {
+        ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
+
+    }
+
     [PunRPC]
     private void OnJoinPatient()
     {
