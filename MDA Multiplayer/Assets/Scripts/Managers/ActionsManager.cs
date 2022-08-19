@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 
 public class ActionsManager : MonoBehaviour
@@ -15,6 +16,10 @@ public class ActionsManager : MonoBehaviour
     public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
     public List<PlayerData> AllPlayerData;
+
+
+    public List<PhotonView> AllPlayersPhotonViews2;
+
 
     #region Data References
     [Header("Data & Scripts")]
@@ -149,4 +154,6 @@ public class ActionsManager : MonoBehaviour
         }
     }
     #endregion
+
+
 }

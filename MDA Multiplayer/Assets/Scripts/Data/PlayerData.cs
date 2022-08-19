@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,9 +29,16 @@ public class PlayerData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnDestroy()
+    {
+        ActionsManager.Instance.AllPlayersPhotonViews.Remove(PhotonView);
+    }
+
     private void Start()
     {
+
         ActionsManager.Instance.AllPlayersPhotonViews.Add(PhotonView);
+
     }
 
     private void Update()
@@ -50,12 +58,12 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public void DisconnectButton()
-    {
-        ActionsManager.Instance.AllPlayersPhotonViews.Remove(PhotonView);
+    //public void DisconnectButton()
+    //{
+    //    ActionsManager.Instance.AllPlayersPhotonViews.Remove(PhotonView);
 
-        GameManager.Instance.DisconnectPlayer();
-    }
+    //    GameManager.Instance.DisconnectPlayer();
+    //}
 
     #region PunRPC invoked by Player
     [PunRPC]

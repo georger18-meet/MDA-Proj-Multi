@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+
+    public static SpawnManager Instance;
+
     [Header("PlayerPrefabs")]
-    [SerializeField] private GameObject _playerMalePrefab;
+    [SerializeField] public GameObject _playerMalePrefab;
     //[SerializeField] private GameObject _playerFemalePrefab;
 
     [Header("PatientPrefabs")]
@@ -30,9 +35,27 @@ public class SpawnManager : MonoBehaviour
 
     public float _minX, _minZ, _maxX, _maxZ;
 
+    private void Awake()
+    {
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            Instance = this;
+
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+        
+    }
+
     void Start()
     {
-        Vector3 randomPos = new Vector3(Random.Range(_minX,_maxX), 1.3f, Random.Range(_minZ,_maxZ));
+        Vector3 randomPos = new Vector3(Random.Range(_minX, _maxX), 1.3f, Random.Range(_minZ, _maxZ));
         PhotonNetwork.Instantiate(_playerMalePrefab.name, randomPos, Quaternion.identity);
 
         PhotonNetwork.InstantiateRoomObject(_patientMalePrefab.name, _patientMalePosTransform.position, _patientMalePrefab.transform.rotation);

@@ -18,10 +18,11 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public System.Action OnPlayerListChange;
 
+
     private void Awake()
     {
         // This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     private void Start()
@@ -53,29 +54,29 @@ public class Lobby : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
 
-       // SceneManager.LoadScene("Lobby");
-      // PhotonNetwork.JoinLobby(); ---- we gonna use other method to auto log us into the scene
+        // SceneManager.LoadScene("Lobby");
+        // PhotonNetwork.JoinLobby(); ---- we gonna use other method to auto log us into the scene
+        PhotonNetwork.AutomaticallySyncScene = true;
 
-      if (isConnecting)
+        if (isConnecting)
       {
           PhotonNetwork.JoinRandomRoom();
           isConnecting = false;
       }
     }
 
-    public override void OnJoinedRoom()
-    {
+    //public override void OnJoinedRoom()
+    //{
 
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
-        {
-            PhotonNetwork.LoadLevel(1);
-        }
-        else
-        {
-            OnPlayerListChange?.Invoke();
-        }
-
-    }
+    //    if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+    //    {
+    //        PhotonNetwork.LoadLevel(1);
+    //    }
+    //    else
+    //    {
+    //        OnPlayerListChange?.Invoke();
+    //    }
+    //}
 
     public override void OnLeftRoom()
     {

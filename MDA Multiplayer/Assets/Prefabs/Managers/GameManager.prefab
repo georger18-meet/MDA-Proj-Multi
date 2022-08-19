@@ -49,6 +49,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   CurrentIncidentsTransforms: []
+  multiplayerScene: 0
+  currentScene: 0
 --- !u!114 &5750352305619051129
 MonoBehaviour:
   m_ObjectHideFlags: 0
