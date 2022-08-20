@@ -18,7 +18,8 @@ public class RevealPropOnPatient : Action
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            CurrentPatient.PropList[(int)_prop].SetActive(true);
+            CurrentPatient.PhotonView.RPC("RevealPropOnPatientRPC", RpcTarget.AllViaServer, (int)_prop);
+            //CurrentPatient.PropList[(int)_prop].SetActive(true);
 
             TextToLog = $"Used {_itemName}";
 

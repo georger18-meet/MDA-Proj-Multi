@@ -35,7 +35,9 @@ public class Patient : MonoBehaviour
 
     #region GameObjects
     [Header("Props")]
+    public List<GameObject> KidPropList;
     public List<GameObject> PropList;
+    public List<GameObject> OldPropList;
 
     [Header("Bandages")]
     public bool UseTourniquet = false;
@@ -389,6 +391,26 @@ public class Patient : MonoBehaviour
 
         _unusedBandagesOnPatient[BandageIndex].SetActive(true);
         _unusedBandagesOnPatient.RemoveAt(BandageIndex);
+    }
+
+    [PunRPC]
+    private void RevealPropOnPatientRPC(int propIndex)
+    {
+        switch (NewPatientData.PatientType)
+        {
+            case PatientType.Old:
+                OldPropList[propIndex].SetActive(true);
+                break;
+            case PatientType.Grown:
+                PropList[propIndex].SetActive(true);
+                break;
+            case PatientType.Kid:
+                KidPropList[propIndex].SetActive(true);
+                break;
+            default:
+                break;
+        }
+        PropList[propIndex].SetActive(true);
     }
     #endregion
 }
