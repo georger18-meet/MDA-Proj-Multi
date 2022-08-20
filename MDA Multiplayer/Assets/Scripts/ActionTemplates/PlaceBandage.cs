@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlaceBandage : Action
 {
     [SerializeField] private bool _useTourniquetInstead = false;
-    [SerializeField] private LayerMask _bandageLayer;
     private CameraController _camController;
+    [SerializeField] private LayerMask _bandageLayer;
     private bool _useSelectableLayer;
 
     private void Update()
@@ -29,13 +29,8 @@ public class PlaceBandage : Action
             CurrentPatient.UseTourniquet = _useTourniquetInstead;
             CurrentPatient.SetUnusedBandages(true);
 
-            if (_shouldUpdateLog && !_useTourniquetInstead)
+            if (_shouldUpdateLog)
             {
-                LogText(TextToLog);
-            }
-            else
-            {
-                TextToLog = "Placed Tourniquet on Patient";
                 LogText(TextToLog);
             }
         }

@@ -6,15 +6,14 @@ using Photon.Pun;
 
 public class CheckMeasurement : Action
 {
-    [SerializeField] private bool _showTextAlert;
-    [SerializeField] private bool _showNumAlert;
-
+    [SerializeField] private bool _showAlert = false;
+    
     [Header("Component's Data")]
     [SerializeField] private Measurements _measurement;
     [SerializeField] private string _measurementName, _measurementNameForAlert;
 
 
-    private string _currentMeasurement;
+    private int _currentMeasurement;
 
     public void CheckMeasurementAction()
     {
@@ -22,18 +21,14 @@ public class CheckMeasurement : Action
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            _currentMeasurement = CurrentPatientData.GetMeasurement((int)_measurement);
+            int measurementNum = (int)_measurement;
+            _currentMeasurement = CurrentPatientData.GetMeasurement(measurementNum);
 
             TextToLog = $"Checked Patient's {_measurementName}, it is {_currentMeasurement}";
 
-            if (_showTextAlert)
+            if (_showAlert)
             {
-                ShowTextAlert(_measurementNameForAlert, _currentMeasurement);
-            }
-
-            if (_showNumAlert)
-            {
-                ShowNumAlert(_measurementNameForAlert, int.Parse(_currentMeasurement));
+                ShowNumAlert(_measurementNameForAlert, _currentMeasurement);
             }
 
             if (_shouldUpdateLog)

@@ -18,8 +18,7 @@ public class Action : MonoBehaviour
 
     [Header("Currently joined Patient's Data")]
     protected Patient CurrentPatient;
-    protected NewPatientData CurrentPatientData;
-
+    protected PatientData CurrentPatientData;
     protected Transform PatientChestPosPlayerTransform;
     protected Transform PatientChestPosEquipmentTransform, PatientHeadPosPlayerTransform, PatientHeadPosEquipmentTransform, PatientLegPosPlayerTrasform;
 
@@ -65,7 +64,7 @@ public class Action : MonoBehaviour
 
                 // get Patient & PatientData
                 CurrentPatient = LocalPlayerData.CurrentPatientNearby;
-                CurrentPatientData = CurrentPatient.NewPatientData;
+                CurrentPatientData = CurrentPatient.PatientData;
 
                 PatientChestPosPlayerTransform = CurrentPatient.ChestPosPlayerTransform;
                 PatientChestPosEquipmentTransform = CurrentPatient.ChestPosEquipmentTransform;

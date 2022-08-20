@@ -1072,37 +1072,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhotonView: {fileID: 2801488433122248011}
   PatientData: {fileID: 11400000, guid: 6cb71e5f106d5874c8f12655d1faf508, type: 2}
-  NewPatientData:
-    Name: 
-    SureName: 
-    Id: 0
-    Age: 0
-    Gender: 
-    PhoneNumber: 
-    MedicalCompany: 
-    AddressLocation: 
-    Complaint: 
-    _patientMeasurement:
-      MeasurementValues:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-    MonitorSpriteList:
-    - {fileID: 21300000, guid: aa323584db86b6b4a82b61d77a486b33, type: 3}
-    - {fileID: 21300000, guid: 5c2b238bf2850384283cb59cad5857f0, type: 3}
-    _isConscious: 1
   ActionSequences:
   - {fileID: 11400000, guid: 6e09851af676bfe438a19787ecd1cd30, type: 2}
   MonitorWindow: {fileID: 0}
@@ -1148,10 +1117,6 @@ MonoBehaviour:
   AllUsersTreatedThisPatient: []
   TreatingCrews: 
   AllCrewTreatedThisPatient: 
-  FullyClothedMaterial: {fileID: 2100000, guid: c6f7a8bad586457428a700c5b6b6b82b, type: 2}
-  ShirtOnlyMaterial: {fileID: 2100000, guid: b679808b4e664094581537001ef10c58, type: 2}
-  PantsOnlyMaterial: {fileID: 2100000, guid: ef4583040eca60c428504c9b48727fe1, type: 2}
-  UnderwearOnlyMaterial: {fileID: 2100000, guid: b8d9b2b3092ab614b95207d1019f89d4, type: 2}
   PatientRenderer: {fileID: 7212182465135786284}
 --- !u!114 &5550523932109703410
 MonoBehaviour:

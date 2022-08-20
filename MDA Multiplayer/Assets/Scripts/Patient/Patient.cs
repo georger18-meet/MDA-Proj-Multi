@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
-public enum Clothing { FullyClothed, ShirtOnly, PantsOnly, UnderwearOnly }
 public enum Props { Venflon, BloodPressureSleeve, Ambu, HeadVice, OxygenMask, Tube, NeckBrace, ThroatTube, Asherman, ECG }
 
 public class Patient : MonoBehaviour
@@ -21,7 +20,6 @@ public class Patient : MonoBehaviour
     #region Script References
     [Header("Data & Scripts")]
     public PatientData PatientData;
-    public NewPatientData NewPatientData;
     public List<ActionSequence> ActionSequences;
     #endregion
 
@@ -58,26 +56,22 @@ public class Patient : MonoBehaviour
     public List<int> AllCrewTreatedThisPatient;
     #endregion
 
-    #region Model Related
-    [Header("Appearance Material")]
-    public Material FullyClothedMaterial;
-    public Material ShirtOnlyMaterial, PantsOnlyMaterial, UnderwearOnlyMaterial;
-
-    [Header("Renderer")]
+    #region Material Related
+    [Header("Material Related")]
     public Renderer PatientRenderer;
     #endregion
 
     #region Monovehavior Callbacks
     private void Awake()
     {
-        PatientRenderer.material = FullyClothedMaterial;
+        PatientRenderer.material = PatientData.FullyClothedMaterial;
         DontDestroyOnLoad(gameObject.transform);
     }
 
     private void Start()
     {
         //players = new List<PlayerController>();
-        //PatientData.InitializeMeasurements();
+        PatientData.InitializeMeasurements();
         //int[] measurementsArray = (int[])Enum.GetValues(typeof(Measurements));
         //PatientData.Measurements = measurementsArray.ToList();
         ActionsManager.Instance.AllPatients.Add(this);
@@ -180,11 +174,6 @@ public class Patient : MonoBehaviour
         //_unUsedBandagesOnPatient.Remove(bandage);
         SetUnusedBandages(false);
     }
-
-    public void InitializePatientData(NewPatientData newPatientDataFromSO)
-    {
-        NewPatientData = new NewPatientData(newPatientDataFromSO);
-    }
     #endregion
 
     #region PunRPC invoke by Patient
@@ -232,16 +221,15 @@ public class Patient : MonoBehaviour
     [PunRPC]
     public void UpdatePatientInfoDisplay()
     {
-        UIManager.Instance.SureName.text = NewPatientData.Name;
-        UIManager.Instance.LastName.text = NewPatientData.SureName;
-        UIManager.Instance.Gender.text = NewPatientData.Gender;
-        UIManager.Instance.Adress.text = NewPatientData.AddressLocation;
-        UIManager.Instance.InsuranceCompany.text = NewPatientData.MedicalCompany;
-        UIManager.Instance.Complaint.text = NewPatientData.Complaint;
-
-        UIManager.Instance.Age.text = NewPatientData.Age.ToString();
-        UIManager.Instance.Id.text = NewPatientData.Id.ToString();
-        UIManager.Instance.PhoneNumber.text = NewPatientData.PhoneNumber.ToString();
+        UIManager.Instance.SureName.text = PatientData.Name;
+        UIManager.Instance.LastName.text = PatientData.SureName;
+        UIManager.Instance.Gender.text = PatientData.Gender;
+        UIManager.Instance.Adress.text = PatientData.AddressLocation;
+        UIManager.Instance.InsuranceCompany.text = PatientData.MedicalCompany;
+        UIManager.Instance.Complaint.text = PatientData.Complaint;
+        UIManager.Instance.Age.text = PatientData.Age.ToString();
+        UIManager.Instance.Id.text = PatientData.Id.ToString();
+        UIManager.Instance.PhoneNumber.text = PatientData.PhoneNumber.ToString();
     }
 
     [PunRPC]
@@ -255,9 +243,6 @@ public class Patient : MonoBehaviour
     {
         PatientData.HeartRateBPM = newBPM;
     }
-
-    [PunRPC]
-    private void SetMeasurementsRPC(string[] x) => NewPatientData.SetPatientMeasurement(x);
 
     [PunRPC] 
     private void SetMeasurementByIndexRPC(int index, int value) // can do better without the new List
@@ -285,7 +270,7 @@ public class Patient : MonoBehaviour
                 PatientData.CincinnatiLevel = PatientData.Measurements[index];
                 break;
 
-            case Measurements.BloodSugar:
+            case Measurements.BloodSuger:
                 PatientData.BloodSuger = PatientData.Measurements[index];
                 break;
 
@@ -311,19 +296,19 @@ public class Patient : MonoBehaviour
         switch (clothing)
         {
             case Clothing.FullyClothed:
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = FullyClothedMaterial;
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.FullyClothedMaterial;
                 break;
 
             case Clothing.ShirtOnly:
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = ShirtOnlyMaterial;
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.ShirtOnlyMaterial;
                 break;
 
             case Clothing.PantsOnly:
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PantsOnlyMaterial;
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.PantsOnlyMaterial;
                 break;
 
             case Clothing.UnderwearOnly:
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = UnderwearOnlyMaterial;
+                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PatientData.UnderwearOnlyMaterial;
                 break;
 
             default:
@@ -332,9 +317,15 @@ public class Patient : MonoBehaviour
     }
 
     [PunRPC]
+    private void ChangeConciouncenessRPC(bool newConsciousnessState)
+    {
+        PatientData.IsConscious = newConsciousnessState;
+    }
+
+    [PunRPC]
     private void SetMonitorGraphRPC(int MonitorSpriteNum)
     {
-        MonitorWindow.sprite = NewPatientData.MonitorSpriteList[MonitorSpriteNum];
+        MonitorWindow.sprite = PatientData.MonitorSpriteList[MonitorSpriteNum];
     }
 
     [PunRPC]
@@ -349,8 +340,6 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 1 || BandageIndex == 3) // Knee
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[1];
-
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = ShirtOnlyMaterial;
             }
             else if (BandageIndex == 4 || BandageIndex == 6) // ForeArm
             {
@@ -359,8 +348,6 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 5 || BandageIndex == 7) // Bicep
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _tourniquetMeshList[3];
-
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PantsOnlyMaterial;
             }
         }
         else
@@ -372,8 +359,6 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 1 || BandageIndex == 3) // Knee
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[1];
-
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = ShirtOnlyMaterial;
             }
             else if (BandageIndex == 4 || BandageIndex == 6) // ForeArm
             {
@@ -382,8 +367,6 @@ public class Patient : MonoBehaviour
             else if (BandageIndex == 5 || BandageIndex == 7) // Bicep
             {
                 _unusedBandagesOnPatient[BandageIndex].GetComponent<MeshFilter>().mesh = _bandageMeshList[3];
-
-                transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = PantsOnlyMaterial;
             }
         }
 

@@ -18,7 +18,8 @@ public class RevealPropOnPatient : Action
 
         if (CurrentPatient.IsPlayerJoined(LocalPlayerData))
         {
-            CurrentPatient.PropList[(int)_prop].SetActive(true);
+            int propIndex = (int)_prop;
+            CurrentPatient.PropList[propIndex].SetActive(true);
 
             TextToLog = $"Used {_itemName}";
 

@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Iron-Man v0.9.5 Gal
+    AppVersion: Iron-Man v0.9.4 Bunny
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -79,8 +79,6 @@ MonoBehaviour:
   - GiveRefuaRole
   - GiveMedicineRPC
   - SetMeasurementsValuesRPC
-  - SetMeasurementsRPC
-  - AddingPlayerToAllPlayersList
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
