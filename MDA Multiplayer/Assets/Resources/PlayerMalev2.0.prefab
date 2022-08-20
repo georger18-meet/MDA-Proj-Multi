@@ -2766,6 +2766,7 @@ GameObject:
   - component: {fileID: 8822803001239547996}
   - component: {fileID: 8822803001239547997}
   - component: {fileID: 8822803001239547998}
+  - component: {fileID: 4413357399742692981}
   m_Layer: 0
   m_Name: Player MainCamera
   m_TagString: MainCamera
@@ -2871,6 +2872,31 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &4413357399742692981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822803001239547992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd2d1721978a1141b98aa106f39abc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionLayers:
+    serializedVersion: 2
+    m_Bits: 521
+  Target: {fileID: 8822803002174255573}
+  _destinationObj: {fileID: 8822803000880888004}
+  Colliding: 0
+  AdjustedCameraClipPoints: []
+  DesiredCameraClipPoints: []
+  SmoothFollow: 1
+  Smooth: 0.05
+  AdjustmentDistance: -8
+  DrawDesiredCollisionLines: 1
+  DrawAdjustedCollisionLines: 1
 --- !u!1 &8822803002174255568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,7 +2912,7 @@ GameObject:
   - component: {fileID: 6846980335483256472}
   - component: {fileID: 4762676014754726370}
   - component: {fileID: 6518490309897315663}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerMalev2.0
   m_TagString: Player
   m_Icon: {fileID: 0}
