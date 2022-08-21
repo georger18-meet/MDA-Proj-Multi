@@ -1072,10 +1072,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhotonView: {fileID: 2801488433122248011}
   PatientData: {fileID: 11400000, guid: 6cb71e5f106d5874c8f12655d1faf508, type: 2}
+  NewPatientData:
+    PatientType: 1
+    Name: "\u05D2\u05D9\u05D1\u05D5\u05E8"
+    SureName: "\u05E2\u05D5\u05DC\u05DD"
+    Id: 31516876
+    Age: 31
+    Gender: "\u05D6'"
+    PhoneNumber: "\u05DE\u05E1\u05E4\u05E8 \u05D8\u05DC\u05E4\u05D5\u05DF \u05DE\u05D6\u05D5\u05D9\u05D9\u05E3"
+    MedicalCompany: "\u05E2\u05E0\u05D9 \u05DE\u05D3\u05D9 \u05DC\u05D6\u05D4"
+    AddressLocation: "\u05E8\u05E2\u05E0\u05E0\u05D4"
+    Complaint: "\u05E8\u05D2\u05DC\u05D9\u05D9\u05DD \u05DC\u05D0 \u05DE\u05EA\u05E4\u05E7\u05D3\u05D5\u05EA"
+    _patientMeasurement:
+      MeasurementValues:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    MonitorSpriteList:
+    - {fileID: 21300000, guid: aa323584db86b6b4a82b61d77a486b33, type: 3}
+    - {fileID: 21300000, guid: 5c2b238bf2850384283cb59cad5857f0, type: 3}
   ActionSequences:
   - {fileID: 11400000, guid: 6e09851af676bfe438a19787ecd1cd30, type: 2}
   MonitorWindow: {fileID: 0}
   WorldCanvas: {fileID: 3157934140313861114}
+  KidPropList: []
   PropList:
   - {fileID: 3532767314643606780}
   - {fileID: 3704060385840658195}
@@ -1087,6 +1119,7 @@ MonoBehaviour:
   - {fileID: 8645145479612655624}
   - {fileID: 9082269557857093288}
   - {fileID: 2097972929147161313}
+  OldPropList: []
   UseTourniquet: 0
   _unusedBandagesOnPatient:
   - {fileID: 8538159602492610231}
@@ -1117,6 +1150,10 @@ MonoBehaviour:
   AllUsersTreatedThisPatient: []
   TreatingCrews: 
   AllCrewTreatedThisPatient: 
+  FullyClothedMaterial: {fileID: 2100000, guid: c6f7a8bad586457428a700c5b6b6b82b, type: 2}
+  ShirtOnlyMaterial: {fileID: 2100000, guid: b679808b4e664094581537001ef10c58, type: 2}
+  PantsOnlyMaterial: {fileID: 2100000, guid: ef4583040eca60c428504c9b48727fe1, type: 2}
+  UnderwearOnlyMaterial: {fileID: 2100000, guid: b8d9b2b3092ab614b95207d1019f89d4, type: 2}
   PatientRenderer: {fileID: 7212182465135786284}
 --- !u!114 &5550523932109703410
 MonoBehaviour:

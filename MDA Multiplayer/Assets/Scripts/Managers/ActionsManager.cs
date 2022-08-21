@@ -59,7 +59,7 @@ public class ActionsManager : MonoBehaviour
     public List<bool> /*AmbulancePosTransforms,*/ VehiclePosOccupiedList;
 
     private Patient _lastClickedPatient;
-    private PatientData _lastClickedPatientData;
+    private NewPatientData _lastClickedPatientData;
 
     #region MonoBehaviour Callbacks
     private void Awake()
@@ -81,28 +81,37 @@ public class ActionsManager : MonoBehaviour
     {
         Debug.Log($"Attempting to Click On Patient");
 
-        for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
+        // loops through all players photonViews
+        foreach (PhotonView photonView in AllPlayersPhotonViews)
         {
-            //if (!AllPlayersPhotonViews[i].IsMine)
-            //    return;
-
-            PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
-            _lastClickedPatient = myPlayerData.CurrentPatientNearby;
-
-            PatientData currentPatientData = myPlayerData.CurrentPatientNearby != null ? myPlayerData.CurrentPatientNearby.PatientData : null;
-            _lastClickedPatientData = currentPatientData;
-
-            Debug.Log($"{myPlayerData.UserName} Clicked on: {myPlayerData.CurrentPatientNearby}");
-
-            if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
+            // execute only if this instance if of the local player
+            if (photonView.IsMine)
             {
-                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
-                UIManager.Instance.JoinPatientPopUp.SetActive(true);
-            }
-            else
-            {
-                _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
-                UIManager.Instance.PatientInfoParent.SetActive(true);
+                PlayerData myPlayerData = photonView.gameObject.GetComponent<PlayerData>();
+                _lastClickedPatient = myPlayerData.CurrentPatientNearby;
+
+                NewPatientData currentPatientData = myPlayerData.CurrentPatientNearby != null ? myPlayerData.CurrentPatientNearby.NewPatientData : null;
+                _lastClickedPatientData = currentPatientData;
+
+                Debug.Log($"{myPlayerData.UserName} Clicked on: {myPlayerData.CurrentPatientNearby}");
+
+                if (!myPlayerData.CurrentPatientNearby.IsPlayerJoined(myPlayerData))
+                {
+                    Debug.Log($"Attempting Join Patient");
+                    _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+                    Debug.Log($"Joined Patient");
+                    UIManager.Instance.JoinPatientPopUp.SetActive(true);
+                    Debug.Log($"Attempting Open Player Info");
+                }
+                else
+                {
+                    Debug.Log($"Attempting Open Player Info");
+                    _lastClickedPatient.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+                    UIManager.Instance.PatientInfoParent.SetActive(true);
+                    Debug.Log($"Attempting Open Player Info");
+                }
+
+                break;
             }
         }
     }
@@ -154,6 +163,4 @@ public class ActionsManager : MonoBehaviour
         }
     }
     #endregion
-
-
 }
