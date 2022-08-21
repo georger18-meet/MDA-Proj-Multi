@@ -82,6 +82,8 @@ MonoBehaviour:
   - AddingPlayerToAllPlayersList
   - GiveMokdanRole
   - AnimateEranDoor
+  - RevealPropOnPatientRPC
+  - SetMeasurementsRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
