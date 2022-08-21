@@ -1073,16 +1073,16 @@ MonoBehaviour:
   PhotonView: {fileID: 2801488433122248011}
   PatientData: {fileID: 11400000, guid: 6cb71e5f106d5874c8f12655d1faf508, type: 2}
   NewPatientData:
-    PatientType: 0
-    Name: 
-    SureName: 
-    Id: 0
-    Age: 0
-    Gender: 
-    PhoneNumber: 
-    MedicalCompany: 
-    AddressLocation: 
-    Complaint: 
+    PatientType: 1
+    Name: "\u05D2\u05D9\u05D1\u05D5\u05E8"
+    SureName: "\u05E2\u05D5\u05DC\u05DD"
+    Id: 31516876
+    Age: 31
+    Gender: "\u05D6'"
+    PhoneNumber: "\u05DE\u05E1\u05E4\u05E8 \u05D8\u05DC\u05E4\u05D5\u05DF \u05DE\u05D6\u05D5\u05D9\u05D9\u05E3"
+    MedicalCompany: "\u05E2\u05E0\u05D9 \u05DE\u05D3\u05D9 \u05DC\u05D6\u05D4"
+    AddressLocation: "\u05E8\u05E2\u05E0\u05E0\u05D4"
+    Complaint: "\u05E8\u05D2\u05DC\u05D9\u05D9\u05DD \u05DC\u05D0 \u05DE\u05EA\u05E4\u05E7\u05D3\u05D5\u05EA"
     _patientMeasurement:
       MeasurementValues:
       - 
