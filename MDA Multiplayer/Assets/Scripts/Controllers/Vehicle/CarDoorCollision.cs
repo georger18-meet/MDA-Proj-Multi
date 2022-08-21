@@ -13,6 +13,8 @@ public class CarDoorCollision : MonoBehaviour
     public Transform SeatPosition;
     private OwnershipTransfer _transfer;
     private Button _exitVehicleBtn;
+    private Button _headlightBtn;
+    private Button _sirenBtn;
 
     [SerializeField] private CarControllerSimple _carController;
     private Animator _doorAnimator;
@@ -22,6 +24,8 @@ public class CarDoorCollision : MonoBehaviour
         _transfer = GetComponent<OwnershipTransfer>();
         _doorAnimator = GetComponent<Animator>();
         _exitVehicleBtn = UIManager.Instance.VehicleUI.transform.GetChild(1).GetComponent<Button>();
+        _headlightBtn = UIManager.Instance.VehicleUI.transform.GetChild(2).GetComponent<Button>();
+        _sirenBtn = UIManager.Instance.VehicleUI.transform.GetChild(3).GetComponent<Button>();
     }
 
     void Update()
@@ -96,6 +100,8 @@ public class CarDoorCollision : MonoBehaviour
             {
                 Debug.Log("supposed to drive");
                 _exitVehicleBtn.onClick.AddListener(delegate { EnterExitToggle(); });
+                _headlightBtn.onClick.AddListener(delegate { ToggleHeadlights(); });
+                _sirenBtn.onClick.AddListener(delegate { ToggleSiren(); });
                 IsSeatOccupied = true;
                 playerController.IsDriving = true;
                 _doorAnimator.SetBool("IsDoorOpen", false);
@@ -123,6 +129,40 @@ public class CarDoorCollision : MonoBehaviour
                 }
                 // use player driving state
             }
+        }
+    }
+
+    public void ToggleHeadlights()
+    {
+        if (_carController.CarHeadLightsOn)
+        {
+            _carController.CarHeadLightsOn = false;
+            _carController.CarHeadLights.SetActive(false);
+            _carController.CarSiren.GetComponent<Animator>().enabled = false;
+            //CarSirenLightLeft.SetActive(false);
+            //CarSirenLightRight.SetActive(false);
+        }
+        else
+        {
+            _carController.CarHeadLightsOn = true;
+            _carController.CarHeadLights.SetActive(true);
+            _carController.CarSiren.GetComponent<Animator>().enabled = true;
+            //CarSirenLightLeft.SetActive(true);
+            //CarSirenLightRight.SetActive(true);
+        }
+    }
+
+    public void ToggleSiren()
+    {
+        if (_carController.CarSirenOn)
+        {
+            _carController.CarSirenOn = false;
+            _carController.CarSirenAudioSource.Stop();
+        }
+        else
+        {
+            _carController.CarSirenOn = true;
+            _carController.CarSirenAudioSource.Play();
         }
     }
 

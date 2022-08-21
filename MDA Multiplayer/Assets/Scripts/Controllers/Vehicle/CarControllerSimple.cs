@@ -28,11 +28,11 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 
     public GameObject CarHeadLights;
     public GameObject CarCollider;
-    private bool _carHeadLightsOn = false;
+    public bool CarHeadLightsOn = false;
 
     public GameObject CarSiren;
     public AudioSource CarSirenAudioSource;
-    private bool _carSirenOn = false;
+    public bool CarSirenOn = false;
 
     public List<CarDoorCollision> CarDoorCollisions;
 
@@ -146,9 +146,9 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 
     public void ToggleHeadlights()
     {
-        if (_carHeadLightsOn)
+        if (CarHeadLightsOn)
         {
-            _carHeadLightsOn = false;
+            CarHeadLightsOn = false;
             CarHeadLights.SetActive(false);
             CarSiren.GetComponent<Animator>().enabled = false;
             //CarSirenLightLeft.SetActive(false);
@@ -156,7 +156,7 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            _carHeadLightsOn = true;
+            CarHeadLightsOn = true;
             CarHeadLights.SetActive(true);
             CarSiren.GetComponent<Animator>().enabled = true;
             //CarSirenLightLeft.SetActive(true);
@@ -166,14 +166,14 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 
     public void ToggleSiren()
     {
-        if (_carSirenOn)
+        if (CarSirenOn)
         {
-            _carSirenOn = false;
+            CarSirenOn = false;
             CarSirenAudioSource.Stop();
         }
         else
         {
-            _carSirenOn = true;
+            CarSirenOn = true;
             CarSirenAudioSource.Play();
         }
     }

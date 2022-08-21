@@ -181,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4033201707456724801
 Transform:
   m_ObjectHideFlags: 0
@@ -2711,8 +2711,10 @@ MonoBehaviour:
   rearLeftWheelTransform: {fileID: 1677072728816403575}
   CarHeadLights: {fileID: 7404145071012901281}
   CarCollider: {fileID: 4554301809211483259}
+  CarHeadLightsOn: 0
   CarSiren: {fileID: 5068144415736137261}
   CarSirenAudioSource: {fileID: 6746743153788721834}
+  CarSirenOn: 0
   CarDoorCollisions:
   - {fileID: 88324836024044015}
   - {fileID: 8941928875954636869}

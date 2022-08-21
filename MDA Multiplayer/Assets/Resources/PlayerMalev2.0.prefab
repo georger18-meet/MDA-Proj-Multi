@@ -2017,6 +2017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3268134512786165919}
+  - component: {fileID: 5047984663928857288}
   m_Layer: 0
   m_Name: Player Audio
   m_TagString: Untagged
@@ -2039,6 +2040,14 @@ Transform:
   m_Father: {fileID: 8822803002174255573}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &5047984663928857288
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6175495094461603050}
+  m_Enabled: 1
 --- !u!1 &6405483310858809418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,6 +2965,7 @@ MonoBehaviour:
   _MiniMaCamera: {fileID: 666755789287419742}
   _firstPersonCameraTransform: {fileID: 8822803000982418763}
   _thirdPersonCameraTransform: {fileID: 8822803000880888004}
+  _audioListener: {fileID: 5047984663928857288}
   _playerAnimator: {fileID: 8361663717486844079}
   _characterController: {fileID: 8822803002174255574}
   _mouseSensitivity: {x: 60, y: 40}
