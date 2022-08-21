@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class CameraClipping : MonoBehaviour
 {
-    public LayerMask CollisionLayers;
-    public Transform Target;
-    public Transform _destinationObj;
+    [SerializeField] private LayerMask CollisionLayers;
+    [SerializeField] private Transform Target;
+    [SerializeField] private Transform LookAtTarget;
+    [SerializeField] private Transform _destinationObj;
 
-    public bool Colliding = false;
-    public Vector3[] AdjustedCameraClipPoints;
-    public Vector3[] DesiredCameraClipPoints;
+    public bool UseLookAt = true;
+    private bool Colliding = false;
+    private Vector3[] AdjustedCameraClipPoints;
+    private Vector3[] DesiredCameraClipPoints;
 
-    Camera _cam;
+    private Camera _cam;
 
-    public bool SmoothFollow = true;
-    public float Smooth = 0.05f;
-    public float AdjustmentDistance = -8;
+    [SerializeField] private bool SmoothFollow = true;
+    [SerializeField] private float Smooth = 0.05f;
+    [SerializeField] private float AdjustmentDistanceClippingOffset = -0.1f;
+    [SerializeField] private float AdjustedHeightOffset = 1f;
+    private float AdjustmentDistance;
 
-    Vector3 _destination = Vector3.zero;
-    Vector3 _adjustedDestination = Vector3.zero;
-    Vector3 _camVel = Vector3.zero;
+    private Vector3 _destination = Vector3.zero;
+    private Vector3 _adjustedDestination = Vector3.zero;
+    private Vector3 _camVel = Vector3.zero;
 
-    public bool DrawDesiredCollisionLines = true;
-    public bool DrawAdjustedCollisionLines = true;
+    [SerializeField] private bool DrawDesiredCollisionLines = true;
+    [SerializeField] private bool DrawAdjustedCollisionLines = true;
 
 
     // Start is called before the first frame update
@@ -48,6 +52,8 @@ public class CameraClipping : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _destination = _destinationObj.position;
+
         RefreshCamClipPoints(transform.position, transform.rotation, ref AdjustedCameraClipPoints);
         RefreshCamClipPoints(_destination, transform.rotation, ref DesiredCameraClipPoints);
 
@@ -68,6 +74,11 @@ public class CameraClipping : MonoBehaviour
         AdjustmentDistance = GetAdjustedDistanceWithRayFrom(Target.position);
 
         MoveToTarget();
+
+        if (UseLookAt)
+        {
+            transform.LookAt(LookAtTarget);
+        }
     }
 
 
@@ -75,7 +86,8 @@ public class CameraClipping : MonoBehaviour
     {
         if (Colliding)
         {
-            _adjustedDestination = Vector3.forward * AdjustmentDistance;
+            _adjustedDestination = -Target.forward * (AdjustmentDistance + AdjustmentDistanceClippingOffset);
+            _adjustedDestination.y += AdjustedHeightOffset;
             _adjustedDestination += Target.position;
 
             if (SmoothFollow)
