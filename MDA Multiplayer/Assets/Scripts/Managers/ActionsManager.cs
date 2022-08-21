@@ -82,11 +82,11 @@ public class ActionsManager : MonoBehaviour
         Debug.Log($"Attempting to Click On Patient");
 
         // loops through all players photonViews
-        foreach (PhotonView photonView in AllPlayersPhotonViews)
+        for (int i = 0; i < AllPlayersPhotonViews.Count; i++)
         {
-            // execute only if this instance if of the local player
-            if (photonView.IsMine)
+            if (AllPlayersPhotonViews[i].IsMine)
             {
+                PhotonView photonView = AllPlayersPhotonViews[i];
                 PlayerData myPlayerData = photonView.gameObject.GetComponent<PlayerData>();
                 _lastClickedPatient = myPlayerData.CurrentPatientNearby;
 

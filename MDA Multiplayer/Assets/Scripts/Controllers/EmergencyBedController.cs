@@ -131,10 +131,12 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
             if (_isFollowingPlayer)
             {
                 _isFollowingPlayer = false;
+                UIManager.Instance.CurrentActionBarParent.SetActive(true);
             }
             else if (!_isFollowingPlayer)
             {
                 _isFollowingPlayer = true;
+                UIManager.Instance.CurrentActionBarParent.SetActive(false);
             }
             _emergencyBedUI.SetActive(false);
         }
