@@ -6,7 +6,7 @@ using UnityEngine;
 using Photon.Pun;
 
 public enum Roles { CFR, Medic, SeniorMedic, Paramedic, Doctor }
-public enum AranRoles { HeadMokdan, Mokdan, Refua10, Henyon10, Pinoye10 }
+public enum AranRoles { None, HeadMokdan, Mokdan, Refua10, Henyon10, Pinoye10 }
 
 public class PlayerData : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public bool IsHenyon10 { get; set; }
     [field: SerializeField] public bool IsPinoye10 { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
+    [field: SerializeField] public AranRoles AranRole { get; set; }
     [field: SerializeField] public Color CrewColor { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
@@ -37,10 +38,10 @@ public class PlayerData : MonoBehaviour
     }
     private void Start()
     {
-
         if (PhotonNetwork.IsMasterClient)
             PhotonView.RPC("AddingPlayerToAllPlayersList", RpcTarget.AllBufferedViaServer);
 
+        AranRole = AranRoles.None;
     }
     private void Update()
     {

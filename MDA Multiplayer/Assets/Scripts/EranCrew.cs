@@ -224,11 +224,18 @@ public class EranCrew : MonoBehaviour
     {
         foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            player.GetComponent<PlayerData>().IsHenyon10 = false;
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsHenyon10 = false;
+
+            if (playerData.AranRole == AranRoles.Henyon10)
+            {
+                playerData.AranRole = AranRoles.None;
+            }
         }
 
         PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
         roleIndex.IsHenyon10 = true;
+        roleIndex.AranRole = AranRoles.Henyon10;
     }
 
     [PunRPC]
@@ -236,11 +243,18 @@ public class EranCrew : MonoBehaviour
     {
         foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            player.GetComponent<PlayerData>().IsRefua10 = false;
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsRefua10 = false;
+
+            if (playerData.AranRole == AranRoles.Refua10)
+            {
+                playerData.AranRole = AranRoles.None;
+            }
         }
 
         PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>(); 
         roleIndex.IsRefua10 = true;
+        roleIndex.AranRole = AranRoles.Refua10;
     }
 
     [PunRPC]
@@ -248,11 +262,18 @@ public class EranCrew : MonoBehaviour
     {
         foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
-            player.GetComponent<PlayerData>().IsPinoye10 = false;
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsPinoye10 = false;
+
+            if (playerData.AranRole == AranRoles.Pinoye10)
+            {
+                playerData.AranRole = AranRoles.None;
+            }
         }
 
         PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
         roleIndex.IsPinoye10 = true;
+        roleIndex.AranRole = AranRoles.Pinoye10;
     }
     #endregion
 }
