@@ -1074,32 +1074,32 @@ MonoBehaviour:
   PatientData: {fileID: 11400000, guid: 6cb71e5f106d5874c8f12655d1faf508, type: 2}
   NewPatientData:
     PatientType: 1
-    Name: "\u05D2\u05D9\u05D1\u05D5\u05E8"
-    SureName: "\u05E2\u05D5\u05DC\u05DD"
-    Id: 31516876
+    Name: "\u05E8\u05D5\u05E0\u05DF"
+    SureName: "\u05D1\u05DF-\u05D8\u05D5\u05D1\u05D9\u05DD"
+    Id: 21516876
     Age: 31
     Gender: "\u05D6'"
-    PhoneNumber: "\u05DE\u05E1\u05E4\u05E8 \u05D8\u05DC\u05E4\u05D5\u05DF \u05DE\u05D6\u05D5\u05D9\u05D9\u05E3"
-    MedicalCompany: "\u05E2\u05E0\u05D9 \u05DE\u05D3\u05D9 \u05DC\u05D6\u05D4"
-    AddressLocation: "\u05E8\u05E2\u05E0\u05E0\u05D4"
-    Complaint: "\u05E8\u05D2\u05DC\u05D9\u05D9\u05DD \u05DC\u05D0 \u05DE\u05EA\u05E4\u05E7\u05D3\u05D5\u05EA"
+    PhoneNumber: 052-564-7812
+    MedicalCompany: "\u05DE\u05DB\u05D1\u05D9"
+    AddressLocation: "\u05E8\u05D0\u05E9 \u05D4\u05E2\u05D9\u05DF"
+    Complaint: "\u05E0\u05D7\u05EA\u05DA \u05D1\u05D6\u05E8\u05D5\u05E2"
     _patientMeasurement:
       MeasurementValues:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - 115
+      - 8
+      - 20
+      - 0
+      - 80
+      - 66/108
+      - 80
+      - 35s
+      - "\u05D9\u05E9 \u05E9\u05D9\u05DE\u05D5\u05E9"
+      - "\u05EA\u05E7\u05D9\u05DF"
+      - "\u05E0\u05E9\u05DE\u05E2 \u05EA\u05E7\u05D9\u05DF"
+      - "\u05DE\u05E9\u05DC\u05D9\u05DD \u05DE\u05E9\u05E4\u05D8\u05D9\u05DD"
+      - "\u05D1\u05D4\u05DB\u05E8\u05D4 \u05DE\u05DC\u05D0\u05D4"
+      - "\u05EA\u05E7\u05D9\u05DF"
+      - "\u05E8\u05D2\u05D9\u05DC"
     MonitorSpriteList:
     - {fileID: 21300000, guid: aa323584db86b6b4a82b61d77a486b33, type: 3}
     - {fileID: 21300000, guid: 5c2b238bf2850384283cb59cad5857f0, type: 3}
