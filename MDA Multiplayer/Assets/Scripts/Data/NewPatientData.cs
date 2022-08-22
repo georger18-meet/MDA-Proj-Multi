@@ -23,10 +23,7 @@ public class NewPatientData
     [Header("MonitorGraphTexture")]
     public List<Sprite> MonitorSpriteList;
 
-    public NewPatientData()
-    {
-
-    }
+    public NewPatientData() { }
 
     public NewPatientData(NewPatientData newPatientDataFromSO)
     {
