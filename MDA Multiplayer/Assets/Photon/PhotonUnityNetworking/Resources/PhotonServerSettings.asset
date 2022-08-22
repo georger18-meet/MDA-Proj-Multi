@@ -84,6 +84,8 @@ MonoBehaviour:
   - AnimateEranDoor
   - RevealPropOnPatientRPC
   - SetMeasurementsRPC
+  - AssignRole
+  - AssignAranRole
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

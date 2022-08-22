@@ -10,6 +10,7 @@ public class EranCrew : MonoBehaviour
 {
     private PhotonView _photonView;
     private OwnershipTransfer _transfer;
+    private Coroutine updatePlayerListCoroutine;
 
     #region Pikod10 Variables
     [Header("Pikod10")]
@@ -76,9 +77,10 @@ public class EranCrew : MonoBehaviour
     #endregion
 
     #region Pikod10 Methods
-    public void GiveHenyonRoleClick()
+
+    public void GivePikud10Role()
     {
-        _photonView.RPC("GiveHenyonRole", RpcTarget.AllBufferedViaServer, GetHenyonIndex());
+        _photonView.RPC("GivePikud10RoleRPC", RpcTarget.AllBufferedViaServer, GetRefuaIndex());
     }
 
     public void GiveIsRefuaRoleClick()
@@ -91,6 +93,12 @@ public class EranCrew : MonoBehaviour
         _photonView.RPC("GivePinoyeRole", RpcTarget.AllBufferedViaServer, GetPinoyeIndex());
     }
 
+    public void GiveHenyonRoleClick()
+    {
+        _photonView.RPC("GiveHenyonRole", RpcTarget.AllBufferedViaServer, GetHenyonIndex());
+    }
+
+    #region Getters
     public int GetRefuaIndex()
     {
         int Index = 0;
@@ -119,7 +127,6 @@ public class EranCrew : MonoBehaviour
         }
         return Index;
     }
-
     public int GetHenyonIndex()
     {
         int Index = 0;
@@ -134,6 +141,7 @@ public class EranCrew : MonoBehaviour
         }
         return Index;
     }
+    #endregion
 
     IEnumerator HandleDropDownUpdates(float nextUpdate)
     {
@@ -166,7 +174,6 @@ public class EranCrew : MonoBehaviour
     }
 
     //opened By clicking on Sign
-    private Coroutine updatePlayerListCoroutine;
 
     public void ShowPikod10RoomMenu(bool isPikod10)
     {
@@ -215,27 +222,28 @@ public class EranCrew : MonoBehaviour
         //{
         //    player.GetComponent<PlayerData>().IsMokdan = false;
         //}
-        PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
-        roleIndex.IsMokdan = true;
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsMokdan = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Mokdan);
     }
 
     [PunRPC]
-    public void GiveHenyonRole(int index)
+    public void GivePikud10RoleRPC(int index)
     {
         foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData playerData = player.GetComponent<PlayerData>();
-            playerData.IsHenyon10 = false;
+            playerData.IsPikud10 = false;
 
-            if (playerData.AranRole == AranRoles.Henyon10)
+            if (playerData.AranRole == AranRoles.Pikud10)
             {
-                playerData.AranRole = AranRoles.None;
+                playerData.AssignAranRole(AranRoles.None);
             }
         }
 
-        PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
-        roleIndex.IsHenyon10 = true;
-        roleIndex.AranRole = AranRoles.Henyon10;
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsPikud10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Pikud10);
     }
 
     [PunRPC]
@@ -248,13 +256,13 @@ public class EranCrew : MonoBehaviour
 
             if (playerData.AranRole == AranRoles.Refua10)
             {
-                playerData.AranRole = AranRoles.None;
+                playerData.AssignAranRole(AranRoles.None);
             }
         }
 
-        PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>(); 
-        roleIndex.IsRefua10 = true;
-        roleIndex.AranRole = AranRoles.Refua10;
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>(); 
+        chosenPlayerData.IsRefua10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Refua10);
     }
 
     [PunRPC]
@@ -263,17 +271,36 @@ public class EranCrew : MonoBehaviour
         foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
         {
             PlayerData playerData = player.GetComponent<PlayerData>();
-            playerData.IsPinoye10 = false;
+            playerData.IsPinuy10 = false;
 
-            if (playerData.AranRole == AranRoles.Pinoye10)
+            if (playerData.AranRole == AranRoles.Pinuy10)
             {
-                playerData.AranRole = AranRoles.None;
+                playerData.AssignAranRole(AranRoles.None);
             }
         }
 
-        PlayerData roleIndex = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
-        roleIndex.IsPinoye10 = true;
-        roleIndex.AranRole = AranRoles.Pinoye10;
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsPinuy10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Pinuy10);
+    }
+
+    [PunRPC]
+    public void GiveHenyonRole(int index)
+    {
+        foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsHenyon10 = false;
+
+            if (playerData.AranRole == AranRoles.Henyon10)
+            {
+                playerData.AssignAranRole(AranRoles.None);
+            }
+        }
+
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsHenyon10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Henyon10);
     }
     #endregion
 }
