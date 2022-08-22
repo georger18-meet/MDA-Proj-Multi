@@ -70,24 +70,54 @@ public class PlayerData : MonoBehaviour
     {
         if (TryGetComponent(out Mokdan mokdan))
         {
-            ClearAranRole(mokdan);
+            Destroy(mokdan);
         }
         else if (TryGetComponent(out Pikud10 pikud10))
         {
-            ClearAranRole(pikud10);
+            Destroy(pikud10);
         }
         else if (TryGetComponent(out Refua10 refua10))
         {
-            ClearAranRole(refua10);
+            Destroy(refua10);
         }
         else if (TryGetComponent(out Henyon10 henyon10))
         {
-            ClearAranRole(henyon10);
+            Destroy(henyon10);
         }
         else if (TryGetComponent(out Pinuy10 pinuy10))
         {
-            ClearAranRole(pinuy10);
+            Destroy(pinuy10);
         }
+    }
+    private void ClearAllRoles()
+    {
+        if (TryGetComponent(out Mokdan mokdan))
+        {
+            Destroy(mokdan);
+        }
+        if (TryGetComponent(out Pikud10 pikud10))
+        {
+            Destroy(pikud10);
+        }
+        if (TryGetComponent(out Refua10 refua10))
+        {
+            Destroy(refua10);
+        }
+        if (TryGetComponent(out Henyon10 henyon10))
+        {
+            Destroy(henyon10);
+        }
+        if (TryGetComponent(out Pinuy10 pinuy10))
+        {
+            Destroy(pinuy10);
+        }
+
+        IsMokdan = false;
+        IsPikud10 = false;
+        IsRefua10 = false;
+        IsHenyon10 = false;
+        IsPinuy10 = false;
+        AranRole = AranRoles.None;
     }
     private void ClearAranRole(Mokdan mokdan)
     {
@@ -109,7 +139,6 @@ public class PlayerData : MonoBehaviour
         if (pinuy10 = GetComponent<Pinuy10>())
             Destroy(pinuy10);
     }
-
     private void ClearAranRole(Henyon10 henyon10)
     {
         if (henyon10 = GetComponent<Henyon10>())
@@ -123,36 +152,42 @@ public class PlayerData : MonoBehaviour
         switch (newRole)
         {
             case AranRoles.None:
-                TryClearAranRoleByOrder();
+                ClearAllRoles();
                 break;
             case AranRoles.HeadMokdan:
+                ClearAllRoles();
                 gameObject.AddComponent<Mokdan>();
-                IsMokdan = false;
+                IsMokdan = true;
                 AranRole = newRole;
                 break;
             case AranRoles.Mokdan:
+                ClearAllRoles();
                 gameObject.AddComponent<Mokdan>();
-                IsMokdan = false;
+                IsMokdan = true;
                 AranRole = newRole;
                 break;
             case AranRoles.Pikud10:
+                ClearAllRoles();
                 gameObject.AddComponent<Pikud10>();
-                IsPikud10 = false;
+                IsPikud10 = true;
                 AranRole = newRole;
                 break;
             case AranRoles.Refua10:
+                ClearAllRoles();
                 gameObject.AddComponent<Refua10>();
-                IsRefua10 = false;
+                IsRefua10 = true;
                 AranRole = newRole;
                 break;
             case AranRoles.Henyon10:
+                ClearAllRoles();
                 gameObject.AddComponent<Henyon10>();
-                IsHenyon10 = false;
+                IsHenyon10 = true;
                 AranRole = newRole;
                 break;
             case AranRoles.Pinuy10:
+                ClearAllRoles();
                 gameObject.AddComponent<Pinuy10>();
-                IsPinuy10 = false;
+                IsPinuy10 = true;
                 AranRole = newRole;
                 break;
             default:

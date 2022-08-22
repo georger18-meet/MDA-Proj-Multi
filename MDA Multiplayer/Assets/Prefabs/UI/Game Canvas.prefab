@@ -684,24 +684,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Sodium Tiosolfat
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &55598608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,24 +974,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Selain 10
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &71579841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,24 +1398,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Atomidat
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &102056575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,24 +2371,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: D5W
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &160827620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,24 +2661,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Atropin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &191979800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3307,24 +3232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Dried Plazma
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &239478554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3491,24 +3401,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Selain 100
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &300210205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3796,24 +3691,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Narkan
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &320172695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4114,24 +3994,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Adrenalin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &328812932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4298,24 +4163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Hexkapron
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &335175947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4750,24 +4600,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Selain 500
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &380926674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5202,24 +5037,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Dormikom
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &409227894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5848,24 +5668,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &496901145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6030,24 +5835,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Magnezium
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &506407628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6481,24 +6271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Ventolin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &614844228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7140,24 +6915,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &658297206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7590,24 +7350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: IV Acamol
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &674935867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7895,24 +7640,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: IV Isoket
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &690344912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9079,24 +8809,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Calcium
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &788600529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9263,24 +8978,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Termadex
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &790427498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9568,24 +9268,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: 50% Glucose
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &823583998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9752,24 +9437,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Opne Vein
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &837929626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10279,24 +9949,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Optalgin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &862887236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10463,24 +10118,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Bicarbonate
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &884009357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10915,24 +10555,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Hertman
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &896712444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11354,24 +10979,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Rocoronium
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &933803879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11927,24 +11537,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Loprasor
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &995256518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12737,24 +12332,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Dropridole
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1037675730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13310,24 +12890,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Katamin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1084694882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13761,24 +13326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: Connect Capno Tubus
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 25
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!1 &1152001799
 GameObject:
   m_ObjectHideFlags: 0
@@ -14062,24 +13612,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Zeofran
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1157694255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14245,24 +13780,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: Connect Capno Nazali
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 25
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!1 &1206721650
 GameObject:
   m_ObjectHideFlags: 0
@@ -14654,24 +14174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Aspirin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1215730347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15110,24 +14615,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Dopamin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1275505659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15294,24 +14784,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Aerobant
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1351234746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15478,24 +14953,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Fusid
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1352022557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15870,24 +15330,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1415862995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16428,24 +15873,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Penatenil
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1481149469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17014,24 +16444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Heprin
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1547162154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18187,24 +17602,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: SL Isoket
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1627936403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18907,24 +18307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Solomadrol
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1685299520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19346,24 +18731,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Sogmadex
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1701227925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21049,8 +20419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 1
+  _showAlert: 0
   _measurement: 6
   _measurementName: Oxygen Saturation
   _measurementNameForAlert: "\u05E1\u05D8\u05D5\u05E8\u05E6\u05D9\u05D4"
@@ -21458,24 +20827,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Adenozil
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &1958988910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22681,8 +22035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 1
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 5
   _measurementName: Blood Pressure
   _measurementNameForAlert: "\u05DC\u05D7\u05E5 \u05D3\u05DD"
@@ -22850,24 +22203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Chanokit
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &2077356998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23034,24 +22372,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Nitrolingual
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &2087018388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23619,24 +22942,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &2124301208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23801,24 +23109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 1
+  _newMeasurement: 0
   _treatmentName: Glucagel
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &2124433357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25348,17 +24641,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: CPAP
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 22
-    - 
+  _measurement: 0
 --- !u!114 &6361372623281601715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28329,8 +27614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 0
   _measurementName: 
   _measurementNameForAlert: 
@@ -29886,8 +29170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 0
   _measurementName: 
   _measurementNameForAlert: 
@@ -30916,24 +30199,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &3867597805004628773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31351,8 +30619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 0
   _measurementName: 
   _measurementNameForAlert: 
@@ -31651,6 +30918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _heartMassagesWindow: {fileID: 1260926443}
+  _newHeartRate: 0
 --- !u!114 &4134889592247787915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31665,17 +30933,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!1 &1005429748863936935
 GameObject:
   m_ObjectHideFlags: 0
@@ -31944,8 +31204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 0
   _measurementName: 
   _measurementNameForAlert: 
@@ -39196,17 +38455,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: Respirator
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 15
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!1 &2221869241803498218
 GameObject:
   m_ObjectHideFlags: 0
@@ -39573,17 +38824,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 0
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 14
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!114 &4134889592247787929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40498,8 +39741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 1
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 8
   _measurementName: Additional Muscles
   _measurementNameForAlert: "\u05E9\u05D9\u05DE\u05D5\u05E9 \u05D1\u05E9\u05E8\u05D9\u05E8\u05D9\u05DD
@@ -76533,12 +75775,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 1
+  _showAlert: 0
   _measurement: 4
   _measurementName: Blood Sugar
-  _measurementNameForAlert: "\u05D1\u05D3\u05D9\u05E7\u05EA \u05E1\u05D5\u05DB\u05E8
-    \u05D1\u05D3\u05DD"
+  _measurementNameForAlert: "\u05D2\u05DC\u05D5\u05E7\u05D5\u05DE\u05D8\u05E8"
 --- !u!1 &3353432102994674994
 GameObject:
   m_ObjectHideFlags: 0
@@ -77993,17 +77233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: Calm Patient down
-  _patientMeasurements:
-    MeasurementValues:
-    - 64
-    - 
-    - 12
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!1 &3531103080041707126
 GameObject:
   m_ObjectHideFlags: 0
@@ -79216,17 +78448,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _useMedicineLog: 0
+  _newMeasurement: 0
   _treatmentName: 
-  _patientMeasurements:
-    MeasurementValues:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+  _measurement: 0
 --- !u!1 &3687791556234966251
 GameObject:
   m_ObjectHideFlags: 0
@@ -80829,8 +80053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 1
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 5
   _measurementName: Blood Pressure
   _measurementNameForAlert: "\u05DC\u05D7\u05E5 \u05D3\u05DD"
@@ -83173,18 +82396,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: NavigationManager, Assembly-CSharp
-        m_MethodName: StartEvacuationGPSNav
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &4159247516225004724
 GameObject:
@@ -86782,8 +85993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 0
   _measurementName: 
   _measurementNameForAlert: 
@@ -89825,7 +89035,7 @@ MonoBehaviour:
   _shouldUpdateLog: 1
   _isAlertNum: 0
   _alertTitle: "\u05D4\u05E8\u05DE\u05EA \u05E8\u05D2\u05DC\u05D9\u05D9\u05DD"
-  _alertText: "\u05E8\u05D2\u05DC\u05D9 \u05D4\u05DE\u05D8\u05D5\u05E4\u05DC \u05E8\u05D5\u05DE\u05D5"
+  _alertText: "\u05E8\u05D2\u05DC\u05D9 \u05D4\u05DE\u05D8\u05D5\u05E4\u05DC \u05D4\u05D5\u05E8\u05DE\u05D5"
   _textToLog: Elevate Legs
 --- !u!1 &5098984170436985424
 GameObject:
@@ -106419,6 +105629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
   _heartMassagesWindow: {fileID: 0}
+  _newHeartRate: 0
 --- !u!1 &6849467291866825800
 GameObject:
   m_ObjectHideFlags: 0
@@ -106841,8 +106052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 0
   _measurementName: 
   _measurementNameForAlert: 
@@ -118788,7 +117998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7994697898989439186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -126973,7 +126183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8735631937514596770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -131471,11 +130681,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 0
-  _showNumAlert: 1
-  _measurement: 2
-  _measurementName: Respiratory Rate
-  _measurementNameForAlert: "\u05E7\u05E6\u05D1 \u05E0\u05E9\u05D9\u05DE\u05D4"
+  _showAlert: 0
+  _measurement: 10
+  _measurementName: Breathing Sounds
+  _measurementNameForAlert: "\u05E7\u05D5\u05DC\u05D5\u05EA \u05E0\u05E9\u05D9\u05DE\u05D4"
 --- !u!1 &8854972267910334351
 GameObject:
   m_ObjectHideFlags: 0
@@ -132072,8 +131281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldUpdateLog: 1
-  _showTextAlert: 1
-  _showNumAlert: 0
+  _showAlert: 0
   _measurement: 5
   _measurementName: Blood Pressure
   _measurementNameForAlert: "\u05DC\u05D7\u05E5 \u05D3\u05DD"
