@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
     #endregion
 
+    #region Audio
+    [SerializeField] private AudioListener _audioListener;
+    #endregion
+
     #region Animations
     [Header("Animation")]
     [SerializeField] private Animator _playerAnimator;
@@ -85,10 +89,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
         else
         {
-            Destroy(this);
             _MiniMaCamera.SetActive(false);
             //  CarCollider.SetActive(false);
             _characterController.enabled = false;
+            Destroy(_audioListener);
+            Destroy(this);
         }
     }
 

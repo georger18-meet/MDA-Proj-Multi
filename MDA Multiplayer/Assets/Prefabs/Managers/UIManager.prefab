@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a8dfeefea73694da80d9c20fae745f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leaderMenuOffset: {x: 0, y: 202.5, z: 0}
+  _leaderMenuOffset: {x: 0, y: 182.5, z: 0}
   _isLeaderMenuOpen: 0
+  _isPikud10MenuOpen: 0
   CurrentActionBarParent: {fileID: 0}
   MapWindow: {fileID: 0}
   ContentPanel: {fileID: 0}
@@ -66,9 +67,21 @@ MonoBehaviour:
   NatanMonitorPanel: {fileID: 0}
   TeamLeaderMenu: {fileID: 0}
   TeamLeaderNavigationBtn: {fileID: 0}
+  Pikud10Menu: {fileID: 0}
+  DropdownRefua10: {fileID: 0}
+  DropdownPinuy10: {fileID: 0}
+  DropdownHenyon10: {fileID: 0}
+  PlayerListDropdownRefua10: {fileID: 0}
+  PlayerListDropdownPinuy10: {fileID: 0}
+  PlayerListDropdownHenyon10: {fileID: 0}
+  Pikud10MenuHandle: {fileID: 0}
+  AssignRefua10: {fileID: 0}
+  AssignPinuy10: {fileID: 0}
+  AssignHenyon10: {fileID: 0}
   JoinPatientPopUp: {fileID: 0}
   PatientInfoParent: {fileID: 0}
   ActionLogParent: {fileID: 0}
+  MonitorParent: {fileID: 0}
   SureName: {fileID: 0}
   LastName: {fileID: 0}
   Id: {fileID: 0}

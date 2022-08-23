@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:MDA Multiplayer/Assets/EranDoorAnimation.cs.meta
 guid: 45ced83e65e5a8640984e6e26923c508
+========
+guid: 3dbaae0b5de606a4dbbeb2f713abe84c
+>>>>>>>> origin/New-Gal:MDA Multiplayer/Assets/Scripts/Data/PatientMeasurements.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

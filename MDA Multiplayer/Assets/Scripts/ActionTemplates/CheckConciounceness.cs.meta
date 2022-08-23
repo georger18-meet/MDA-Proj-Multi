@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:MDA Multiplayer/Assets/Scripts/ActionTemplates/CheckConciounceness.cs.meta
 guid: 0b52522bef8fd204388dc586a44acd87
+========
+guid: f50f579aed602d746be023e796b69623
+>>>>>>>> origin/New-Gal:MDA Multiplayer/Assets/Scripts/Data/NewPatientData.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

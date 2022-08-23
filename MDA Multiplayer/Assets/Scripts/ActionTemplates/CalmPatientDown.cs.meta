@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:MDA Multiplayer/Assets/Scripts/ActionTemplates/CalmPatientDown.cs.meta
 guid: 74e3dbcce5f3f8c48ae0cc8225d14639
+========
+guid: 45ced83e65e5a8640984e6e26923c508
+>>>>>>>> origin/New-Gal:MDA Multiplayer/Assets/EranDoorAnimation.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

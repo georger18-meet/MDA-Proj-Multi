@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     [SerializeField] private Vector3 _leaderMenuOffset;
-    [SerializeField] private bool _isLeaderMenuOpen;
+    [SerializeField] private bool _isLeaderMenuOpen, _isPikud10MenuOpen;
 
     #region Player UI
     [Header("Player UI Parents")]
@@ -33,6 +33,12 @@ public class UIManager : MonoBehaviour
     public GameObject TeamLeaderMenu;
     public GameObject TeamLeaderNavigationBtn;
 
+    [Header("Pikud10")]
+    public GameObject Pikud10Menu;
+    public GameObject DropdownRefua10, DropdownPinuy10, DropdownHenyon10;
+    public TMP_Dropdown PlayerListDropdownRefua10, PlayerListDropdownPinuy10, PlayerListDropdownHenyon10;
+    public Button Pikud10MenuHandle;
+    public Button AssignRefua10, AssignPinuy10, AssignHenyon10;
     #endregion
 
     #region Patient UI 
@@ -150,7 +156,7 @@ public class UIManager : MonoBehaviour
         _dropDown.AddOptions(roomNames);
     }
 
-    public void PullLeaderMenuDown()
+    public void OpenCloseTopMenu(string menuName) // "Leader", "Pikud10"
     {
         foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
         {
@@ -160,16 +166,35 @@ public class UIManager : MonoBehaviour
             {
                 Debug.Log("Trying To Pull Leader Menu");
 
-                if (!_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                switch (menuName)
                 {
-                    TeamLeaderMenu.transform.position -= _leaderMenuOffset;
+                    case "Leader":
+                        if (!_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                        {
+                            TeamLeaderMenu.transform.position -= _leaderMenuOffset;
+                            _isLeaderMenuOpen = true;
+                        }
+                        else if (_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
+                        {
+                            TeamLeaderMenu.transform.position += _leaderMenuOffset;
+                            _isLeaderMenuOpen = false;
+                        }
+                        break;
 
-                    _isLeaderMenuOpen = true;
-                }
-                else if (_isLeaderMenuOpen && desiredPlayerData.IsCrewLeader)
-                {
-                    TeamLeaderMenu.transform.position += _leaderMenuOffset;
-                    _isLeaderMenuOpen = false;
+                    case "Pikud10":
+                        if (!_isPikud10MenuOpen && desiredPlayerData.IsCrewLeader)
+                        {
+                            Pikud10Menu.transform.position -= _leaderMenuOffset;
+                            _isLeaderMenuOpen = true;
+                        }
+                        else if (_isPikud10MenuOpen && desiredPlayerData.IsCrewLeader)
+                        {
+                            Pikud10Menu.transform.position += _leaderMenuOffset;
+                            _isLeaderMenuOpen = false;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }

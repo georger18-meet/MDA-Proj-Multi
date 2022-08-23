@@ -44,11 +44,11 @@ public class Action : MonoBehaviour
     public void GetActionData()
     {
         // loops through all players photonViews
-        foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
         {
-            // execute only if this instance if of the local player
-            if (photonView.IsMine)
+            if (ActionsManager.Instance.AllPlayersPhotonViews[i].IsMine)
             {
+                PhotonView photonView = ActionsManager.Instance.AllPlayersPhotonViews[i];
                 // Get local photonView
                 LocalPlayerPhotonView = photonView;
 
@@ -76,6 +76,39 @@ public class Action : MonoBehaviour
                 break;
             }
         }
+        //// loops through all players photonViews
+        //foreach (PhotonView photonView in ActionsManager.Instance.AllPlayersPhotonViews)
+        //{
+        //    // execute only if this instance if of the local player
+        //    if (photonView.IsMine)
+        //    {
+        //        // Get local photonView
+        //        LocalPlayerPhotonView = photonView;
+        //
+        //        // Get local PlayerData
+        //        LocalPlayerData = photonView.GetComponent<PlayerData>();
+        //        LocalPlayerName = LocalPlayerData.UserName;
+        //        LocalPlayerCrewIndex = LocalPlayerData.CrewIndex;
+        //        CrewColor = LocalPlayerData.CrewColor;
+        //
+        //        // check if local player joined with a Patient
+        //        if (!LocalPlayerData.CurrentPatientNearby.IsPlayerJoined(LocalPlayerData))
+        //            return;
+        //
+        //        // get Patient & PatientData
+        //        CurrentPatient = LocalPlayerData.CurrentPatientNearby;
+        //        CurrentPatientData = CurrentPatient.PatientData;
+        //
+        //        PatientChestPosPlayerTransform = CurrentPatient.ChestPosPlayerTransform;
+        //        PatientChestPosEquipmentTransform = CurrentPatient.ChestPosEquipmentTransform;
+        //        PatientHeadPosPlayerTransform = CurrentPatient.HeadPosPlayerTransform;
+        //        PatientHeadPosEquipmentTransform = CurrentPatient.HeadPosEquipmentTransform;
+        //        PatientLegPosPlayerTrasform = CurrentPatient.LegPosPlayerTrasform;
+        //
+        //        // if found local player no need for loop to continue
+        //        break;
+        //    }
+        //}
     }
 
     public void ShowTextAlert(string title, string content)

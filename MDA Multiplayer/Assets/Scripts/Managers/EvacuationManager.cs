@@ -80,6 +80,11 @@ public class EvacuationManager : MonoBehaviour
         
     }
 
+    public void ResetEmergencyBed(EmergencyBedController ebc)
+    {
+        ebc.TakeOutReturnBedToggle();
+    }
+
     public void DropDown_IndexChanged(int index)
     {
         EvacRoom name = (EvacRoom)index;
