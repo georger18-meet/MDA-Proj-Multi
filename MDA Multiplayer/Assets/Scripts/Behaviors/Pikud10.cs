@@ -160,6 +160,7 @@ public class Pikud10 : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = 6;
         _lineRenderer.widthMultiplier = 0.1f;
+        _lineRenderer.material = GetComponent<PlayerController>().LineMaterial;
         _groundLayer = LayerMask.GetMask("Ground");
         _groundLayer += LayerMask.GetMask("Road");
     }
@@ -204,9 +205,7 @@ public class Pikud10 : MonoBehaviour
         _lineRenderer.SetPosition(2, new Vector3(_targetPos.x + _areaOffset, _targetHeight, _targetPos.y + _areaOffset));
         _lineRenderer.SetPosition(3, new Vector3(_targetPos.x + _areaOffset, _targetHeight, _targetPos.y - _areaOffset));
         _lineRenderer.SetPosition(4, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y - _areaOffset));
-        _lineRenderer.SetPosition(5, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y));
-
-        _isMarking = false;
+        _lineRenderer.SetPosition(5, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y));  
     }
     public void CreateMarkedArea(int markerIndex, CameraController camController)
     {
@@ -245,11 +244,12 @@ public class Pikud10 : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            _isMarking = false;
             Ray ray = camController.PlayerCamera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit areaPosRaycastHit, 20f, _groundLayer))
             {
-                _targetPos = areaPosRaycastHit.point;
+                _targetPos = new Vector2(areaPosRaycastHit.point.x, areaPosRaycastHit.point.z);
                 SetLineTargetPos();
             }
         }

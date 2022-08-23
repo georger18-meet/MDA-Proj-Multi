@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region Data
     [Header("Data")]
     public PlayerData PlayerData;
+    public Material LineMaterial;
     #endregion
 
     #region Cameras
