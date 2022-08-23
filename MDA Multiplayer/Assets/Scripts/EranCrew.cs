@@ -16,8 +16,10 @@ public class EranCrew : MonoBehaviour
     [Header("Metargel")]
     public GameObject MetargelEranMenuUI;
 
-    [SerializeField] private GameObject MetargelDropDown;
-    [SerializeField] private TMP_Dropdown MetargelPlayerListDropDown;
+    [SerializeField] private GameObject _mokdanDropDown;
+    [SerializeField] private GameObject _mainMokdanDropDown;
+    [SerializeField] private TMP_Dropdown _mainMokdanPlayerListDropDown;
+    [SerializeField] private TMP_Dropdown _mokdanPlayerListDropDown;
     #endregion
 
     void Start()
@@ -33,7 +35,21 @@ public class EranCrew : MonoBehaviour
 
         for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
         {
-            if (MetargelDropDown.GetComponentInChildren<TextMeshProUGUI>().text == ActionsManager.Instance.AllPlayersPhotonViews[i].Owner.NickName)
+            if (_mokdanDropDown.GetComponentInChildren<TextMeshProUGUI>().text == ActionsManager.Instance.AllPlayersPhotonViews[i].Owner.NickName)
+            {
+                Index = i;
+            }
+        }
+        return Index;
+    }
+
+    public int GetMainMokdanIndex()
+    {
+        int Index = 0;
+
+        for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        {
+            if (_mainMokdanDropDown.GetComponentInChildren<TextMeshProUGUI>().text == ActionsManager.Instance.AllPlayersPhotonViews[i].Owner.NickName)
             {
                 Index = i;
             }
@@ -45,7 +61,10 @@ public class EranCrew : MonoBehaviour
     {
         _photonView.RPC("GiveMokdanRole", RpcTarget.AllBufferedViaServer, GetMokdanIndex());
     }
-
+    public void GiveMainMokdanRoleClick()
+    {
+        _photonView.RPC("GiveMainMokdanRole", RpcTarget.AllBufferedViaServer, GetMainMokdanIndex());
+    }
     public void ShowMetargelMenu()
     {
         _transfer.TvOwner();
@@ -72,7 +91,12 @@ public class EranCrew : MonoBehaviour
     {
         while (true)
         {
-            if (ActionsManager.Instance.AllPlayersPhotonViews.Count != MetargelPlayerListDropDown.options.Count)
+            if (ActionsManager.Instance.AllPlayersPhotonViews.Count != _mainMokdanPlayerListDropDown.options.Count)
+            {
+                _photonView.RPC("DropdownPlayersNickNamesMetargel", RpcTarget.AllBufferedViaServer);
+            }
+
+            if (ActionsManager.Instance.AllPlayersPhotonViews.Count != _mokdanPlayerListDropDown.options.Count)
             {
                 _photonView.RPC("DropdownPlayersNickNamesMetargel", RpcTarget.AllBufferedViaServer);
             }
@@ -94,20 +118,34 @@ public class EranCrew : MonoBehaviour
         }
 
         //Metargel Player list
-        MetargelPlayerListDropDown.ClearOptions();
-        MetargelPlayerListDropDown.AddOptions(value);
+        _mainMokdanPlayerListDropDown.ClearOptions();
+        _mainMokdanPlayerListDropDown.AddOptions(value);
+        _mokdanPlayerListDropDown.ClearOptions();
+        _mokdanPlayerListDropDown.AddOptions(value);
     }
 
     [PunRPC]
     public void GiveMokdanRole(int index)
     {
-        //foreach (var player in ActionsManager.Instance.AllPlayersPhotonViews)
-        //{
-        //    player.GetComponent<PlayerData>().IsMokdan = false;
-        //}
+  
         PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
         chosenPlayerData.IsMokdan = true;
         chosenPlayerData.AssignAranRole(AranRoles.Mokdan);
+
+        Mokdan mokdanPlayer = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<Mokdan>();
+        mokdanPlayer.isMainMokdan = false;
+    }
+
+    [PunRPC]
+    public void GiveMainMokdanRole(int index)
+    {
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsMokdan = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Mokdan);
+
+
+        Mokdan mokdanPlayer = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<Mokdan>();
+        mokdanPlayer.isMainMokdan = true;
     }
 
     [PunRPC]
