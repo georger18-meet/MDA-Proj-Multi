@@ -88,6 +88,8 @@ MonoBehaviour:
   - AssignAranRole
   - AssignAranRoleRPC
   - GivePikud10RoleRPC
+  - DropdownPlayersNickNamesMetargel
+  - DropdownPlayersNickNamesPikud10
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

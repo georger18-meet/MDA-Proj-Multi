@@ -23,8 +23,8 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public bool IsMokdan { get; set; }
     [field: SerializeField] public bool IsPikud10 { get; set; }
     [field: SerializeField] public bool IsRefua10 { get; set; }
-    [field: SerializeField] public bool IsHenyon10 { get; set; }
     [field: SerializeField] public bool IsPinuy10 { get; set; }
+    [field: SerializeField] public bool IsHenyon10 { get; set; }
     [field: SerializeField] public Roles UserRole { get; set; }
     [field: SerializeField] public AranRoles AranRole { get; set; }
     [field: SerializeField] public Color CrewColor { get; set; }
@@ -259,6 +259,84 @@ public class PlayerData : MonoBehaviour
             default:
                 break;
         }
+    }
+    #endregion
+
+    #region Pikud10 RPC
+    [PunRPC]
+    private void DropdownPlayersNickNamesPikud10()
+    {
+        List<string> value = new List<string>();
+        foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            if (player.GetComponent<PlayerData>().IsCrewLeader)
+                value.Add(player.Owner.NickName);
+        }
+
+        Pikud10 pikud10 = GetComponent<Pikud10>();
+        pikud10.PlayerListDropdownRefua10.ClearOptions();
+        pikud10.PlayerListDropdownRefua10.AddOptions(value);
+        pikud10.PlayerListDropdownPinuy10.ClearOptions();
+        pikud10.PlayerListDropdownPinuy10.AddOptions(value);
+        pikud10.PlayerListDropdownHenyon10.ClearOptions();
+        pikud10.PlayerListDropdownHenyon10.AddOptions(value);
+    }
+
+    [PunRPC]
+    public void GiveRefuaRole(int index)
+    {
+        foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsRefua10 = false;
+
+            if (playerData.AranRole == AranRoles.Refua10)
+            {
+                playerData.AssignAranRole(AranRoles.None);
+            }
+        }
+
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsRefua10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Refua10);
+    }
+
+    [PunRPC]
+    public void GivePinoyeRole(int index)
+    {
+        foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsPinuy10 = false;
+
+            if (playerData.AranRole == AranRoles.Pinuy10)
+            {
+                playerData.AssignAranRole(AranRoles.None);
+            }
+        }
+
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsPinuy10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Pinuy10);
+    }
+
+    [PunRPC]
+    public void GiveHenyonRole(int index)
+    {
+        foreach (PhotonView player in ActionsManager.Instance.AllPlayersPhotonViews)
+        {
+            PlayerData playerData = player.GetComponent<PlayerData>();
+            playerData.IsHenyon10 = false;
+
+            if (playerData.AranRole == AranRoles.Henyon10)
+            {
+                playerData.AssignAranRole(AranRoles.None);
+            }
+        }
+
+        PlayerData chosenPlayerData = ActionsManager.Instance.AllPlayersPhotonViews[index].GetComponent<PlayerData>();
+        chosenPlayerData.IsHenyon10 = true;
+        chosenPlayerData.AssignAranRole(AranRoles.Henyon10);
     }
     #endregion
 }
