@@ -9,25 +9,22 @@ public class Pikud10 : MonoBehaviour
 {
     private PhotonView _photonView => GetComponent<PhotonView>();
     private Coroutine _updatePlayerListCoroutine;
-
-    //// x = x, y = z
-    //[SerializeField] private Vector2 _markScale;
-    private float _areaOffset = 18;
-
-    [Header("Pikod10")]
     private GameObject _dropdownRefua10, _dropdownPinuy10, _dropdownHenyon10;
+    private CameraController _camController;
+    private LineRenderer _lineRenderer;
+    private LayerMask _groundLayer;
+    private Vector2 _targetPos;
+    private bool _isPikud10MenuOpen;
+    private bool _isMarking = false;
+
+    [SerializeField] private float _areaOffset = 14;
+    [SerializeField] private float _targetHeight = 0.1f;
+
+    [Header("Pikod10 UI")]
     public GameObject Pikod10Menu;
     public TMP_Dropdown PlayerListDropdownRefua10, PlayerListDropdownPinuy10, PlayerListDropdownHenyon10;
     public Button TopMenuHandle, AssignRefua10, AssignPinuy10, AssignHenyon10;
     public Button[] AllAreaMarkings = new Button[6];
-    public bool IsPikud10MenuOpen;
-    private LineRenderer _lineRenderer;
-    private LayerMask _groundLayer;
-    private Vector2 _targetPos;
-    private float _targetHeight = 0.5f;
-    private bool _isMarking = false;
-    private CameraController _camController;
-    //private int _currentMarkerIndex;
 
     #region MonobehaviourCallbacks
     private void Start()
@@ -38,7 +35,9 @@ public class Pikud10 : MonoBehaviour
     private void Update()
     {
         if (_isMarking)
+        {
             ChooseAreaPos(_camController);
+        }
     }
     #endregion
 
@@ -114,6 +113,7 @@ public class Pikud10 : MonoBehaviour
     }
     #endregion
 
+    #region Private Methods
     private void InitializeMenu()
     {
         Pikod10Menu = UIManager.Instance.Pikud10Menu;
@@ -164,24 +164,49 @@ public class Pikud10 : MonoBehaviour
         _groundLayer = LayerMask.GetMask("Ground");
         _groundLayer += LayerMask.GetMask("Road");
     }
+    private void SetLineTargetPos()
+    {
+        _lineRenderer.SetPosition(0, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y));
+        _lineRenderer.SetPosition(1, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y + _areaOffset));
+        _lineRenderer.SetPosition(2, new Vector3(_targetPos.x + _areaOffset, _targetHeight, _targetPos.y + _areaOffset));
+        _lineRenderer.SetPosition(3, new Vector3(_targetPos.x + _areaOffset, _targetHeight, _targetPos.y - _areaOffset));
+        _lineRenderer.SetPosition(4, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y - _areaOffset));
+        _lineRenderer.SetPosition(5, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y));
+    }
+    private void ChooseAreaPos(CameraController camController)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = camController.PlayerCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit areaPosRaycastHit, 20f, _groundLayer))
+            {
+                _targetPos = new Vector2(areaPosRaycastHit.point.x, areaPosRaycastHit.point.z);
+                SetLineTargetPos();
+                _isMarking = false;
+            }
+        }
+    }
+    #endregion
 
+    #region Public Methods
     public void OpenClosePikud10Menu()
     {
-        if (!IsPikud10MenuOpen)
+        if (!_isPikud10MenuOpen)
         {
             UIManager.Instance.OpenCloseTopMenu("Pikud10");
             _updatePlayerListCoroutine = StartCoroutine(HandleDropDownUpdates(0.5f));
+            _isPikud10MenuOpen = true;
         }
         else
         {
             UIManager.Instance.OpenCloseTopMenu("Pikud10");
             StopCoroutine(_updatePlayerListCoroutine);
+            _isPikud10MenuOpen = false;
         }
 
         TopMenuHandle.onClick.RemoveAllListeners();
         TopMenuHandle.onClick.AddListener(delegate { OpenClosePikud10Menu(); });
     }
-
     public void OnClickRefua()
     {
         _photonView.RPC("GiveRefuaRole", RpcTarget.AllBufferedViaServer, GetRefuaIndex());
@@ -193,19 +218,6 @@ public class Pikud10 : MonoBehaviour
     public void OnClickHenyon()
     {
         _photonView.RPC("GiveHenyonRole", RpcTarget.AllBufferedViaServer, GetHenyonIndex());
-    }
-    public void OnClickMarker(int markerIndex) // markerIndex is responsible for choosing the targeted btn
-    {
-        _photonView.RPC("ActivateAreaMarkingRPC", RpcTarget.AllViaServer, markerIndex);
-    }
-    private void SetLineTargetPos()
-    {
-        _lineRenderer.SetPosition(0, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y));
-        _lineRenderer.SetPosition(1, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y + _areaOffset));
-        _lineRenderer.SetPosition(2, new Vector3(_targetPos.x + _areaOffset, _targetHeight, _targetPos.y + _areaOffset));
-        _lineRenderer.SetPosition(3, new Vector3(_targetPos.x + _areaOffset, _targetHeight, _targetPos.y - _areaOffset));
-        _lineRenderer.SetPosition(4, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y - _areaOffset));
-        _lineRenderer.SetPosition(5, new Vector3(_targetPos.x - _areaOffset, _targetHeight, _targetPos.y));  
     }
     public void CreateMarkedArea(int markerIndex, CameraController camController)
     {
@@ -224,7 +236,7 @@ public class Pikud10 : MonoBehaviour
                 break;
             case 2:
                 _lineRenderer.startColor = Color.blue;
-                _lineRenderer.endColor = Color.yellow;
+                _lineRenderer.endColor = Color.blue;
                 break;
             case 3:
                 _lineRenderer.startColor = Color.white;
@@ -236,22 +248,13 @@ public class Pikud10 : MonoBehaviour
                 break;
             case 5:
                 _lineRenderer.startColor = Color.yellow;
-                _lineRenderer.endColor = Color.red;
+                _lineRenderer.endColor = Color.yellow;
                 break;
         }
     }
-    private void ChooseAreaPos(CameraController camController)
+    public void OnClickMarker(int markerIndex) // markerIndex is responsible for choosing the targeted btn
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _isMarking = false;
-            Ray ray = camController.PlayerCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit areaPosRaycastHit, 20f, _groundLayer))
-            {
-                _targetPos = new Vector2(areaPosRaycastHit.point.x, areaPosRaycastHit.point.z);
-                SetLineTargetPos();
-            }
-        }
+        _photonView.RPC("ActivateAreaMarkingRPC", RpcTarget.AllViaServer, markerIndex);
     }
+    #endregion
 }

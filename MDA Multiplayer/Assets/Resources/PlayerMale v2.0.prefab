@@ -1955,7 +1955,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3007
+    m_Bits: 7103
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2858,7 +2858,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3007
+    m_Bits: 7103
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3017,7 +3017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 6846980335483256472}
   PlayerData: {fileID: 0}
-  LineMaterial: {fileID: 0}
+  LineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _vehicleCamera: {fileID: 8959073057551848424}
   _MiniMaCamera: {fileID: 666755789287419742}
