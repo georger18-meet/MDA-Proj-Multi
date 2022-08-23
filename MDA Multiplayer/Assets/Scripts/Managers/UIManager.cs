@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     public TMP_Dropdown PlayerListDropdownRefua10, PlayerListDropdownPinuy10, PlayerListDropdownHenyon10;
     public Button Pikud10MenuHandle;
     public Button AssignRefua10, AssignPinuy10, AssignHenyon10;
+    public Button MarkUrgent, MarkUnUrgent, MarkVehicles, MarkGeneral, MarkDeceased, MarkBomb;
     #endregion
 
     #region Patient UI 

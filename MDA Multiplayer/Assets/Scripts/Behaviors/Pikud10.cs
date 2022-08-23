@@ -15,6 +15,7 @@ public class Pikud10 : MonoBehaviour
     public GameObject Pikod10Menu;
     public TMP_Dropdown PlayerListDropdownRefua10, PlayerListDropdownPinuy10, PlayerListDropdownHenyon10;
     public Button TopMenuHandle, AssignRefua10, AssignPinuy10, AssignHenyon10;
+    public Button MarkUrgent, MarkUnUrgent, MarkVehicles, MarkGeneral, MarkDeceased, MarkBomb;
     public bool IsPikud10MenuOpen;
 
     #region MonobehaviourCallbacks
@@ -114,6 +115,13 @@ public class Pikud10 : MonoBehaviour
         AssignRefua10 = UIManager.Instance.AssignRefua10;
         AssignPinuy10 = UIManager.Instance.AssignPinuy10;
         AssignHenyon10 = UIManager.Instance.AssignHenyon10;
+
+        MarkUrgent = UIManager.Instance.MarkUrgent;
+        MarkUnUrgent = UIManager.Instance.MarkUnUrgent;
+        MarkVehicles = UIManager.Instance.MarkVehicles;
+        MarkGeneral = UIManager.Instance.MarkGeneral;
+        MarkDeceased = UIManager.Instance.MarkDeceased;
+        MarkBomb = UIManager.Instance.MarkBomb;
 
         AssignRefua10.onClick.RemoveAllListeners();
         AssignRefua10.onClick.AddListener(delegate { OnClickRefua(); });
