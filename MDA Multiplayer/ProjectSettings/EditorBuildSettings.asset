@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/ConnectToServer.unity
     guid: 26266ee88598c1c4cab8845be38ae671
   - enabled: 1
-    path: Assets/Scenes/MDA Project Gal.unity
+    path: Assets/Scenes/MDA Project.unity
     guid: 3fd3a3f2caaf2694dbb1fba53fcf37b8
   m_configObjects: {}

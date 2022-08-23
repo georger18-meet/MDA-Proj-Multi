@@ -2952,7 +2952,7 @@ GameObject:
   - component: {fileID: 4762676014754726370}
   - component: {fileID: 6518490309897315663}
   m_Layer: 12
-  m_Name: PlayerMale v2
+  m_Name: PlayerMale v2.0
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3017,6 +3017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 6846980335483256472}
   PlayerData: {fileID: 0}
+  LineMaterial: {fileID: 0}
   _playerCamera: {fileID: 8822803001239547996}
   _vehicleCamera: {fileID: 8959073057551848424}
   _MiniMaCamera: {fileID: 666755789287419742}
