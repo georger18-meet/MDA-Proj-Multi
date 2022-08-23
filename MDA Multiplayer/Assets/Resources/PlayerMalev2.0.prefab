@@ -2924,7 +2924,7 @@ MonoBehaviour:
   SmoothFollow: 1
   Smooth: 0.05
   AdjustmentDistanceClippingOffset: -0.1
-  AdjustedHeightOffset: 1
+  AdjustedHeightOffset: 0.75
   DrawDesiredCollisionLines: 1
   DrawAdjustedCollisionLines: 1
 --- !u!1 &8822803002174255568

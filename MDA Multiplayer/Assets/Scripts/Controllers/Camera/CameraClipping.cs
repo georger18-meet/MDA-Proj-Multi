@@ -19,7 +19,7 @@ public class CameraClipping : MonoBehaviour
     [SerializeField] private bool SmoothFollow = true;
     [SerializeField] private float Smooth = 0.05f;
     [SerializeField] private float AdjustmentDistanceClippingOffset = -0.1f;
-    [SerializeField] private float AdjustedHeightOffset = 1f;
+    [SerializeField] private float AdjustedHeightOffset = 0.75f;
     private float AdjustmentDistance;
 
     private Vector3 _destination = Vector3.zero;
