@@ -59,7 +59,7 @@ public class ActionsManager : MonoBehaviour
     public List<bool> /*AmbulancePosTransforms,*/ VehiclePosOccupiedList;
 
     private Patient _lastClickedPatient;
-    private NewPatientData _lastClickedPatientData;
+    private PatientData _lastClickedPatientData;
 
     #region MonoBehaviour Callbacks
     private void Awake()
@@ -89,7 +89,7 @@ public class ActionsManager : MonoBehaviour
             PlayerData myPlayerData = AllPlayersPhotonViews[i].gameObject.GetComponent<PlayerData>();
             _lastClickedPatient = myPlayerData.CurrentPatientNearby;
 
-            NewPatientData currentPatientData = myPlayerData.CurrentPatientNearby != null ? myPlayerData.CurrentPatientNearby.NewPatientData : null;
+            PatientData currentPatientData = myPlayerData.CurrentPatientNearby != null ? myPlayerData.CurrentPatientNearby.PatientData : null;
             _lastClickedPatientData = currentPatientData;
 
             Debug.Log($"{myPlayerData.UserName} Clicked on: {myPlayerData.CurrentPatientNearby}");

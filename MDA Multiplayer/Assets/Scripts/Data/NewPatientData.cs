@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PatientType { Old, Grown, Kid, }
 public enum MonitorSprites { HeartMonitor, ECG }
 
 [System.Serializable]
 public class NewPatientData
 {
     [Header("Patient Informaion")]
+    public PatientType PatientType;
     public string Name;
     public string SureName;
     public int Id, Age;
@@ -28,6 +30,7 @@ public class NewPatientData
 
     public NewPatientData(NewPatientData newPatientDataFromSO)
     {
+        PatientType = newPatientDataFromSO.PatientType;
         Name = newPatientDataFromSO.Name;
         SureName = newPatientDataFromSO.SureName;
         Id = newPatientDataFromSO.Id;
