@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Mokdan : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] public bool isMainMokdan;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
