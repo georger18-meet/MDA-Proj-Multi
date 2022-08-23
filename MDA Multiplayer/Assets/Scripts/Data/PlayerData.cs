@@ -338,5 +338,15 @@ public class PlayerData : MonoBehaviour
         chosenPlayerData.IsHenyon10 = true;
         chosenPlayerData.AssignAranRole(AranRoles.Henyon10);
     }
+
+    [PunRPC]
+    public void ActivateAreaMarkingRPC(int markerIndex)
+    {
+        if (TryGetComponent(out Pikud10 pikud10))
+        {
+            pikud10.AllAreaMarkings[markerIndex].onClick.Invoke();
+            pikud10.CreateMarkedArea(markerIndex, GetComponent<CameraController>());
+        }
+    }
     #endregion
 }
