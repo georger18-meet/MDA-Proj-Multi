@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public Camera CurrentCamera => _currentCamera;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Camera _vehicleCamera;
+    [SerializeField] private Camera _pikud10Camera;
     [SerializeField] private GameObject _MiniMaCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
     #endregion

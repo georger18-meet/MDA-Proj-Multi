@@ -13,7 +13,9 @@ public class CameraController : MonoBehaviour
     #region Cameras
     [Header("Player Camera")]
     [SerializeField] private Camera _playerCamera;
+   // [SerializeField] private Camera _pikud10Camera;
     public Camera PlayerCamera => _playerCamera;
+    //public Camera Pikud10Camera => _pikud10Camera;
     #endregion
 
     #region Interactions & Indicators
@@ -60,6 +62,7 @@ public class CameraController : MonoBehaviour
                 Interact();
             }
         }
+
     }
     #endregion
 
@@ -115,5 +118,6 @@ public class CameraController : MonoBehaviour
 
         return interactableRaycastHit;
     }
+
     #endregion
 }
