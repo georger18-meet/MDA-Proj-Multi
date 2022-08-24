@@ -2925,7 +2925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionLayers:
     serializedVersion: 2
-    m_Bits: 521
+    m_Bits: 520
   Target: {fileID: 8822803002174255573}
   LookAtTarget: {fileID: 3005804813768933254}
   _destinationObj: {fileID: 8822803000880888004}
