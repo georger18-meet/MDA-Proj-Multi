@@ -98,6 +98,9 @@ MonoBehaviour:
   - ShowMokdanMenu_RPC
   - CloseMokdanMenu_RPC
   - SpectatePikudCamera_RPC
+  - SetPikud10RPC
+  - InitializePikud10RPC
+  - SetMarkRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

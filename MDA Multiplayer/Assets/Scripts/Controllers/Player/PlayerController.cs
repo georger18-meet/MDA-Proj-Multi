@@ -22,12 +22,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
     #region Cameras
     [Header("Cameras")]
     private Camera _currentCamera;
-    public Camera CurrentCamera => _currentCamera;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private Camera _vehicleCamera;
     [SerializeField] private Camera _pikud10Camera;
     [SerializeField] private GameObject _MiniMaCamera;
     [SerializeField] private Transform _firstPersonCameraTransform, _thirdPersonCameraTransform;
+    public Camera CurrentCamera => _currentCamera;
+    public Camera Pikud10Camera => _pikud10Camera;
     #endregion
 
     #region Audio

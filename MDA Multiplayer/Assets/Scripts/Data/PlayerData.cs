@@ -195,6 +195,7 @@ public class PlayerData : MonoBehaviour
         }
     }
     #endregion
+
     #region PunRPC invoked by Player
     [PunRPC]
     void AddingPlayerToAllPlayersList()
@@ -346,6 +347,18 @@ public class PlayerData : MonoBehaviour
         {
             pikud10.AllAreaMarkings[markerIndex].onClick.Invoke();
             pikud10.CreateMarkedArea(markerIndex, GetComponent<CameraController>());
+        }
+    }
+
+    [PunRPC]
+    public void SpectatePikudCamera_RPC()
+    {
+        Pikud10 script = GameManager.Instance.Pikud10View.GetComponent<Pikud10>();
+        GameManager.Instance.Pikud10View = PhotonView;
+        if (script != null)
+        {
+            script.Pikud10Camera.targetTexture = GameManager.Instance.Pikud10TextureRenderer;
+            script.Pikud10Camera.gameObject.SetActive(true);
         }
     }
     #endregion

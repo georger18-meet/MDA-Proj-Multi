@@ -12,8 +12,13 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     private PhotonView _photonView;
     public Transform[] IncidentPatientSpawns;
     public List<Transform> CurrentIncidentsTransforms;
-
-    public RenderTexture Pikud10Camera;
+    public PhotonView Pikud10View; 
+    public PhotonView Redua10View; 
+    public PhotonView Pinuy10View; 
+    public PhotonView Henyon10View; 
+    public RenderTexture Pikud10TextureRenderer;
+    public Camera Pikud10Camera;
+    public Material LineMaterial;
 
     //[SerializeField] private int multiplayerScene;
     //[SerializeField] private int currentScene;

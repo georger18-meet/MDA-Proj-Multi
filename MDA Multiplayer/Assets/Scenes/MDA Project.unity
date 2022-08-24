@@ -1140,6 +1140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2531649537221931614, guid: 48c579d618fc62943a8aa002f2c96410, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4826345413877565453, guid: 48c579d618fc62943a8aa002f2c96410, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -1673,13 +1677,21 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: LineMaterial
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
       propertyPath: Pikud10Camera
       value: 
-      objectReference: {fileID: 8400000, guid: f8e23915d20e4a54da73f0db356cbea8, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
       propertyPath: multiplayerScene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: Pikud10TextureRenderer
+      value: 
+      objectReference: {fileID: 8400000, guid: f8e23915d20e4a54da73f0db356cbea8, type: 2}
     - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
       propertyPath: IncidentPatientSpawns.Array.data[0]
       value: 
@@ -68666,7 +68678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5847194390981692795, guid: 49671cc1296b03b4ba97376b4db9878a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5847194390983053460, guid: 49671cc1296b03b4ba97376b4db9878a, type: 3}
       propertyPath: m_Layer
