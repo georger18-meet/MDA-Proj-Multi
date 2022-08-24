@@ -31,9 +31,6 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
 
-
-
-    [SerializeField] private Camera Pikud10Camera;
     #region MonobehaviourCallbacks
     private void Awake()
     {
@@ -349,24 +346,6 @@ public class PlayerData : MonoBehaviour
         {
             pikud10.AllAreaMarkings[markerIndex].onClick.Invoke();
             pikud10.CreateMarkedArea(markerIndex, GetComponent<CameraController>());
-        }
-    }
-
-
-    public void SpectatePikudCamera()
-    {
-        PhotonView.RPC("SpectatePikudCamera_RPC", RpcTarget.AllBufferedViaServer);
-    }
-
-    [PunRPC]
-    public void SpectatePikudCamera_RPC()
-    {
-        Pikud10 script = GetComponent<Pikud10>();
-
-        if (script != null)
-        {
-            Pikud10Camera.targetTexture = GameManager.Instance.Pikud10Camera;
-            Pikud10Camera.gameObject.SetActive(true);
         }
     }
     #endregion

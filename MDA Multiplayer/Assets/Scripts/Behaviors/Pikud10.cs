@@ -21,6 +21,7 @@ public class Pikud10 : MonoBehaviour
     private bool _isMarking = false;
 
     [SerializeField] private float _areaOffset = 14.0f, _targetHeight = 0.1f, _worldMarkHeight = 2.5f;
+    [SerializeField] private Camera Pikud10Camera;
 
     [Header("Pikod10 UI")]
     public GameObject Pikod10Menu;
@@ -32,6 +33,7 @@ public class Pikud10 : MonoBehaviour
     private void Start()
     {
         InitializeMenu();
+        CameraTransmition();
     }
 
     private void Update()
@@ -192,6 +194,10 @@ public class Pikud10 : MonoBehaviour
             }
         }
     }
+    private void CameraTransmition()
+    {
+        _photonView.RPC("SpectatePikudCamera_RPC", RpcTarget.AllBufferedViaServer);
+    }
     #endregion
 
     #region Public Methods
@@ -261,6 +267,16 @@ public class Pikud10 : MonoBehaviour
     public void OnClickMarker(int markIndex) // markerIndex is responsible for choosing the targeted btn
     {
         _photonView.RPC("ActivateAreaMarkingRPC", RpcTarget.AllViaServer, markIndex);
+    }
+    #endregion
+
+    #region PunRPC
+    [PunRPC]
+    public void SpectatePikudCamera_RPC()
+    {
+        Pikud10Camera = GetComponent<PlayerController>().transform.GetChild(12).GetComponent<Camera>();
+        Pikud10Camera.targetTexture = GameManager.Instance.Pikud10Camera;
+        Pikud10Camera.gameObject.SetActive(true);
     }
     #endregion
 }
