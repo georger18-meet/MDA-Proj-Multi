@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public Transform[] IncidentPatientSpawns;
     public List<Transform> CurrentIncidentsTransforms;
 
+    public RenderTexture Pikud10Camera;
 
     //[SerializeField] private int multiplayerScene;
     //[SerializeField] private int currentScene;
