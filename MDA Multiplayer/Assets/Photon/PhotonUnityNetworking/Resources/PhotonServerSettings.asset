@@ -93,6 +93,10 @@ MonoBehaviour:
   - ActivateAreaRPC
   - ActivateAreaMarkingRPC
   - GiveMainMokdanRole
+  - DropdownPlayersNickNamesPikud
+  - GivePikudRole
+  - ShowMokdanMenu_RPC
+  - CloseMokdanMenu_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
