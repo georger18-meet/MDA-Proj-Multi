@@ -274,6 +274,18 @@ public class Pikud10 : MonoBehaviour
     [PunRPC]
     private void SetMarkRPC(int markIndex)
     {
+        //for (int i = 0; i < ActionsManager.Instance.AllPlayersPhotonViews.Count; i++)
+        //{
+        //    if (ActionsManager.Instance.AllPlayersPhotonViews[i].IsMine)
+        //    {
+        //        PhotonView photonView = ActionsManager.Instance.AllPlayersPhotonViews[i];
+        //        if (photonView.GetComponent<PlayerData>().IsPikud10)
+        //        {
+        //
+        //        }
+        //    }
+        //}
+
         if (PhotonNetwork.IsMasterClient)
         {
             Ray ray = _camController.PlayerCamera.ScreenPointToRay(Input.mousePosition);
@@ -284,9 +296,10 @@ public class Pikud10 : MonoBehaviour
                 worldMark.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = worldMark.GetComponent<WorldMark>().Marks[markIndex];
                 _allWorldMarks.Add(worldMark);
                 SetLineTargetPos();
-                _isMarking = false;
             }
         }
+    
+        _isMarking = false;
     }
     #endregion
 }
