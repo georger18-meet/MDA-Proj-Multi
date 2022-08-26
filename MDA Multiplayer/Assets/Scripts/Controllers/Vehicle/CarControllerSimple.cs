@@ -41,6 +41,9 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
     public OwnershipTransfer Transfer;
     public int OwnerCrew;
 
+
+    [SerializeField] public int _randomNumber;
+    [SerializeField] public string _randomName;
      private void Awake()
      {
          _photonView = GetComponent<PhotonView>();
@@ -51,8 +54,24 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
          _carRb = GetComponent<Rigidbody>();
          _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
         _carDashboardUI = UIManager.Instance.VehicleUI;
+
+
+
+        _randomNumber = GetRandomInt(100,999+1);
+        GameManager.Instance.usedValues.Add(_randomNumber);
+
+        _randomName = GetRandomstring();
+        GameManager.Instance.usedNamesValues.Add(_randomName);
+
+        GameManager.Instance.NatanCarList.Add(_photonView);
      }
 
+     private void OnDestroy() //When Car is Destroyed Delete from list for using data again later.
+    {
+         GameManager.Instance.usedNamesValues.Remove(_randomName);
+         GameManager.Instance.usedValues.Remove(_randomNumber);
+         GameManager.Instance.NatanCarList.Remove(_photonView);
+     }
     private void Update()
     {
         //CheckIfDriveable();
@@ -214,5 +233,37 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
     public void ExitVehicle()
     {
 
+    }
+
+    public int GetRandomInt(int min, int max)
+    {
+        int val = UnityEngine.Random.Range(min, max);
+        while (GameManager.Instance.usedValues.Contains(val))
+        {
+            val = UnityEngine.Random.Range(min, max);
+        }
+        return val;
+    }
+
+    //public string GetRandomstring()
+    //{
+    //    string val = UnityEngine.Random.Range(0, GameManager.Instance.usedNamesValues.Count).ToString();
+    //    while (GameManager.Instance.usedNamesValues.Contains(val))
+    //    {
+    //        val = UnityEngine.Random.Range(0, GameManager.Instance.usedNamesValues.Count).ToString();
+    //    }
+    //    return val;
+    //}
+
+    public string GetRandomstring()
+    {
+        int val = UnityEngine.Random.Range(0, GameManager.Instance.usedNamesValues.Count);
+
+        while (GameManager.Instance.usedNamesValues.Contains(val.ToString()))
+        {
+            val = UnityEngine.Random.Range(0, GameManager.Instance.usedNamesValues.Count);
+        }
+
+        return GameManager.Instance.usedNamesValues[val];
     }
 }

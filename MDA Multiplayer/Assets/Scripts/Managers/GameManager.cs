@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public Camera Pikud10Camera;
     public Material LineMaterial;
 
+
+
+    public List<int> usedValues = new List<int>();
+    public List<string> usedNamesValues = new List<string>();
+    public List<PhotonView> NatanCarList = new List<PhotonView>();
+
     //[SerializeField] private int multiplayerScene;
     //[SerializeField] private int currentScene;
 
@@ -57,6 +63,18 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     {
         _photonView = GetComponent<PhotonView>();
         OnEscape(true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            foreach (var car in NatanCarList)
+            {
+                Debug.Log(car.GetComponent<CarControllerSimple>()._randomNumber+" "+ car.GetComponent<CarControllerSimple>()._randomName);
+                
+            }
+        }
     }
 
     private void OnEscape(bool paused)

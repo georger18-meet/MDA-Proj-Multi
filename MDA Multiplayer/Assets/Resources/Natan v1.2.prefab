@@ -2722,6 +2722,7 @@ MonoBehaviour:
   - {fileID: 6933579756723248161}
   Transfer: {fileID: 3264489737490769982}
   OwnerCrew: 0
+  _randomNumber: 0
 --- !u!114 &3264489737490769982
 MonoBehaviour:
   m_ObjectHideFlags: 0

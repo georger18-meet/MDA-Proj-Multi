@@ -1697,6 +1697,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8400000, guid: f8e23915d20e4a54da73f0db356cbea8, type: 2}
     - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: usedNamesValues.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: usedNamesValues.Array.data[0]
+      value: Tel-Aviv
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: usedNamesValues.Array.data[1]
+      value: Rehovot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: usedNamesValues.Array.data[2]
+      value: Eilat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: usedNamesValues.Array.data[3]
+      value: Ramat-Gan
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
+      propertyPath: usedNamesValues.Array.data[4]
+      value: Haifa
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369888981188807863, guid: 8c590739189a4bb4dbcd21eda0d55807, type: 3}
       propertyPath: IncidentPatientSpawns.Array.data[0]
       value: 
       objectReference: {fileID: 4129369799044991484}
