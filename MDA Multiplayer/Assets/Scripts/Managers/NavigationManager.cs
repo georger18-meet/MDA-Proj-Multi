@@ -49,6 +49,13 @@ public class NavigationManager : MonoBehaviour
                 transform.position = _playerPhotonView.transform.position + (_playerPhotonView.transform.forward * 2);
             }
         }
+
+        //if(_lineRenderer.enabled)
+        //     _playerController.CurrentCarController.isBusy = true;
+        //else
+        //    _playerController.CurrentCarController.isBusy = false;
+
+
         StopGPSNav();
     }
 
@@ -93,6 +100,7 @@ public class NavigationManager : MonoBehaviour
         {
             _destinationMarkerPrefab.SetActive(false);
             _reachedDestination = true;
+
         }
         else if (_agent.hasPath)
         {
@@ -124,5 +132,11 @@ public class NavigationManager : MonoBehaviour
         {
             _lineRenderer.enabled = false;
         }
+    }
+
+
+    public void CarInEvac()
+    {
+
     }
 }

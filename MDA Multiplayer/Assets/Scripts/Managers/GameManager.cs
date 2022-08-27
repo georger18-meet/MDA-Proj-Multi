@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public List<string> usedNamesValues = new List<string>();
     public List<PhotonView> NatanCarList = new List<PhotonView>();
 
+
+    public List<PhotonView> NatanBusyCarList = new List<PhotonView>();
+    public List<PhotonView> NatanNotBusyCarList = new List<PhotonView>();
+
     //[SerializeField] private int multiplayerScene;
     //[SerializeField] private int currentScene;
 
@@ -75,6 +79,8 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
                 
             }
         }
+
+        UpdateBusyList();
     }
 
     private void OnEscape(bool paused)
@@ -168,6 +174,29 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     //{
     //    currentScene = scene.buildIndex;
     //}
+
+
+
+    public void UpdateBusyList()
+    {
+        foreach (var car in NatanCarList)
+        {
+            if (car.GetComponent<CarControllerSimple>().isBusy)
+            {
+                NatanNotBusyCarList.Remove(car);
+
+                if (!NatanBusyCarList.Contains(car))
+                    NatanBusyCarList.Add(car);
+            }
+            else
+            {
+                NatanBusyCarList.Remove(car);
+
+                if (!NatanNotBusyCarList.Contains(car))
+                    NatanNotBusyCarList.Add(car);
+            }
+        }
+    }
 
 }
 

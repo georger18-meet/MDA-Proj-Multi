@@ -41,7 +41,7 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
     public OwnershipTransfer Transfer;
     public int OwnerCrew;
 
-
+    [SerializeField] public bool isBusy;
     [SerializeField] public int _randomNumber;
     [SerializeField] public string _randomName;
      private void Awake()
@@ -103,14 +103,19 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         if (_verticalInput > 0)
         {
             moveSpeed = _forwardSpeed;
+            isBusy = true;
         }
         else if (_verticalInput < 0)
         {
             moveSpeed = -_reverseSpeed;
+            isBusy = true;
+
         }
         else
         {
             moveSpeed = 0;
+            isBusy = false;
+
         }
 
         _carRb.AddForce(transform.forward * moveSpeed, ForceMode.Acceleration);
@@ -222,10 +227,12 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext(isBusy);
         }
         else
         {
             transform.position = (Vector3)stream.ReceiveNext();
+            isBusy = (bool)stream.ReceiveNext();
         }
     }
 
@@ -266,4 +273,6 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 
         return GameManager.Instance.usedNamesValues[val];
     }
+
+
 }
