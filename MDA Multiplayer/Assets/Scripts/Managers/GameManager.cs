@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public RenderTexture Pikud10TextureRenderer;
     public Camera Pikud10Camera;
     public Material LineMaterial;
-
+    public bool IsAranActive { get; set; }
 
 
     public List<int> usedValues = new List<int>();
@@ -177,7 +177,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     [PunRPC]
     public void UpdatePinuyList_RPC()
     {
-
         foreach (PhotonView car in NatanCarList)
         {
             if (car.GetComponent<CarControllerSimple>().IsInPinuy)
@@ -200,8 +199,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
 
     public void UpdatePinuyList()
     {
-
         _photonView.RPC("UpdatePinuyList_RPC", RpcTarget.AllBufferedViaServer);
-
     }
 }

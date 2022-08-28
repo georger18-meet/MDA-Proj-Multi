@@ -166,5 +166,17 @@ public class EranCrew : MonoBehaviour
         chosenPlayerData.IsPikud10 = true;
         chosenPlayerData.AssignAranRole(AranRoles.Pikud10);
     }
+
+    [PunRPC]
+    private void StartAran_RPC()
+    {
+        GameManager.Instance.IsAranActive = true;
+    }
+
+    [PunRPC]
+    private void StopAran_RPC()
+    {
+        GameManager.Instance.IsAranActive = false;
+    }
     #endregion
 }

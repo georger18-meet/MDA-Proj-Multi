@@ -85,6 +85,9 @@ public class Patient : MonoBehaviour
         ActionsManager.Instance.AllPatients.Add(this);
         ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
         MonitorWindow = UIManager.Instance.MonitorParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+
+
+        UIManager.Instance.PatientInfoParent = GameManager.Instance.IsAranActive ? UIManager.Instance.TagMiunMenu : UIManager.Instance.PatientMenu;
     }
     #endregion
 

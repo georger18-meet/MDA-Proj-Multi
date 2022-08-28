@@ -102,6 +102,8 @@ MonoBehaviour:
   - InitializePikud10RPC
   - SetMarkRPC
   - UpdatePinuyList_RPC
+  - StartAran_RPC
+  - StopAran_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

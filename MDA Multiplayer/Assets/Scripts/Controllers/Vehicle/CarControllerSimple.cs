@@ -66,11 +66,12 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
      }
 
      private void OnDestroy() //When Car is Destroyed Delete from list for using data again later.
-    {
+     {
          GameManager.Instance.usedNamesValues.Remove(RandomName);
          GameManager.Instance.usedValues.Remove(RandomNumber);
          GameManager.Instance.NatanCarList.Remove(_photonView);
      }
+
     private void Update()
     {
         //CheckIfDriveable();
@@ -122,6 +123,7 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 
     private void ApplyBreaking(float moveSpeed)
     {
+
     }
 
     public void HandleSteering()
@@ -166,7 +168,6 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-
     public void ToggleHeadlights()
     {
         if (CarHeadLightsOn)
@@ -201,7 +202,6 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-
     public void CheckIfDriveable()
     {
         foreach (CarDoorCollision item in CarDoorCollisions)
@@ -234,7 +234,6 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
             IsInPinuy = (bool)stream.ReceiveNext();
         }
     }
-
 
     public void ExitVehicle()
     {

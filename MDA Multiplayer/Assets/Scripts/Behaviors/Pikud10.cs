@@ -23,7 +23,7 @@ public class Pikud10 : MonoBehaviour
     [SerializeField] private float _areaOffset = 14.0f, _targetHeight = 0.1f, _worldMarkHeight = 2.5f;
 
     [Header("Pikod10 UI")]
-    public GameObject Pikod10Menu;
+    public GameObject Pikud10Menu;
     public Camera Pikud10Camera;
     public TMP_Dropdown PlayerListDropdownRefua10, PlayerListDropdownPinuy10, PlayerListDropdownHenyon10;
     public Button TopMenuHandle, AssignRefua10, AssignPinuy10, AssignHenyon10;
@@ -34,6 +34,8 @@ public class Pikud10 : MonoBehaviour
     {
         InitializePikud10();
         CameraTransmition();
+        UIManager.Instance.TeamLeaderMenu.SetActive(false);
+        UIManager.Instance.Pikud10Menu.SetActive(true);
     }
 
     private void Update()
@@ -42,6 +44,12 @@ public class Pikud10 : MonoBehaviour
         {
             ChooseAreaPos(_currentMarkIndex);
         }
+    }
+
+    private void OnDestroy()
+    {
+        UIManager.Instance.TeamLeaderMenu.SetActive(true);
+        UIManager.Instance.Pikud10Menu.SetActive(false);
     }
     #endregion
 
@@ -219,7 +227,7 @@ public class Pikud10 : MonoBehaviour
     private void InitializePikud10RPC()
     {
         Pikud10Camera = transform.GetChild(transform.childCount - 2).GetComponent<Camera>();
-        Pikod10Menu = UIManager.Instance.Pikud10Menu;
+        Pikud10Menu = UIManager.Instance.Pikud10Menu;
         TopMenuHandle = UIManager.Instance.Pikud10MenuHandle;
         TopMenuHandle.onClick.RemoveAllListeners();
         TopMenuHandle.onClick.AddListener(delegate { OpenClosePikud10Menu(); });
