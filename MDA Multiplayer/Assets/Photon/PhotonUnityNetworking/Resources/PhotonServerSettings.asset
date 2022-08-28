@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: Iron-Man v0.9.6 Gal2
+    AppVersion: Iron-Man v0.9.6 Bunny
     UseNameServer: 1
     FixedRegion: eu
     Server: 
@@ -101,6 +101,7 @@ MonoBehaviour:
   - SetPikud10RPC
   - InitializePikud10RPC
   - SetMarkRPC
+  - UpdatePinuyList_RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

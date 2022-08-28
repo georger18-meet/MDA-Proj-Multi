@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public List<PhotonView> NatanCarList = new List<PhotonView>();
 
 
-    public List<PhotonView> NatanBusyCarList = new List<PhotonView>();
-    public List<PhotonView> NatanNotBusyCarList = new List<PhotonView>();
+    public List<PhotonView> NatanInPinuyCarList = new List<PhotonView>();
+    public List<PhotonView> NatanFreeCarList = new List<PhotonView>();
 
     //[SerializeField] private int multiplayerScene;
     //[SerializeField] private int currentScene;
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
             }
         }
 
-        UpdateBusyList();
+        UpdatePinuyList();
     }
 
     private void OnEscape(bool paused)
@@ -173,24 +173,35 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     //    currentScene = scene.buildIndex;
     //}
 
-    public void UpdateBusyList()
+
+    [PunRPC]
+    public void UpdatePinuyList_RPC()
     {
+
         foreach (PhotonView car in NatanCarList)
         {
             if (car.GetComponent<CarControllerSimple>().IsInPinuy)
             {
-                NatanNotBusyCarList.Remove(car);
+                NatanFreeCarList.Remove(car);
 
-                if (!NatanBusyCarList.Contains(car))
-                    NatanBusyCarList.Add(car);
+                if (!NatanInPinuyCarList.Contains(car))
+                    NatanInPinuyCarList.Add(car);
             }
             else
             {
-                NatanBusyCarList.Remove(car);
+                NatanInPinuyCarList.Remove(car);
 
-                if (!NatanNotBusyCarList.Contains(car))
-                    NatanNotBusyCarList.Add(car);
+                if (!NatanFreeCarList.Contains(car))
+                    NatanFreeCarList.Add(car);
             }
         }
+    }
+
+
+    public void UpdatePinuyList()
+    {
+
+        _photonView.RPC("UpdatePinuyList_RPC", RpcTarget.AllBufferedViaServer);
+
     }
 }
