@@ -112,6 +112,7 @@ public class NavigationManager : MonoBehaviour
     {
         if (!_reachedDestination)
         {
+            _playerController.CurrentCarController.IsInPinuy = true;
             _lineRenderer.enabled = true;
             _lineRenderer.positionCount = _agent.path.corners.Length;
             _lineRenderer.SetPosition(0, transform.position);

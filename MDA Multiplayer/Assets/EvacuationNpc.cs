@@ -39,6 +39,15 @@ public class EvacuationNpc : MonoBehaviour
     [PunRPC]
     public void EvacPatient_RPC()
     {
+        for (int i = 0; i < evacuation.NearbyPatient[0].NearbyUsers.Count; i++)
+        {
+            PlayerData playerData = evacuation.NearbyPatient[0].NearbyUsers[i];
+            if (playerData.LastCarController)
+            {
+                playerData.LastCarController.IsInPinuy = false;
+                break;
+            }
+        }
         EvacuationManager.Instance.AddPatientToRooms(evacuation.NearbyPatient[0].PhotonView, evacuation.RoomEnum);
         EvacuationManager.Instance.DestroyPatient(evacuation.NearbyPatient[0].PhotonView);
         evacuation.NearbyPatient.Clear();

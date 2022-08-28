@@ -110,6 +110,7 @@ public class CarDoorCollision : MonoBehaviour
                 {
                     _carController.Transfer.CarDriver();
                     playerController.CurrentCarController = _carController;
+                    
                     //playerController.PhotonView.RPC("ChangeCharControllerStateRPC", Photon.Pun.RpcTarget.Others);
                 }
                 // use player driving state
@@ -120,7 +121,7 @@ public class CarDoorCollision : MonoBehaviour
                 IsSeatOccupied = false;
                 CollidingPlayer.transform.position = gameObject.transform.position;
                 playerController.IsDriving = false;
-                
+                playerController.PlayerData.LastCarController = _carController;
 
                 if (SeatNumber != 0)
                 {

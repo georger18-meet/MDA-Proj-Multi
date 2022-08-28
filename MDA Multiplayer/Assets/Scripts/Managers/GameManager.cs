@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
         {
             foreach (var car in NatanCarList)
             {
-                Debug.Log(car.GetComponent<CarControllerSimple>()._randomNumber+" "+ car.GetComponent<CarControllerSimple>()._randomName);
+                Debug.Log(car.GetComponent<CarControllerSimple>().RandomNumber+" "+ car.GetComponent<CarControllerSimple>().RandomName);
                 
             }
         }
@@ -164,8 +164,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
             }
         }
 
-
-
         Debug.Log(otherPlayer.NickName + " has left the room");
         Debug.Log(ActionsManager.Instance.AllPlayersPhotonViews.Count);
     }
@@ -175,13 +173,11 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     //    currentScene = scene.buildIndex;
     //}
 
-
-
     public void UpdateBusyList()
     {
-        foreach (var car in NatanCarList)
+        foreach (PhotonView car in NatanCarList)
         {
-            if (car.GetComponent<CarControllerSimple>().isBusy)
+            if (car.GetComponent<CarControllerSimple>().IsInPinuy)
             {
                 NatanNotBusyCarList.Remove(car);
 
@@ -197,12 +193,4 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
             }
         }
     }
-
 }
-
-
-
-
-
-
-

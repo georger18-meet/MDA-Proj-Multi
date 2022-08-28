@@ -41,9 +41,10 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
     public OwnershipTransfer Transfer;
     public int OwnerCrew;
 
-    [SerializeField] public bool isBusy;
-    [SerializeField] public int _randomNumber;
-    [SerializeField] public string _randomName;
+    public bool IsInPinuy;
+    public int RandomNumber;
+    public string RandomName;
+
      private void Awake()
      {
          _photonView = GetComponent<PhotonView>();
@@ -55,21 +56,19 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
          _carRb.centerOfMass = new Vector3(_carRb.centerOfMass.x, _centerOfMassOffset, _carRb.centerOfMass.z);
         _carDashboardUI = UIManager.Instance.VehicleUI;
 
+        RandomNumber = GetRandomInt(100,999+1);
+        GameManager.Instance.usedValues.Add(RandomNumber);
 
-
-        _randomNumber = GetRandomInt(100,999+1);
-        GameManager.Instance.usedValues.Add(_randomNumber);
-
-        _randomName = GetRandomstring();
-        GameManager.Instance.usedNamesValues.Add(_randomName);
+        RandomName = GetRandomstring();
+        GameManager.Instance.usedNamesValues.Add(RandomName);
 
         GameManager.Instance.NatanCarList.Add(_photonView);
      }
 
      private void OnDestroy() //When Car is Destroyed Delete from list for using data again later.
     {
-         GameManager.Instance.usedNamesValues.Remove(_randomName);
-         GameManager.Instance.usedValues.Remove(_randomNumber);
+         GameManager.Instance.usedNamesValues.Remove(RandomName);
+         GameManager.Instance.usedValues.Remove(RandomNumber);
          GameManager.Instance.NatanCarList.Remove(_photonView);
      }
     private void Update()
@@ -103,18 +102,18 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         if (_verticalInput > 0)
         {
             moveSpeed = _forwardSpeed;
-            isBusy = true;
+            IsInPinuy = true;
         }
         else if (_verticalInput < 0)
         {
             moveSpeed = -_reverseSpeed;
-            isBusy = true;
+            IsInPinuy = true;
 
         }
         else
         {
             moveSpeed = 0;
-            isBusy = false;
+            IsInPinuy = false;
 
         }
 
@@ -227,12 +226,12 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
-            stream.SendNext(isBusy);
+            stream.SendNext(IsInPinuy);
         }
         else
         {
             transform.position = (Vector3)stream.ReceiveNext();
-            isBusy = (bool)stream.ReceiveNext();
+            IsInPinuy = (bool)stream.ReceiveNext();
         }
     }
 
@@ -273,6 +272,4 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
 
         return GameManager.Instance.usedNamesValues[val];
     }
-
-
 }

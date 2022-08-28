@@ -183,15 +183,15 @@ public class UIManager : MonoBehaviour
                         break;
 
                     case "Pikud10":
-                        if (!_isPikud10MenuOpen && desiredPlayerData.IsCrewLeader)
+                        if (!_isPikud10MenuOpen && desiredPlayerData.AranRole == AranRoles.Pikud10)
                         {
                             Pikud10Menu.transform.position -= _leaderMenuOffset;
-                            _isLeaderMenuOpen = true;
+                            _isPikud10MenuOpen = true;
                         }
-                        else if (_isPikud10MenuOpen && desiredPlayerData.IsCrewLeader)
+                        else if (_isPikud10MenuOpen && desiredPlayerData.AranRole == AranRoles.Pikud10)
                         {
                             Pikud10Menu.transform.position += _leaderMenuOffset;
-                            _isLeaderMenuOpen = false;
+                            _isPikud10MenuOpen = false;
                         }
                         break;
                     default:

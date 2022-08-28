@@ -30,6 +30,7 @@ public class PlayerData : MonoBehaviour
     [field: SerializeField] public Color CrewColor { get; set; }
     [field: SerializeField] public Patient CurrentPatientNearby { get; set; }
     [field: SerializeField] public Animation PlayerAnimation { get; set; }
+    [field: SerializeField] public CarControllerSimple LastCarController { get; set; }
 
     #region MonobehaviourCallbacks
     private void Awake()
