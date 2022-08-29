@@ -104,7 +104,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (_photonView.IsMine)
         {
-            _stateAction.Invoke();
+            if (_stateAction != UseDrivingState)
+            {
+                GetInputAxis();
+            }
+            
             if (_currentCarController != null)
             {
                 //CarCollider = _currentCarController.gameObject.transform.GetChild(2).GetChild(0).gameObject;
@@ -123,11 +127,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        if (_photonView.IsMine && _currentCarController != null)
+        if (_photonView.IsMine)
         {
-            _currentCarController.HandleMotor();
-            _currentCarController.HandleSteering();
-            _currentCarController.UpdateWheels();
+            _stateAction.Invoke();
+
+            if (_currentCarController != null)
+            {
+                _currentCarController.HandleMotor();
+                _currentCarController.HandleSteering();
+                _currentCarController.UpdateWheels();
+            }
         }
     }
     #endregion
@@ -168,7 +177,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             _playerAnimator.SetFloat("Movement Speed", 0f, 0.1f, Time.deltaTime);
             _playerAnimator.SetFloat("Rotatation Speed", 0f, 0.1f, Time.deltaTime);
 
-            GetInputAxis();
+            //GetInputAxis();
 
             if (_isDriving)
             {
@@ -202,7 +211,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Debug.Log("Current State: First Person Idle");
 
-            GetInputAxis();
+            //GetInputAxis();
 
             if (_isDriving)
             {
@@ -237,7 +246,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
            // Debug.Log("Current State: Walking");
 
-            GetInputAxis();
+            //GetInputAxis();
 
             if (_isDriving)
             {
@@ -273,7 +282,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Debug.Log("Current State: First Person Walking");
 
-            GetInputAxis();
+            //GetInputAxis();
 
             if (_isDriving)
             {
@@ -329,7 +338,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Debug.Log("Current State: FlyingIdle");
 
-            GetInputAxis();
+            //GetInputAxis();
 
             if (_isDriving)
             {
@@ -366,7 +375,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Debug.Log("Current State: FlyingMoving");
 
-            GetInputAxis();
+            //GetInputAxis();
 
             if (_input == Vector2.zero)
             {
