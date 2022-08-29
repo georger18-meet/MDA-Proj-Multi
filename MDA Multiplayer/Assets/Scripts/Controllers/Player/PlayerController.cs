@@ -46,8 +46,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private CarControllerSimple _currentCarController;
     public CarControllerSimple CurrentCarController { get => _currentCarController; set => _currentCarController = value; }
 
-    [SerializeField] private Vector2 _mouseSensitivity = new Vector2(60f, 40f);
-    [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 6f, _runningSpeed = 11f, _flyingSpeed = 16f;
+    [SerializeField] private Vector2 _mouseSensitivity = new Vector2(120f, 80f);
+    [SerializeField] private float _turnSpeed = 90f, _walkingSpeed = 1.8f, _runningSpeed = 11f, _flyingSpeed = 19f;
     [SerializeField] private float _flyUpwardsSpeed = 9f;
     private float _stateSpeed;
     private bool _isDriving;

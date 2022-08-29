@@ -2938,7 +2938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8822803001239547992}
   m_LocalRotation: {x: 0.13052598, y: -0, z: -0, w: 0.9914449}
-  m_LocalPosition: {x: -0.5, y: 1.464, z: -2.372}
+  m_LocalPosition: {x: 0, y: 1.714, z: -2.372}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8822803002174255573}
@@ -3137,11 +3137,11 @@ MonoBehaviour:
   _audioListener: {fileID: 5047984663928857288}
   _playerAnimator: {fileID: 8361663717486844079}
   _characterController: {fileID: 8822803002174255574}
-  _mouseSensitivity: {x: 60, y: 40}
+  _mouseSensitivity: {x: 120, y: 80}
   _turnSpeed: 90
   _walkingSpeed: 1.8
   _runningSpeed: 11
-  _flyingSpeed: 16
+  _flyingSpeed: 19
   _flyUpwardsSpeed: 9
   _groundLayer:
     serializedVersion: 2
