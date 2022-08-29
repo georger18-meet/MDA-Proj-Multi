@@ -9,9 +9,8 @@ public class CameraCollisionDetection : MonoBehaviour
     //public Vector3 _dollyDirAdjusted;
     [SerializeField] private Transform _camZoomedTr;
     [SerializeField] private float _minDistance = 0.6f, _maxDistance = 2.9f, _smooth = 10.0f;
-    [SerializeField] private float _distance;
+    [SerializeField] public float _distance;
     private Vector3 _dollyDir;
-    private Vector3 _desiredCamPos;
 
     private void Awake()
     {
@@ -21,12 +20,9 @@ public class CameraCollisionDetection : MonoBehaviour
 
     void Update()
     {
-        _desiredCamPos = transform.parent.TransformPoint(_dollyDir * _maxDistance);
-    }
+        Vector3 desiredCameraPos = transform.parent.TransformPoint(_dollyDir * _maxDistance);
 
-    private void FixedUpdate()
-    {
-        if (Physics.Linecast(transform.parent.position, _desiredCamPos, out RaycastHit hit))
+        if (Physics.Linecast(transform.parent.position, desiredCameraPos, out RaycastHit hit))
         {
             _distance = Mathf.Clamp(hit.distance, _minDistance, _maxDistance);
         }
