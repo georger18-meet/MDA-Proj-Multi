@@ -9,29 +9,31 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
 {
     public static GameManager Instance;
+    
     private PhotonView _photonView;
+    [field: SerializeField] public bool IsAranActive { get; set; }
+
+    [Header("General")]
     public Transform[] IncidentPatientSpawns;
     public List<Transform> CurrentIncidentsTransforms;
+    public List<Patient> AllPatients;
+    public List<Patient> AllTaggedPatients;
+
+    [Header("Aran")]
     public PhotonView Pikud10View; 
     public PhotonView Redua10View; 
     public PhotonView Pinuy10View; 
-    public PhotonView Henyon10View; 
-    public RenderTexture Pikud10TextureRenderer;
-    public Camera Pikud10Camera;
-    public Material LineMaterial;
-    public bool IsAranActive { get; set; }
-
-
+    public PhotonView Henyon10View;
     public List<int> usedValues = new List<int>();
     public List<string> usedNamesValues = new List<string>();
     public List<PhotonView> NatanCarList = new List<PhotonView>();
-
-
     public List<PhotonView> NatanInPinuyCarList = new List<PhotonView>();
     public List<PhotonView> NatanFreeCarList = new List<PhotonView>();
 
-    //[SerializeField] private int multiplayerScene;
-    //[SerializeField] private int currentScene;
+    [Header("Pikud10")]
+    public Camera Pikud10Camera;
+    public Material LineMaterial;
+    public RenderTexture Pikud10TextureRenderer;
 
     private void Awake()
     {
@@ -49,20 +51,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
 
     }
 
-    //public override void OnEnable()
-    //{
-    //    base.OnEnable();
-    //    PhotonNetwork.AddCallbackTarget(this);
-    //    SceneManager.sceneLoaded += OnFinshedLoading;
-    //}
-
-    //public override void OnDisable()
-    //{
-    //    base.OnDisable();
-    //    PhotonNetwork.RemoveCallbackTarget(this);
-    //    SceneManager.sceneLoaded -= OnFinshedLoading;
-    //}
-
     void Start()
     {
         _photonView = GetComponent<PhotonView>();
@@ -73,14 +61,16 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            foreach (var car in NatanCarList)
+            foreach (PhotonView car in NatanCarList)
             {
                 Debug.Log(car.GetComponent<CarControllerSimple>().RandomNumber+" "+ car.GetComponent<CarControllerSimple>().RandomName);
-                
             }
         }
 
-        UpdatePinuyList();
+        if (IsAranActive)
+        {
+            UpdatePinuyList();
+        }
     }
 
     private void OnEscape(bool paused)
@@ -103,25 +93,6 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
         }
     }
 
-    //public override void OnJoinedRoom()
-    //{
-    //    base.OnJoinedRoom();
-    //    Debug.Log("We are now in a room");
-      
-    //    OnEscape(false);
-
-    //}
-
-    //public void ExitGame()
-    //{
-    //    SceneManager.LoadScene(0);
-    //    //#if UNITY_EDITOR
-    //    //        UnityEditor.EditorApplication.isPlaying = false;
-    //    //#else
-    //    //         Application.Quit();
-    //    //#endif
-    //}
-
     public void DisconnectPlayer()
     {
         StartCoroutine(DisconnectAndLoad());
@@ -134,17 +105,13 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
          while (PhotonNetwork.IsConnected)
             yield return null;
 
-         
         SceneManager.LoadScene(0);
     }
-
- 
 
     public void OnPlayerDisconnect()
     {
         Debug.Log("attempting to Leave Room and Disconnecting");
 
-    
         DisconnectPlayer();
     }
 
@@ -174,6 +141,16 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     //}
 
 
+    public void UpdateTaggedPatientList()
+    {
+        
+    }
+
+    public void UpdatePinuyList()
+    {
+        _photonView.RPC("UpdatePinuyList_RPC", RpcTarget.AllBufferedViaServer);
+    }
+
     [PunRPC]
     public void UpdatePinuyList_RPC()
     {
@@ -194,11 +171,5 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
                     NatanFreeCarList.Add(car);
             }
         }
-    }
-
-
-    public void UpdatePinuyList()
-    {
-        _photonView.RPC("UpdatePinuyList_RPC", RpcTarget.AllBufferedViaServer);
     }
 }

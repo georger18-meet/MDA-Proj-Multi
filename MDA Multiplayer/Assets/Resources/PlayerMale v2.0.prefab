@@ -3041,13 +3041,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camZoomedTr: {fileID: 3005804813768933254}
-  _camOriginPosOffset: {x: 0, y: 1, z: -5}
-  minDistance: 0.6
-  maxDistance: 2.9
-  smooth: 10
-  dollyDir: {x: 0, y: 0, z: 0}
-  dollyDirAdjusted: {x: 0, y: 0, z: 0}
-  distance: 0
+  _minDistance: 0.6
+  _maxDistance: 2.9
+  _smooth: 10
+  _distance: 0
 --- !u!1 &8822803002174255568
 GameObject:
   m_ObjectHideFlags: 0

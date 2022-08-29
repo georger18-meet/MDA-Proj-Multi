@@ -13,17 +13,8 @@ public class ActionsManager : MonoBehaviour
     public static ActionsManager Instance;
 
     [Header("Photon")]
-    public List<PhotonView> AllPatientsPhotonViews;
     public List<PhotonView> AllPlayersPhotonViews;
     public List<PlayerData> AllPlayerData;
-
-
-    public List<PhotonView> AllPlayersPhotonViews2;
-
-
-    #region Data References
-    [Header("Data & Scripts")]
-    public List<Patient> AllPatients;
 
     [Header("VehiclesPrefabs")]
     //[SerializeField] private GameObject _ambulancePrefab;
@@ -49,8 +40,6 @@ public class ActionsManager : MonoBehaviour
 
     [Header("Vests")]
     public MeshFilter[] Vests;
-    #endregion
-
     #endregion
 
     [Header("Crews")]

@@ -78,16 +78,18 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
-        //players = new List<PlayerController>();
-        //PatientData.InitializeMeasurements();
-        //int[] measurementsArray = (int[])Enum.GetValues(typeof(Measurements));
-        //PatientData.Measurements = measurementsArray.ToList();
-        ActionsManager.Instance.AllPatients.Add(this);
-        ActionsManager.Instance.AllPatientsPhotonViews.Add(PhotonView);
+        GameManager.Instance.AllPatients.Add(this);
         MonitorWindow = UIManager.Instance.MonitorParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
 
-
         UIManager.Instance.PatientInfoParent = GameManager.Instance.IsAranActive ? UIManager.Instance.TagMiunMenu : UIManager.Instance.PatientMenu;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.AllPatients.Remove(this);
+
+        if (GameManager.Instance.AllTaggedPatients.Contains(this))
+            GameManager.Instance.AllTaggedPatients.Remove(this);
     }
     #endregion
 
@@ -220,6 +222,12 @@ public class Patient : MonoBehaviour
                     continue;
                 }
                 AllUsersTreatedThisPatient.Add(currentPlayerData);
+
+                // add patient to tagged list
+                if (!GameManager.Instance.AllTaggedPatients.Contains(this) && GameManager.Instance.IsAranActive)
+                {
+                    GameManager.Instance.AllTaggedPatients.Add(this);
+                }
             }
 
             if (TreatingCrews.Contains(currentPlayerData.CrewIndex))
