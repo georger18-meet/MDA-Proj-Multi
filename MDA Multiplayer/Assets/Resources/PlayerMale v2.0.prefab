@@ -2923,6 +2923,7 @@ GameObject:
   - component: {fileID: 8822803001239547997}
   - component: {fileID: 8822803001239547998}
   - component: {fileID: 4413357399742692981}
+  - component: {fileID: 3860498511370288156}
   m_Layer: 0
   m_Name: Player MainCamera
   m_TagString: MainCamera
@@ -3035,7 +3036,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8822803001239547992}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfd2d1721978a1141b98aa106f39abc5, type: 3}
   m_Name: 
@@ -3053,6 +3054,23 @@ MonoBehaviour:
   AdjustedHeightOffset: 0.45
   DrawDesiredCollisionLines: 1
   DrawAdjustedCollisionLines: 1
+--- !u!114 &3860498511370288156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822803001239547992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991909cbe6d32dd4994e2b44f15f90f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 0.6
+  maxDistance: 2.9
+  smooth: 10
+  dollyDirAdjusted: {x: 0, y: 0, z: 0}
+  distance: 0
 --- !u!1 &8822803002174255568
 GameObject:
   m_ObjectHideFlags: 0
