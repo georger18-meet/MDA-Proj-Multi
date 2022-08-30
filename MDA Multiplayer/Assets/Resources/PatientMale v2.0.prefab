@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -599,6 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -951,6 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -1167,6 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -1412,6 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -1597,6 +1602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -1738,6 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -1879,6 +1886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:
@@ -2020,6 +2028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776dafb0c732397458b49010457131d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disabledWhileUsed: 0
   EventToCall:
     m_PersistentCalls:
       m_Calls:

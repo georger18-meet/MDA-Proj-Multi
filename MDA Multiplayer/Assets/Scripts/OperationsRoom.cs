@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -7,24 +8,30 @@ using UnityEngine.UI;
 
 public class OperationsRoom : MonoBehaviour, IPunObservable
 {
-    public GameObject MokdnMenuUI;
     private Coroutine updatePlayerListCoroutine;
     private PhotonView _photonView;
     private OwnershipTransfer _transfer;
     [SerializeField] private bool isUsed;
 
+    [Header("General")]
+    public GameObject MokdnMenuUI;
+
+    [Header("Pikud 10")]
     [SerializeField] private GameObject _DropDown;
     [SerializeField] private TMP_Dropdown _playerListDropDown;
 
     [Header("Vehicle Lists")]
-    [SerializeField] private List<PhotonView> _natanList, _ambulanceList;
+    [SerializeField] private List<PhotonView> _natanList = new List<PhotonView>(), _ambulanceList = new List<PhotonView>();
+    [SerializeField] private GameObject _vehicleListRow;
+    [SerializeField] private Transform _ambulanceListContent, _natanListContent;
 
     [Header("Tagged Patient List")]
     [SerializeField] private List<Patient> _taggedPatientList;
     [SerializeField] private GameObject _taggedPatientListRow;
     [SerializeField] private Transform _taggedPatientListContent;
 
-    void Start()
+    #region MonobehaviourCallbacks
+    private void Start()
     {
         _transfer = GetComponent<OwnershipTransfer>();
         _photonView = GetComponent<PhotonView>();
@@ -42,7 +49,23 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
 
         }
     }
+    #endregion
 
+    #region Private Methods
+    private void InteractUICrew()
+    {
+        if (isUsed)
+        {
+            MokdnMenuUI.GetComponentInParent<CanvasGroup>().interactable = true;
+
+        }
+    }
+    #endregion
+
+    #region Public Methods
+    #endregion
+
+    #region OnClick
     public int GetPikud10Index()
     {
         int Index = 0;
@@ -56,19 +79,44 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
         }
         return Index;
     }
+    public void ShowMokdanMenu()
+    {
+        _transfer.TvOwner();
+        _photonView.RPC("ShowMokdanMenu_RPC", RpcTarget.AllBufferedViaServer);
+        updatePlayerListCoroutine = StartCoroutine(HandleDropDownUpdates(0.5f));
 
+    }
+    public void RefreshPatientList()
+    {
+        _photonView.RPC("UpdateTaggedPatientListRPC", RpcTarget.AllViaServer);
+    }
+    public void RefreshVehicleLists()
+    {
+        _photonView.RPC("UpdateVehicleListsRPC", RpcTarget.AllViaServer);
+    }
     public void GivePikudRoleClick()
     {
         _photonView.RPC("GivePikudRole", RpcTarget.AllBufferedViaServer, GetPikud10Index());
     }
+    public void CloseMokdanRoomMenu()
+    {
+        StopCoroutine(updatePlayerListCoroutine);
+        _photonView.RPC("CloseMokdanMenu_RPC", RpcTarget.AllBufferedViaServer);
+    }
+    public void ReTagPatient(Patient patientToReTag)
+    {
+        patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+        UIManager.Instance.JoinPatientPopUp.SetActive(true);
+    }
+    #endregion
 
+    #region PunRPC
     [PunRPC]
     public void ShowMokdanMenu_RPC()
     {
         MokdnMenuUI.SetActive(true);
         isUsed = true;
     }
-
 
     [PunRPC]
     public void CloseMokdanMenu_RPC()
@@ -77,59 +125,13 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
         MokdnMenuUI.SetActive(false);
     }
 
-
-    private void InteractUICrew()
-    {
-        if (isUsed)
-        {
-            MokdnMenuUI.GetComponentInParent<CanvasGroup>().interactable = true;
-
-        }
-    }
-
-    public void ShowMokdanMenu()
-    {
-        _transfer.TvOwner();
-        _photonView.RPC("ShowMokdanMenu_RPC", RpcTarget.AllBufferedViaServer);
-        updatePlayerListCoroutine = StartCoroutine(HandleDropDownUpdates(0.5f));
-
-    }
-
-    public void CloseMokdanRoomMenu()
-    {
-        StopCoroutine(updatePlayerListCoroutine);
-        _photonView.RPC("CloseMokdanMenu_RPC", RpcTarget.AllBufferedViaServer);
-    }
-
-
-
-    IEnumerator HandleDropDownUpdates(float nextUpdate)
-    {
-        while (true)
-        {
-            if (ActionsManager.Instance.AllPlayersPhotonViews.Count != _playerListDropDown.options.Count)
-            {
-                _photonView.RPC("DropdownPlayersNickNamesPikud", RpcTarget.AllBufferedViaServer);
-            }
-
-            yield return new WaitForSeconds(nextUpdate);
-        }
-    }
-
-    public void ReTagPatient(Patient patientToReTag)
-    {
-        patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
-        UIManager.Instance.JoinPatientPopUp.SetActive(true);
-    }
-
-    public void RefreshPatientList()
-    {
-        _photonView.RPC("UpdateTaggedPatientListRPC", RpcTarget.AllViaServer);
-    }
-
     [PunRPC]
     private void UpdateTaggedPatientListRPC()
     {
+        for (int i = 0; i < _taggedPatientListContent.childCount; i++)
+        {
+            Destroy(_taggedPatientListContent.GetChild(i).gameObject);
+        }
         _taggedPatientList.Clear();
         _taggedPatientList = GameManager.Instance.AllTaggedPatients;
 
@@ -139,15 +141,87 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
             Transform taggedPatientListRowTr = taggedPatientListRow.transform;
             Patient taggedPatient = _taggedPatientList[i];
 
-            string name = _taggedPatientList[i].NewPatientData.Name;
-            string sureName = _taggedPatientList[i].NewPatientData.SureName;
+            string name = taggedPatient.NewPatientData.Name;
+            string sureName = taggedPatient.NewPatientData.SureName;
             //string patientCondition = GameManager.Instance.AllTaggedPatients[i].NewPatientData.Co
 
-            Debug.Log(i);
             taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
             taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
             taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient); });
         }  
+    }
+
+    [PunRPC]
+    private void UpdateVehicleListsRPC()
+    {
+        //_ambulanceList.Clear();
+        _natanList.Clear();
+
+        /* Ambulance Clear gameObjects
+         * for (int i = 0; i < _ambulanceListContent.childCount; i++)
+         * {
+         *     Destroy(_ambulanceListContent.GetChild(i).gameObject);
+         * }
+         */
+
+        for (int i = 0; i < _natanListContent.childCount; i++)
+        {
+            Destroy(_natanListContent.GetChild(i).gameObject);
+        }
+
+        //_ambulanceList.AddRange(GameManager.Instance.AmbulanceList);
+        _natanList.AddRange(GameManager.Instance.NatanCarList);
+
+        /* Ambulance Logic
+         * for (int i = 0; i < _ambulanceList.Count; i++)
+         * {
+         *     GameObject vehicleListRow = Instantiate(_vehicleListRow, _amb
+         *     Transform vehicleListRowTr = vehicleListRow.transform;
+         *     PhotonView ambulance = _natanList[i];
+         *     CarControllerSimple ambulanceController = ambulance.GetCompon
+         * 
+         *     string name = ambulanceController.RandomName;
+         *     int num = ambulanceController.RandomNumber;
+         * 
+         *     vehicleListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().
+         * 
+         *     if (ambulanceController.IsInPinuy)
+         *     {
+         *         vehicleListRowTr.GetChild(1).gameObject.SetActive(true);
+         *         vehicleListRowTr.GetChild(2).gameObject.SetActive(false);
+         *     }
+         *     else
+         *     {
+         *         vehicleListRowTr.GetChild(1).gameObject.SetActive(false);
+         *         vehicleListRowTr.GetChild(2).gameObject.SetActive(true);
+         *     }
+         * }
+         */
+
+        for (int i = 0; i < _natanList.Count; i++)
+        {
+            GameObject vehicleListRow = Instantiate(_vehicleListRow, _natanListContent);
+            Transform vehicleListRowTr = vehicleListRow.transform;
+            PhotonView natan = _natanList[i];
+            CarControllerSimple natanController = natan.GetComponent<CarControllerSimple>();
+
+            string name = natanController.RandomName;
+            int num = natanController.RandomNumber;
+
+            vehicleListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {num}";
+
+            if (natanController.IsInPinuy)
+            {
+                vehicleListRowTr.GetChild(1).gameObject.SetActive(true);
+                vehicleListRowTr.GetChild(2).gameObject.SetActive(false);
+            }
+            else
+            {
+                vehicleListRowTr.GetChild(1).gameObject.SetActive(false);
+                vehicleListRowTr.GetChild(2).gameObject.SetActive(true);
+            }
+        }
+
     }
 
     [PunRPC]
@@ -163,7 +237,6 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
        
     }
 
-
     [PunRPC]
     public void GivePikudRole(int index)
     {
@@ -171,10 +244,25 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
         chosenPlayerData.IsPikud10 = true;
         chosenPlayerData.AssignAranRole(AranRoles.Pikud10);
     }
+    #endregion
+
+    #region Coroutines
+    IEnumerator HandleDropDownUpdates(float nextUpdate)
+    {
+        while (true)
+        {
+            if (ActionsManager.Instance.AllPlayersPhotonViews.Count != _playerListDropDown.options.Count)
+            {
+                _photonView.RPC("DropdownPlayersNickNamesPikud", RpcTarget.AllBufferedViaServer);
+            }
+
+            yield return new WaitForSeconds(nextUpdate);
+        }
+    }
+    #endregion
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
         if (stream.IsWriting)
         {
             stream.SendNext(_playerListDropDown.value);
@@ -184,5 +272,4 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
             _playerListDropDown.value = (int)stream.ReceiveNext();
         }
     }
-
 }

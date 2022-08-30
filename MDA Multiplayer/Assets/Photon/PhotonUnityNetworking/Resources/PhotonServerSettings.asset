@@ -105,6 +105,7 @@ MonoBehaviour:
   - StartAran_RPC
   - StopAran_RPC
   - UpdateTaggedPatientListRPC
+  - UpdateVehicleListsRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
