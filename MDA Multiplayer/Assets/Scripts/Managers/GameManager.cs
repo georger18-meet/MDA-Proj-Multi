@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public Material LineMaterial;
     public RenderTexture Pikud10TextureRenderer;
 
+    [Header("Pinuy10")]
+    public GameObject TaggedPatientListRow;
+    public GameObject UrgentEvacuationCanvas;
+
 
 
     private void Awake()

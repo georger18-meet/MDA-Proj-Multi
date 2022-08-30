@@ -51,7 +51,6 @@ public class UIManager : MonoBehaviour
     [Header("Pinuy10")]
     public GameObject Pinuy10Menu;
     public Button Pinuy10MenuHandle;
-    public GameObject TaggedPatientListRow;
     public Transform TaggedPatientListContent;
     public Button RefresTaghButton;
 

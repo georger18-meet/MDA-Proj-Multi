@@ -31,6 +31,7 @@ public class Patient : MonoBehaviour
 
     [Header("World Canvas")]
     public GameObject WorldCanvas;
+    public GameObject UrgentEvacuationCanvas;
     #endregion
 
     #region GameObjects

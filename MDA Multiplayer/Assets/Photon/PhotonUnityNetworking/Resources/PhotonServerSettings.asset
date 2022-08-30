@@ -106,6 +106,7 @@ MonoBehaviour:
   - StopAran_RPC
   - UpdateTaggedPatientListRPC
   - UpdateVehicleListsRPC
+  - UrgentEvactionRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

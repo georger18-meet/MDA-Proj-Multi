@@ -8,22 +8,22 @@ using System.Linq;
 
 public class Pinuy10 : MonoBehaviour
 {
-    private PhotonView _photonView;
-
-    private bool _isPinuy10MenuOpen;
-    public Button TopMenuHandle, RefreshButton;
-    public GameObject Pinuy10Menu;
-
-
-    [SerializeField] private List<Patient> _taggedPatientList;
+    private PhotonView _photonView => GetComponent<PhotonView>();
+    
+    [SerializeField] private List<Patient> _taggedPatientList = new List<Patient>();
     [SerializeField] private GameObject _taggedPatientListRow;
     [SerializeField] private Transform _taggedPatientListContent;
 
+    private Patient _currentTaggedPatient;
+    private bool _isPinuy10MenuOpen;
+
+    public Button TopMenuHandle, RefreshButton;
+    public GameObject Pinuy10Menu;
+
     void Start()
     {
-        _photonView = GetComponent<PhotonView>();
-
         Init();
+        GameManager.Instance.Pinuy10View = _photonView;
     }
 
     public void Init()
@@ -31,8 +31,8 @@ public class Pinuy10 : MonoBehaviour
         UIManager.Instance.TeamLeaderMenu.SetActive(false);
         UIManager.Instance.Pinuy10Menu.SetActive(true);
 
-
-        _taggedPatientListRow = UIManager.Instance.TaggedPatientListRow;
+        _taggedPatientList.AddRange(GameManager.Instance.AllTaggedPatients);
+        _taggedPatientListRow = GameManager.Instance.TaggedPatientListRow;
         _taggedPatientListContent = UIManager.Instance.TaggedPatientListContent;
         Pinuy10Menu = UIManager.Instance.Pinuy10Menu;
         TopMenuHandle = UIManager.Instance.Pinuy10MenuHandle;
@@ -60,14 +60,11 @@ public class Pinuy10 : MonoBehaviour
         TopMenuHandle.onClick.RemoveAllListeners();
         TopMenuHandle.onClick.AddListener(delegate { OpenClosePinuy10Menu(); });
     }
-
-    public void ReTagPatient(Patient patientToReTag)
+    public void UrgentEvacuation(Patient currentTaggedPatient)
     {
-        patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
-        UIManager.Instance.JoinPatientPopUp.SetActive(true);
+        _currentTaggedPatient = currentTaggedPatient;
+        _photonView.RPC("UrgentEvactionRPC", RpcTarget.AllViaServer);
     }
-
-
     public void RefreshPatientList()
     {
         _photonView.RPC("UpdateTaggedPatientListRPC", RpcTarget.AllViaServer);
@@ -80,9 +77,9 @@ public class Pinuy10 : MonoBehaviour
         {
             Destroy(_taggedPatientListContent.GetChild(i).gameObject);
         }
+
         _taggedPatientList.Clear();
         _taggedPatientList.AddRange(GameManager.Instance.AllTaggedPatients);
-       // _taggedPatientList = GameManager.Instance.AllTaggedPatients;
 
         for (int i = 0; i < _taggedPatientList.Count; i++)
         {
@@ -96,7 +93,13 @@ public class Pinuy10 : MonoBehaviour
 
             taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
             taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
-            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient); });
+            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { UrgentEvacuation(taggedPatient); });
         }
+    }
+
+    [PunRPC]
+    private void UrgentEvactionRPC()
+    {
+        _currentTaggedPatient.UrgentEvacuationCanvas.SetActive(true);
     }
 }

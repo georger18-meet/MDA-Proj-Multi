@@ -12,6 +12,11 @@ public class Refua10 : MonoBehaviour
     [SerializeField] private GameObject _taggedPatientListRow;
     [SerializeField] private Transform _taggedPatientListContent;
 
+    private void Start()
+    {
+        GameManager.Instance.Redua10View = _photonView;
+    }
+
     public void ReTagPatient(Patient patientToReTag, TextMeshProUGUI patientNameTMP)
     {
         patientNameTMP.color = Color.red;

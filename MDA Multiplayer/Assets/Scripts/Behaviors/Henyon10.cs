@@ -7,13 +7,11 @@ using UnityEngine.UI;
 
 public class Henyon10 : MonoBehaviour
 {
-
-
+    private PhotonView _photonView => GetComponent<PhotonView>();
 
     private bool _isHenyon10MenuOpen;
     public Button TopMenuHandle,ShowCarsMenu,RefreshButton;
     public GameObject Henyon10Menu;
-    private PhotonView _photonView;
 
     [SerializeField] private Transform _ambulanceListContent, _natanListContent;
     [SerializeField] private GameObject _vehicleListRow;
@@ -21,7 +19,7 @@ public class Henyon10 : MonoBehaviour
 
     void Start()
     {
-        _photonView = GetComponent<PhotonView>();
+        GameManager.Instance.Henyon10View = _photonView;
         Init();
     }
 
@@ -103,6 +101,5 @@ public class Henyon10 : MonoBehaviour
                 vehicleListRowTr.GetChild(2).gameObject.SetActive(true);
             }
         }
-
     }
 }
