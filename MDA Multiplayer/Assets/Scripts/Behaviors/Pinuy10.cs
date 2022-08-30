@@ -63,7 +63,7 @@ public class Pinuy10 : MonoBehaviour
     public void UrgentEvacuation(Patient currentTaggedPatient)
     {
         _currentTaggedPatient = currentTaggedPatient;
-        _photonView.RPC("UrgentEvactionRPC", RpcTarget.AllViaServer);
+        currentTaggedPatient.PhotonView.RPC("UrgentEvactionRPC", RpcTarget.AllViaServer);
     }
     public void RefreshPatientList()
     {
@@ -95,11 +95,5 @@ public class Pinuy10 : MonoBehaviour
             taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
             taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { UrgentEvacuation(taggedPatient); });
         }
-    }
-
-    [PunRPC]
-    private void UrgentEvactionRPC()
-    {
-        _currentTaggedPatient.UrgentEvacuationCanvas.SetActive(true);
     }
 }

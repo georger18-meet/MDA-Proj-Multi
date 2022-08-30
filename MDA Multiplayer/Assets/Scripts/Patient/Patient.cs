@@ -427,5 +427,11 @@ public class Patient : MonoBehaviour
         }
         PropList[propIndex].SetActive(true);
     }
+
+    [PunRPC]
+    private void UrgentEvactionRPC()
+    {
+        UrgentEvacuationCanvas.SetActive(true);
+    }
     #endregion
 }
