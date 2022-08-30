@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     [SerializeField] private Vector3 _leaderMenuOffset;
-    [SerializeField] private bool _isLeaderMenuOpen, _isPikud10MenuOpen, _isHenyon10MenuOpen;
+    [SerializeField] private bool _isLeaderMenuOpen, _isPikud10MenuOpen, _isHenyon10MenuOpen, _isPinuy10MenuOpen;
 
     #region Player UI
     [Header("Player UI Parents")]
@@ -48,6 +48,12 @@ public class UIManager : MonoBehaviour
     public GameObject CarPrefab;
     public Transform AmbulanceListContent, NatanListContent;
 
+    [Header("Pinuy10")]
+    public GameObject Pinuy10Menu;
+    public Button Pinuy10MenuHandle;
+    public GameObject TaggedPatientListRow;
+    public Transform TaggedPatientListContent;
+    public Button RefresTaghButton;
 
 
     #endregion
@@ -215,6 +221,18 @@ public class UIManager : MonoBehaviour
                         {
                             Henyon10Menu.transform.position += _leaderMenuOffset;
                             _isHenyon10MenuOpen = false;
+                        }
+                        break;
+                    case "Pinuy10":
+                        if (!_isPinuy10MenuOpen && desiredPlayerData.AranRole == AranRoles.Pinuy10)
+                        {
+                            Pinuy10Menu.transform.position -= _leaderMenuOffset;
+                            _isPinuy10MenuOpen = true;
+                        }
+                        else if (_isPinuy10MenuOpen && desiredPlayerData.AranRole == AranRoles.Pinuy10)
+                        {
+                            Pinuy10Menu.transform.position += _leaderMenuOffset;
+                            _isPinuy10MenuOpen = false;
                         }
                         break;
                     default:
