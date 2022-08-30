@@ -12,6 +12,7 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
     private bool _isBreaking;
     private bool _isMovingBackwards;
     [SerializeField] public bool _isDrivable;
+    [SerializeField] public bool IsNatan;
 
     [SerializeField] private float _forwardSpeed = 20;
     [SerializeField] private float _reverseSpeed = 15;
@@ -62,7 +63,10 @@ public class CarControllerSimple : MonoBehaviourPunCallbacks, IPunObservable
         RandomName = GetRandomstring();
         GameManager.Instance.usedNamesValues.Add(RandomName);
 
-        GameManager.Instance.NatanCarList.Add(_photonView);
+        if (IsNatan)
+            GameManager.Instance.NatanCarList.Add(_photonView);
+        //else
+        //    GameManager.Instance.AmbulanceList.Add(_photonView);
      }
 
      private void OnDestroy() //When Car is Destroyed Delete from list for using data again later.
