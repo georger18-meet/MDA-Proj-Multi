@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
     [Header("Patient UI Parents")]
     public GameObject JoinPatientPopUp;
     public GameObject PatientInfoParent, ActionLogParent, MonitorParent, TagMiunMenu, PatientMenu;
+    public Button TagMiunSubmitBtn;
 
     [Header("Patient UI Texts")]
     public TextMeshProUGUI SureName;

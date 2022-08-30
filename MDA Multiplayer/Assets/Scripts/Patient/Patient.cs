@@ -160,6 +160,7 @@ public class Patient : MonoBehaviour
     public void OnInteracted()
     {
         ActionsManager.Instance.OnPatientClicked();
+        UIManager.Instance.TagMiunSubmitBtn.onClick.AddListener(delegate { AddToTaggedPatientsList(); });
     }
 
     public void SetUnusedBandages(bool enableBandage)
@@ -192,6 +193,14 @@ public class Patient : MonoBehaviour
     {
         NewPatientData = new NewPatientData(newPatientDataFromSO);
     }
+
+    public void AddToTaggedPatientsList()
+    {
+        if (!GameManager.Instance.AllTaggedPatients.Contains(this) && GameManager.Instance.IsAranActive)
+        {
+            GameManager.Instance.AllTaggedPatients.Add(this);
+        }
+    }
     #endregion
 
     #region PunRPC invoke by Patient
@@ -222,12 +231,6 @@ public class Patient : MonoBehaviour
                     continue;
                 }
                 AllUsersTreatedThisPatient.Add(currentPlayerData);
-
-                // add patient to tagged list
-                if (!GameManager.Instance.AllTaggedPatients.Contains(this) && GameManager.Instance.IsAranActive)
-                {
-                    GameManager.Instance.AllTaggedPatients.Add(this);
-                }
             }
 
             if (TreatingCrews.Contains(currentPlayerData.CrewIndex))

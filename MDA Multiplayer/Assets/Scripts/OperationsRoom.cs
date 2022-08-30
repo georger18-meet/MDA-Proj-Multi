@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OperationsRoom : MonoBehaviour, IPunObservable
 {
@@ -15,6 +16,13 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
     [SerializeField] private GameObject _DropDown;
     [SerializeField] private TMP_Dropdown _playerListDropDown;
 
+    [Header("Vehicle Lists")]
+    [SerializeField] private List<PhotonView> _natanList, _ambulanceList;
+
+    [Header("Tagged Patient List")]
+    [SerializeField] private List<Patient> _taggedPatientList;
+    [SerializeField] private GameObject _taggedPatientListRow;
+    [SerializeField] private Transform _taggedPatientListContent;
 
     void Start()
     {
@@ -108,7 +116,37 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
         }
     }
 
+    public void ReTagPatient(Patient patientToReTag)
+    {
+        patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+        UIManager.Instance.JoinPatientPopUp.SetActive(true);
+    }
 
+    public void RefreshPatientList()
+    {
+        _photonView.RPC("UpdateTaggedPatientListRPC", RpcTarget.AllViaServer);
+    }
+
+    [PunRPC]
+    private void UpdateTaggedPatientListRPC()
+    {
+        _taggedPatientList.Clear();
+        _taggedPatientList = GameManager.Instance.AllTaggedPatients;
+
+        for (int i = 0; i < _taggedPatientList.Count; i++)
+        {
+            GameObject taggedPatientListRow = Instantiate(_taggedPatientListRow, _taggedPatientListContent);
+            Transform taggedPatientListRowTr = taggedPatientListRow.transform;
+
+            string name = _taggedPatientList[i].NewPatientData.Name;
+            string sureName = _taggedPatientList[i].NewPatientData.SureName;
+            //string patientCondition = GameManager.Instance.AllTaggedPatients[i].NewPatientData.Co
+
+            taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
+            taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
+            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(_taggedPatientList[i]); });
+        }  
+    }
 
     [PunRPC]
     private void DropdownPlayersNickNamesPikud()
