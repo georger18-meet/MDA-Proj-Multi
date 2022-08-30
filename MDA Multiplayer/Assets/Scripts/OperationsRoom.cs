@@ -263,7 +263,6 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
         if (stream.IsWriting)
         {
             stream.SendNext(_playerListDropDown.value);
