@@ -137,14 +137,16 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
         {
             GameObject taggedPatientListRow = Instantiate(_taggedPatientListRow, _taggedPatientListContent);
             Transform taggedPatientListRowTr = taggedPatientListRow.transform;
+            Patient taggedPatient = _taggedPatientList[i];
 
             string name = _taggedPatientList[i].NewPatientData.Name;
             string sureName = _taggedPatientList[i].NewPatientData.SureName;
             //string patientCondition = GameManager.Instance.AllTaggedPatients[i].NewPatientData.Co
 
+            Debug.Log(i);
             taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
             taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
-            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(_taggedPatientList[i]); });
+            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient); });
         }  
     }
 
