@@ -103,8 +103,9 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
         StopCoroutine(updatePlayerListCoroutine);
         _photonView.RPC("CloseMokdanMenu_RPC", RpcTarget.AllBufferedViaServer);
     }
-    public void ReTagPatient(Patient patientToReTag)
+    public void ReTagPatient(Patient patientToReTag, TextMeshProUGUI patientNameTMP)
     {
+        patientNameTMP.color = Color.red;
         patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
         UIManager.Instance.JoinPatientPopUp.SetActive(true);
     }
@@ -147,7 +148,7 @@ public class OperationsRoom : MonoBehaviour, IPunObservable
 
             taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
             taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
-            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient); });
+            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient, taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>()); });
         }  
     }
 

@@ -12,8 +12,9 @@ public class Refua10 : MonoBehaviour
     [SerializeField] private GameObject _taggedPatientListRow;
     [SerializeField] private Transform _taggedPatientListContent;
 
-    public void ReTagPatient(Patient patientToReTag)
+    public void ReTagPatient(Patient patientToReTag, TextMeshProUGUI patientNameTMP)
     {
+        patientNameTMP.color = Color.red;
         patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
         UIManager.Instance.JoinPatientPopUp.SetActive(true);
     }
@@ -43,7 +44,7 @@ public class Refua10 : MonoBehaviour
             Debug.Log(i);
             taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
             taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
-            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient); });
+            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient, taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>()); });
         }
     }
 }
