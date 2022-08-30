@@ -1,18 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
+using TMPro;
 
 public class Refua10 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PhotonView _photonView => GetComponent<PhotonView>();
+
+    [SerializeField] private GameObject _taggedPatientListRow;
+    [SerializeField] private Transform _taggedPatientListContent;
+
+    public void ReTagPatient(Patient patientToReTag)
     {
-        
+        patientToReTag.PhotonView.RPC("UpdatePatientInfoDisplay", RpcTarget.AllBufferedViaServer);
+        UIManager.Instance.JoinPatientPopUp.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RefreshPatientList()
     {
-        
+        _photonView.RPC("UpdateTaggedPatientListRPC", RpcTarget.AllViaServer);
+    }
+
+    [PunRPC]
+    private void UpdateTaggedPatientListRPC()
+    {
+        List<Patient> taggedPatientList = new List<Patient>();
+        taggedPatientList.Clear();
+        taggedPatientList = GameManager.Instance.AllTaggedPatients;
+
+        for (int i = 0; i < taggedPatientList.Count; i++)
+        {
+            GameObject taggedPatientListRow = Instantiate(_taggedPatientListRow, _taggedPatientListContent);
+            Transform taggedPatientListRowTr = taggedPatientListRow.transform;
+            Patient taggedPatient = taggedPatientList[i];
+
+            string name = taggedPatientList[i].NewPatientData.Name;
+            string sureName = taggedPatientList[i].NewPatientData.SureName;
+            //string patientCondition = GameManager.Instance.AllTaggedPatients[i].NewPatientData.Co
+
+            Debug.Log(i);
+            taggedPatientListRowTr.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{name} {sureName}";
+            taggedPatientListRowTr.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"enoN";
+            taggedPatientListRowTr.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { ReTagPatient(taggedPatient); });
+        }
     }
 }
