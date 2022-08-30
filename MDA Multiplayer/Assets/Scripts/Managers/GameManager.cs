@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public List<Patient> AllTaggedPatients;
 
     [Header("Aran")]
-    public PhotonView Pikud10View;
-    public PhotonView Redua10View;
-    public PhotonView Pinuy10View;
+    public PhotonView Pikud10View; 
+    public PhotonView Redua10View; 
+    public PhotonView Pinuy10View; 
     public PhotonView Henyon10View;
     public List<int> usedValues = new List<int>();
     public List<string> usedNamesValues = new List<string>();
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public Camera Pikud10Camera;
     public Material LineMaterial;
     public RenderTexture Pikud10TextureRenderer;
+
+
 
     private void Awake()
     {

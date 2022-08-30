@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     [SerializeField] private Vector3 _leaderMenuOffset;
-    [SerializeField] private bool _isLeaderMenuOpen, _isPikud10MenuOpen;
+    [SerializeField] private bool _isLeaderMenuOpen, _isPikud10MenuOpen, _isHenyon10MenuOpen;
 
     #region Player UI
     [Header("Player UI Parents")]
@@ -40,6 +40,16 @@ public class UIManager : MonoBehaviour
     public Button Pikud10MenuHandle;
     public Button AssignRefua10, AssignPinuy10, AssignHenyon10;
     public Button MarkUrgent, MarkUnUrgent, MarkVehicles, MarkGeneral, MarkDeceased, MarkBomb;
+
+    [Header("Henyon10")]
+    public GameObject Henyon10Menu;
+    public Button Henyon10MenuHandle;
+    public Button Henyon10CarsMenu,RefreshButton;
+    public GameObject CarPrefab;
+    public Transform AmbulanceListContent, NatanListContent;
+
+
+
     #endregion
 
     #region Patient UI 
@@ -193,6 +203,18 @@ public class UIManager : MonoBehaviour
                         {
                             Pikud10Menu.transform.position += _leaderMenuOffset;
                             _isPikud10MenuOpen = false;
+                        }
+                        break;
+                    case "Henyon10":
+                        if (!_isHenyon10MenuOpen && desiredPlayerData.AranRole == AranRoles.Henyon10)
+                        {
+                            Henyon10Menu.transform.position -= _leaderMenuOffset;
+                            _isHenyon10MenuOpen = true;
+                        }
+                        else if (_isHenyon10MenuOpen && desiredPlayerData.AranRole == AranRoles.Henyon10)
+                        {
+                            Henyon10Menu.transform.position += _leaderMenuOffset;
+                            _isHenyon10MenuOpen = false;
                         }
                         break;
                     default:
