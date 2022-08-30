@@ -44,7 +44,9 @@ public class UIManager : MonoBehaviour
     [Header("Henyon10")]
     public GameObject Henyon10Menu;
     public Button Henyon10MenuHandle;
-    public Button Henyon10CarsMenu;
+    public Button Henyon10CarsMenu,RefreshButton;
+    public GameObject CarPrefab;
+    public Transform AmbulanceListContent, NatanListContent;
 
 
 

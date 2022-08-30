@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public Material LineMaterial;
     public RenderTexture Pikud10TextureRenderer;
 
+
+
     private void Awake()
     {
         if (Instance == null)
