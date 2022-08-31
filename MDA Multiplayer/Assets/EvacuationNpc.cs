@@ -9,6 +9,8 @@ public class EvacuationNpc : MonoBehaviour
 {
     private Evacuation evacuation;
 
+    private TestingBedCollider bedRef;
+
     public GameObject _evacuationUI;
 
     private PhotonView _photonView;
@@ -17,6 +19,8 @@ public class EvacuationNpc : MonoBehaviour
         _photonView = GetComponent<PhotonView>();
 
         evacuation = GetComponentInParent<Evacuation>();
+
+        bedRef = GetComponentInParent<TestingBedCollider>();
     }
 
     public void OnInteracted()
@@ -51,6 +55,10 @@ public class EvacuationNpc : MonoBehaviour
         EvacuationManager.Instance.AddPatientToRooms(evacuation.NearbyPatient[0].PhotonView, evacuation.RoomEnum);
         EvacuationManager.Instance.DestroyPatient(evacuation.NearbyPatient[0].PhotonView);
         evacuation.NearbyPatient.Clear();
+
+        EmergencyBedController bed = bedRef.BedRefrence.GetComponent<EmergencyBedController>();
+        EvacuationManager.Instance.ResetEmergencyBed(bed);
+
         _evacuationUI.SetActive(false);
     }
 

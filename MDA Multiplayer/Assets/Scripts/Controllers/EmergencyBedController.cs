@@ -190,6 +190,13 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
             _takeOutBed = false;
             _emergencyBedUI.SetActive(false);
         }
+        else if (!_inCar && _takeOutBed)
+        {
+            _takeOutBed = false;
+            transform.position = _emergencyBedPositionInsideVehicle.position;
+            transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
+            transform.SetParent(_emergencyBedPositionInsideVehicle);
+        }
     }
     
     private void TakeOutReturnBed()
@@ -207,7 +214,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
             _takeReturnText.text = _returnText;
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -224,7 +231,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
                 _patient = other.gameObject;
             }
         }
-        
+
         if (other.CompareTag("Car"))
         {
             _inCar = true;
@@ -232,10 +239,10 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
 
         if (other.CompareTag("Evac"))
         {
-            _patient.GetComponent<BoxCollider>().enabled = true;
+                _patient.GetComponent<BoxCollider>().enabled = true;
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -258,6 +265,18 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         {
             _patient.GetComponent<BoxCollider>().enabled = false;
         }
+    }
+
+
+    public void ReturnBackBack()
+    {
+        if (!_patient.gameObject.activeInHierarchy)
+        {
+            transform.position = _emergencyBedPositionInsideVehicle.position;
+            transform.rotation = _emergencyBedPositionInsideVehicle.rotation;
+            transform.SetParent(_emergencyBedPositionInsideVehicle);
+        }
+
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -328,5 +347,7 @@ public class EmergencyBedController : MonoBehaviourPunCallbacks,IPunObservable
         _emergencyBedOpen.SetActive(true);
         _emergencyBedClosed.SetActive(false);
     }
+
+
 
 }

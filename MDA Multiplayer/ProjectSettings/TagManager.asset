@@ -13,6 +13,7 @@ TagManager:
   - QAGroup
   - Crew Screen
   - test
+  - EmergencyBed
   layers:
   - Default
   - TransparentFX
