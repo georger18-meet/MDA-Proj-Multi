@@ -107,6 +107,7 @@ MonoBehaviour:
   - UpdateTaggedPatientListRPC
   - UpdateVehicleListsRPC
   - UrgentEvactionRPC
+  - RemovingPlayerFromAllPlayersList
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
